@@ -147,6 +147,27 @@
 		A09AB6F714E993AA009C8B91 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6F614E993AA009C8B91 /* fps_images.png */; };
 		A77EF590171FD30E00451DA4 /* cwebp in Resources */ = {isa = PBXBuildFile; fileRef = A77EF58F171FD30E00451DA4 /* cwebp */; };
 		A77EF594171FD3B200451DA4 /* cwebp in Resources */ = {isa = PBXBuildFile; fileRef = A77EF58F171FD30E00451DA4 /* cwebp */; };
+		D37183B21E96321900D533E3 /* 2d in Resources */ = {isa = PBXBuildFile; fileRef = D371839C1E96321900D533E3 /* 2d */; };
+		D37183B31E96321900D533E3 /* 3d in Resources */ = {isa = PBXBuildFile; fileRef = D371839D1E96321900D533E3 /* 3d */; };
+		D37183B41E96321900D533E3 /* Android.mk in Resources */ = {isa = PBXBuildFile; fileRef = D371839E1E96321900D533E3 /* Android.mk */; };
+		D37183B51E96321900D533E3 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = D371839F1E96321900D533E3 /* audio */; };
+		D37183B61E96321900D533E3 /* base in Resources */ = {isa = PBXBuildFile; fileRef = D37183A01E96321900D533E3 /* base */; };
+		D37183B71E96321900D533E3 /* cc_dummy.c in Sources */ = {isa = PBXBuildFile; fileRef = D37183A11E96321900D533E3 /* cc_dummy.c */; };
+		D37183B81E96321900D533E3 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = D37183A21E96321900D533E3 /* CMakeLists.txt */; };
+		D37183B91E96321900D533E3 /* cocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D37183A31E96321900D533E3 /* cocos2d.cpp */; };
+		D37183BA1E96321900D533E3 /* deprecated in Resources */ = {isa = PBXBuildFile; fileRef = D37183A51E96321900D533E3 /* deprecated */; };
+		D37183BB1E96321900D533E3 /* editor-support in Resources */ = {isa = PBXBuildFile; fileRef = D37183A61E96321900D533E3 /* editor-support */; };
+		D37183BC1E96321900D533E3 /* math in Resources */ = {isa = PBXBuildFile; fileRef = D37183A71E96321900D533E3 /* math */; };
+		D37183BD1E96321900D533E3 /* navmesh in Resources */ = {isa = PBXBuildFile; fileRef = D37183A81E96321900D533E3 /* navmesh */; };
+		D37183BE1E96321900D533E3 /* network in Resources */ = {isa = PBXBuildFile; fileRef = D37183A91E96321900D533E3 /* network */; };
+		D37183BF1E96321900D533E3 /* physics in Resources */ = {isa = PBXBuildFile; fileRef = D37183AA1E96321900D533E3 /* physics */; };
+		D37183C01E96321900D533E3 /* physics3d in Resources */ = {isa = PBXBuildFile; fileRef = D37183AB1E96321900D533E3 /* physics3d */; };
+		D37183C11E96321900D533E3 /* platform in Resources */ = {isa = PBXBuildFile; fileRef = D37183AC1E96321900D533E3 /* platform */; };
+		D37183C21E96321900D533E3 /* renderer in Resources */ = {isa = PBXBuildFile; fileRef = D37183AD1E96321900D533E3 /* renderer */; };
+		D37183C31E96321900D533E3 /* scripting in Resources */ = {isa = PBXBuildFile; fileRef = D37183AE1E96321900D533E3 /* scripting */; };
+		D37183C41E96321900D533E3 /* storage in Resources */ = {isa = PBXBuildFile; fileRef = D37183AF1E96321900D533E3 /* storage */; };
+		D37183C51E96321900D533E3 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D37183B01E96321900D533E3 /* ui */; };
+		D37183C61E96321900D533E3 /* vr in Resources */ = {isa = PBXBuildFile; fileRef = D37183B11E96321900D533E3 /* vr */; };
 		E3127AA516C1D8E600D09AA4 /* CCBDirectoryComparer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */; };
 		E312972E16CC33B200A09155 /* SequencerPopoverBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */; };
 		E312973316CC377700A09155 /* SequencerPopoverBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E312973216CC377700A09155 /* SequencerPopoverBlock.m */; };
@@ -1085,6 +1106,28 @@
 		A09AB6AE14E9935F009C8B91 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		A09AB6F614E993AA009C8B91 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = "libs/cocos2d-iphone/Resources/Fonts/fps_images.png"; sourceTree = SOURCE_ROOT; };
 		A77EF58F171FD30E00451DA4 /* cwebp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cwebp; sourceTree = "<group>"; };
+		D371839C1E96321900D533E3 /* 2d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 2d; path = "cocos2d-x/cocos/2d"; sourceTree = "<group>"; };
+		D371839D1E96321900D533E3 /* 3d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 3d; path = "cocos2d-x/cocos/3d"; sourceTree = "<group>"; };
+		D371839E1E96321900D533E3 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Android.mk; path = "cocos2d-x/cocos/Android.mk"; sourceTree = "<group>"; };
+		D371839F1E96321900D533E3 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = "cocos2d-x/cocos/audio"; sourceTree = "<group>"; };
+		D37183A01E96321900D533E3 /* base */ = {isa = PBXFileReference; lastKnownFileType = folder; name = base; path = "cocos2d-x/cocos/base"; sourceTree = "<group>"; };
+		D37183A11E96321900D533E3 /* cc_dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cc_dummy.c; path = "cocos2d-x/cocos/cc_dummy.c"; sourceTree = "<group>"; };
+		D37183A21E96321900D533E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "cocos2d-x/cocos/CMakeLists.txt"; sourceTree = "<group>"; };
+		D37183A31E96321900D533E3 /* cocos2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cocos2d.cpp; path = "cocos2d-x/cocos/cocos2d.cpp"; sourceTree = "<group>"; };
+		D37183A41E96321900D533E3 /* cocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cocos2d.h; path = "cocos2d-x/cocos/cocos2d.h"; sourceTree = "<group>"; };
+		D37183A51E96321900D533E3 /* deprecated */ = {isa = PBXFileReference; lastKnownFileType = folder; name = deprecated; path = "cocos2d-x/cocos/deprecated"; sourceTree = "<group>"; };
+		D37183A61E96321900D533E3 /* editor-support */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "editor-support"; path = "cocos2d-x/cocos/editor-support"; sourceTree = "<group>"; };
+		D37183A71E96321900D533E3 /* math */ = {isa = PBXFileReference; lastKnownFileType = folder; name = math; path = "cocos2d-x/cocos/math"; sourceTree = "<group>"; };
+		D37183A81E96321900D533E3 /* navmesh */ = {isa = PBXFileReference; lastKnownFileType = folder; name = navmesh; path = "cocos2d-x/cocos/navmesh"; sourceTree = "<group>"; };
+		D37183A91E96321900D533E3 /* network */ = {isa = PBXFileReference; lastKnownFileType = folder; name = network; path = "cocos2d-x/cocos/network"; sourceTree = "<group>"; };
+		D37183AA1E96321900D533E3 /* physics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = physics; path = "cocos2d-x/cocos/physics"; sourceTree = "<group>"; };
+		D37183AB1E96321900D533E3 /* physics3d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = physics3d; path = "cocos2d-x/cocos/physics3d"; sourceTree = "<group>"; };
+		D37183AC1E96321900D533E3 /* platform */ = {isa = PBXFileReference; lastKnownFileType = folder; name = platform; path = "cocos2d-x/cocos/platform"; sourceTree = "<group>"; };
+		D37183AD1E96321900D533E3 /* renderer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = renderer; path = "cocos2d-x/cocos/renderer"; sourceTree = "<group>"; };
+		D37183AE1E96321900D533E3 /* scripting */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripting; path = "cocos2d-x/cocos/scripting"; sourceTree = "<group>"; };
+		D37183AF1E96321900D533E3 /* storage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = storage; path = "cocos2d-x/cocos/storage"; sourceTree = "<group>"; };
+		D37183B01E96321900D533E3 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ui; path = "cocos2d-x/cocos/ui"; sourceTree = "<group>"; };
+		D37183B11E96321900D533E3 /* vr */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vr; path = "cocos2d-x/cocos/vr"; sourceTree = "<group>"; };
 		E3127AA316C1D8E600D09AA4 /* CCBDirectoryComparer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBDirectoryComparer.h; sourceTree = "<group>"; };
 		E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBDirectoryComparer.m; sourceTree = "<group>"; };
 		E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequencerPopoverBlock.xib; sourceTree = "<group>"; };
@@ -2552,6 +2595,7 @@
 				E3E087611566907F008F1FDB /* JSCocoa */,
 				E32BBCAA156135C300C58395 /* HashValue */,
 				E36A270F152263B4004986A8 /* cocos2d */,
+				D37183971E9631B600D533E3 /* cocos2d-x */,
 				E383BF68152478940032F371 /* CCScrollView */,
 				E3C5C1A51504D30C000CF6F3 /* SCEvents */,
 				A09AB68C14E9935F009C8B91 /* kazmath */,
@@ -2843,6 +2887,35 @@
 				A77EF58F171FD30E00451DA4 /* cwebp */,
 			);
 			name = WebP;
+			sourceTree = "<group>";
+		};
+		D37183971E9631B600D533E3 /* cocos2d-x */ = {
+			isa = PBXGroup;
+			children = (
+				D371839C1E96321900D533E3 /* 2d */,
+				D371839D1E96321900D533E3 /* 3d */,
+				D371839E1E96321900D533E3 /* Android.mk */,
+				D371839F1E96321900D533E3 /* audio */,
+				D37183A01E96321900D533E3 /* base */,
+				D37183A11E96321900D533E3 /* cc_dummy.c */,
+				D37183A21E96321900D533E3 /* CMakeLists.txt */,
+				D37183A31E96321900D533E3 /* cocos2d.cpp */,
+				D37183A41E96321900D533E3 /* cocos2d.h */,
+				D37183A51E96321900D533E3 /* deprecated */,
+				D37183A61E96321900D533E3 /* editor-support */,
+				D37183A71E96321900D533E3 /* math */,
+				D37183A81E96321900D533E3 /* navmesh */,
+				D37183A91E96321900D533E3 /* network */,
+				D37183AA1E96321900D533E3 /* physics */,
+				D37183AB1E96321900D533E3 /* physics3d */,
+				D37183AC1E96321900D533E3 /* platform */,
+				D37183AD1E96321900D533E3 /* renderer */,
+				D37183AE1E96321900D533E3 /* scripting */,
+				D37183AF1E96321900D533E3 /* storage */,
+				D37183B01E96321900D533E3 /* ui */,
+				D37183B11E96321900D533E3 /* vr */,
+			);
+			name = "cocos2d-x";
 			sourceTree = "<group>";
 		};
 		E3214C3F15D3B9D0002413A7 /* Custom Properties */ = {
@@ -4833,13 +4906,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37183B51E96321900D533E3 /* audio in Resources */,
+				D37183C21E96321900D533E3 /* renderer in Resources */,
+				D37183C31E96321900D533E3 /* scripting in Resources */,
+				D37183B31E96321900D533E3 /* 3d in Resources */,
+				D37183B21E96321900D533E3 /* 2d in Resources */,
+				D37183B61E96321900D533E3 /* base in Resources */,
 				E398C02914FB81A30078E771 /* InfoPlist.strings in Resources */,
 				835DB052171561B8003A2F7B /* LICENSE.txt in Resources */,
+				D37183C61E96321900D533E3 /* vr in Resources */,
+				D37183C11E96321900D533E3 /* platform in Resources */,
 				835DB053171561B8003A2F7B /* README.markdown in Resources */,
+				D37183C51E96321900D533E3 /* ui in Resources */,
+				D37183B41E96321900D533E3 /* Android.mk in Resources */,
+				D37183BF1E96321900D533E3 /* physics in Resources */,
+				D37183C41E96321900D533E3 /* storage in Resources */,
 				835DB083171561B8003A2F7B /* About.txt in Resources */,
 				835DB08B171561B8003A2F7B /* README.txt in Resources */,
 				835DB0C6171563A8003A2F7B /* About.txt in Resources */,
+				D37183BB1E96321900D533E3 /* editor-support in Resources */,
 				A77EF590171FD30E00451DA4 /* cwebp in Resources */,
+				D37183B81E96321900D533E3 /* CMakeLists.txt in Resources */,
+				D37183BD1E96321900D533E3 /* navmesh in Resources */,
+				D37183BE1E96321900D533E3 /* network in Resources */,
+				D37183BC1E96321900D533E3 /* math in Resources */,
+				D37183BA1E96321900D533E3 /* deprecated in Resources */,
+				D37183C01E96321900D533E3 /* physics3d in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5315,7 +5407,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E398C03B14FB8F850078E771 /* CCBXCocos2diPhone.m in Sources */,
+				D37183B91E96321900D533E3 /* cocos2d.cpp in Sources */,
 				E3F2C21314FC157E007B660D /* CCBXCocos2diPhoneWriter.m in Sources */,
+				D37183B71E96321900D533E3 /* cc_dummy.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5678,6 +5772,7 @@
 				HEADER_SEARCH_PATHS = (
 					libs/Fragaria,
 					"../Examples/CocosBuilderExample/libs/CCBReader/**",
+					"libs/cocos2d-x/**",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -5714,6 +5809,7 @@
 				HEADER_SEARCH_PATHS = (
 					libs/Fragaria,
 					"../Examples/CocosBuilderExample/libs/CCBReader/**",
+					"libs/cocos2d-x/**",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
