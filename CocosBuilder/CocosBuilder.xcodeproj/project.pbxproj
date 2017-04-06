@@ -1128,6 +1128,7 @@
 		D37183AF1E96321900D533E3 /* storage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = storage; path = "cocos2d-x/cocos/storage"; sourceTree = "<group>"; };
 		D37183B01E96321900D533E3 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ui; path = "cocos2d-x/cocos/ui"; sourceTree = "<group>"; };
 		D37183B11E96321900D533E3 /* vr */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vr; path = "cocos2d-x/cocos/vr"; sourceTree = "<group>"; };
+		D37183CD1E96362000D533E3 /* CCScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScene.h; path = "cocos2d-bridge/CCScene.h"; sourceTree = "<group>"; };
 		E3127AA316C1D8E600D09AA4 /* CCBDirectoryComparer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBDirectoryComparer.h; sourceTree = "<group>"; };
 		E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBDirectoryComparer.m; sourceTree = "<group>"; };
 		E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequencerPopoverBlock.xib; sourceTree = "<group>"; };
@@ -2595,6 +2596,7 @@
 				E3E087611566907F008F1FDB /* JSCocoa */,
 				E32BBCAA156135C300C58395 /* HashValue */,
 				E36A270F152263B4004986A8 /* cocos2d */,
+				D37183C81E9635CF00D533E3 /* cocos2d-bridge */,
 				D37183971E9631B600D533E3 /* cocos2d-x */,
 				E383BF68152478940032F371 /* CCScrollView */,
 				E3C5C1A51504D30C000CF6F3 /* SCEvents */,
@@ -2916,6 +2918,14 @@
 				D37183B11E96321900D533E3 /* vr */,
 			);
 			name = "cocos2d-x";
+			sourceTree = "<group>";
+		};
+		D37183C81E9635CF00D533E3 /* cocos2d-bridge */ = {
+			isa = PBXGroup;
+			children = (
+				D37183CD1E96362000D533E3 /* CCScene.h */,
+			);
+			name = "cocos2d-bridge";
 			sourceTree = "<group>";
 		};
 		E3214C3F15D3B9D0002413A7 /* Custom Properties */ = {
