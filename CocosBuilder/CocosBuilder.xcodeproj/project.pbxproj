@@ -129,6 +129,9 @@
 		835DB0C6171563A8003A2F7B /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = 835DB0C3171563A8003A2F7B /* About.txt */; };
 		835DB0C9171563E1003A2F7B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DB0C5171563A8003A2F7B /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		835DB0CB17156421003A2F7B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835DB0CA17156421003A2F7B /* Security.framework */; };
+		9D5442CD1E963BDA005AD3E4 /* CCAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442CC1E963BDA005AD3E4 /* CCAnimation.mm */; };
+		9D5442D21E964D3F005AD3E4 /* CCAnimationCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */; };
+		9D5442D51E964D51005AD3E4 /* CCDirector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D41E964D51005AD3E4 /* CCDirector.mm */; };
 		A09AB6AF14E9935F009C8B91 /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = A09AB69F14E9935F009C8B91 /* aabb.c */; };
 		A09AB6B014E9935F009C8B91 /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A014E9935F009C8B91 /* ChangeLog */; };
 		A09AB6B114E9935F009C8B91 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A114E9935F009C8B91 /* CMakeLists.txt */; };
@@ -1075,6 +1078,12 @@
 		835DB0C4171563A8003A2F7B /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		835DB0C5171563A8003A2F7B /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		835DB0CA17156421003A2F7B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9D5442CB1E963BDA005AD3E4 /* CCAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimation.h; path = "cocos2d-bridge/CCAnimation.h"; sourceTree = "<group>"; };
+		9D5442CC1E963BDA005AD3E4 /* CCAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCAnimation.mm; path = "cocos2d-bridge/CCAnimation.mm"; sourceTree = "<group>"; };
+		9D5442D01E964D3F005AD3E4 /* CCAnimationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationCache.h; path = "cocos2d-bridge/CCAnimationCache.h"; sourceTree = "<group>"; };
+		9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCAnimationCache.mm; path = "cocos2d-bridge/CCAnimationCache.mm"; sourceTree = "<group>"; };
+		9D5442D31E964D51005AD3E4 /* CCDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCDirector.h; path = "cocos2d-bridge/CCDirector.h"; sourceTree = "<group>"; };
+		9D5442D41E964D51005AD3E4 /* CCDirector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDirector.mm; path = "cocos2d-bridge/CCDirector.mm"; sourceTree = "<group>"; };
 		A09AB68F14E9935F009C8B91 /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aabb.h; sourceTree = "<group>"; };
 		A09AB69114E9935F009C8B91 /* mat4stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat4stack.h; sourceTree = "<group>"; };
 		A09AB69214E9935F009C8B91 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -2923,6 +2932,12 @@
 		D37183C81E9635CF00D533E3 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				9D5442CB1E963BDA005AD3E4 /* CCAnimation.h */,
+				9D5442CC1E963BDA005AD3E4 /* CCAnimation.mm */,
+				9D5442D01E964D3F005AD3E4 /* CCAnimationCache.h */,
+				9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */,
+				9D5442D31E964D51005AD3E4 /* CCDirector.h */,
+				9D5442D41E964D51005AD3E4 /* CCDirector.mm */,
 				D37183CD1E96362000D533E3 /* CCScene.h */,
 			);
 			name = "cocos2d-bridge";
@@ -5061,6 +5076,7 @@
 				772BE572133E48350009B5B9 /* CCBGlobals.m in Sources */,
 				772BE5801343A6EF0009B5B9 /* CCBWriterInternal.m in Sources */,
 				772BE58E134BB6C00009B5B9 /* CCBDocument.m in Sources */,
+				9D5442D51E964D51005AD3E4 /* CCDirector.mm in Sources */,
 				772BE594134BC2BF0009B5B9 /* CCBReaderInternalV1.m in Sources */,
 				771B2B321353818200B260BA /* NewDocWindowController.m in Sources */,
 				77156DB1137F0351005EF746 /* CCBSpriteSheetParser.m in Sources */,
@@ -5132,6 +5148,7 @@
 				E398C03314FB86D20078E771 /* PlugInExport.m in Sources */,
 				E398C03814FB8A430078E771 /* CCBX.m in Sources */,
 				E398C04314FBCA620078E771 /* PublishTypeAccessoryView.m in Sources */,
+				9D5442D21E964D3F005AD3E4 /* CCAnimationCache.mm in Sources */,
 				E3C5C1A41504D17E000CF6F3 /* ResourceManager.m in Sources */,
 				E3C5C1AC1504D30C000CF6F3 /* SCEvent.m in Sources */,
 				E3C5C1AD1504D30C000CF6F3 /* SCEvents.m in Sources */,
@@ -5419,6 +5436,7 @@
 				E398C03B14FB8F850078E771 /* CCBXCocos2diPhone.m in Sources */,
 				D37183B91E96321900D533E3 /* cocos2d.cpp in Sources */,
 				E3F2C21314FC157E007B660D /* CCBXCocos2diPhoneWriter.m in Sources */,
+				9D5442CD1E963BDA005AD3E4 /* CCAnimation.mm in Sources */,
 				D37183B71E96321900D533E3 /* cc_dummy.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
