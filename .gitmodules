@@ -10,3 +10,6 @@
 [submodule "Examples/CocosBuilderExample/libs/CCBReader"]
 	path = Examples/CocosBuilderExample/libs/CCBReader
 	url = git://github.com/cocos2d/CCBReader.git
+[submodule "CocosBuilder/libs/cocos2d-x"]
+	path = CocosBuilder/libs/cocos2d-x
+	url = git@biglime.github.com:BigLime/cocos2d-x.git
