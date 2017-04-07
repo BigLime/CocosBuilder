@@ -16,14 +16,14 @@
     if (!!pThis)
     {
         impl_                  = pThis;
-        isNeedCCSceneDealloc_  = NO;
+        isNeedSceneDealloc_    = NO;
     }
     else
     {
-        impl_ = cocos2d::CCScene::Create();
-        impl_->retain();
+        impl_ = cocos2d::Scene::create();
+        ((cocos2d::Scene*)impl_)->retain();
         
-        isNeedCCSceneDealloc_ = YES;
+        isNeedSceneDealloc_ = YES;
     }
     
     self = [super init:self];
@@ -33,7 +33,8 @@
 -(id) initWithObject:(void *)object
 {
     impl_                 = object;
-    isNeedCCSceneDealloc_ = NO;
+    ((cocos2d::Scene*)impl_)->retain();
+    isNeedSceneDealloc_   = YES;
     
     self = [super init:self];
     return self;
@@ -41,8 +42,8 @@
 
 -(void) dealloc
 {
-    if (isNeedCCSceneDealloc_)
-        impl_->release();
+    if (isNeedSceneDealloc_)
+        ((cocos2d::Scene*)impl_)->release();
     
     [super dealloc];
 }

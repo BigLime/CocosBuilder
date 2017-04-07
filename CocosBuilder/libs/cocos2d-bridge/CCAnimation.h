@@ -29,6 +29,10 @@
 /** initializes the animation frame with a spriteframe, number of delay units and a notification user info */
 -(id) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame delayUnits:(float)delayUnits userInfo:(NSDictionary*)userInfo;
 
+-(id)initWithObject: (void*)object;
+
+-(void*) getImpl;
+
 @end
 
 @interface CCAnimation : NSObject <NSCopying>
@@ -106,5 +110,9 @@
  Added to facilitate the migration from v0.8 to v0.9.
  */
 -(void) addSpriteFrameWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
+
+-(id)initWithObject: (void*)object;
+
+-(void*) getImpl;
 
 @end

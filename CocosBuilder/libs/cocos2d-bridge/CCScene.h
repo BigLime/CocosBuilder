@@ -10,9 +10,9 @@
 
 @interface CCScene : CCNode
 {
-    BOOL isNeedCCSceneDealloc_;
+    BOOL isNeedSceneDealloc_;
 }
 
--(id) init: (void*) pThis;
-
+-(id) init;
+-(id) initWithObject:(void *)object;
 @end

@@ -104,11 +104,6 @@
     return self;
 }
 
--(void) dealloc
-{
-    [super dealloc];
-}
-
 -(id) copyWithZone:(NSZone *)zone
 {
     AnimationFrame* s = (AnimationFrame*)impl_;
@@ -311,6 +306,11 @@
     Texture2D* cpptexture = (Texture2D*)[texture getImpl];
     /*mark todo by lsr*/
     anim->addSpriteFrameWithTexture(cpptexture, rect);
+}
+
+-(void*) getImpl
+{
+    return impl_;
 }
 
 @end
