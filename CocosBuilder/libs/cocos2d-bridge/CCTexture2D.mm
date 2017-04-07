@@ -22,7 +22,7 @@
     }
     else
     {
-        cocos2dx::Sprite* sprite = cocos2dx::Sprite()::Create();
+        cocos2d::Sprite* sprite = cocos2d::Sprite()::Create();
         impl_ = sprite;
         impl_->retain();
         
@@ -44,7 +44,7 @@
 {
     if (isNeedSTextureDealloc_)
     {
-        cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+        cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
         texture2D->releaseGLTexture();
         texture2D->release();
     }
@@ -58,74 +58,74 @@
 
 - (CCTexture2DPixelFormat)pixelFormat
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     CCTexture2DPixelFormat format = (CCTexture2DPixelFormat)(texture2D->getPixelFormat());
     return format;
 }
 
 - (NSUInteger)pixelsWide
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getPixelsWide();
 }
 
 - (NSUInteger)pixelsHigh
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getPixelsHigh();
 }
 
 - (GLuint)name
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getName();
 }
 
 - (CGSize)contentSizeInPixels
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return [ccTypeConvert SizeToCGSize:texture2D->getContentSizeInPixels()];
 }
 
 - (GLfloat)maxS
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getMaxS();
 }
 - (void)setMaxS:_maxS
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setMaxS(_maxS);
 }
 
 - (GLfloat)maxT
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getMaxT();
 }
 - (void)setMaxS:_maxT
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setMaxT(_maxT);
 }
 
 - (BOOL)hasPremultipliedAlpha
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->hasPremultipliedAlpha();
 }
 
 - (CCGLProgram*)shaderProgram
 {
     NSAssert(false, "no shaderProgram ");
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return texture2D->getGLProgram();
 }
 
 -(void) setShaderProgram:_shaderProgram
 {
     NSAssert(false, "no setShaderProgra ");
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setGLProgram(_shaderProgram);
 }
 
@@ -135,9 +135,9 @@
 {
     if((self = [super init]))
     {
-        cocos2dx::Texture2D* texture2D = new cocos2dx::Texture2D();
+        cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
         ssize_t dataLen = width * height * 4;//TODO by hk this dataLen is new param in c++
-        NSLog(" cocos2dx::Texture2D")
+        NSLog(" cocos2d::Texture2D")
         sprite->initWithData(data,dataLen,pixelFormat,width,height,[ccTypeConvert CGSizeToSize:size]);
         impl_ = texture2D;
         
@@ -164,7 +164,7 @@
 }
 -(CGSize) contentSize
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return [ccTypeConvert SizeToCGSize:texture2D->getContentSize()];
 }
 @end
@@ -173,7 +173,7 @@
 
 - (id) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     //texture2D->initWithImage();
     //TODO no CGImage* by hk
 }
@@ -198,7 +198,7 @@
 
 - (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->initWithString(std::string([string UTF8String]), std::string([name UTF8String]),size);
     return self;
 }
@@ -235,12 +235,12 @@
 
 - (void) drawAtPoint:(CGPoint)point
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->drawAtPoint([ccTypeConvert CGPointToPoint:point]);
 }
 - (void) drawInRect:(CGRect)rect
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->drawInRect([ccTypeConvert CGRectToRect:rect]);
 }
 @end
@@ -254,24 +254,24 @@
 
 -(void) generateMipmap
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->generateMipmap();
 }
 -(void) setTexParameters: (ccTexParams*) texParams
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setTexParameters(texParams);//TODO translate ccTexParams
 }
 
 -(void) setAliasTexParameters
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setAliasTexParameters();
 }
 
 -(void) setAntiAliasTexParameters
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     texture2D->setAntiAliasTexParameters();
 }
 
@@ -286,7 +286,7 @@
 @implementation CCTexture2D (PixelFormat)
 +(void) setDefaultAlphaPixelFormat:(CCTexture2DPixelFormat)format
 {
-    cocos2dx::Texture2D::setDefaultAlphaPixelFormat(format);
+    cocos2d::Texture2D::setDefaultAlphaPixelFormat(format);
 }
 +(NSUInteger) bitsPerPixelForFormat:(CCTexture2DPixelFormat)format
 {
@@ -334,7 +334,7 @@
 }
 +(CCTexture2DPixelFormat) defaultAlphaPixelFormat
 {
-    return cocos2dx::Texture2D::getDefaultAlphaPixelFormat();
+    return cocos2d::Texture2D::getDefaultAlphaPixelFormat();
 }
 -(NSUInteger) bitsPerPixelForFormat
 {
@@ -342,7 +342,7 @@
 }
 -(NSString*) stringForFormat
 {
-    cocos2d::Texture2D* texture2D = (cocos2dx::Texture2D*)impl_;
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
     return [ccTypeConvert stringToNSString:texture2D->getStringForFormat()];
 }
 @end

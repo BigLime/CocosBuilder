@@ -7,9 +7,12 @@
 #import "CCProtocols.h"
 #import "CCTextureAtlas.h"
 
+@class CCSpriteBatchNode;
+@class CCSpriteFrame;
+@class CCAnimation;
+
 @interface CCSprite : CCNodeRGBA
 {
-	void* impl_;
 	BOOL isNeedSpriteDealloc_;
 }
 

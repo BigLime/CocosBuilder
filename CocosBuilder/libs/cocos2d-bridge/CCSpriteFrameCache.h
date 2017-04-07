@@ -6,7 +6,7 @@
 
 #import "CCSpriteFrame.h"
 
-@class CCSpriteFrame
+@class CCSpriteFrame;
 
 @interface CCSpriteFrameCache : NSObject
 {

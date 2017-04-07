@@ -8,10 +8,9 @@
 #import "CCProtocols.h"
 #import "CCTextureAtlas.h"
 #import "ccMacros.h"
-
+@class CCSprite;
 @interface CCSpriteBatchNode : CCNode
 {
-	void* impl_;
 	BOOL isNeedBatchNodeDealloc_;
 }
 

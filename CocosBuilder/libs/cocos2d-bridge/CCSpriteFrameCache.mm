@@ -45,13 +45,13 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
 
 -(void) dealloc
 {
-    cocos2dx::SpriteFrameCache::getInstance()->destroyInstance();
+    cocos2d::SpriteFrameCache::getInstance()->destroyInstance();
     [super dealloc];
 }
 
 -(void) addSpriteFramesWithDictionary:(NSDictionary*)dictionary textureReference:(id)textureReference
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     //TODO NSDictionary
     NSString *textureFileName = nil;
     CCTexture2D * texture = nil;
@@ -71,21 +71,21 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
     }
     else
     {
-        spriteFrameCache->addSpriteFramesWithDictionary(dictionary,((cocos2dx::Texture2D*)[texture getImpl]));
+        spriteFrameCache->addSpriteFramesWithDictionary(dictionary,((cocos2d::Texture2D*)[texture getImpl]));
     }
 }
 -(void) addSpriteFramesWithDictionary:(NSDictionary*)dictionary textureFilename:(NSString*)textureFilename
 {
     //TODO NSDictionary
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     spriteFrameCache->addSpriteFramesWithDictionary(dictionary,[textureFilename UTF8String]);
 }
 
 -(void) addSpriteFramesWithDictionary:(NSDictionary *)dictionary texture:(CCTexture2D *)texture
 {
     //TODO NSDictionary
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
-    spriteFrameCache->addSpriteFramesWithDictionary(dictionary,((cocos2dx::Texture2D*)[texture getImpl]));
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
+    spriteFrameCache->addSpriteFramesWithDictionary(dictionary,((cocos2d::Texture2D*)[texture getImpl]));
 }
 -(void) addSpriteFramesWithFile:(NSString*)plist textureReference:(id)textureReference
 {
@@ -148,51 +148,51 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
 }
 -(void) addSpriteFrame:(CCSpriteFrame*)frame name:(NSString*)frameName
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string name = [frameName UTF8String];
-    cocos2dx::SpriteFrame* spriteFrame = (cocos2dx::SpriteFrame*)[frame getImpl];
+    cocos2d::SpriteFrame* spriteFrame = (cocos2d::SpriteFrame*)[frame getImpl];
     spriteFrameCache->addSpriteFrame(spriteFrame,name);
 }
 -(void) removeSpriteFrames
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     spriteFrameCache->removeSpriteFrames();
 }
 -(void) removeUnusedSpriteFrames
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     spriteFrameCache->removeUnusedSpriteFrames();
 }
 -(void) removeSpriteFrameByName:(NSString*)name
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string nameStr = [name UTF8String];
     spriteFrameCache->removeSpriteFrameByName(nameStr);
 }
 - (void) removeSpriteFramesFromFile:(NSString*) plist
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string plistStr = [plist UTF8String];
     spriteFrameCache->removeSpriteFramesFromFile(plistStr);
 }
 - (void) removeSpriteFramesFromDictionary:(NSDictionary*) dictionary
 {
     //TODO NSDictionary
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     priteFrameCache->removeSpriteFramesFromDictionary(dictionary);
 
 }
 - (void) removeSpriteFramesFromTexture:(CCTexture2D*) texture
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
-    cocos2dx::Texture2D* texture2D = (cocos2dx::Texture2D*)[texture getImpl];
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)[texture getImpl];
     priteFrameCache->removeSpriteFramesFromTexture(texture2D);
 }
 -(CCSpriteFrame*) spriteFrameByName:(NSString*)name
 {
-    cocos2dx::SpriteFrameCache* spriteFrameCache = cocos2dx::SpriteFrameCache::getInstance();
+    cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string nameStr = [name UTF8String];
-    cocos2dx::SpriteFrame* spriteFrame = priteFrameCache->getSpriteFrameByName(nameStr);
+    cocos2d::SpriteFrame* spriteFrame = priteFrameCache->getSpriteFrameByName(nameStr);
     return [[[CCSpriteFrame alloc ]initWithObject: spriteFrame] autorelease];
 }
 

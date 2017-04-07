@@ -18,7 +18,7 @@
     }
     else
     {
-        cocos2dx::TextureAtlas* bathNode = new cocos2dx::TextureAtlas();
+        cocos2d::TextureAtlas* bathNode = new cocos2d::TextureAtlas();
         impl_ = bathNode;
         impl_->autorelease();
         
@@ -40,7 +40,7 @@
 {
     if (isNeedTextureAtlasDealloc_)
     {
-        ((cocos2dx::TextureAtlas*)impl_)->release();
+        ((cocos2d::TextureAtlas*)impl_)->release();
     }
     [super dealloc];
 }
@@ -52,37 +52,37 @@
 
 - (NSUInteger)totalQuads
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     return _textureAtlas->getTotalQuads();
 }
 
 - (NSUInteger)capacity
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     return _textureAtlas->getCapacity();
 }
 
 - (CCTexture2D*)texture
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     return [[[CCTexture2D alloc ]initWithObject: _textureAtlas->getTexture()] autorelease];
 }
 -(void) setTexture:(CCTexture2D*)texture
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
-    _textureAtlas->setTexture(((cocos2dx::Texture2D*)[texture getImpl]));
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
+    _textureAtlas->setTexture(((cocos2d::Texture2D*)[texture getImpl]));
 }
 - (ccV3F_C4B_T2F_Quad)quads
 {
     //TODO ccV3F_C4B_T2F_Quad
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     return _textureAtlas->getQuads();
 }
 
 - (void)setQuads:_quads
 {
     //TODO ccV3F_C4B_T2F_Quad
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setQuads(_quads);
 }
 
@@ -99,7 +99,7 @@
 -(id) initWithFile:(NSString*)file capacity:(NSUInteger)n
 {
     if( (self=[super init])) {
-        cocos2dx::TextureAtlas* _textureAtlas = cocos2dx::TextureAtlas::create([ccTypeConvert NSStringTostring:file],n);
+        cocos2d::TextureAtlas* _textureAtlas = cocos2d::TextureAtlas::create([ccTypeConvert NSStringTostring:file],n);
         impl_ = _textureAtlas;
         
         impl_->retain();
@@ -112,8 +112,8 @@
 -(id) initWithTexture:(CCTexture2D*)tex capacity:(NSUInteger)n
 {
     if( (self=[super init])) {
-        cocos2dx::CCTexture2D* _texture2D = (cocos2dx::CCTexture2D*)[tex getImpl];
-        cocos2dx::TextureAtlas* _textureAtlas = cocos2dx::TextureAtlas::createWithTexture(_texture2D,n);
+        cocos2d::CCTexture2D* _texture2D = (cocos2d::CCTexture2D*)[tex getImpl];
+        cocos2d::TextureAtlas* _textureAtlas = cocos2d::TextureAtlas::createWithTexture(_texture2D,n);
         impl_ = _textureAtlas;
         
         impl_->retain();
@@ -129,7 +129,7 @@
 
 -(void) setupIndices
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setupIndices();
 
 }
@@ -137,70 +137,70 @@
 #if CC_TEXTURE_ATLAS_USE_VAO
 -(void) setupVBOandVAO
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setupVBOandVAO();
 }
 #else // CC_TEXTURE_ATLAS_USE_VAO
 -(void) setupVBO
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setupVBO();
 }
 -(void) mapBuffers
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->mapBuffers();
 }
 -(void) updateQuad:(ccV3F_C4B_T2F_Quad*)quad atIndex:(NSUInteger) n
 {
     //TODO ccV3F_C4B_T2F_Quad
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->updateQuad(quad,n);
 }
 -(void) insertQuad:(ccV3F_C4B_T2F_Quad*)quad atIndex:(NSUInteger)index
 {
     //TODO ccV3F_C4B_T2F_Quad
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->insertQuad(quad,index);
 }
 -(void) insertQuads:(ccV3F_C4B_T2F_Quad*)quads atIndex:(NSUInteger)index amount:(NSUInteger) amount
 {
     //TODO ccV3F_C4B_T2F_Quad
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->insertQuads(quad,index,amount);
 }
 -(void) insertQuadFromIndex:(NSUInteger)oldIndex atIndex:(NSUInteger)newIndex
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->insertQuadFromIndex(oldIndex,newIndex);
 }
 
 -(void) moveQuadsFromIndex:(NSUInteger)oldIndex amount:(NSUInteger) amount atIndex:(NSUInteger)newIndex
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->moveQuadsFromIndex(oldIndex,amount,newIndex);
 }
 -(void) removeQuadAtIndex:(NSUInteger) index
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->removeQuadAtIndex(index);
 
 }
 -(void) removeQuadsAtIndex:(NSUInteger) index amount:(NSUInteger) amount
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->removeQuadsAtIndex(index,amount);
 }
 -(void) removeAllQuads
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->removeAllQuads();
 }
 #pragma mark TextureAtlas - Resize
 
 -(BOOL) resizeCapacity: (NSUInteger) newCapacity
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     return _textureAtlas->resizeCapacity(newCapacity);
     
 }
@@ -208,35 +208,35 @@
 
 -(void) fillWithEmptyQuadsFromIndex:(NSUInteger) index amount:(NSUInteger) amount
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->fillWithEmptyQuadsFromIndex(index,amount);
 }
 -(void) increaseTotalQuadsWith:(NSUInteger) amount
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->increaseTotalQuadsWith(amount);
 }
 -(void) moveQuadsFromIndex:(NSUInteger) index to:(NSUInteger) newIndex
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->moveQuadsFromIndex(index,newIndex);
 }
 #pragma mark TextureAtlas - Drawing
 
 -(void) drawQuads
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->drawQuads();
 }
 
 -(void) drawNumberOfQuads: (NSUInteger) n
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->drawNumberOfQuads(n);
 }
 -(void) drawNumberOfQuads: (NSUInteger) n fromIndex: (NSUInteger) start
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2dx::TextureAtlas*)impl_;
+    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->drawNumberOfQuads(n,start);
 }
 
