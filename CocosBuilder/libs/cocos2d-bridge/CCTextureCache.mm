@@ -100,7 +100,7 @@ static CCTextureCache *sharedTextureCache;
 -(CCTexture2D*) addCGImage: (CGImageRef) imageref forKey: (NSString *)key
 {
     cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
-    /*mark todo by lsr*/ // 类型转换CGImage<-->Image
+    cache->addImage([ccTypeConvert CGImageToImage:imageref], [ccTypeConvert NSStringTostring:key]);
 }
 
 #pragma mark TextureCache - Remove

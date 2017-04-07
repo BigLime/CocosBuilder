@@ -65,4 +65,8 @@
 +(NSDictionary*)MapNodeToNSDictionary:(cocos2d::Map<std::string, cocos2d::Node*>) m;
 +(cocos2d::Map<std::string, cocos2d::Node*>)NSDictionaryToMapNode:(NSDictionary*) dic;
 
+// CGImage* <--> Image
++(CGImageRef)ImageToCGImage:(cocos2d::Image*) img;
++(cocos2d::Image*)CGImageToImage:(CGImageRef) cgimg;
+
 @end

@@ -216,7 +216,7 @@
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
     cocos2d::Image* img = rt->newImage();
-    /*mark todo by lsr*/ // 返回类型不一致
+    return [ccTypeConvert ImageToCGImage:img];
 }
 
 -(BOOL) saveToFile:(NSString*)name

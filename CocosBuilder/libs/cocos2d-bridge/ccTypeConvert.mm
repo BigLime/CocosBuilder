@@ -286,4 +286,30 @@
     return m;
 }
 
+// CGImage* <--> Image
++(CGImageRef)ImageToCGImage:(cocos2d::Image*) img
+{
+    NSData* data = [[[NSData alloc] initWithBytes:img->getData() length:img->getDataLen()] autorelease];
+    NSBitmapImageRep* nsimg = [[[NSBitmapImageRep alloc] initWithData:data] autorelease];
+    return [nsimg CGImage];
+}
+
++(cocos2d::Image*)CGImageToImage:(CGImageRef) cgimg
+{
+    size_t width = CGImageGetWidth(cgimg);
+    size_t height = CGImageGetHeight(cgimg);
+    size_t bitsPerComponent = CGImageGetBitsPerComponent(cgimg);
+    size_t bytesPerRow = CGImageGetBytesPerRow(cdimg);
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(cgimg);
+    uint32_t bitmapInfo = CGImageGetBitmapInfo(cgimg);
+    size_t lenth = width * height * 4;
+    void* data = malloc(lenth);
+    CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo);
+    
+    cocos2d::Image* img = new cocos2d::Image();
+    img->initWithImageData((unsigned char *)lenth, lenth);
+    free(data);
+    return img;
+}
+
 @end
