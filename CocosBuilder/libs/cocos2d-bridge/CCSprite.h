@@ -10,8 +10,7 @@
 @interface CCSprite : CCNodeRGBA
 {
 	void* impl_;
-	BOOL isNeedCCSceneDealloc_;
-	BOOL _recursiveDirty;
+	BOOL isNeedSpriteDealloc_;
 }
 
 /** whether or not the Sprite needs to be updated in the Atlas */

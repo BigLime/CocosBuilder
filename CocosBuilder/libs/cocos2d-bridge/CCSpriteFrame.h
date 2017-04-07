@@ -6,10 +6,11 @@
 #import "CCNode.h"
 #import "CCProtocols.h"
 
+
 @interface CCSpriteFrame : NSObject
 {
     void* impl_;
-    BOOL isNeedCCSceneDealloc_;
+    BOOL isNeedSpriteFrameDealloc_;
 }
 
 /** rect of the frame in points. If it is updated, then rectInPixels will be updated too. */

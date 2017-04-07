@@ -4,6 +4,8 @@
 // author ke.huang
 
 #import "CCSprite.h"
+#import "2d/CCSprite.h"
+#import "ccTypeConvert.h"
 
 @implementation CCSprite
 
@@ -13,15 +15,15 @@
     if(!!pThis)
     {
         impl_               = pThis;
-        isNeedNodeDealloc_  = NO;
+        isNeedSpriteDealloc_  = NO;
     }
     else
     {
-        cocos2dx::CCSprite* sprite = cocos2dx::CCSprite()::Create();
+        cocos2dx::Sprite* sprite = cocos2dx::Sprite()::Create();
         impl_ = sprite;
         impl_->retain();
         
-        isNeedNodeDealloc_  = YES;
+        isNeedSpriteDealloc_  = YES;
     }
     
 }
@@ -29,7 +31,7 @@
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedNodeDealloc_  = NO;
+    isNeedSpriteDealloc_  = NO;
     
     self = [super init:self];
     return self;
@@ -37,98 +39,103 @@
 
 -(void) dealloc
 {
-    if (isNeedNodeDealloc_)
+    if (isNeedSpriteDealloc_)
     {
-        delete (cocos2dx::CCSprite*)impl_;
+        ((cocos2dx::Sprite*)impl_)->release();
     }
     [super dealloc];
 }
 
+-(void*) getImpl
+{
+    return impl_;
+}
+
 - (BOOL) dirty
 {
-    return ((cocos2dx::CCSprite*)impl_)_->getDirty();
+    return ((cocos2dx::Sprite*)impl_)_->getDirty();
 }
 
 - (void) setDirty:_dirty
 {
-    ((cocos2dx::CCSprite*)impl_)->setDirty(_dirty);
+    ((cocos2dx::Sprite*)impl_)->setDirty(_dirty);
 }
 
 - (ccV3F_C4B_T2F_Quad) quad
 {
-    return ((cocos2dx::CCSprite*)impl_)->getQuad();
+    //TODO ccV3F_C4B_T2F_Quad
+    return ((cocos2dx::Sprite*)impl_)->getQuad();
 }
 
 - (NSUInteger) atlasIndex
 {
-    return ((cocos2dx::CCSprite*)impl_)->getAtlasIndex();
+    return ((cocos2dx::Sprite*)impl_)->getAtlasIndex();
 }
 
 - (void) setAlasIndex:_atlasIndex
 {
-    ((cocos2dx::CCSprite*)impl_)->setAtlasIndex(_atlasIndex);
+    ((cocos2dx::Sprite*)impl_)->setAtlasIndex(_atlasIndex);
 }
 
 - (CGRect) textureRect
 {
-    cocos2dx::CCRect = ((cocos2dx::CCSprite*)impl_)->getTextureRect();
-    //TODO by hk
-    return CGRectMake();
+    cocos2dx::CCRect rect = ((cocos2dx::Sprite*)impl_)->getTextureRect();
+    return [ccTypeConvert RectToCGRect:rect];
 }
 - (BOOL) textureRectRotated
 {
-    return ((cocos2dx::CCSprite*)impl_)->isTextureRectRotated;
+    return ((cocos2dx::Sprite*)impl_)->isTextureRectRotated;
 }
 - (BOOL) flipX
 {
-    return ((cocos2dx::CCSprite*)impl_)->isFlipX();
+    return ((cocos2dx::Sprite*)impl_)->isFlipX();
 }
 
 - (void) setFlipX:_flipX
 {
-    ((cocos2dx::CCSprite*)impl_)->setFlipX(_flipX);
+    ((cocos2dx::Sprite*)impl_)->setFlipX(_flipX);
 }
 - (BOOL) flipY
 {
-    return ((cocos2dx::CCSprite*)impl_)->isFlipY();
+    return ((cocos2dx::Sprite*)impl_)->isFlipY();
 }
 
 - (void) setFlipY:_flipY
 {
-    ((cocos2dx::CCSprite*)impl_)->setFlipY(_flipY);
+    ((cocos2dx::Sprite*)impl_)->setFlipY(_flipY);
 }
 
 - (CCTextureAtlas*)textureAtlas
 {
-    return [[[CCTextureAtlas alloc]initWithObject:((cocos2dx::CCSprite*)impl_)->getTextureAtlas()] autorelease];
+    return [[[CCTextureAtlas alloc]initWithObject:((cocos2dx::Sprite*)impl_)->getTextureAtlas()] autorelease];
 }
 
 - (void)setTextureAtlas:_textureAtlas
 {
-    ((cocos2dx::CCSprite*)impl_)->setTextureAtlas((CCTextureAtlas*)[_textureAtlas getImpl]);
+    ((cocos2dx::Sprite*)impl_)->setTextureAtlas(((CCTextureAtlas*)[_textureAtlas getImpl]));
 }
 
 - (CCSpriteBatchNode*)batchNode
 {
-    return [[[CCSpriteBatchNode alloc]initWithObject:((cocos2dx::CCSprite*)impl_)->getBatchNode()] autorelease];
+    return [[[CCSpriteBatchNode alloc]initWithObject:((cocos2dx::Sprite*)impl_)->getBatchNode()] autorelease];
 }
 
 - (void)setBatchNode:_batchNode
 {
-    ((cocos2dx::CCSprite*)impl_)->setTextureAtlas((CCSpriteBatchNode*)[batchNode getImpl]);
+    ((cocos2dx::Sprite*)impl_)->setTextureAtlas(((CCSpriteBatchNode*)[batchNode getImpl]));
 }
 - (CGPoint)offsetPosition
 {
-    //TODO by hk
-    return [[[CGPoint alloc]initWithObject:((cocos2dx::CGPoint*)impl_)->getOffsetPosition()] autorelease];
+    cocos2dx::Vec2 point = ((cocos2dx::CGPoint*)impl_)->getOffsetPosition();
+    return [ccTypeConvert PointToCGPoint:point];
 }
 - (ccBlendFunc)blendFunc
 {
-    return ((cocos2dx::CCSprite*)impl_)->getBlendFunc();
+    return ((cocos2dx::Sprite*)impl_)->getBlendFunc();
 }
 - (void)setBlendFunc:_blendFunc
 {
-    ((cocos2dx::CCSprite*)impl_)->setBlendFunc(_blendFunc);
+    ((cocos2dx::Sprite*)impl_)->setBlendFunc(_blendFunc);
 }
 
 +(id) spriteWithTexture:(CCTexture2D*)texture
@@ -178,12 +185,12 @@
 {
     if( (self = [super init]) )
     {
-        cocos2dx::CCSprite* sprite = new class cocos2dx::CCSprite();
+        cocos2dx::Sprite* sprite = new class cocos2dx::Sprite();
         sprite->initWithTexture((CCTexture2D*)[texture getImpl],CCRectMake(rect.origin.x,rect.origin.y,rect.size.width,rect.size.height),rotated);
         impl_ = sprite;
         
         impl_->retain();
-        isNeedLayerDealloc_ = YES;
+        isNeedSpriteDealloc_ = YES;
     }
     return self;
 }
@@ -268,22 +275,13 @@
                         ];*/
 }
 
-- (void) dealloc
-{
-    if(isNeedLayerDealloc_)
-    {
-        impl->release();
-    }
-    [super dealloc];
-}
-
 -(void) setTextureRect:(CGRect)rect
 {
     [self setTextureRect:rect rotated:NO untrimmedSize:rect.size];
 }
 -(void) setTextureRect:(CGRect)rect rotated:(BOOL)rotated untrimmedSize:(CGSize)untrimmedSize
 {
-    ((cocos2dx::CCSprite*)impl_)->setTextureRect();//TODO bu hk
+    ((cocos2dx::Sprite*)impl_)->setTextureRect([ccTypeConvert CGRectToRect:rect],rotated,untrimmedSize);
 }
 /*-(void) setVertexRect:(CGRect)rect
  {
@@ -295,152 +293,158 @@
  }*/
 -(void)updateTransform
 {
-    (cocos2dx::CCSprite*)impl_)->updateTransform();
+    (cocos2dx::Sprite*)impl_)->updateTransform();
 }
 -(void) draw
 {
-    (cocos2dx::CCSprite*)impl_)->draw();
+    NSAssert( false, @"Invalid function draw()");
+    (cocos2dx::Sprite*)impl_)->draw();
 }
 -(void) addChild:(CCSprite*)child z:(NSInteger)z tag:(NSInteger) aTag
 {
-    (cocos2dx::CCSprite*)impl_)->addChild((cocos2dx::CCSprite*)[child getImpl]]),z,aTag);
+    cocos2dx::Node* node = (cocos2dx::Node*)[child getImpl];
+    (cocos2dx::Sprite*)impl_)->addChild(node,z,aTag);
 }
 -(void) reorderChild:(CCSprite*)child z:(NSInteger)z
 {
-    (cocos2dx::CCSprite*)impl_)->reorderChild((cocos2dx::CCSprite*)[child getImpl]]),z);
+    cocos2dx::Node* node = (cocos2dx::Node*)[child getImpl];
+    (cocos2dx::Sprite*)impl_)->reorderChild(node,z);
 }
 -(void)removeChild: (CCSprite *)sprite cleanup:(BOOL)doCleanup
 {
-    (cocos2dx::CCSprite*)impl_)->removeChild((cocos2dx::CCSprite*)[child getImpl]]),doCleanup);
+    cocos2dx::Node* node = (cocos2dx::Node*)[sprite getImpl];
+    (cocos2dx::Sprite*)impl_)->removeChild(node,doCleanup);
 }
 -(void)removeAllChildrenWithCleanup:(BOOL)doCleanup
 {
-    (cocos2dx::CCSprite*)impl_)->removeAllChildrenWithCleanup(doCleanup);
+    (cocos2dx::Sprite*)impl_)->removeAllChildrenWithCleanup(doCleanup);
 }
 - (void) sortAllChildren
 {
-    (cocos2dx::CCSprite*)impl_)->sortAllChildren();
+    (cocos2dx::Sprite*)impl_)->sortAllChildren();
 }
 -(void) setReorderChildDirtyRecursively
 {
-    (cocos2dx::CCSprite*)impl_)->setReorderChildDirtyRecursively();
+    (cocos2dx::Sprite*)impl_)->setReorderChildDirtyRecursively();
 }
 -(void) setDirtyRecursively:(BOOL)b
 {
-    (cocos2dx::CCSprite*)impl_)->setDirtyRecursively(b);
+    (cocos2dx::Sprite*)impl_)->setDirtyRecursively(b);
 }
 -(void)setPosition:(CGPoint)pos
 {
-    (cocos2dx::CCSprite*)impl_)->setPosition(pos);
+    (cocos2dx::Sprite*)impl_)->setPosition([ccTypeConvert CGPointToPoint:pos]);
 }
 -(void)setRotation:(float)rot
 {
-    (cocos2dx::CCSprite*)impl_)->setRotation(rot);
+    (cocos2dx::Sprite*)impl_)->setRotation(rot);
 }
 -(void)setRotationX:(float)rot
 {
-    (cocos2dx::CCSprite*)impl_)->setRotationX(rot);
+    (cocos2dx::Sprite*)impl_)->setRotationX(rot);
 }
 
 -(void)setRotationY:(float)rot
 {
-    (cocos2dx::CCSprite*)impl_)->setRotationY(rot);
+    (cocos2dx::Sprite*)impl_)->setRotationY(rot);
 }
 -(void)setSkewX:(float)sx
 {
-    (cocos2dx::CCSprite*)impl_)->setSkewX(sx);
+    (cocos2dx::Sprite*)impl_)->setSkewX(sx);
 }
 
 -(void)setSkewY:(float)sy
 {
-    (cocos2dx::CCSprite*)impl_)->setSkewY(sy);
+    (cocos2dx::Sprite*)impl_)->setSkewY(sy);
 }
 -(void)setScaleX:(float) sx
 {
-    (cocos2dx::CCSprite*)impl_)->setScaleX(sy);
+    (cocos2dx::Sprite*)impl_)->setScaleX(sy);
 }
 
 -(void)setScaleY:(float) sy
 {
-    (cocos2dx::CCSprite*)impl_)->setScaleY(sy);
+    (cocos2dx::Sprite*)impl_)->setScaleY(sy);
 }
 
 -(void)setScale:(float) s
 {
-    (cocos2dx::CCSprite*)impl_)->setScale(s);
+    (cocos2dx::Sprite*)impl_)->setScale(s);
 }
 -(void) setVertexZ:(float)z
 {
-    (cocos2dx::CCSprite*)impl_)->setVertexZ(z);
+    (cocos2dx::Sprite*)impl_)->setVertexZ(z);
 }
 
 -(void)setAnchorPoint:(CGPoint)anchor
 {
-    (cocos2dx::CCSprite*)impl_)->setVertexZ(anchor);
+    (cocos2dx::Sprite*)impl_)->setAnchorPoint([ccTypeConvert CGPointToPoint:anchor]);
 }
 -(void) setIgnoreAnchorPointForPosition:(BOOL)value
 {
-    (cocos2dx::CCSprite*)impl_)->setIgnoreAnchorPointForPosition(value);
+    (cocos2dx::Sprite*)impl_)->setIgnoreAnchorPointForPosition(value);
 }
 -(void)setVisible:(BOOL)v
 {
-    (cocos2dx::CCSprite*)impl_)->setVisible(v);
+    (cocos2dx::Sprite*)impl_)->setVisible(v);
 }
 -(void) updateColor
 {
-    (cocos2dx::CCSprite*)impl_)->updateColor();
+    (cocos2dx::Sprite*)impl_)->updateColor();
 }
 -(void) setColor:(ccColor3B)color3
 {
-    (cocos2dx::CCSprite*)impl_)->setColor(color3);
+    //TODO ccColor3B
+    (cocos2dx::Sprite*)impl_)->setColor(color3);
 }
 
 -(void)updateDisplayedColor:(ccColor3B)parentColor
 {
-    (cocos2dx::CCSprite*)impl_)->updateDisplayedColor(parentColor);
+    //TODO ccColor3B
+    (cocos2dx::Sprite*)impl_)->updateDisplayedColor(parentColor);
 }
 -(void) setOpacity:(GLubyte)opacity
 {
-    (cocos2dx::CCSprite*)impl_)->setOpacity(opacity);
+    (cocos2dx::Sprite*)impl_)->setOpacity(opacity);
 }
 -(void) setOpacityModifyRGB:(BOOL)modify
 {
-    (cocos2dx::CCSprite*)impl_)->setOpacityModifyRGB(modify);
+    (cocos2dx::Sprite*)impl_)->setOpacityModifyRGB(modify);
 }
 -(BOOL) doesOpacityModifyRGB
 {
-    return (cocos2dx::CCSprite*)impl_)->doesOpacityModifyRGB();
+    return (cocos2dx::Sprite*)impl_)->doesOpacityModifyRGB();
 }
 -(void)updateDisplayedOpacity:(GLubyte)parentOpacity
 {
-    (cocos2dx::CCSprite*)impl_)->updateDisplayedOpacity(parentOpacity);
+    (cocos2dx::Sprite*)impl_)->updateDisplayedOpacity(parentOpacity);
 }
 -(void) setDisplayFrame:(CCSpriteFrame*)frame
 {
-    (cocos2dx::CCSprite*)impl_)->setDisplayFrame(frame);
+    (cocos2dx::Sprite*)impl_)->setDisplayFrame(frame);
 }
 -(void) setDisplayFrameWithAnimationName: (NSString*) animationName index:(int) frameIndex
 {
-    (cocos2dx::CCSprite*)impl_)->setDisplayFrameWithAnimationName(animationName,frameIndex);
+    (cocos2dx::Sprite*)impl_)->setDisplayFrameWithAnimationName([ccTypeConvert NSStringTostring:animationName],frameIndex);
 }
 -(BOOL) isFrameDisplayed:(CCSpriteFrame*)frame
 {
-    return (cocos2dx::CCSprite*)impl_)->isFrameDisplayed(frame);
+    return (cocos2dx::Sprite*)impl_)->isFrameDisplayed(frame);
 }
 -(CCSpriteFrame*) displayFrame
 {
-    return (cocos2dx::CCSprite*)impl_)->displayFrame();
+    return (cocos2dx::Sprite*)impl_)->displayFrame();
 }
 -(void) updateBlendFunc
 {
-    (cocos2dx::CCSprite*)impl_)->updateBlendFunc();
+    (cocos2dx::Sprite*)impl_)->updateBlendFunc();
 }
 -(void) setTexture:(CCTexture2D*)texture
 {
-    (cocos2dx::CCSprite*)impl_)->setTexture(texture);
+    (cocos2dx::Sprite*)impl_)->setTexture(((cocos2dx::Texture2D*)[texture getImpl]));
 }
 -(CCTexture2D*) texture
 {	
-    return [[[CCTexture2D alloc ]initWithObject: (cocos2dx::CCSprite*)impl_)->getTexture()] autorelease];
+    return [[[CCTexture2D alloc ]initWithObject: ((cocos2dx::Sprite*)impl_)->getTexture()] autorelease];
 }
 @end
