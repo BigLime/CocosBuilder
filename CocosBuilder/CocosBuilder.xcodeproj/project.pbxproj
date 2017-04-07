@@ -136,6 +136,7 @@
 		9D77FD7D1E97794D00E0C7B7 /* CCRenderTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD7C1E97794D00E0C7B7 /* CCRenderTexture.mm */; };
 		9D77FD801E97838B00E0C7B7 /* CCParticleSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD7F1E97838B00E0C7B7 /* CCParticleSystem.mm */; };
 		9D77FD831E97839B00E0C7B7 /* CCParticleSystemQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD821E97839B00E0C7B7 /* CCParticleSystemQuad.mm */; };
+		9D77FD861E979D9E00E0C7B7 /* CCTextureCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD851E979D9E00E0C7B7 /* CCTextureCache.mm */; };
 		A09AB6AF14E9935F009C8B91 /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = A09AB69F14E9935F009C8B91 /* aabb.c */; };
 		A09AB6B014E9935F009C8B91 /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A014E9935F009C8B91 /* ChangeLog */; };
 		A09AB6B114E9935F009C8B91 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A114E9935F009C8B91 /* CMakeLists.txt */; };
@@ -1104,6 +1105,8 @@
 		9D77FD7F1E97838B00E0C7B7 /* CCParticleSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCParticleSystem.mm; path = "cocos2d-bridge/CCParticleSystem.mm"; sourceTree = "<group>"; };
 		9D77FD811E97839B00E0C7B7 /* CCParticleSystemQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCParticleSystemQuad.h; path = "cocos2d-bridge/CCParticleSystemQuad.h"; sourceTree = "<group>"; };
 		9D77FD821E97839B00E0C7B7 /* CCParticleSystemQuad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCParticleSystemQuad.mm; path = "cocos2d-bridge/CCParticleSystemQuad.mm"; sourceTree = "<group>"; };
+		9D77FD841E979D9E00E0C7B7 /* CCTextureCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTextureCache.h; path = "cocos2d-bridge/CCTextureCache.h"; sourceTree = "<group>"; };
+		9D77FD851E979D9E00E0C7B7 /* CCTextureCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCTextureCache.mm; path = "cocos2d-bridge/CCTextureCache.mm"; sourceTree = "<group>"; };
 		A09AB68F14E9935F009C8B91 /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aabb.h; sourceTree = "<group>"; };
 		A09AB69114E9935F009C8B91 /* mat4stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat4stack.h; sourceTree = "<group>"; };
 		A09AB69214E9935F009C8B91 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -2964,6 +2967,8 @@
 				D37183D31E9683AF00D533E3 /* CCLayer.mm */,
 				D37183D41E9683AF00D533E3 /* CCNode.h */,
 				D37183D51E9683AF00D533E3 /* CCNode.mm */,
+				9D77FD841E979D9E00E0C7B7 /* CCTextureCache.h */,
+				9D77FD851E979D9E00E0C7B7 /* CCTextureCache.mm */,
 				9D77FD7E1E97838B00E0C7B7 /* CCParticleSystem.h */,
 				9D77FD7F1E97838B00E0C7B7 /* CCParticleSystem.mm */,
 				9D77FD811E97839B00E0C7B7 /* CCParticleSystemQuad.h */,
@@ -5138,6 +5143,7 @@
 				776C68421385C4F100153214 /* CCBTextFieldCell.m in Sources */,
 				776C68451385D37E00153214 /* CCBTableView.m in Sources */,
 				77D33EAB138EA4F900012A88 /* CCBUtil.m in Sources */,
+				9D77FD861E979D9E00E0C7B7 /* CCTextureCache.mm in Sources */,
 				77E7D04B138F777A00E8EE67 /* CCBModalSheetController.m in Sources */,
 				77E7D04F138F78F600E8EE67 /* StageSizeWindow.m in Sources */,
 				776A37B61398D6BF00960E94 /* CCBGLView.m in Sources */,
