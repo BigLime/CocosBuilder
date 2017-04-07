@@ -892,6 +892,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		47FDA0051E97361900E8052E /* CCSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCSprite.h; path = "cocos2d-bridge/CCSprite.h"; sourceTree = "<group>"; };
+		47FDA0061E97361900E8052E /* CCSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = CCSprite.mm; path = "cocos2d-bridge/CCSprite.mm"; sourceTree = "<group>"; };
+		47FDA0071E97361900E8052E /* CCSpriteFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCSpriteFrame.h; path = "cocos2d-bridge/CCSpriteFrame.h"; sourceTree = "<group>"; };
+		47FDA0081E97361900E8052E /* CCSpriteFrame.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = CCSpriteFrame.mm; path = "cocos2d-bridge/CCSpriteFrame.mm"; sourceTree = "<group>"; };
 		5811305E1639BF1200A86D70 /* SequencerTimelineDrawDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequencerTimelineDrawDelegate.h; sourceTree = "<group>"; };
 		5811305F1639C52000A86D70 /* seq-startmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seq-startmarker.png"; sourceTree = "<group>"; };
 		581BCFE6162DADE7007DE600 /* CCBSplitHorizontalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSplitHorizontalView.h; sourceTree = "<group>"; };
@@ -2940,6 +2944,10 @@
 		D37183C81E9635CF00D533E3 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				47FDA0051E97361900E8052E /* CCSprite.h */,
+				47FDA0061E97361900E8052E /* CCSprite.mm */,
+				47FDA0071E97361900E8052E /* CCSpriteFrame.h */,
+				47FDA0081E97361900E8052E /* CCSpriteFrame.mm */,
 				D37183D21E9683AF00D533E3 /* CCLayer.h */,
 				D37183D31E9683AF00D533E3 /* CCLayer.mm */,
 				D37183D41E9683AF00D533E3 /* CCNode.h */,
