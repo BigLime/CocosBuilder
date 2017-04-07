@@ -132,6 +132,7 @@
 		9D5442CD1E963BDA005AD3E4 /* CCAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442CC1E963BDA005AD3E4 /* CCAnimation.mm */; };
 		9D5442D21E964D3F005AD3E4 /* CCAnimationCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */; };
 		9D5442D51E964D51005AD3E4 /* CCDirector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D41E964D51005AD3E4 /* CCDirector.mm */; };
+		9D77FD6B1E9741E600E0C7B7 /* ccTypeConvert.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD6A1E9741E600E0C7B7 /* ccTypeConvert.mm */; };
 		A09AB6AF14E9935F009C8B91 /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = A09AB69F14E9935F009C8B91 /* aabb.c */; };
 		A09AB6B014E9935F009C8B91 /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A014E9935F009C8B91 /* ChangeLog */; };
 		A09AB6B114E9935F009C8B91 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6A114E9935F009C8B91 /* CMakeLists.txt */; };
@@ -1091,6 +1092,8 @@
 		9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCAnimationCache.mm; path = "cocos2d-bridge/CCAnimationCache.mm"; sourceTree = "<group>"; };
 		9D5442D31E964D51005AD3E4 /* CCDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCDirector.h; path = "cocos2d-bridge/CCDirector.h"; sourceTree = "<group>"; };
 		9D5442D41E964D51005AD3E4 /* CCDirector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDirector.mm; path = "cocos2d-bridge/CCDirector.mm"; sourceTree = "<group>"; };
+		9D77FD691E9741E600E0C7B7 /* ccTypeConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypeConvert.h; path = "cocos2d-bridge/ccTypeConvert.h"; sourceTree = "<group>"; };
+		9D77FD6A1E9741E600E0C7B7 /* ccTypeConvert.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ccTypeConvert.mm; path = "cocos2d-bridge/ccTypeConvert.mm"; sourceTree = "<group>"; };
 		A09AB68F14E9935F009C8B91 /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aabb.h; sourceTree = "<group>"; };
 		A09AB69114E9935F009C8B91 /* mat4stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat4stack.h; sourceTree = "<group>"; };
 		A09AB69214E9935F009C8B91 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -2960,6 +2963,8 @@
 				9D5442D31E964D51005AD3E4 /* CCDirector.h */,
 				9D5442D41E964D51005AD3E4 /* CCDirector.mm */,
 				D37183CD1E96362000D533E3 /* CCScene.h */,
+				9D77FD691E9741E600E0C7B7 /* ccTypeConvert.h */,
+				9D77FD6A1E9741E600E0C7B7 /* ccTypeConvert.mm */,
 			);
 			name = "cocos2d-bridge";
 			sourceTree = "<group>";
@@ -5458,6 +5463,7 @@
 				D37183B91E96321900D533E3 /* cocos2d.cpp in Sources */,
 				E3F2C21314FC157E007B660D /* CCBXCocos2diPhoneWriter.m in Sources */,
 				D37183D71E9683AF00D533E3 /* CCLayer.mm in Sources */,
+				9D77FD6B1E9741E600E0C7B7 /* ccTypeConvert.mm in Sources */,
 				D37183D81E9683AF00D533E3 /* CCNode.mm in Sources */,
 				9D5442CD1E963BDA005AD3E4 /* CCAnimation.mm in Sources */,
 				D37183D91E9683AF00D533E3 /* CCScene.mm in Sources */,
