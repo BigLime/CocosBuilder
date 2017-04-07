@@ -1,12 +1,10 @@
 //
-//  CCParticleSystemQuad.h
-//  CocosBuilder
+// CCParticleSystemQuad Wrapper
 //
-//  Created by Leem on 17/4/7.
+// author xiaobo.wang
 //
+// 2017-04-07 17:56:58
 //
-
-#import <Foundation/Foundation.h>
 
 #import "CCParticleSystem.h"
 #import "ccConfig.h"
@@ -27,10 +25,7 @@
  */
 @interface CCParticleSystemQuad : CCParticleSystem
 {
-    ccV3F_C4B_T2F_Quad	*_quads;		// quads to be rendered
-    GLushort			*_indices;		// indices
-    GLuint				_VAOname;
-    GLuint				_buffersVBO[2]; //0: vertex  1: indices
+    BOOL isNeedCCParticleSystemQuadDealloc_;
 }
 
 /** initialices the indices for the vertices */
