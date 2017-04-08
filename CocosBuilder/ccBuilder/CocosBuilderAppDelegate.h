@@ -24,7 +24,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "cocos2d.h"
+// #import "cocos2d.h"
 #import "PSMTabBarControl.h"
 
 #define kCCBNumCanvasDevices 12

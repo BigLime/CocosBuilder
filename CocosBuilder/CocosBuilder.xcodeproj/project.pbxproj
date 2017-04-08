@@ -1080,6 +1080,8 @@
 		A09AB6AE14E9935F009C8B91 /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		A09AB6F614E993AA009C8B91 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = "libs/cocos2d-iphone/Resources/Fonts/fps_images.png"; sourceTree = SOURCE_ROOT; };
 		A77EF58F171FD30E00451DA4 /* cwebp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cwebp; sourceTree = "<group>"; };
+		D301EEAA1E98BBB00068C694 /* CCProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCProtocols.h; path = "cocos2d-bridge/CCProtocols.h"; sourceTree = "<group>"; };
+		D301EEAF1E98C5610068C694 /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypes.h; path = "cocos2d-bridge/ccTypes.h"; sourceTree = "<group>"; };
 		D34B821F1E988ED10038E5FE /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "libs/cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
 		D37183D21E9683AF00D533E3 /* CCLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLayer.h; path = "cocos2d-bridge/CCLayer.h"; sourceTree = "<group>"; };
 		D37183D31E9683AF00D533E3 /* CCLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCLayer.mm; path = "cocos2d-bridge/CCLayer.mm"; sourceTree = "<group>"; };
@@ -2659,6 +2661,8 @@
 		D37183C81E9635CF00D533E3 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				D301EEAF1E98C5610068C694 /* ccTypes.h */,
+				D301EEAA1E98BBB00068C694 /* CCProtocols.h */,
 				D37183F51E97BE4300D533E3 /* CCLabelAtlas.h */,
 				D37183F61E97BE4300D533E3 /* CCLabelAtlas.mm */,
 				D37183F71E97BE4300D533E3 /* CCLabelBMFont.h */,

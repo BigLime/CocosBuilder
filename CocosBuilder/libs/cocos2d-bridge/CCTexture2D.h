@@ -4,6 +4,7 @@
 // author ke.huang 17/4/7
 
 #import <Foundation/Foundation.h> //	for NSObject
+#import "ccTypes.h"
 
 //CONSTANTS:
 

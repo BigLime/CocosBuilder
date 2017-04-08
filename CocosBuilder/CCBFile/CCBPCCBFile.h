@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#import "cocos2d.h"
+#import "CCNode.h"
 
 @interface CCBPCCBFile : CCNode
 {

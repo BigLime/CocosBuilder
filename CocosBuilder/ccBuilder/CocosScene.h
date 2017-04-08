@@ -23,12 +23,17 @@
  * THE SOFTWARE.
  */
 
-#import "cocos2d.h"
+#import "CCLayer.h"
+
 @class CocosBuilderAppDelegate;
 @class CCBTemplateNode;
 @class RulersLayer;
 @class GuidesLayer;
 @class NotesLayer;
+
+// for cocos.
+@class CCRenderTexture;
+@class CCSprite;
 
 enum {
     kCCBParticleTypeExplosion = 0,

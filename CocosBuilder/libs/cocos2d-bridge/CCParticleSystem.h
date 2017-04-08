@@ -11,7 +11,7 @@
 #import "CCProtocols.h"
 #import "CCNode.h"
 #import "ccTypes.h"
-#import "ccConfig.h"
+// #import "ccConfig.h"
 
 @class CCParticleBatchNode;
 

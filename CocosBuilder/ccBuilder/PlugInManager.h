@@ -23,7 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+// #import "cocos2d.h"
 
 @class PlugInNode;
 @class PlugInExport;

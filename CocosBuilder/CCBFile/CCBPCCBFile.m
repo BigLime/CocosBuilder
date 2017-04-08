@@ -30,6 +30,15 @@
 #import "CocosBuilderAppDelegate.h"
 #import "CCNode+NodeInfo.h"
 
+/** Helper macro that creates a CGPoint
+ @return CGPoint
+ @since v0.7.2
+ */
+static inline CGPoint ccp( CGFloat x, CGFloat y )
+{
+    return CGPointMake(x, y);
+}
+
 @implementation CCBPCCBFile
 
 @synthesize ccbFile;
