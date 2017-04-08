@@ -1,6 +1,3 @@
-[submodule "CocosBuilder/libs/cocos2d-iphone"]
-	path = CocosBuilder/libs/cocos2d-iphone
-	url = git@biglime.github.com:BigLime/cocos2d-objc.git
 [submodule "CocosBuilder/libs/ssziparchive"]
 	path = CocosBuilder/libs/ssziparchive
 	url = https://github.com/vlidholt/ssziparchive
