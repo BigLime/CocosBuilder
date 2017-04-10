@@ -31,7 +31,7 @@
         isNeedSceneDealloc_ = YES;
     }
     
-    self = [super init];
+    self = [super init:impl_];
     return self;
 }
 
@@ -41,7 +41,7 @@
     ((cocos2d::Scene*)impl_)->retain();
     isNeedSceneDealloc_   = YES;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 

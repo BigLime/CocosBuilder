@@ -20,13 +20,13 @@
     }
     else
     {
-        cocos2d::SpriteFrame* spriteFrame = new cocos2d::SpriteFrame;
+        cocos2d::SpriteFrame* spriteFrame = new cocos2d::SpriteFrame();
         spriteFrame->autorelease();
         impl_ = spriteFrame;
         
         isNeedSpriteFrameDealloc_  = YES;
     }
-    
+    return self;
 }
 
 -(id) initWithObject: (void*) object
@@ -57,7 +57,7 @@
     return [ccTypeConvert RectToCGRect:((cocos2d::SpriteFrame*)impl_)->getRect()];
 }
 
-- (void)setRect:_rect
+- (void)setRect:(CGRect)_rect
 {
     cocos2d::SpriteFrame* spriteFrame = ((cocos2d::SpriteFrame*)impl_);
     spriteFrame->setRect([ccTypeConvert CGRectToRect:_rect]);
@@ -66,7 +66,7 @@
 {
     return [ccTypeConvert RectToCGRect:((cocos2d::SpriteFrame*)impl_)->getRectInPixels()];
 }
--(void)setRectInPixels:_rectInPixels
+-(void)setRectInPixels:(CGRect)_rectInPixels
 {
     ((cocos2d::SpriteFrame*)impl_)->setRectInPixels([ccTypeConvert CGRectToRect:_rectInPixels]);
 }
@@ -74,7 +74,7 @@
 {
     return ((cocos2d::SpriteFrame*)impl_)->isRotated();
 }
--(void)setRotated:_rotated
+-(void)setRotated:(BOOL)_rotated
 {
     ((cocos2d::SpriteFrame*)impl_)->setRotated(_rotated);
 }
@@ -82,7 +82,7 @@
 {
     return [ccTypeConvert PointToCGPoint:((cocos2d::SpriteFrame*)impl_)->getOffset()];
 }
--(void)setOffset:_offset
+-(void)setOffset:(CGPoint)_offset
 {
     ((cocos2d::SpriteFrame*)impl_)->setOffset([ccTypeConvert CGPointToPoint:_offset]);
 }
@@ -90,7 +90,7 @@
 {
     return [ccTypeConvert PointToCGPoint:((cocos2d::SpriteFrame*)impl_)->getOffsetInPixels()];
 }
--(void)setOffsetInPixels:_offsetInPixels
+-(void)setOffsetInPixels:(CGPoint)_offsetInPixels
 {
     ((cocos2d::SpriteFrame*)impl_)->setOffsetInPixels([ccTypeConvert CGPointToPoint:_offsetInPixels]);
 }
@@ -98,7 +98,7 @@
 {
     return [ccTypeConvert SizeToCGSize:((cocos2d::SpriteFrame*)impl_)->getOriginalSize()];
 }
--(void)setOriginalSize:_originalSize
+-(void)setOriginalSize:(CGSize)_originalSize
 {
     ((cocos2d::SpriteFrame*)impl_)->setOriginalSize([ccTypeConvert CGSizeToSize:_originalSize]);
 }
@@ -106,7 +106,7 @@
 {
     return [ccTypeConvert SizeToCGSize:((cocos2d::SpriteFrame*)impl_)->getOriginalSizeInPixels()];
 }
--(void)setOriginalSizeInPixels:_originalSizeInPixels
+-(void)setOriginalSizeInPixels:(CGSize)_originalSizeInPixels
 {
     ((cocos2d::SpriteFrame*)impl_)->setOriginalSizeInPixels([ccTypeConvert CGSizeToSize:_originalSizeInPixels]);
 }
@@ -144,24 +144,46 @@
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
 {
-    CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
-    return [self initWithTexture:texture rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
+    //CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
+    //return [self initWithTexture:texture rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
+    
+    if( (self=[super init]) )
+    {
+        cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)[texture getImpl];
+        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame::createWithTexture(texture2D,[ccTypeConvert CGRectToRect:rect]);
+        impl_ = spriteFrame;
+        
+        spriteFrame->retain();
+        isNeedSpriteFrameDealloc_ = YES;
+    }
+
+    return self;
 }
 
 -(id) initWithTextureFilename:(NSString*)filename rect:(CGRect)rect
 {
-    CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
-    return [self initWithTextureFilename:filename rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
+    //CGRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
+    //return [self initWithTextureFilename:filename rectInPixels:rectInPixels rotated:NO offset:CGPointZero originalSize:rectInPixels.size];
+    
+    if( (self=[super init]) )
+    {
+        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame::create([ccTypeConvert NSStringTostring:filename],[ccTypeConvert CGRectToRect:rect]);
+        impl_ = spriteFrame;
+        
+        spriteFrame->retain();
+        isNeedSpriteFrameDealloc_ = YES;
+    }
+    return self;
 }
 -(id) initWithTexture:(CCTexture2D*)texture rectInPixels:(CGRect)rect rotated:(BOOL)rotated offset:(CGPoint)offset originalSize:(CGSize)originalSize
 {
     if( (self=[super init]) )
     {
         cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)[texture getImpl];
-        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame:createWithTexture(texture2D,[ccTypeConvert CGRectToRect:rect],rotated,[ccTypeConvert CGPointToPoint:offset],[ccTypeConvert CGRectToRect:originalSize]);
+        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame::createWithTexture(texture2D,[ccTypeConvert CGRectToRect:rect],rotated,[ccTypeConvert CGPointToPoint:offset],[ccTypeConvert CGSizeToSize:originalSize]);
         impl_ = spriteFrame;
         
-        impl_->retain();
+        spriteFrame->retain();
         isNeedSpriteFrameDealloc_ = YES;
     }
     return self;
@@ -173,11 +195,11 @@
         std::string _name = [ccTypeConvert NSStringTostring:filename];
         cocos2d::Rect _rect = [ccTypeConvert CGRectToRect:rect];
         cocos2d::Point _offset = [ccTypeConvert CGPointToPoint:offset];
-        cocos2d::Rect _originalSize = [ccTypeConvert CGRectToRect:originalSize];
+        cocos2d::Size _originalSize = [ccTypeConvert CGSizeToSize:originalSize];
         cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame::create(_name, _rect, rotated, _offset, _originalSize);
         impl_ = spriteFrame;
         
-        impl_->retain();
+        spriteFrame->retain();
         isNeedSpriteFrameDealloc_ = YES;
     }
     return self;
@@ -199,6 +221,6 @@
 -(id) copyWithZone: (NSZone*) zone
 {
     cocos2d::SpriteFrame* spriteFrame = (cocos2d::SpriteFrame*)impl_;
-    return [[[CCSpriteFrame alloc] initWithObject: spriteFrame.clone()] autorelease];
+    return [[[CCSpriteFrame alloc] initWithObject: spriteFrame->clone()] autorelease];
 }
 @end

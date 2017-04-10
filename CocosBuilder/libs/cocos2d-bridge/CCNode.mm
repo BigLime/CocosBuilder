@@ -10,6 +10,9 @@
 #import "CCGrid.h"
 #import "2d/CCNode.h"
 
+#import "support/CCArray.h"
+#import "ccTypeConvert.h"
+
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
 #else
@@ -23,13 +26,13 @@
 // @synthesize zOrder = _zOrder;
 -(void)setZOrder:(NSInteger)zOrder
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setLocalZOrder(zOrder);
 }
 
 -(NSInteger)zOrder
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getLocalZOrder();
 }
 
@@ -37,76 +40,86 @@
 -(void)setChildren:(CCArray *)children
 {
     // read noly
+    NSAssert(NO, @"READ ONLY");
 }
 
 -(CCArray *)children
 {
-    // TODO: ccVector to CCArray.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getChildren();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    auto child = node->getChildren();
+    
+    id result = [CCArray array];
+    for (const auto& subChild : child)
+    {
+        [result addObject:[[[CCNode alloc] initWithObject: subChild] autorelease]];
+    }
+    
+    return result;
 }
 
 // @synthesize visible = _visible;
 -(void)setVisible:(BOOL)visible
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setVisible(visible);
 }
 
 -(BOOL)visible
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->isVisible(visible);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return node->isVisible();
 }
 
 // @synthesize parent = _parent;
 -(void)setParent:(CCNode *)parent
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->setParent([parent getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* cppparent = static_cast<cocos2d::Node*>([parent getImpl]);
+    
+    return node->setParent(cppparent);
 }
 
 -(CCNode *)parent
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[Node alloc]initWithObject: node->getParent() autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCNode alloc] initWithObject: node->getParent()] autorelease];
 }
 
 // @synthesize grid = _grid;
 -(void)setGrid:(CCGridBase *)grid
 {
-    // TODO: no implement in 2dx
+    NSAssert(NO, @"no setter.");
 }
 
 -(CCGridBase *)grid
 {
-    // TODO: no impl in 2dx.
+    NSAssert(NO, @"no getter.");
     return nil;
 }
 
 // @synthesize tag = _tag;
 -(void)setTag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setTag(tag);
 }
 
 -(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getTag();
 }
 
 // @synthesize vertexZ = _vertexZ;
 -(void)setVertexZ:(float)vertexZ
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setPositionZ(tag);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setPositionZ(vertexZ);
 }
 
 -(float)vertexZ
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getPositionZ();
 }
 
@@ -115,36 +128,37 @@
 -(void)setIsRunning:(BOOL)isRunning
 {
     // read only;
+    NSAssert(NO, @"no setter.");
 }
 
 -(BOOL)isRunning
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->isRunning();
 }
 
 // @synthesize userData = _userData, userObject = _userObject;
 -(void)setUserData:(void *)userData
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setUserData(data);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setUserData(userData);
 }
 
 -(void *)userData
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getUserData();
 }
 
 -(void)setUserObject:(id)userObject
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setUserObject((cocos2d::Ref*)userObject);
 }
 
 -(id)userObject
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return (id)(node->getUserObject());
 }
 
@@ -152,25 +166,27 @@
 -(void)setShaderProgram:(CCGLProgram *)shaderProgram
 {
     //TODO: CCGLPROGRAM --> GLPROGRAM.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setGLProgram(shaderProgram);
 }
 -(CCGLProgram *)shaderProgram
 {
     //TODO: CCGLPROGRAM --> GLPROGRAM.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getGLProgram();
 }
 
 // @synthesize orderOfArrival = _orderOfArrival;
 -(void)setOrderOfArrival:(NSUInteger)orderOfArrival
 {
-    //TODO: private in c++
+    // private in c++
+    NSAssert(NO, @"no setter.");
 }
 
 -(NSUInteger)orderOfArrival
 {
-    //TODO: private in c++
+    // private in c++
+    NSAssert(NO, @"no getter.");
     return 0;
 }
 
@@ -178,13 +194,13 @@
 // DEPRECATED.
 -(void)setGlServerState:(ccGLServerState)glServerState
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setGLServerState((int)glServerState);
 }
 -(ccGLServerState)glServerState
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return (ccGLServerState)node->getGLServerState(glServerState);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return (ccGLServerState)node->getGLServerState();
 }
 
 #pragma mark CCNode - Transform related properties
@@ -192,144 +208,138 @@
 // @synthesize rotationX = _rotationX, rotationY = _rotationY, scaleX = _scaleX, scaleY = _scaleY;
 -(void)setRotationX:(float)rotationX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setRotationSkewX(rotationX);
 }
 
 -(float)rotationX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getRotationSkewX();
 }
 
 -(void)setRotationY:(float)rotationY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setRotationSkewY(rotationY);
 }
 
 -(float)rotationY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getRotationSkewY();
 }
 
 -(void)setScaleX:(float)scaleX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setScaleX(scaleX);
 }
 
 -(float)scaleX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getScaleX();
 }
 
 -(void)setScaleY:(float)scaleY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setScaleY(scaleY);
 }
 
 -(float)scaleY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getScaleY();
 }
 
 // @synthesize position = _position;
 -(void)setPosition:(CGPoint)position
 {
-    //TODO: CGPoint to cocos2d::vec2
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setPosition(position);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setPosition([ccTypeConvert CGPointToPoint:position]);
 }
 
 -(CGPoint)position
 {
-    //TODO: CGPoint to cocos2d::vec2
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getPosition();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint:node->getPosition()];
 }
 
 // @synthesize anchorPoint = _anchorPoint, anchorPointInPoints = _anchorPointInPoints;
 -(void)setAnchorPoint:(CGPoint)anchorPoint
 {
-    //TODO: CGPoint to cocos2d::vec2
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setAnchorPoint(anchorPoint);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setAnchorPoint([ccTypeConvert CGPointToPoint:anchorPoint]);
 }
 
 -(CGPoint)anchorPoint
 {
-    //TODO: CGPoint to cocos2d::vec2
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getAnchorPoint();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint:node->getAnchorPoint()];
 }
 
 -(void)setAnchorPointInPoints:(CGPoint)anchorPointInPoints
 {
     //TODO: read only in 2dx.
+    NSAssert(NO, @"read only in 2dx.");
 }
 
 -(CGPoint)anchorPointInPoints
 {
-    //TODO: CGPoint to cocos2d::vec2
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getAnchorPointInPoints();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint:node->getAnchorPointInPoints()];
 }
 
 // @synthesize contentSize = _contentSize;
 -(void)setContentSize:(CGSize)contentSize
 {
-    // TODO: CONVERT CGSIZE -- cocos2d::Size.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setContentSize(contentSize);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setContentSize([ccTypeConvert CGSizeToSize:contentSize]);
 }
 
 -(CGSize)contentSize
 {
-    // TODO: CONVERT CGSIZE -- cocos2d::Size.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getContentSize();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert SizeToCGSize:node->getContentSize()];
 }
 
 // @synthesize ignoreAnchorPointForPosition = _ignoreAnchorPointForPosition;
 -(void)setIgnoreAnchorPointForPosition:(BOOL)ignoreAnchorPointForPosition
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setIgnoreAnchorPointForPosition(ignoreAnchorPointForPosition);
 }
 
 -(BOOL)ignoreAnchorPointForPosition
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->isIgnoreAnchorPointForPosition();
 }
 
 // @synthesize skewX = _skewX, skewY = _skewY;
 -(void)setSkewX:(float)skewX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setSkewX(skewX);
 }
 
 -(float)skewX
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getSkewX();
 }
 
 -(void)setSkewY:(float)skewY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setSkewY(skewY);
 }
 
 -(float)skewY
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getSkewY();
 }
 
@@ -354,13 +364,15 @@
     }
     else
     {
-        impl_ = cocos2d::Node::Create();
-        impl_->retain();
+        cocos2d::Node* node = cocos2d::Node::create();
+        node->retain();
         
         isNeedNodeDealloc_  = YES;
+        impl_ = node;
     }
     
-    self = [super init:self];
+    // no super class.
+    // self = [super init:impl_];
     return self;
 }
 
@@ -369,14 +381,18 @@
     impl_               = object;
     isNeedNodeDealloc_  = NO;
     
-    self = [super init:self];
+    // no super class.
+    // self = [super init:impl_];
     return self;
 }
 
 -(void) dealloc
 {
     if (isNeedNodeDealloc_)
-        impl_->release();
+    {
+        cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+        node->release();
+    }
     
     [super dealloc];
 }
@@ -388,13 +404,13 @@
 
 -(void)cleanup
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->cleanup();
 }
 
 -(NSString *)description
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return [NSString stringWithCString:node->getDescription().c_str() encoding:NSUTF8StringEncoding];
 }
 
@@ -402,122 +418,130 @@
 // getters synthesized, setters explicit
 -(void) setRotation: (float)newRotation
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setRotation(newRotation);
 }
 
 -(float) rotation
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getRotation();
 }
 
 -(CGRect)boundingBox
 {
     //TODO: convert CGRect to cocos2d::Rect
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getBoundingBox();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert RectToCGRect: node->getBoundingBox()];
 }
 
 -(void)setScale:(float)scale
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->setScale(scale);
 }
 
 -(float)scale
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getscale();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return node->getScale();
 }
 
 #pragma mark CCNode Composition
 -(void)setCamera:(CCCamera *)camera
 {
     //TODO: read only property.
+    NSAssert(NO, @"no setter");
 }
 
 -(CCCamera *)camera
 {
     // TODO: DEPCREATED IN cc2dx 3.14.
+    NSAssert(NO, @"DEPCREATED IN cc2dx 3.14.");
     return nil;
 }
 
 -(CCNode *)getChildByTag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[CCNode alloc] initWithObject: node->getChildByTag(tag) autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCNode alloc] initWithObject: node->getChildByTag(tag)] autorelease];
 }
 
--(void)addChild:(CCNode *)node z:(NSInteger)z tag:(NSInteger)tag
+-(void)addChild:(CCNode *)inp z:(NSInteger)z tag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->addChild([node getImpl], z, tag);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
+    node->addChild(inP, z, tag);
 }
 
--(void)addChild:(CCNode *)node z:(NSInteger)z
+-(void)addChild:(CCNode *)inp z:(NSInteger)z
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->addChild([node getImpl], z);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
+    node->addChild(inP, z);
 }
 
--(void)addChild:(CCNode *)node
+-(void)addChild:(CCNode *)inp
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->addChild([node getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
+    node->addChild(inP);
 }
 
 -(void)removeFromParent
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeFromParent();
 }
 
 -(void)removeChild:(CCNode *)child
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->removeChild([child getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
+    node->removeChild(inP);
 }
 
--(void)removeChild:(CCNode *)node cleanup:(BOOL)cleanup
+-(void)removeChild:(CCNode *)child cleanup:(BOOL)cleanup
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->removeChild([child getImpl], cleanup);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
+    node->removeChild(inP, cleanup);
 }
 
 -(void)removeChildByTag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeChildByTag(tag);
 }
 
 -(void)removeChildByTag:(NSInteger)tag cleanup:(BOOL)cleanup
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeChildByTag(tag);
 }
 
 -(void)removeAllChildren
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeAllChildren();
 }
 
 -(void)removeAllChildrenWithCleanup:(BOOL)cleanup
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeAllChildrenWithCleanup(cleanup);
 }
 
 -(void)reorderChild:(CCNode *)child z:(NSInteger)zOrder
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->reorderChild([child getImpl], zOrder);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
+    node->reorderChild(inP, zOrder);
 }
 
 -(void)sortAllChildren
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->sortAllChildren();
 }
 
@@ -525,13 +549,13 @@
 
 -(void)draw
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->draw();
 }
 
 -(void)visit
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->visit();
 }
 
@@ -539,6 +563,7 @@
 -(void)transformAncestors
 {
     // TODO: different transform structure.
+    NSAssert(NO, @"different in cpp");
 }
 
 -(void)transform
@@ -549,25 +574,25 @@
 #pragma mark CCNode SceneManagement
 -(void)onEnter
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->onEnter();
 }
 
 -(void)onEnterTransitionDidFinish
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->onEnterTransitionDidFinish();
 }
 
 -(void)onExit
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->onExit();
 }
 
 -(void)onExitTransitionDidStart
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->onExitTransitionDidStart();
 }
 
@@ -575,49 +600,52 @@
 
 -(void)setActionManager:(CCActionManager *)actionManager
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setActionManager([actionManager getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::ActionManager* mgr = static_cast<cocos2d::ActionManager*>([actionManager getImpl]);
+    node->setActionManager(mgr);
 }
 
 -(CCActionManager *)actionManager
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[CCActionManager alloc] initWithObject: node->getActionManager() autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCActionManager alloc] initWithObject: node->getActionManager()] autorelease];
 }
 
 -(CCAction *)runAction:(CCAction *)action
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[CCAction alloc] initWithObject: node->runAction([action getImpl]) autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Action* cppAction = static_cast<cocos2d::Action*>([action getImpl]);
+    return [[[CCAction alloc] initWithObject: node->runAction(cppAction)] autorelease];
 }
 
 -(void)stopAllActions
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->stopAllActions();
 }
 
 -(void)stopAction:(CCAction *)action
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->stopAction([action getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Action* cppAction = static_cast<cocos2d::Action*>([action getImpl]);
+    node->stopAction(cppAction);
 }
 
 -(void)stopActionByTag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->stopActionByTag(tag);
 }
 
 -(CCAction *)getActionByTag:(NSInteger)tag
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[CCAction alloc] initWithObject:node->getActionByTag(tag) autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCAction alloc] initWithObject:node->getActionByTag(tag)] autorelease];
 }
 
 -(NSUInteger)numberOfRunningActions
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     return node->getNumberOfRunningActions();
 }
 
@@ -625,90 +653,91 @@
 
 -(void)setScheduler:(CCScheduler *)scheduler
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    node->setScheduler([scheduler getImpl]);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Scheduler* cppScheduler = static_cast<cocos2d::Scheduler*>([scheduler getImpl]);
+    node->setScheduler(cppScheduler);
 }
 
 -(CCScheduler *)scheduler
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return [[CCScheduler alloc] initWithObject: node->getScheduler() autorelease];
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCScheduler alloc] initWithObject: node->getScheduler()] autorelease];
 }
 
 -(void)scheduleUpdate
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->scheduleUpdate();
 }
 
 -(void)scheduleUpdateWithPriority:(NSInteger)priority
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->scheduleUpdateWithPriority(priority);
 }
 
 -(void)unscheduleUpdate
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->unscheduleUpdate();
 }
 
 -(void)schedule:(SEL) selector
 {
     // TODO: no selector support.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->schedule(nil);
 }
 
 -(void)schedule:(SEL)s interval:(ccTime)interval
 {
     // TODO: no selector support.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->schedule(nil, interval);
 }
 
 -(void)schedule:(SEL)selector interval:(ccTime)interval repeat:(uint)repeat delay:(ccTime)delay
 {
     // TODO: no selector support.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->schedule(nil, interval, repeat, delay);
 }
 
 -(void)scheduleOnce:(SEL)selector delay:(ccTime)delay
 {
     // TODO: no selector support.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->scheduleOnce(nil, delay);
 }
 
 -(void)unschedule:(SEL)selector
 {
     // TODO: no selector support.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->unschedule(nil);
 }
 
 -(void)unscheduleAllSelectors
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->unscheduleAllCallbacks();
 }
 
 - (void) resumeSchedulerAndActions
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->resumeSchedulerAndActions();
 }
 
 - (void) pauseSchedulerAndActions
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->pauseSchedulerAndActions();
 }
 
 -(void)update:(ccTime)delta
 {
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->update(delta);
 }
 
@@ -716,58 +745,50 @@
 
 -(CGAffineTransform)nodeToParentTransform
 {
-    // TODO: CONVERT CGAfflineTransform -- cocos2d::AfflineTransform.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getNodeToParentAffineTransform();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert AffineTransformToCGAffineTransform: node->getNodeToParentAffineTransform()];
 }
 
 -(CGAffineTransform)parentToNodeTransform
 {
-    // TODO: CONVERT CGAfflineTransform -- cocos2d::AfflineTransform.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getParentToNodeAffineTransform();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert AffineTransformToCGAffineTransform: node->getParentToNodeAffineTransform()];
 }
 
 -(CGAffineTransform)nodeToWorldTransform
 {
-    // TODO: CONVERT CGAfflineTransform -- cocos2d::AfflineTransform.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getNodeToWorldAffineTransform();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert AffineTransformToCGAffineTransform: node->getNodeToWorldAffineTransform()];
 }
 
 -(CGAffineTransform)worldToNodeTransform
 {
-    // TODO: CONVERT CGAfflineTransform -- cocos2d::AfflineTransform.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->getWorldToNodeAffineTransform();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert AffineTransformToCGAffineTransform: node->getWorldToNodeAffineTransform()];
 }
 
 -(CGPoint)convertToNodeSpace:(CGPoint)worldPoint
 {
-    // TODO: convert CGPoint to cocos2d::vec2.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->convertToNodeSpace(worldPoint);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint: node->convertToNodeSpace([ccTypeConvert CGPointToPoint: worldPoint])];
 }
 
 -(CGPoint)convertToWorldSpace:(CGPoint)nodePoint
 {
-    // TODO: convert CGPoint to cocos2d::vec2.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->convertToWorldSpace(worldPoint);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint: node->convertToWorldSpace([ccTypeConvert CGPointToPoint: nodePoint])];
 }
 
 -(CGPoint)convertToNodeSpaceAR:(CGPoint)worldPoint
 {
-    // TODO: convert CGPoint to cocos2d::vec2.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->convertToNodeSpaceAR(worldPoint);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint: node->convertToNodeSpaceAR([ccTypeConvert CGPointToPoint: worldPoint])];
 }
 
 -(CGPoint)convertToWorldSpaceAR:(CGPoint)nodePoint
 {
-    // TODO: convert CGPoint to cocos2d::vec2.
-    (cocos2d::Node*) node = (cocos2d::Node*)impl_;
-    return node->convertToWorldSpaceAR(worldPoint);
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [ccTypeConvert PointToCGPoint: node->convertToWorldSpaceAR([ccTypeConvert CGPointToPoint: nodePoint])];
 }
 
 @end
@@ -779,26 +800,26 @@
 // @synthesize cascadeColorEnabled = _cascadeColorEnabled;
 -(void)setCascadeColorEnabled:(BOOL)cascadeColorEnabled
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     node->setCascadeColorEnabled(cascadeColorEnabled);
 }
 
 -(BOOL)isCascadeColorEnabled
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     return node->isCascadeColorEnabled();
 }
 
 // @synthesize cascadeOpacityEnabled = _cascadeOpacityEnabled;
 -(void)setCascadeOpacityEnabled:(BOOL)cascadeOpacityEnabled
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     node->setCascadeOpacityEnabled(cascadeOpacityEnabled);
 }
 
 -(BOOL)isCascadeOpacityEnabled
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     return node->isCascadeOpacityEnabled();
 }
 
@@ -816,13 +837,15 @@
     }
     else
     {
-        impl_ = new cocos2d::__NodeRGBA;
-        impl_->retain();
+        cocos2d::__NodeRGBA* rgba = new cocos2d::__NodeRGBA;
+        rgba->autorelease();
+        rgba->retain();
         
         isNeedCCNodeRGBADealloc_    = YES;
+        impl_ = rgba;
     }
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -831,14 +854,17 @@
     impl_                     = object;
     isNeedCCNodeRGBADealloc_  = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
 -(void) dealloc
 {
     if (isNeedCCNodeRGBADealloc_)
-        impl_->release();
+    {
+        cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
+        node->release();
+    }
     
     [super dealloc];
 }
@@ -846,51 +872,51 @@
 
 -(GLubyte) opacity
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     return node->getOpacity();
 }
 
 -(GLubyte) displayedOpacity
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     return node->getDisplayedOpacity();
 }
 
 - (void) setOpacity:(GLubyte)opacity
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     node->setOpacity(opacity);
 }
 
 - (void)updateDisplayedOpacity:(GLubyte)parentOpacity
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
     node->updateDisplayedOpacity(parentOpacity);
 }
 
 // TODO: convert ccColor3B to cocos2d::Color3B.
 -(ccColor3B) color
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
-    return node->getColor();
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
+    return [ccTypeConvert Color3BToccColor3B: node->getColor()];
 }
 
 -(ccColor3B) displayedColor
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
-    return node->getDisplayedColor();
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
+    return [ccTypeConvert Color3BToccColor3B: node->getDisplayedColor()];
 }
 
 - (void) setColor:(ccColor3B)color
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
-    node->setColor(color);
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
+    node->setColor([ccTypeConvert ccColor3BToColor3B: color]);
 }
 
 - (void)updateDisplayedColor:(ccColor3B)parentColor
 {
-    (cocos2d::__NodeRGBA*) node = (cocos2d::__NodeRGBA*)impl_;
-    node->updateDisplayedColor(parentColor);
+    cocos2d::__NodeRGBA* node = static_cast<cocos2d::__NodeRGBA*>(impl_);
+    node->updateDisplayedColor([ccTypeConvert ccColor3BToColor3B: parentColor]);
 }
 
 @end

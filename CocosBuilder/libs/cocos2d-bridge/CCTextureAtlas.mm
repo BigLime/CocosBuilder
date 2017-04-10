@@ -4,7 +4,8 @@
 // author ke.huang
 
 #import "CCTextureAtlas.h"
-#import "2d/CCTextureAtlas.h"
+#import "renderer/CCTextureAtlas.h"
+#import "ccTypeConvert.h"
 
 @implementation CCTextureAtlas
 
@@ -20,11 +21,11 @@
     {
         cocos2d::TextureAtlas* bathNode = new cocos2d::TextureAtlas();
         impl_ = bathNode;
-        impl_->autorelease();
+        bathNode->autorelease();
         
         isNeedTextureAtlasDealloc_  = YES;
     }
-    
+    return self;
 }
 
 -(id) initWithObject: (void*) object
@@ -32,7 +33,7 @@
     impl_               = object;
     isNeedTextureAtlasDealloc_  = NO;
     
-    self = [super init:self];
+    self = [super init];
     return self;
 }
 
@@ -72,18 +73,24 @@
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setTexture(((cocos2d::Texture2D*)[texture getImpl]));
 }
-- (ccV3F_C4B_T2F_Quad)quads
+- (ccV3F_C4B_T2F_Quad*)quads
 {
     //TODO ccV3F_C4B_T2F_Quad
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    return _textureAtlas->getQuads();
+    cocos2d::V3F_C4B_T2F_Quad* _oldQuads = _textureAtlas->getQuads();
+    ccV3F_C4B_T2F_Quad* _newQuads = new ccV3F_C4B_T2F_Quad;
+    _newQuads->tl = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:_oldQuads->tl];
+    _newQuads->bl = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:_oldQuads->bl];
+    _newQuads->tr = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:_oldQuads->tr];
+    _newQuads->br = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:_oldQuads->br];
+    return _newQuads;
 }
 
-- (void)setQuads:_quads
+- (void)setQuads:(ccV3F_C4B_T2F_Quad*)_quads
 {
-    //TODO ccV3F_C4B_T2F_Quad
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->setQuads(_quads);
+    cocos2d::V3F_C4B_T2F_Quad c = [ccTypeConvert ccV3F_C4B_T2F_QuadToV3F_C4B_T2F_Quad:*_quads];
+    _textureAtlas->setQuads(&c);
 }
 
 +(id) textureAtlasWithFile:(NSString*) file capacity: (NSUInteger) n
@@ -102,7 +109,7 @@
         cocos2d::TextureAtlas* _textureAtlas = cocos2d::TextureAtlas::create([ccTypeConvert NSStringTostring:file],n);
         impl_ = _textureAtlas;
         
-        impl_->retain();
+        _textureAtlas->retain();
         isNeedTextureAtlasDealloc_ = YES;
     }
     return self;
@@ -112,11 +119,11 @@
 -(id) initWithTexture:(CCTexture2D*)tex capacity:(NSUInteger)n
 {
     if( (self=[super init])) {
-        cocos2d::CCTexture2D* _texture2D = (cocos2d::CCTexture2D*)[tex getImpl];
+        cocos2d::Texture2D* _texture2D = (cocos2d::Texture2D*)[tex getImpl];
         cocos2d::TextureAtlas* _textureAtlas = cocos2d::TextureAtlas::createWithTexture(_texture2D,n);
         impl_ = _textureAtlas;
         
-        impl_->retain();
+        _textureAtlas->retain();
         isNeedTextureAtlasDealloc_ = YES;
     }
     return self;
@@ -129,11 +136,11 @@
 
 -(void) setupIndices
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->setupIndices();
+    //cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
+    //_textureAtlas->setupIndices();
 
 }
-
+/* privite function
 #if CC_TEXTURE_ATLAS_USE_VAO
 -(void) setupVBOandVAO
 {
@@ -145,29 +152,29 @@
 {
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
     _textureAtlas->setupVBO();
-}
+}*/
 -(void) mapBuffers
 {
-    cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->mapBuffers();
+    //cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
+   // _textureAtlas->mapBuffers();
 }
 -(void) updateQuad:(ccV3F_C4B_T2F_Quad*)quad atIndex:(NSUInteger) n
 {
-    //TODO ccV3F_C4B_T2F_Quad
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->updateQuad(quad,n);
+    cocos2d::V3F_C4B_T2F_Quad c = [ccTypeConvert ccV3F_C4B_T2F_QuadToV3F_C4B_T2F_Quad:*quad];
+    _textureAtlas->updateQuad(&c,n);
 }
 -(void) insertQuad:(ccV3F_C4B_T2F_Quad*)quad atIndex:(NSUInteger)index
 {
-    //TODO ccV3F_C4B_T2F_Quad
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->insertQuad(quad,index);
+    cocos2d::V3F_C4B_T2F_Quad c = [ccTypeConvert ccV3F_C4B_T2F_QuadToV3F_C4B_T2F_Quad:*quad];
+    _textureAtlas->insertQuad(&c,index);
 }
 -(void) insertQuads:(ccV3F_C4B_T2F_Quad*)quads atIndex:(NSUInteger)index amount:(NSUInteger) amount
 {
-    //TODO ccV3F_C4B_T2F_Quad
     cocos2d::TextureAtlas* _textureAtlas = (cocos2d::TextureAtlas*)impl_;
-    _textureAtlas->insertQuads(quad,index,amount);
+    cocos2d::V3F_C4B_T2F_Quad c = [ccTypeConvert ccV3F_C4B_T2F_QuadToV3F_C4B_T2F_Quad:*quads];
+    _textureAtlas->insertQuads(&c,index,amount);
 }
 -(void) insertQuadFromIndex:(NSUInteger)oldIndex atIndex:(NSUInteger)newIndex
 {

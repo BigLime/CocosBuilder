@@ -30,7 +30,7 @@
         
         isNeedSTextureDealloc_  = YES;
     }
-    
+    return self;
 }
 
 -(id) initWithObject: (void*) object
@@ -175,7 +175,7 @@
 - (id) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution
 {
     CCLOG("cocos2d: CCTexture2D. initWithCGImage begin.");
-    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
+    
     CCTexture2DPixelFormat	pixelFormat;
     BOOL					hasAlpha;
     CGImageAlphaInfo		info;
@@ -219,8 +219,12 @@
         pixelFormat = kCCTexture2DPixelFormat_A8;
     }
     
-    
+    cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
     texture2D->initWithImage([ccTypeConvert CGImageToImage:cgImage],cocos2d::Texture2D::PixelFormat(pixelFormat));
+    texture2D->autorelease();
+    impl_ = texture2D;
+    
+    return self;
 }
 
 @end
@@ -308,8 +312,16 @@
 
 - (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size
 {
-    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
-    texture2D->initWithString(std::string([string UTF8String]), std::string([name UTF8String]),size);
+    cocos2d::FontDefinition fintDef;
+    fintDef._fontName = std::string([name UTF8String]);
+    fintDef._fontSize = size;
+    cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
+    texture2D->initWithString(std::string([string UTF8String]).c_str(), fintDef);
+    texture2D->autorelease();
+    impl_ = texture2D;
+    isNeedSTextureDealloc_ = YES;
+    
+    self = [super init];
     return self;
 }
 - (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)alignment vAlignment:(CCVerticalTextAlignment)vAlignment
@@ -319,8 +331,12 @@
 
 - (id) initWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment)vAlignment lineBreakMode:(CCLineBreakMode)lineBreakMode
 {
-    //TODO no initWithString by hk
-    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
+    const char *text = std::string([string UTF8String]).c_str();
+    const std::string fontName = std::string([name UTF8String]);
+    float fontSize = size;
+    const cocos2d::Size _dimensions = [ccTypeConvert CGSizeToSize:dimensions];
+    cocos2d::TextHAlignment texHA = cocos2d::TextHAlignment(hAlignment);
+    cocos2d::TextVAlignment texVA = cocos2d::TextVAlignment(vAlignment);
     bool isLineBreakMode = false;
     switch (lineBreakMode) {
         case kCCLineBreakModeWordWrap:
@@ -332,8 +348,17 @@
             isLineBreakMode = false;
             break;
     }
-    texture2D->initWithString(std::string([string UTF8String]),std::string([name UTF8String]),size,[ccTypeConvert CGSizeToSize:dimensions],hAlignment,
-                              vAlignment,isLineBreakMode);
+    
+    cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
+    texture2D->initWithString(text,fontName,fontSize,_dimensions,texHA,texVA,isLineBreakMode);
+    texture2D->autorelease();
+    impl_ = texture2D;
+        
+    isNeedSTextureDealloc_ = YES;
+    
+    self = [super init];
+    
+    return self;
 }
 @end
 
@@ -346,6 +371,7 @@
 {
     //TODO no initWithPVRFile by hk
     NSAssert(false, @"no initWithPVRFile");
+    return self;
 }
 +(void) PVRImagesHavePremultipliedAlpha:(BOOL)haveAlphaPremultiplied
 {
@@ -416,7 +442,7 @@
 @implementation CCTexture2D (PixelFormat)
 +(void) setDefaultAlphaPixelFormat:(CCTexture2DPixelFormat)format
 {
-    cocos2d::Texture2D::setDefaultAlphaPixelFormat(format);
+    cocos2d::Texture2D::setDefaultAlphaPixelFormat(cocos2d::Texture2D::PixelFormat(format));
 }
 +(NSUInteger) bitsPerPixelForFormat:(CCTexture2DPixelFormat)format
 {
@@ -464,11 +490,11 @@
 }
 +(CCTexture2DPixelFormat) defaultAlphaPixelFormat
 {
-    return (CCTexture2DPixelFormat)cocos2d::Texture2D::getDefaultAlphaPixelFormat();
+    return CCTexture2DPixelFormat(cocos2d::Texture2D::getDefaultAlphaPixelFormat());
 }
 -(NSUInteger) bitsPerPixelForFormat
 {
-    return [[self class] bitsPerPixelForFormat:_format];
+    return [[self class] bitsPerPixelForFormat:[self pixelFormat]];
 }
 -(NSString*) stringForFormat
 {
