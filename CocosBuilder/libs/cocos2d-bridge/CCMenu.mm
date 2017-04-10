@@ -21,13 +21,13 @@ enum
 // @synthesize enabled=_enabled;
 -(void)setEnabled:(BOOL)enabled
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->setEnabled(enabled);
 }
 
 -(BOOL)enabled
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     return menu->isEnabled();
 }
 
@@ -75,13 +75,15 @@ enum
     cocos2d::Vector<cocos2d::MenuItem*> ccArrayOfItems;
     for (CCMenuItem* item in arrayOfItems)
     {
-        ccArrayOfItems.push_back([item getImpl]);
+        cocos2d::MenuItem* cppItem = static_cast<cocos2d::MenuItem*>([item getImpl]);
+        ccArrayOfItems.pushBack(cppItem);
     }
 
-    impl_ = cocos2d::Menu::createWithArray(ccArrayOfItems);
-    impl_->retain();
+    cocos2d::Menu* menu = cocos2d::Menu::createWithArray(ccArrayOfItems);
+    menu->retain();
     
     isNeedCCMenuDealloc_ = YES;
+    impl_ = menu;
     
     self = [super init:impl_];
     return self;
@@ -90,20 +92,23 @@ enum
 -(void)dealloc
 {
     if (isNeedCCMenuDealloc_)
-        impl_->release();
-    
+    {
+        cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
+        menu->release();
+    }
     [super dealloc];
 }
 
 -(void)addChild:(CCNode *)node z:(NSInteger)z tag:(NSInteger)tag
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
-    menu->addChild([node getImpl], z, tag);
+    cocos2d::Node* cppNode = static_cast<cocos2d::Node*>([node getImpl]);
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
+    menu->addChild(cppNode, z, tag);
 }
 
 -(void)onExit
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->onExit();
 }
 
@@ -112,6 +117,7 @@ enum
 -(void)setHandlerPriority:(NSInteger)newPriority
 {
     // TODO: NO IMPL IN CPP
+    NSAssert(NO, @"[CCMenu setHandlerPriority]:: NO IMPL IN CPP");
     (void)newPriority;
 }
 
@@ -122,24 +128,28 @@ enum
 -(CCMenuItem *) itemForMouseEvent: (NSEvent *) event
 {
     // TODO: NO IMPL IN CPP;
+    NSAssert(NO, @"[CCMenu itemForMouseEvent]:: NO IMPL IN CPP");
     return nil;
 }
 
 -(BOOL) ccMouseUp:(NSEvent *)event
 {
     // TODO: NO IMPL IN CPP;
+    NSAssert(NO, @"[CCMenu ccMouseUp]:: NO IMPL IN CPP");
     return NO;
 }
 
 -(BOOL) ccMouseDown:(NSEvent *)event
 {
     // TODO: NO IMPL IN CPP;
+    NSAssert(NO, @"[CCMenu ccMouseDown]:: NO IMPL IN CPP");
     return NO;
 }
 
 -(BOOL) ccMouseDragged:(NSEvent *)event
 {
     // TODO: NO IMPL IN CPP;
+    NSAssert(NO, @"[CCMenu ccMouseDragged]:: NO IMPL IN CPP");
     return NO;
 }
 
@@ -147,25 +157,25 @@ enum
 
 -(void)alignItemsVertically
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->alignItemsVertically();
 }
 
 -(void)alignItemsVerticallyWithPadding:(float)padding
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->alignItemsVerticallyWithPadding(padding);
 }
 
 -(void) alignItemsHorizontally
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->alignItemsHorizontally();
 }
 
 -(void) alignItemsHorizontallyWithPadding:(float)padding
 {
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->alignItemsHorizontallyWithPadding(padding);
 }
 
@@ -195,14 +205,14 @@ enum
 
 -(void)alignItemsInColumnsWithArray:(NSArray *)arrayOfNumbers
 {
-    cocos2d::ValueVector<unsigned int> columns;
+    cocos2d::ValueVector columns;
     for (NSNumber* number in arrayOfNumbers)
     {
-        unsigned int value = [number unsignedIntegerValue];
-        columns.push_back(value);
+        unsigned int i = [number unsignedIntegerValue];
+        columns.push_back(cocos2d::Value(i));
     }
     
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
     menu->alignItemsInColumnsWithArray(columns);
 }
 
@@ -232,15 +242,15 @@ enum
 
 -(void) alignItemsInRowsWithArray:(NSArray*) arrayOfNumbers
 {
-    cocos2d::ValueVector<unsigned int> columns;
+    cocos2d::ValueVector columns;
     for (NSNumber* number in arrayOfNumbers)
     {
-        unsigned int value = [number unsignedIntegerValue];
-        columns.push_back(value);
+        unsigned int i = [number unsignedIntegerValue];
+        columns.push_back(cocos2d::Value(i));
     }
     
-    (cocos2d::Menu*)menu = (cocos2d::Menu*)impl_;
-    menu->alignItemsInRowsWithArray(columns);
+    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
+    menu->alignItemsInColumnsWithArray(columns);
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CCMenuItem.h"
 #import "2d/CCMenuItem.h"
+#import "ccTypeConvert.h"
 
 static NSUInteger _globalFontSize   = kCCItemSize;
 static NSString *_globalFontName    = @"Marker Felt";
@@ -26,7 +27,7 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 // @synthesize isSelected=_isSelected;
 -(void)setIsSelected:(BOOL)isSelected
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     
     if (isSelected)
         item->selected();
@@ -36,7 +37,7 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 -(BOOL)isSelected
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     return item->isSelected();
 }
 
@@ -44,11 +45,14 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void)setReleaseBlockAtCleanup:(BOOL)releaseBlockAtCleanup
 {
     // TODO: no implement in cpp
+    NSAssert(NO, @"no implement in cpp");
 }
 
 -(BOOL)releaseBlockAtCleanup
 {
     // TODO: no implement in cpp
+    NSAssert(NO, @"no implement in cpp");
+    return NO;
 }
 
 // @synthesize activeArea=_activeArea;
@@ -56,12 +60,16 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 {
     // TODO: convert CGRect.
     // TODO: no implement.
+    // TODO: no implement in cpp
+    NSAssert(NO, @"no implement in cpp");
 }
 
 -(CGRect)activeArea
 {
     // TODO: convert CGRect.
     // TODO: no implement.
+    // TODO: no implement in cpp
+    NSAssert(NO, @"no implement in cpp");
     
     CGRect ret = {};
     return ret;
@@ -90,10 +98,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
     }
     else
     {
-        impl_ = cocos2d::MenuItem::create(std::function<void(cocos2d::Ref*)>());
-        impl_->retain();
+        cocos2d::MenuItem* menuItem = cocos2d::MenuItem::create(std::function<void(cocos2d::Ref*)>());
+        menuItem->retain();
         
         isNeedCCMenuItemDealloc_    = YES;
+        impl_ = menuItem;
     }
     
     self = [super init:impl_];
@@ -112,7 +121,10 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void) dealloc
 {
     if (isNeedCCMenuItemDealloc_)
-        impl_->release();
+    {
+        cocos2d::MenuItem* menuItem = static_cast<cocos2d::MenuItem*>(impl_);
+        menuItem->release();
+    }
     
     [super dealloc];
 }
@@ -131,10 +143,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 -(id)initWithBlock:(void (^)(id))block
 {
-    impl_ = cocos2d::MenuItem::create([block](cocos2d::Ref*) { [block self]; });
-    impl_->retain();
+    cocos2d::MenuItem* menuItem = cocos2d::MenuItem::create([block, self](cocos2d::Ref*) { [block self]; });
+    menuItem->retain();
     
     isNeedCCMenuItemDealloc_ = YES;
+    impl_ = menuItem;
     
     self = [super init:impl_];
     return self;
@@ -142,50 +155,50 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 -(void)setContentSize:(CGSize)contentSize
 {
-    // TODO: convert contentSize.
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
-    item->setContentSize(contentSize);
+    cocos2d::Size cppSize = [ccTypeConvert CGSizeToSize:contentSize];
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
+    item->setContentSize(cppSize);
 }
 
 -(void)cleanup
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->cleanup();
 }
 
 -(void)selected
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->selected();
 }
 
 -(void)unselected
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->unselected();
 }
 
 -(void)activate
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->activate();
 }
 
 -(void)setIsEnabled:(BOOL)enabled
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->setEnabled(enabled);
 }
 
 -(BOOL)isEnabled
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     return item->isEnabled();
 }
 
 -(void)setBlock:(void (^)(id))block
 {
-    (cocos2d::MenuItem*)item = (cocos2d::MenuItem*)impl_;
+    cocos2d::MenuItem* item = static_cast<cocos2d::MenuItem*>(impl_);
     item->setCallback([block](cocos2d::Ref*){ [block self]; });
 }
 
@@ -208,15 +221,15 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void)setDisabledColor:(ccColor3B)disabledColor
 {
     // TODO: convert ccColor3B
-    cocos2d::MenuItemLabel* item = (cocos2d::MenuItemLabel*)impl_;
-    item->setDisabledColor(disabledColor);
+    cocos2d::MenuItemLabel* item = static_cast<cocos2d::MenuItemLabel*>(impl_);
+    item->setDisabledColor([ccTypeConvert ccColor3BToColor3B: disabledColor]);
 }
 
 -(ccColor3B)disabledColor
 {
     // TODO: convert ccColor3B
-    cocos2d::MenuItemLabel* item = (cocos2d::MenuItemLabel*)impl_;
-    return item->getDisabledColor();
+    cocos2d::MenuItemLabel* item = static_cast<cocos2d::MenuItemLabel*>(impl_);
+    return [ccTypeConvert Color3BToccColor3B: item->getDisabledColor()];
 }
 
 +(id) itemWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol>*)label
@@ -250,10 +263,12 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 //
 -(id) initWithLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol> *)label block:(void (^)(id))block
 {
-    impl_ = cocos2d::MenuItemLabel::create([label getImpl], [block](cocos2d::Ref*){ [block self];});
-    impl_->retain();
+    cocos2d::Node* node = static_cast<cocos2d::Node*>([label getImpl]);
+    cocos2d::MenuItemLabel* itemLabel = cocos2d::MenuItemLabel::create(node, [block, self](cocos2d::Ref*){ [block self]; });
+    itemLabel->retain();
     
     isNeedCCMenuItemLabelDealloc_ = YES;
+    impl_ = itemLabel;
     
     self = [super init:impl_];
     return self;
@@ -262,13 +277,15 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(CCNode<CCLabelProtocol,CCRGBAProtocol> *)label
 {
     cocos2d::MenuItemLabel* item = (cocos2d::MenuItemLabel*)impl_;
-    return [[CCNode<CCLabelProtocol, CCRGBAProtocol> alloc] initWithObject:item->getLabel() autorelease];
+    return [[[CCNode<CCLabelProtocol, CCRGBAProtocol> alloc] initWithObject:item->getLabel()] autorelease];
 }
 
 -(void)setLabel:(CCNode<CCLabelProtocol,CCRGBAProtocol> *)label
 {
     cocos2d::MenuItemLabel* item = (cocos2d::MenuItemLabel*)impl_;
-    item->setLabel([label getImpl]);
+    cocos2d::Node* labelImpl = static_cast<cocos2d::Node*>([label getImpl]);
+    
+    item->setLabel(labelImpl);
 }
 
 -(void)setString:(NSString *)label
@@ -338,11 +355,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 {
     NSAssert( [value length] > 0, @"value length must be greater than 0");
     
-    impl_ = cocos2d::MenuItemAtlasFont::create([value UTF8String], [charMapFile UTF8String], itemWidth, itemHeight, startCharMap, [block](cocos2d::Ref*){ [block self];});
-
-    impl_->retain();
+    cocos2d::MenuItemAtlasFont* item = cocos2d::MenuItemAtlasFont::create([value UTF8String], [charMapFile UTF8String], itemWidth, itemHeight, startCharMap, [block, self](cocos2d::Ref*){ [block self];});
+    item->retain();
     
     isNeedCCMenuItemAtlasFontDealloc_ = YES;
+    impl_ = item;
     
     self = [super init:impl_];
     return self;
@@ -352,7 +369,10 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void) dealloc
 {
     if (isNeedCCMenuItemAtlasFontDealloc_)
-        impl_->release();
+    {
+        cocos2d::MenuItemAtlasFont* item = static_cast<cocos2d::MenuItemAtlasFont*>(impl_);
+        item->release();
+    }
     
     [super dealloc];
 }
@@ -421,10 +441,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 {
     NSAssert( [string length] > 0, @"Value length must be greater than 0");
     
-    impl_ = cocos2d::MenuItemFont::create([string UTF8String], [block](cocos2d::Ref*) { [block self]; });
-    impl_->retain();
+    cocos2d::MenuItemFont* font = cocos2d::MenuItemFont::create([string UTF8String], [block](cocos2d::Ref*) { [block self]; });
+    font->retain();
     
     isNeedCCMenuItemFontDealloc_ = YES;
+    impl_ = font;
     
     self = [super init:impl_];
     return self;
@@ -433,32 +454,34 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void)dealloc
 {
     if (isNeedCCMenuItemFontDealloc_)
-        impl_->release();
-    
+    {
+        cocos2d::MenuItemFont* font = static_cast<cocos2d::MenuItemFont*>(impl_);
+        font->release();
+    }
     [super dealloc];
 }
 
 -(void) setFontSize: (NSUInteger) size
 {
-    cocos2d::MenuItemFont* item = (cocos2d::MenuItemFont*)impl_;
+    cocos2d::MenuItemFont* item = static_cast<cocos2d::MenuItemFont*>(impl_);
     item->setFontSize(size);
 }
 
 -(NSUInteger) fontSize
 {
-    cocos2d::MenuItemFont* item = (cocos2d::MenuItemFont*)impl_;
+    cocos2d::MenuItemFont* item = static_cast<cocos2d::MenuItemFont*>(impl_);
     return item->getFontSize();
 }
 
 -(void) setFontName: (NSString*) fontName
 {
-    cocos2d::MenuItemFont* item = (cocos2d::MenuItemFont*)impl_;
+    cocos2d::MenuItemFont* item = static_cast<cocos2d::MenuItemFont*>(impl_);
     item->setFontName([fontName UTF8String]);
 }
 
 -(NSString*) fontName
 {
-    cocos2d::MenuItemFont* item = (cocos2d::MenuItemFont*)impl_;
+    cocos2d::MenuItemFont* item = static_cast<cocos2d::MenuItemFont*>(impl_);
     return [NSString stringWithCString:item->getFontName().c_str() encoding:NSUTF8StringEncoding];
 }
 
@@ -471,37 +494,43 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void)setNormalImage:(CCNode<CCRGBAProtocol> *)normalImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    item->setNormalImage([normalImage getImpl]);
+    cocos2d::Node* imageImpl = static_cast<cocos2d::Node*>([normalImage getImpl]);
+    
+    item->setNormalImage(imageImpl);
 }
 
 -(CCNode<CCRGBAProtocol> *)normalImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    return [[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getNormalImage() autorelease];
+    return [[[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getNormalImage()] autorelease];
 }
 
 -(void)setSelectedImage:(CCNode<CCRGBAProtocol> *)selectedImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    item->setSelectedImage([selectedImage getImpl]);
+    cocos2d::Node* imageImpl = static_cast<cocos2d::Node*>([selectedImage getImpl]);
+    
+    item->setSelectedImage(imageImpl);
 }
 
 -(CCNode<CCRGBAProtocol> *)selectedImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    return [[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getSelectedImage() autorelease];
+    return [[[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getSelectedImage()] autorelease];
 }
 
 -(void)setDisabledImage:(CCNode<CCRGBAProtocol> *)disabledImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    item->setDisabledImage([disabledImage getImpl]);
+    cocos2d::Node* imageImpl = static_cast<cocos2d::Node*>([disabledImage getImpl]);
+    
+    item->setDisabledImage(imageImpl);
 }
 
 -(CCNode<CCRGBAProtocol> *)disabledImage
 {
     cocos2d::MenuItemSprite* item = (cocos2d::MenuItemSprite*)impl_;
-    return [[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getDisabledImage() autorelease];
+    return [[[CCNode<CCRGBAProtocol> alloc] initWithObject: item->getDisabledImage()] autorelease];
 }
 
 +(id) itemWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite
@@ -544,19 +573,27 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 //
 -(id) initWithNormalSprite:(CCNode<CCRGBAProtocol>*)normalSprite selectedSprite:(CCNode<CCRGBAProtocol>*)selectedSprite disabledSprite:(CCNode<CCRGBAProtocol>*)disabledSprite block:(void(^)(id sender))block
 {
-    impl_ = cocos2d::MenuItemSprite::create([normalSprite getImpl], [selectedSprite getImpl], [disabledSprite getImpl], [block](cocos2d::Ref*){ [block self]; });
-    impl_->retain();
+    cocos2d::Node* normalSpriteImpl     = static_cast<cocos2d::Node*>([normalSprite getImpl]);
+    cocos2d::Node* selectedSpriteImpl   = static_cast<cocos2d::Node*>([selectedSprite getImpl]);
+    cocos2d::Node* disabledSpriteImpl   = static_cast<cocos2d::Node*>([disabledSprite getImpl]);
     
-    isNeedCCMenuItemSpriteDealloc_ = YES;
-
+    cocos2d::MenuItemSprite* sprite = cocos2d::MenuItemSprite::create(normalSpriteImpl, selectedSpriteImpl, disabledSpriteImpl, [block, self](cocos2d::Ref*){ [block self]; });
+    sprite->retain();
+    
+    isNeedCCMenuItemSpriteDealloc_ = YES;
+    impl_ = sprite;
+    
     self = [super init:impl_];
     return self;
 }
 
 -(void)dealloc
 {
-    if (isNeedCCMenuItemSpriteDealloc_)
-        impl_->release();
+    if ( isNeedCCMenuItemSpriteDealloc_ )
+    {
+        cocos2d::MenuItemSprite* sprite = static_cast<cocos2d::MenuItemSprite*>(impl_);
+        sprite->release();
+    }
     
     [super dealloc];
 }
@@ -631,10 +668,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 //
 -(id) initWithNormalImage:(NSString*)normalI selectedImage:(NSString*)selectedI disabledImage:(NSString*)disabledI block:(void(^)(id sender))block
 {
-    impl_ = cocos2d::MenuItemImage::create([normalI UTF8String], [selectedI UTF8String], [disabledI UTF8String], [block](cocos2d::Ref*){ [block self]; });
-    impl_->retain();
+    cocos2d::MenuItemImage* itemImage = cocos2d::MenuItemImage::create([normalI UTF8String], [selectedI UTF8String], [disabledI UTF8String], [block](cocos2d::Ref*){ [block self]; });
+    itemImage->retain();
     
     isNeedCCMenuItemImageDealloc_ = YES;
+    impl_ = itemImage;
     
     self = [super init:impl_];
     return self;
@@ -643,7 +681,10 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void)dealloc
 {
     if (isNeedCCMenuItemImageDealloc_)
-        impl_->release();
+    {
+        cocos2d::MenuItemImage* itemImage = static_cast<cocos2d::MenuItemImage*>(impl_);
+        itemImage->release();
+    }
     
     [super dealloc];
 }
@@ -654,19 +695,22 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void) setNormalSpriteFrame:(CCSpriteFrame *)frame
 {
     cocos2d::MenuItemImage* item = (cocos2d::MenuItemImage*)impl_;
-    item->setNormalSpriteFrame([frame getImpl]);
+    cocos2d::SpriteFrame* sprite = static_cast<cocos2d::SpriteFrame*>([frame getImpl]);
+    item->setNormalSpriteFrame(sprite);
 }
 
 -(void) setSelectedSpriteFrame:(CCSpriteFrame *)frame
 {
     cocos2d::MenuItemImage* item = (cocos2d::MenuItemImage*)impl_;
-    item->setSelectedSpriteFrame([frame getImpl]);
+    cocos2d::SpriteFrame* sprite = static_cast<cocos2d::SpriteFrame*>([frame getImpl]);
+    item->setSelectedSpriteFrame(sprite);
 }
 
 -(void) setDisabledSpriteFrame:(CCSpriteFrame *)frame
 {
     cocos2d::MenuItemImage* item = (cocos2d::MenuItemImage*)impl_;
-    item->setDisabledSpriteFrame([frame getImpl]);
+    cocos2d::SpriteFrame* sprite = static_cast<cocos2d::SpriteFrame*>([frame getImpl]);
+    item->setDisabledSpriteFrame(sprite);
 }
 @end
 
@@ -682,9 +726,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 {
     cocos2d::Vector<cocos2d::MenuItem*> items;
     for ( CCMenuItem* item in subItems)
-        items.push_back([item getImpl]);
+    {
+        cocos2d::MenuItem* cppItem = static_cast<cocos2d::MenuItem*>(item);
+        items.pushBack(cppItem);
     
-    
+    }
     cocos2d::MenuItemToggle* item = (cocos2d::MenuItemToggle*)impl_;
     item->setSubItems(items);
 }
@@ -695,10 +741,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
     cocos2d::Vector<cocos2d::MenuItem*> items = item->getSubItems();
     
     // TODO: 基于多态的 box unbox。。。。
-    NSMutableArray ret;
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
     for ( cocos2d::MenuItem* subItem : items)
-        [ret addObject: [CCMenuItem alloc]:initWithObject:subItem autorelease];
-    
+    {
+        [ret addObject: [[[CCMenuItem alloc] initWithObject: subItem] autorelease]];
+    }
     return ret;
 }
 
@@ -749,14 +796,18 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 -(id) initWithItems:(NSArray*)arrayOfItems block:(void(^)(id sender))block
 {
-    cocos2d::Vector<MenuItem*> items;
+    cocos2d::Vector<cocos2d::MenuItem*> items;
     for (CCMenuItem* item in arrayOfItems)
-        items.push_back([item getImpl]);
+    {
+        cocos2d::MenuItem* cppItem = static_cast<cocos2d::MenuItem*>([item getImpl]);
+        items.pushBack(cppItem);
+    }
     
-    impl_ = cocos2d::MenuItemToggle::createWithCallback([block] (cocos2d::Ref*) { [block self];}, items);
-    impl_->retain();
+    cocos2d::MenuItemToggle* item = cocos2d::MenuItemToggle::createWithCallback([block] (cocos2d::Ref*) { [block self];}, items);
+    item->retain();
     
     isNeedCCMenuItemToggleDealloc_ = YES;
+    impl_ = item;
     
     self = [super init:impl_];
     return self;
@@ -765,7 +816,10 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(void) dealloc
 {
     if (isNeedCCMenuItemToggleDealloc_)
-        impl_->release();
+    {
+        cocos2d::MenuItemToggle* item = static_cast<cocos2d::MenuItemToggle*>(impl_);
+        item->release();
+    }
     
     [super dealloc];
 }
@@ -810,7 +864,7 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(CCMenuItem*) selectedItem
 {
     cocos2d::MenuItemToggle* item = (cocos2d::MenuItemToggle*)impl_;
-    return [[CCMenuItem alloc]:initWithObject: item->getSelectedItem() autorelease];
+    return [[[CCMenuItem alloc] initWithObject: item->getSelectedItem()] autorelease];
 }
 
 @end

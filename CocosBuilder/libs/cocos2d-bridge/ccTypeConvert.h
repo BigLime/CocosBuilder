@@ -52,6 +52,10 @@
 // Sprite
 +(CCArray*)VectorSpriteToCCArray:(cocos2d::Vector<cocos2d::Sprite*>) vec;
 +(cocos2d::Vector<cocos2d::Sprite*>)CCArrayToVectorSprite:(CCArray*) arr;
+// CCArray* <--> std::vector
+// Sprite
++(CCArray*)StdVectorSpriteToCCArray:(std::vector<cocos2d::Sprite*>) vec;
++(std::vector<cocos2d::Sprite*>)CCArrayToStdVectorSprite:(CCArray*) arr;
 // Node
 +(CCArray*)VectorNodeToCCArray:(cocos2d::Vector<cocos2d::Node*>) vec;
 +(cocos2d::Vector<cocos2d::Node*>)CCArrayToVectorNode:(CCArray*) arr;
@@ -70,6 +74,11 @@
 // Sprite
 +(NSMutableArray*)VectorSpriteToNSMutableArray:(cocos2d::Vector<cocos2d::Sprite*>) vec;
 +(cocos2d::Vector<cocos2d::Sprite*>)NSMutableArrayToVectorSprite:(NSMutableArray*) arr;
+
+// NSMutableArray* <—> std::vector
+// Sprite
++(NSMutableArray*)StdVectorSpriteToNSMutableArray:(std::vector<cocos2d::Sprite*>) vec;
++(std::vector<cocos2d::Sprite*>)NSMutableArrayToStdVectorSprite:(NSMutableArray*) arr;
 // Node
 +(NSMutableArray*)VectorNodeToNSMutableArray:(cocos2d::Vector<cocos2d::Sprite*>) vec;
 +(cocos2d::Vector<cocos2d::Node*>)NSMutableArrayToVectorNode:(NSMutableArray*) arr;
