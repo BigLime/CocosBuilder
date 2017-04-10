@@ -25,41 +25,51 @@
 
 -(id) initWithString:(NSString*) theString fntFile:(NSString*)fntFile
 {
-    impl_ = cocos2d::LabelAtlas::create([theString UTF8String], [fntFile UTF8String]);
-    impl_->retain();
+    cocos2d::LabelAtlas* label = cocos2d::LabelAtlas::create([theString UTF8String], [fntFile UTF8String]);
+    label->retain();
     
     isNeedCCLabelAtlasDealloc_ = YES;
+    impl_ = label;
     
-    self = [super init: self];
+    self = [super init: impl_];
     return self;
 }
 
 -(id) initWithString:(NSString*)string charMapFile: (NSString*)filename itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)c
 {
-    impl_ = cocos2d::LabelAtlas::create([string UTF8String], [filename UTF8String], w, h, c);
-    impl_->retain();
+    cocos2d::LabelAtlas* label = cocos2d::LabelAtlas::create([string UTF8String], [filename UTF8String], w, h, c);
+    label->retain();
     
     isNeedCCLabelAtlasDealloc_ = YES;
+    impl_ = label;
     
-    self = [super init: self];
+    self = [super init: impl_];
     return self;
 }
 
 -(id) initWithString:(NSString*) theString texture:(CCTexture2D*)texture itemWidth:(NSUInteger)w itemHeight:(NSUInteger)h startCharMap:(NSUInteger)c
 {
-    impl_ = cocos2d::LabelAtlas::create([theString UTF8String], [texture getImpl], w, h, c);
-    impl_->retain();
+    cocos2d::Texture2D* cppTexture = static_cast<cocos2d::Texture2D*>([texture getImpl]);
+    
+    cocos2d::LabelAtlas* label = new (std::nothrow) cocos2d::LabelAtlas();
+    label->initWithString([theString UTF8String], cppTexture, w, h, c);
+    label->autorelease(); 
+    label->retain();
     
     isNeedCCLabelAtlasDealloc_ = YES;
+    impl_ = label;
     
-    self = [super init: self];
+    self = [super init: impl_];
     return self;
 }
 
 -(void) dealloc
 {
     if (isNeedCCLabelAtlasDealloc_)
-        impl_->release();
+    {
+        cocos2d::LabelAtlas* label = static_cast<cocos2d::LabelAtlas*>(impl_);
+        label->release();
+    }
     
     [super dealloc];
 }
@@ -68,21 +78,19 @@
 
 -(void)updateAtlasValues
 {
-    (cocos2d::CCLabelAtlas*) atlas = (cocos2d::CCLabelAtlas*)impl_;
+    cocos2d::LabelAtlas* atlas = static_cast<cocos2d::LabelAtlas*>(impl_);
     atlas->updateAtlasValues();
 }
 
-#pragma mark CCLabelAtlas - CCLabelProtocol
-
 -(void)setString:(NSString *)label
 {
-    (cocos2d::CCLabelAtlas*) atlas = (cocos2d::CCLabelAtlas*)impl_;
+    cocos2d::LabelAtlas* atlas = static_cast<cocos2d::LabelAtlas*>(impl_);
     atlas->setString([label UTF8String]);
 }
 
 -(NSString *)string
 {
-    (cocos2d::CCLabelAtlas*) atlas = (cocos2d::CCLabelAtlas*)impl_;
+    cocos2d::LabelAtlas* atlas = static_cast<cocos2d::LabelAtlas*>(impl_);
     return [NSString stringWithCString: atlas->getString().c_str() encoding:NSUTF8StringEncoding];
 }
 
@@ -91,37 +99,17 @@
 #if CC_LABELATLAS_DEBUG_DRAW
 - (void) draw
 {
-    (cocos2d::CCLabelAtlas*) atlas = (cocos2d::CCLabelAtlas*)impl_;
-    
     // TODO: different param for debug draw.
+    NSAssert( NO, @"Not supported - Cpp protected functions.");
     // atlas->draw(renderer, transform, flags);
 }
 #endif // CC_LABELATLAS_DEBUG_DRAW
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @end
+
+
+
+
+
+
+
