@@ -7,10 +7,12 @@
 #import "CCSpriteFrame.h"
 #import "CCTextureAtlas.h"
 #import "CCTexture2D.h"
+#import "CCTextureCache.h"
+#import "ccTypeConvert.h"
 #import "2d/CCSpriteBatchNode.h"
 
 @implementation CCSpriteBatchNode
-
+const NSUInteger defaultCapacity = 29;
 - (id) init:(void*) pThis
 {
     self = [super init];
@@ -27,7 +29,7 @@
         
         isNeedBatchNodeDealloc_  = YES;
     }
-    
+    return self;
 }
 
 -(id) initWithObject: (void*) object
@@ -64,19 +66,17 @@
 }
 - (ccBlendFunc) blendFunc
 {
-    //TODO ccBlendFunc
-    return ((cocos2d::SpriteBatchNode*)impl_)->getBlendFunc();
+    return [ccTypeConvert BlendFuncToccBlendFunc:((cocos2d::SpriteBatchNode*)impl_)->getBlendFunc()];
 }
 - (void) setBlendFunc:(ccBlendFunc)_blendFunc
 {
-    //TODO ccBlendFunc
-    ((cocos2d::SpriteBatchNode*)impl_)->setBlendFunc(_blendFunc);
+    ((cocos2d::SpriteBatchNode*)impl_)->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:_blendFunc]);
 }
 
 - (CCArray*)descendants
 {
-    const std::vector<cocos2d::Sprite*> spriteVec = ((cocos2d::SpriteBatchNode*)impl_)->getDescendants();
-    return [ccTypeConvert VectorSpriteToNSMutableArray:spriteVec];
+    std::vector<cocos2d::Sprite*> spriteVec = ((cocos2d::SpriteBatchNode*)impl_)->getDescendants();
+    return [ccTypeConvert StdVectorSpriteToCCArray:spriteVec];
 }
 
 /*
@@ -118,13 +118,13 @@
 // Designated initializer
 -(id)initWithTexture:(CCTexture2D *)tex capacity:(NSUInteger)capacity
 {
-    if( (self=[super init])) {
-        cocos2d::SpriteBatchNode* batchNode = cocos2d::SpriteBatchNode::create(((cocos2d::Texture2D*)[tex getImpl]),capacity);
-        impl_ = batchNode;
+    cocos2d::SpriteBatchNode* batchNode = cocos2d::SpriteBatchNode::createWithTexture(((cocos2d::Texture2D*)[tex getImpl]),capacity);
+    impl_ = batchNode;
         
-        batchNode->retain();
-        isNeedBatchNodeDealloc_ = YES;
-    }
+    batchNode->retain();
+    isNeedBatchNodeDealloc_ = YES;
+
+    self=[super init:impl_];
     return self;
 }
 - (NSString*) description
@@ -135,7 +135,7 @@
 -(void) visit
 {
     
-    ((cocos2d::SpriteBatchNode*)impl_)->visit();
+    //((cocos2d::SpriteBatchNode*)impl_)->visit();
 }
 
 -(void) addChild:(CCSprite*)child z:(NSInteger)z tag:(NSInteger) aTag
@@ -167,12 +167,14 @@
 }
 -(void) updateAtlasIndex:(CCSprite*) sprite currentIndex:(NSInteger*) curIndex
 {
-    cocos2d::Sprite* _sprite = (cocos2d::Sprite*)[sprite getImpl];
-    ((cocos2d::SpriteBatchNode*)impl_)->updateAtlasIndex(_sprite,curIndex);
+    NSAssert(false, @"updateAtlasIndex is protected");
+    //cocos2d::Sprite* _sprite = (cocos2d::Sprite*)[sprite getImpl];
+    //((cocos2d::SpriteBatchNode*)impl_)->updateAtlasIndex(_sprite,curIndex);
 }
 - (void) swap:(NSInteger) oldIndex withNewIndex:(NSInteger) newIndex
 {
-    ((cocos2d::SpriteBatchNode*)impl_)->swap(oldIndex,newIndex);
+    NSAssert(false, @"swap is protected");
+    //((cocos2d::SpriteBatchNode*)impl_)->swap(oldIndex,newIndex);
 }
 - (void) reorderBatch:(BOOL) reorder
 {
@@ -181,7 +183,7 @@
 -(void) draw
 {
     NSAssert( false, @"Invalid function draw()");
-   ( (cocos2d::SpriteBatchNode*)impl_)->draw();
+   //( (cocos2d::SpriteBatchNode*)impl_)->draw();
 }
 -(void) increaseAtlasCapacity
 {
@@ -226,7 +228,9 @@
 }
 -(void) updateBlendFunc
 {
-    ((cocos2d::SpriteBatchNode*)impl_)->updateBlendFunc();
+    
+    NSAssert(false, @"updateBlendFunc is protected");
+    //((cocos2d::SpriteBatchNode*)impl_)->updateBlendFunc();
 }
 -(void) setTexture:(CCTexture2D*)texture
 {
@@ -249,13 +253,14 @@
 }
 -(void) updateQuadFromSprite:(CCSprite*)sprite quadIndex:(NSUInteger)index
 {
-    cocos2d::Sprite* _sprite = (cocos2d::Sprite*)[sprite getImpl];
-    ((cocos2d::SpriteBatchNode*)impl_)->updateQuadFromSprite(_sprite,index);
+    NSAssert(false, @"updateQuadFromSprite is protected");
+    //cocos2d::Sprite* _sprite = (cocos2d::Sprite*)[sprite getImpl];
+    //((cocos2d::SpriteBatchNode*)impl_)->updateQuadFromSprite(_sprite,index);
 }
 -(id) addSpriteWithoutQuad:(CCSprite*)child z:(NSUInteger)z tag:(NSInteger)aTag
 {
     cocos2d::Sprite* _sprite = (cocos2d::Sprite*)[child getImpl];
-    cocos2d::SpriteBatchNode* batchNode = ((cocos2d::SpriteBatchNode*)impl_)->addSpriteWithoutQuad(_sprite,z,tag);
+    cocos2d::SpriteBatchNode* batchNode = ((cocos2d::SpriteBatchNode*)impl_)->addSpriteWithoutQuad(_sprite,z,aTag);
     return [[[CCSpriteBatchNode alloc]initWithObject:batchNode] autorelease];
 }
 @end
