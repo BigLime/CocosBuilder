@@ -6,6 +6,7 @@
 #import "CCSpriteFrame.h"
 #import "2d/CCSpriteFrame.h"
 #import "ccTypeConvert.h"
+#import "CCTexture2D.h"
 
 @implementation CCSpriteFrame
 
@@ -19,9 +20,9 @@
     }
     else
     {
-        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame()::Create();
+        cocos2d::SpriteFrame* spriteFrame = new cocos2d::SpriteFrame;
+        spriteFrame->autorelease();
         impl_ = spriteFrame;
-        impl_->retain();
         
         isNeedSpriteFrameDealloc_  = YES;
     }
@@ -58,7 +59,8 @@
 
 - (void)setRect:_rect
 {
-    ((cocos2d::SpriteFrame*)impl_)->setRect([ccTypeConvert CGRectToRect:_rect]);
+    cocos2d::SpriteFrame* spriteFrame = ((cocos2d::SpriteFrame*)impl_);
+    spriteFrame->setRect([ccTypeConvert CGRectToRect:_rect]);
 }
 -(CGRect)rectInPixels
 {
@@ -114,7 +116,7 @@
 }
 -(void)setTexture:_texture
 {
-    ((cocos2d::SpriteFrame*)impl_)->setTexture(_texture);
+    ((cocos2d::SpriteFrame*)impl_)->setTexture((cocos2d::Texture2D*)[_texture getImpl]);
 }
 -(NSString*)textureFilename
 {
@@ -155,8 +157,8 @@
 {
     if( (self=[super init]) )
     {
-        cocos2d::SpriteFrame* spriteFrame = cocos2d::CCSprite():create((CCTexture2D*)[texture getImpl],[ccTypeConvert CGRectToRect:rect],rotated,[ccTypeConvert CGPointToPoint:offset],
-                                                                       [ccTypeConvert CGRectToRect:originalSize]);
+        cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)[texture getImpl];
+        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame:createWithTexture(texture2D,[ccTypeConvert CGRectToRect:rect],rotated,[ccTypeConvert CGPointToPoint:offset],[ccTypeConvert CGRectToRect:originalSize]);
         impl_ = spriteFrame;
         
         impl_->retain();
@@ -168,8 +170,11 @@
 {
     if( (self=[super init]) )
     {
-        cocos2d::CCSpriteFrame* spriteFrame = cocos2d::CCSprite():create((CCTexture2D*)[texture getImpl],[ccTypeConvert CGRectToRect:rect],rotated,[ccTypeConvert CGPointToPoint:offset],
-                                                                         [ccTypeConvert CGRectToRect:originalSize]);
+        std::string _name = [ccTypeConvert NSStringTostring:filename];
+        cocos2d::Rect _rect = [ccTypeConvert CGRectToRect:rect];
+        cocos2d::Point _offset = [ccTypeConvert CGPointToPoint:offset];
+        cocos2d::Rect _originalSize = [ccTypeConvert CGRectToRect:originalSize];
+        cocos2d::SpriteFrame* spriteFrame = cocos2d::SpriteFrame::create(_name, _rect, rotated, _offset, _originalSize);
         impl_ = spriteFrame;
         
         impl_->retain();

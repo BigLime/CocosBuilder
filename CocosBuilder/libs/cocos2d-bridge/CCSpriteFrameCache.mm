@@ -5,6 +5,7 @@
 
 
 #import "CCSpriteFrameCache.h"
+#import "2d/CCSpriteFrameCache.h"
 
 @implementation CCSpriteFrameCache
 
@@ -40,7 +41,7 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
 }
 - (NSString*) description
 {
-    return [NSString stringWithFormat:@"<%@ = %p | num of sprite frames =  %lu>", [self class], self, (unsigned long)[_spriteFrames count]];
+    return [NSString stringWithFormat:@"<%@ = %p | num of sprite frames =  %lu %@>", [self class], self, 0l,@"no thisDescription in c++"];
 }
 
 -(void) dealloc
