@@ -7,6 +7,13 @@
 //
 
 #import "CCDirector.h"
+#import "CCScene.h"
+//#import "CCScheduler.h"
+//#import "CCActionManager.h"
+
+#import "ccTypeConvert.h"
+
+#import "base/CCDirector.h"
 
 // XXX it shoul be a Director ivar. Move it there once support for multiple directors is added
 NSUInteger	__ccNumberOfDraws = 0;
@@ -14,18 +21,6 @@ NSUInteger	__ccNumberOfDraws = 0;
 #define kDefaultFPS		60.0	// 60 frames per second
 
 extern NSString * cocos2dVersion(void);
-
-@interface CCDirector (Private)
--(void) setNextScene;
-// shows the statistics
--(void) showStats;
-// calculates delta time since last time it was called
--(void) calculateDeltaTime;
-// calculates the milliseconds per frame from the start of the frame
--(void) calculateMPF;
-// returns the FPS image data pointer and len
--(void)getFPSImageData:(unsigned char**)datapointer length:(NSUInteger*)len;
-@end
 
 @implementation CCDirector
 
@@ -43,142 +38,140 @@ extern NSString * cocos2dVersion(void);
 // getter setter
 -(CCScene*)runningScene
 {
-    Director* director = Director::getInstance();
-    return director->getRunningScene();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [[[CCScene alloc] initWithObject:director->getRunningScene()] autorelease];
 }
 
 // getter setter
 -(void)setAnimationInterval:(NSTimeInterval)animationInterval
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setAnimationInterval(animationInterval);
 }
 
 -(NSTimeInterval)animationInterval
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->getAnimationInterval();
 }
 
 // getter setter
 -(void)setDisplayStats:(BOOL)displayStats
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setDisplayStats(displayStats);
 }
 
 -(BOOL)displayStats
 {
-    Director* director = Director::getInstance();
-    return director->getDisplayStats();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return director->isDisplayStats();
 }
 
 // getter setter
 -(void)setNextDeltaTimeZero:(BOOL)nextDeltaTimeZero
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setNextDeltaTimeZero(nextDeltaTimeZero);
 }
 
 -(float)nextDeltaTimeZero
 {
-    Director* director = Director::getInstance();
-    return director->getNextDeltaTimeZero();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return director->isNextDeltaTimeZero();
 }
 
 // getter setter
 -(BOOL)isPaused
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->isPaused();
 }
 
 // getter setter
 -(void)setIsAnimating:(BOOL)isAnimating
 {
-
+    /*mark todo by lsr*/ // 接口不存在
 }
 
 -(BOOL)isAnimating
 {
-    
+    /*mark todo by lsr*/ // 接口不存在
 }
 
 // getter setter
--(void)setTotalFrames:(NSUInteger)totalFrames
-{
-    Director* director = Director::getInstance();
-    director->setTotalFrames(totalFrames);
-}
-
 -(NSUInteger)totalFrames
 {
-    Director* director = Director::getInstance();
-    return director->getTotalFrames(totalFrames);
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return director->getTotalFrames();
 }
 
 // getter setter
 -(ccTime)secondsPerFrame
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->getSecondsPerFrame();
 }
 
 // getter setter
 -(BOOL)sendCleanupToScene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->isSendCleanupToScene();
 }
 
 // getter setter
 -(void)setNotificationNode:(id)notificationNode
 {
-    Director* director = Director::getInstance();
-    director->setNotificationNode(notificationNode);
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setNotificationNode((cocos2d::Node*)[notificationNode getImpl]);
 }
 
 -(id)notificationNode
 {
-    Director* director = Director::getInstance();
-    return director->getNotificationNode();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [[[CCNode alloc] initWithObject:director->getNotificationNode()] autorelease];
 }
 
 // getter setter
 -(void)setScheduler:(CCScheduler *)scheduler
 {
-    Director* director = Director::getInstance();
-    director->setScheduler(scheduler);
+    /*mark todo by lsr*/ // 待翻译
+//    cocos2d::Director* director = cocos2d::Director::getInstance();
+//    director->setScheduler((cocos2d::Scheduler*)[scheduler getImpl]);
 }
 
 -(CCScheduler *)scheduler
 {
-    Director* director = Director::getInstance();
-    return director->getScheduler();
+    /*mark todo by lsr*/ // 待翻译
+//    cocos2d::Director* director = cocos2d::Director::getInstance();
+//    return [[[CCScheduler alloc] initWithObject:director->getScheduler()] autorelease];
 }
 
 // getter setter
 -(void)setDelegate:(id<CCDirectorDelegate>)delegate
 {
-
+    /*mark todo by lsr*/ // 接口不存在
 }
 
 -(id<CCDirectorDelegate>)delegate
 {
-    
+    /*mark todo by lsr*/ // 接口不存在
 }
 
 // getter setter
 -(void)setActionManager:(CCActionManager *)actionManager
 {
-    Director* director = Director::getInstance();
-    director->setActionManager(actionManager);
+    /*mark todo by lsr*/ // 待翻译
+//    cocos2d::Director* director = cocos2d::Director::getInstance();
+//    director->setActionManager((cocos2d::ActionManager*)[actionManager getImpl]);
 }
 
 -(CCActionManager *)actionManager
 {
-    Director* director = Director::getInstance();
-    return director->getActionManager();
+    /*mark todo by lsr*/ // 待翻译
+//    cocos2d::Director* director = cocos2d::Director::getInstance();
+//    return [[[CCActionManager alloc] initWithObject:director->getActionManager()] autorelease];
 }
 
 
@@ -191,13 +184,7 @@ static CCDirector *_sharedDirector = nil;
 {
     if (!_sharedDirector) {
         
-        //
-        // Default Director is DisplayLink
-        //
-        if( [ [CCDirector class] isEqual:[self class]] )
-            _sharedDirector = [[CC_DIRECTOR_DEFAULT alloc] init];
-        else
-            _sharedDirector = [[self alloc] init];
+        _sharedDirector = [[self alloc] init];
     }
     
     return _sharedDirector;
@@ -220,7 +207,8 @@ static CCDirector *_sharedDirector = nil;
 
 - (NSString*) description
 {
-    return [NSString stringWithFormat:@"<%@ = %p | Size: %0.f x %0.f, view = %@>", [self class], self, _winSizeInPoints.width, _winSizeInPoints.height, __view];
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [NSString stringWithFormat:@"<%@ = %p | Size: %0.f x %0.f>", [self class], self, director->getWinSizeInPixels().width, director->getWinSizeInPixels().height];
 }
 
 - (void) dealloc
@@ -232,7 +220,7 @@ static CCDirector *_sharedDirector = nil;
 
 -(void) setGLDefaultValues
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setGLDefaultValues();
 }
 
@@ -244,17 +232,11 @@ static CCDirector *_sharedDirector = nil;
     // Override me
 }
 
--(void) calculateDeltaTime
-{
-    Director* director = Director::getInstance();
-    director->calculateDeltaTime();
-}
-
 #pragma mark Director - Memory Helper
 
 -(void) purgeCachedData
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->purgeCachedData();
 }
 
@@ -263,40 +245,40 @@ static CCDirector *_sharedDirector = nil;
 -(ccDirectorProjection) projection
 {
     // return _projection;
-    Director* director = Director::getInstance();
-    return director->getProjection();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return (ccDirectorProjection)director->getProjection();
 }
 
 -(float) getZEye
 {
     // return ( _winSizeInPixels.height / 1.1566f / CC_CONTENT_SCALE_FACTOR() );
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->getZEye();
 }
 
 -(void) setViewport
 {
     // CCLOG(@"cocos2d: override me");
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setViewport();
 }
 
 -(void) setProjection:(ccDirectorProjection)projection
 {
     // CCLOG(@"cocos2d: override me");
-    Director* director = Director::getInstance();
-    director->setProjection(projection);
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setProjection((cocos2d::Director::Projection)projection);
 }
 
 - (void) setAlphaBlending: (BOOL) on
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setAlphaBlending(on);
 }
 
 - (void) setDepthTest: (BOOL) on
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setDepthTest(on);
 }
 
@@ -317,7 +299,8 @@ static CCDirector *_sharedDirector = nil;
 
 -(CGPoint)convertToGL:(CGPoint)uiPoint
 {
-    CCLOG(@"CCDirector#convertToGL: OVERRIDE ME.");
+    std::string str = [ccTypeConvert NSStringTostring:@"CCDirector#convertToGL: OVERRIDE ME."];
+    CCLOG();
     return CGPointZero;
 }
 
@@ -329,13 +312,13 @@ static CCDirector *_sharedDirector = nil;
 
 -(CGSize)winSize
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->getWinSize();
 }
 
 -(CGSize)winSizeInPixels
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->getWinSizeInPixels();
 }
 
@@ -348,76 +331,76 @@ static CCDirector *_sharedDirector = nil;
 
 - (void)runWithScene:(CCScene*) scene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     Scene* cppscene = (Scene*)[scene getImpl];
     director->runWithScene(cppscene);
 }
 
 -(void) replaceScene: (CCScene*) scene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     Scene* cppscene = (Scene*)[scene getImpl];
     director->replaceScene(cppscene);
 }
 
 - (void) pushScene: (CCScene*) scene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     Scene* cppscene = (Scene*)[scene getImpl];
     director->pushScene(cppscene);
 }
 
 -(void) popScene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->popScene();
 }
 
 -(void) popToRootScene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->popToRootScene();
 }
 
 -(void) popToSceneStackLevel:(NSUInteger)level
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->popToSceneStackLevel(level);
 }
 
 -(void) end
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->end();
 }
 
 -(void) setNextScene
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setNextScene();
 }
 
 -(void) pause
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->pause();
 }
 
 -(void) resume
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->resume();
 }
 
 - (void)startAnimation
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->startAnimation();
 }
 
 - (void)stopAnimation
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->stopAnimation();
 }
 
@@ -425,13 +408,13 @@ static CCDirector *_sharedDirector = nil;
 // display statistics
 -(void) showStats
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->showStats();
 }
 
 -(void) calculateMPF
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->calculateMPF();
 }
 
@@ -439,13 +422,13 @@ static CCDirector *_sharedDirector = nil;
 
 -(void)getFPSImageData:(unsigned char**)datapointer length:(NSUInteger*)len
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->getFPSImageData(datapointer, len);
 }
 
 -(void) createStatsLabel
 {
-    Director* director = Director::getInstance();
+    cocos2d::Director* director = cocos2d::Director::getInstance();
     director->createStatsLabel();
 }
 

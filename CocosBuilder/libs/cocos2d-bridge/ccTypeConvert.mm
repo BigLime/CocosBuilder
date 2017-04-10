@@ -7,7 +7,6 @@
 //
 
 #import "ccTypeConvert.h"
-#import "cocos2d.h"
 
 @implementation ccTypeConvert
 

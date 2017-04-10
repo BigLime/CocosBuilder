@@ -32,13 +32,6 @@ typedef enum {
 @class CCScheduler;
 @class CCActionManager;
 
-
-#ifdef __CC_PLATFORM_IOS
-#define CC_VIEWCONTROLLER UIViewController
-#elif defined(__CC_PLATFORM_MAC)
-#define CC_VIEWCONTROLLER NSObject
-#endif
-
 /**Class that creates and handle the main Window and manages how
  and when to execute the Scenes.
  
@@ -57,7 +50,7 @@ typedef enum {
  - GL_COLOR_ARRAY is enabled
  - GL_TEXTURE_COORD_ARRAY is enabled
  */
-@interface CCDirector : CC_VIEWCONTROLLER
+@interface CCDirector : NSObject
 {
     void* impl_;
     BOOL isNeedDirectorDealloc_;
