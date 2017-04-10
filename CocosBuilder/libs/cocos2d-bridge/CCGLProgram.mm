@@ -159,7 +159,9 @@
 -(id)initWithObject: (void*)object
 {
     impl_ = object;
-    ((cocos2d::CCGLProgram*)impl_)->retain();
+    cocos2d::GLProgram* prog = static_cast<cocos2d::GLProgram*>(impl_);
+    prog->retain();
+
     isNeedGLProgramDealloc_ = YES;
     
     self = [super init];
@@ -170,7 +172,11 @@
 -(void) dealloc
 {
     if(isNeedGLProgramDealloc_)
-        ((cocos2d::CCGLProgram*)impl_)->release();
+    {
+        cocos2d::GLProgram* prog = static_cast<cocos2d::GLProgram*>(impl_);
+        prog->release();
+    }
+    
     [super dealloc];
 }
 

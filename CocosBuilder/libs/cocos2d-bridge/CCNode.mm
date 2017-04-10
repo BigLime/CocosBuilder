@@ -8,6 +8,9 @@
 
 #import "CCNode.h"
 #import "CCGrid.h"
+#import "CCAction.h"
+#import "CCActionManager.h"
+
 #import "2d/CCNode.h"
 
 #import "support/CCArray.h"
@@ -165,15 +168,14 @@
 // @synthesize	shaderProgram = _shaderProgram;
 -(void)setShaderProgram:(CCGLProgram *)shaderProgram
 {
-    //TODO: CCGLPROGRAM --> GLPROGRAM.
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->setGLProgram(shaderProgram);
+    node->setGLProgram(static_cast<cocos2d::GLProgram*>([shaderProgram getImpl]));
 }
 -(CCGLProgram *)shaderProgram
 {
     //TODO: CCGLPROGRAM --> GLPROGRAM.
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return node->getGLProgram();
+    return [[[CCGLProgram alloc] initWithObject: node->getGLProgram()] autorelease];
 }
 
 // @synthesize orderOfArrival = _orderOfArrival;
