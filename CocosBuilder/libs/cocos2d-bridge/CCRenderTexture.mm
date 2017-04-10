@@ -7,6 +7,7 @@
 //
 
 #import "CCRenderTexture.h"
+#import "2d/CCRenderTexture.h"
 
 #include "ccTypeConvert.h"
 
@@ -42,13 +43,13 @@
 -(void)setClearColor:(ccColor4F)clearColor
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->setClearColor(clearColor);
+    rt->setClearColor([ccTypeConvert ccColor4FToColor4F:clearColor]);
 }
 
 -(ccColor4F)clearColor
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    return rt->getClearColor();
+    return [ccTypeConvert Color4FToccColor4F:rt->getClearColor()];
 }
 
 // getter setter
@@ -68,7 +69,7 @@
 -(void)setClearStencil:(GLint)clearStencil
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->setCleaarStencil(clearStencil);
+    rt->setClearStencil(clearStencil);
 }
 
 -(GLint)clearStencil
@@ -92,15 +93,13 @@
 
 +(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
 {
-    cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    
     return [[[self alloc] initWithWidth:w height:h pixelFormat:format depthStencilFormat:depthStencilFormat] autorelease];
 }
 
 // issue #994
 +(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format
 {
-    cocos2d::RenderTexture* rt = cocos2d::RenderTexture::create(w, h, format);
+    cocos2d::RenderTexture* rt = cocos2d::RenderTexture::create(w, h, (cocos2d::Texture2D::PixelFormat)format);
     return [[[CCRenderTexture alloc] initWithObject:rt] autorelease];
 }
 
@@ -114,18 +113,21 @@
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
     rt->initWithWidthAndHeight(w, h, cocos2d::Texture2D::PixelFormat::BGRA8888);
+    return [self initWithObject:rt];
 }
 
 - (id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
     rt->initWithWidthAndHeight(w, h, (cocos2d::Texture2D::PixelFormat)format);
+    return [self initWithObject:rt];
 }
 
 -(id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
     rt->initWithWidthAndHeight(w, h, (cocos2d::Texture2D::PixelFormat)format, depthStencilFormat);
+    return [self initWithObject:rt];
 }
 
 -(id) initWithObject:(void *)object
@@ -141,7 +143,7 @@
 -(void)dealloc
 {
     if(isNeedRenderTextureDealloc_)
-        impl_->release();
+        ((cocos2d::RenderTexture*)impl_)->release();
     [super dealloc];
 }
 
@@ -149,11 +151,6 @@
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
     rt->begin();
-}
-
--(void)beginWithClear:(float)r g:(float)g b:(float)b a:(float)a depth:(float)depthValue stencil:(int)stencilValue flags:(GLbitfield)flags
-{
-    /*mark todo by lsr*/ // protected
 }
 
 -(void)beginWithClear:(float)r g:(float)g b:(float)b a:(float)a
@@ -222,15 +219,14 @@
 -(BOOL) saveToFile:(NSString*)name
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->saveToFile([ccTypeConvert NSStringTostring:name]);
+    return rt->saveToFile([ccTypeConvert NSStringTostring:name]);
 }
 
 -(BOOL)saveToFile:(NSString*)fileName format:(tCCImageFormat)format
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->saveToFile([ccTypeConvert NSStringTostring:fileName], (cocos2d::Image::Format)format);
+    return rt->saveToFile([ccTypeConvert NSStringTostring:fileName], (cocos2d::Image::Format)format);
 }
-
 
 #pragma RenderTexture - Override
 

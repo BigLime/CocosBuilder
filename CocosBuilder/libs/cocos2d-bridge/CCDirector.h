@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CCProtocols.h"
+
 /** @typedef ccDirectorProjection
  Possible OpenGL projections used by director
  */
@@ -32,13 +34,6 @@ typedef enum {
 @class CCScheduler;
 @class CCActionManager;
 
-
-#ifdef __CC_PLATFORM_IOS
-#define CC_VIEWCONTROLLER UIViewController
-#elif defined(__CC_PLATFORM_MAC)
-#define CC_VIEWCONTROLLER NSObject
-#endif
-
 /**Class that creates and handle the main Window and manages how
  and when to execute the Scenes.
  
@@ -57,7 +52,7 @@ typedef enum {
  - GL_COLOR_ARRAY is enabled
  - GL_TEXTURE_COORD_ARRAY is enabled
  */
-@interface CCDirector : CC_VIEWCONTROLLER
+@interface CCDirector : NSObject
 {
     void* impl_;
     BOOL isNeedDirectorDealloc_;
@@ -253,9 +248,6 @@ typedef enum {
 /** enables/disables OpenGL depth test */
 - (void) setDepthTest: (BOOL) on;
 
-// helper
-/** creates the Stats labels */
--(void) createStatsLabel;
 @end
 
 // optimization. Should only be used to read it. Never to write it.

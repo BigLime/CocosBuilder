@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47855F101E9B748F00A33EF2 /* CCConfiguration.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855F0F1E9B748F00A33EF2 /* CCConfiguration.mm */; };
 		581130601639C52500A86D70 /* seq-startmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 5811305F1639C52000A86D70 /* seq-startmarker.png */; };
 		581BCFE8162DADE7007DE600 /* CCBSplitHorizontalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581BCFE7162DADE7007DE600 /* CCBSplitHorizontalView.m */; };
 		58FA2034162D73F3006B8856 /* TB_bottomPanel.png in Resources */ = {isa = PBXBuildFile; fileRef = 58FA2031162D73F3006B8856 /* TB_bottomPanel.png */; };
@@ -841,6 +842,8 @@
 		47855C571E97A9F800A33EF2 /* CCTexture2D.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCTexture2D.mm; path = "cocos2d-bridge/CCTexture2D.mm"; sourceTree = "<group>"; };
 		47855C5D1E97AF3A00A33EF2 /* CCTextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTextureAtlas.h; path = "cocos2d-bridge/CCTextureAtlas.h"; sourceTree = "<group>"; };
 		47855C5E1E97AF3A00A33EF2 /* CCTextureAtlas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCTextureAtlas.mm; path = "cocos2d-bridge/CCTextureAtlas.mm"; sourceTree = "<group>"; };
+		47855F0E1E9B748F00A33EF2 /* CCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCConfiguration.h; path = "cocos2d-bridge/CCConfiguration.h"; sourceTree = "<group>"; };
+		47855F0F1E9B748F00A33EF2 /* CCConfiguration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCConfiguration.mm; path = "cocos2d-bridge/CCConfiguration.mm"; sourceTree = "<group>"; };
 		47FDA0051E97361900E8052E /* CCSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCSprite.h; path = "cocos2d-bridge/CCSprite.h"; sourceTree = "<group>"; };
 		47FDA0061E97361900E8052E /* CCSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = CCSprite.mm; path = "cocos2d-bridge/CCSprite.mm"; sourceTree = "<group>"; };
 		47FDA0071E97361900E8052E /* CCSpriteFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCSpriteFrame.h; path = "cocos2d-bridge/CCSpriteFrame.h"; sourceTree = "<group>"; };
@@ -2678,6 +2681,8 @@
 		D37183C81E9635CF00D533E3 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				47855F0E1E9B748F00A33EF2 /* CCConfiguration.h */,
+				47855F0F1E9B748F00A33EF2 /* CCConfiguration.mm */,
 				D301EEAF1E98C5610068C694 /* ccTypes.h */,
 				D32693231E9B56A6004ADEE3 /* support */,
 				D301EEAA1E98BBB00068C694 /* CCProtocols.h */,
@@ -4905,6 +4910,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47855F101E9B748F00A33EF2 /* CCConfiguration.mm in Sources */,
 				D32693281E9B56B8004ADEE3 /* CCArray.m in Sources */,
 				D32693291E9B56B8004ADEE3 /* ccCArray.m in Sources */,
 			);

@@ -97,7 +97,9 @@ typedef enum {
 	void* impl_;
 	BOOL isNeedSTextureDealloc_;
 }
-
+- (id) init:(void*) pThis;
+- (id) initWithObject: (void*) object;
+- (void*) getImpl;
 /** Initializes with a texture2d with data */
 - (id) initWithData:(const void*)data pixelFormat:(CCTexture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size;
 

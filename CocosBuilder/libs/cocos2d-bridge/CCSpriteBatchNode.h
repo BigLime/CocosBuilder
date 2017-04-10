@@ -7,7 +7,6 @@
 #import "CCNode.h"
 #import "CCProtocols.h"
 #import "CCTextureAtlas.h"
-#import "ccMacros.h"
 @class CCSprite;
 @interface CCSpriteBatchNode : CCNode
 {

@@ -7,6 +7,10 @@
 //
 
 #import "CCAnimationCache.h"
+#import "CCAnimation.h"
+#import "2d/CCAnimationCache.h"
+#import "2d/CCAnimation.h"
+#include "ccTypeConvert.h"
 
 @implementation CCAnimationCache
 
@@ -49,16 +53,15 @@ static CCAnimationCache *_sharedAnimationCache=nil;
 -(void) dealloc
 {
     CCLOGINFO(@"cocos2d: deallocing %@", self);
-    
-    [_animations release];
+
     [super dealloc];
 }
 
 -(void) addAnimation:(CCAnimation*)animation name:(NSString*)name
 {
-    AnimationCache* cache = AnimationCache::getInstance();
-    Animation* anim = (Animation*)[animation getImpl];
-    cache->addAnimation(anim, name);
+    cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
+    cocos2d::Animation* anim = (cocos2d::Animation*)[animation getImpl];
+    cache->addAnimation(anim, [ccTypeConvert NSStringTostring:name]);
 }
 
 -(void) removeAnimationByName:(NSString*)name
@@ -66,28 +69,31 @@ static CCAnimationCache *_sharedAnimationCache=nil;
     if( ! name )
         return;
     
-    AnimationCache* cache = AnimationCache::getInstance();
-    cache->removeAnimation(name);
+    cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
+    cache->removeAnimation([ccTypeConvert NSStringTostring:name]);
 }
 
 -(CCAnimation*) animationByName:(NSString*)name
 {
-    AnimationCache* cache = AnimationCache::getInstance();
-    return cache->getAnimation(name);
+    cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
+    cocos2d::Animation* anim = cache->getAnimation([ccTypeConvert NSStringTostring:name]);
+    return [[[CCAnimation alloc] initWithObject:anim] autorelease];
 }
 
 -(void)addAnimationsWithDictionary:(NSDictionary *)dictionary
 {
-    AnimationCache* cache = AnimationCache::getInstance();
-    cache->addAnimationsWithDictionary(dictionary, nil);
+    cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
+    CCASSERT(true, "");
+    /*mark todo by lsr*/ // 需要转换类型
+//    cache->addAnimationsWithDictionary(dictionary);
 }
 
 
 /** Read an NSDictionary from a plist file and parse it automatically for animations */
 -(void)addAnimationsWithFile:(NSString *)plist
 {
-    AnimationCache* cache = AnimationCache::getInstance();
-    cache->addAnimationsWithFile(plist);
+    cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
+    cache->addAnimationsWithFile([ccTypeConvert NSStringTostring:plist]);
 }
 
 @end
