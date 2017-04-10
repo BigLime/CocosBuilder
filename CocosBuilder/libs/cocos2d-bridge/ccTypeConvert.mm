@@ -122,7 +122,28 @@
     }
     return vec;
 }
-
+// CCArray* <--> std::vector
+// Sprite
++(CCArray*)StdVectorSpriteToCCArray:(std::vector<cocos2d::Sprite*>) vec
+{
+    CCArray* arr = [[[CCArray alloc] initWithCapacity:vec.size()] autorelease];
+    for(ssize_t i = 0; i < vec.size(); ++i)
+    {
+        CCSprite* sprite_i = [[[CCSprite alloc] initWithObject:vec.at(i)] autorelease];
+        [arr addObject:sprite_i];
+    }
+    return arr;
+}
++(std::vector<cocos2d::Sprite*>)CCArrayToStdVectorSprite:(CCArray*) arr
+{
+    std::vector<cocos2d::Sprite*> vec;
+    for(ssize_t i = 0; i < [arr count]; ++i)
+    {
+        cocos2d::Sprite* sprite_i = (cocos2d::Sprite*)[[arr objectAtIndex:i] getImpl];
+        vec.push_Back(sprite_i);
+    }
+    return vec;
+}
 // Node
 +(CCArray*)VectorNodeToCCArray:(cocos2d::Vector<cocos2d::Node*>) vec
 {
@@ -219,6 +240,26 @@
     return vec;
 }
 
++(NSMutableArray*)StdVectorSpriteToNSMutableArray:(std::vector<cocos2d::Sprite*>) vec
+{
+    NSMutableArray* arr = [[[NSMutableArray alloc] initWithCapacity:vec.size()] autorelease];
+    for(ssize_t i = 0; i < vec.size(); ++i)
+    {
+        CCSprite* sprite_i = [[[CCSprite alloc] initWithObject:vec.at(i)] autorelease];
+        [arr addObject:sprite_i];
+    }
+    return arr;
+}
++(std::vector<cocos2d::Sprite*>)NSMutableArrayToStdVectorSprite:(NSMutableArray*) arr
+{
+    std::vector<cocos2d::Sprite*> vec;
+    for(ssize_t i = 0; i < [arr count]; ++i)
+    {
+        cocos2d::Sprite* sprite_i = (cocos2d::Sprite*)[[arr objectAtIndex:i] getImpl];
+        vec.push_back(sprite_i);
+    }
+    return vec;
+}
 // Node
 +(NSMutableArray*)VectorNodeToNSMutableArray:(cocos2d::Vector<cocos2d::Sprite*>) vec
 {
