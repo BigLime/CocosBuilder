@@ -29,7 +29,7 @@
         
         isNeedSpriteDealloc_  = YES;
     }
-    
+    return self;
 }
 
 -(id) initWithObject: (void*) object
@@ -67,8 +67,7 @@
 
 - (ccV3F_C4B_T2F_Quad) quad
 {
-    //TODO ccV3F_C4B_T2F_Quad
-    return ((cocos2d::Sprite*)impl_)->getQuad();
+    return [ccTypeConvert V3F_C4B_T2F_QuadToccV3F_C4B_T2F_Quad:((cocos2d::Sprite*)impl_)->getQuad()];
 }
 
 - (NSUInteger) atlasIndex
@@ -79,17 +78,17 @@
 - (void) setAlasIndex:(NSUInteger) _atlasIndex
 {
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
-    sprite->setAtlasIndex((int)(_atlasIndex));
+    sprite->setAtlasIndex((ssize_t)_atlasIndex);
 }
 
 - (CGRect) textureRect
 {
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
-    return [ccTypeConvert RectToCGRect:sprite->getTextureRect()] ];
+    return [ccTypeConvert RectToCGRect:sprite->getTextureRect()];
 }
 - (BOOL) textureRectRotated
 {
-    return ((cocos2d::Sprite*)impl_)->isTextureRectRotated;
+    return ((cocos2d::Sprite*)impl_)->isTextureRectRotated();
 }
 - (BOOL) flipX
 {
@@ -132,16 +131,19 @@
 }
 - (CGPoint)offsetPosition
 {
-     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
+    cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
     return [ccTypeConvert PointToCGPoint:sprite->getOffsetPosition()];
 }
 - (ccBlendFunc)blendFunc
 {
-    return ((cocos2d::Sprite*)impl_)->getBlendFunc();
+    cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
+    cocos2d::BlendFunc _blendFunc = sprite->getBlendFunc();
+    return [ccTypeConvert BlendFuncToccBlendFunc:_blendFunc];
 }
-- (void)setBlendFunc:_blendFunc
+- (void)setBlendFunc:(ccBlendFunc)_blendFunc
 {
-    ((cocos2d::Sprite*)impl_)->setBlendFunc(_blendFunc);
+    cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
+    sprite->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:_blendFunc]);
 }
 
 +(id) spriteWithTexture:(CCTexture2D*)texture
@@ -189,15 +191,14 @@
 
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect rotated:(BOOL)rotated
 {
-    if( (self = [super init]) )
-    {
-        cocos2d::Texture2D* teture2D = (cocos2d::Texture2D*)[texture getImpl];
-        cocos2d::Sprite* sprite = cocos2d::Sprite:createWithTexture(teture2D,[ccTypeConvert CGRectToRect:rect],rotated);
-        
-        impl_ = sprite;
-        impl_->retain();
-        isNeedSpriteDealloc_ = YES;
-    }
+    cocos2d::Texture2D* teture2D = (cocos2d::Texture2D*)[texture getImpl];
+    cocos2d::Sprite* sprite = cocos2d::Sprite::createWithTexture(teture2D,[ccTypeConvert CGRectToRect:rect],rotated);
+    sprite->retain();
+    impl_ = sprite;
+    
+    isNeedSpriteDealloc_ = YES;
+    
+    self = [super init:impl_];
     return self;
 }
 
@@ -307,7 +308,7 @@
 -(void) draw
 {
     NSAssert( false, @"Invalid function draw()");
-    ((cocos2d::Sprite*)impl_)->draw();
+    //((cocos2d::Sprite*)impl_)->draw();
 }
 -(void) addChild:(CCSprite*)child z:(NSInteger)z tag:(NSInteger) aTag
 {
@@ -334,11 +335,13 @@
 }
 -(void) setReorderChildDirtyRecursively
 {
-    ((cocos2d::Sprite*)impl_)->setReorderChildDirtyRecursively();
+    NSAssert(false, @"setReorderChildDirtyRecursively is protected");
+    //((cocos2d::Sprite*)impl_)->setReorderChildDirtyRecursively();
 }
 -(void) setDirtyRecursively:(BOOL)b
 {
-    ((cocos2d::Sprite*)impl_)->setDirtyRecursively(b);
+    NSAssert(false, @"setDirtyRecursively is protected");
+    //((cocos2d::Sprite*)impl_)->setDirtyRecursively(b);
 }
 -(void)setPosition:(CGPoint)pos
 {
@@ -350,12 +353,12 @@
 }
 -(void)setRotationX:(float)rot
 {
-    ((cocos2d::Sprite*)impl_)->setRotationX(rot);
+    ((cocos2d::Sprite*)impl_)->setRotationSkewX(rot);
 }
 
 -(void)setRotationY:(float)rot
 {
-    ((cocos2d::Sprite*)impl_)->setRotationY(rot);
+    ((cocos2d::Sprite*)impl_)->setRotationSkewY(rot);
 }
 -(void)setSkewX:(float)sx
 {
@@ -368,7 +371,7 @@
 }
 -(void)setScaleX:(float) sx
 {
-    ((cocos2d::Sprite*)impl_)->setScaleX(sy);
+    ((cocos2d::Sprite*)impl_)->setScaleX(sx);
 }
 
 -(void)setScaleY:(float) sy
@@ -382,7 +385,7 @@
 }
 -(void) setVertexZ:(float)z
 {
-    ((cocos2d::Sprite*)impl_)->setVertexZ(z);
+    ((cocos2d::Sprite*)impl_)->setPositionZ(z);
 }
 
 -(void)setAnchorPoint:(CGPoint)anchor
@@ -399,18 +402,17 @@
 }
 -(void) updateColor
 {
-    ((cocos2d::Sprite*)impl_)->updateColor();
+    NSAssert(false, @"updateColor is protected");
+    //((cocos2d::Sprite*)impl_)->updateColor();
 }
 -(void) setColor:(ccColor3B)color3
 {
-    //TODO ccColor3B
-    ((cocos2d::Sprite*)impl_)->setColor(color3);
+    ((cocos2d::Sprite*)impl_)->setColor([ccTypeConvert ccColor3BToColor3B:color3]);
 }
 
 -(void)updateDisplayedColor:(ccColor3B)parentColor
 {
-    //TODO ccColor3B
-    ((cocos2d::Sprite*)impl_)->updateDisplayedColor(parentColor);
+    ((cocos2d::Sprite*)impl_)->updateDisplayedColor([ccTypeConvert ccColor3BToColor3B:parentColor]);
 }
 -(void) setOpacity:(GLubyte)opacity
 {
@@ -424,7 +426,7 @@
 -(BOOL) doesOpacityModifyRGB
 {
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
-    return sprite->doesOpacityModifyRGB();
+    return sprite->isOpacityModifyRGB();
 }
 -(void)updateDisplayedOpacity:(GLubyte)parentOpacity
 {
@@ -433,7 +435,7 @@
 }
 -(void) setDisplayFrame:(CCSpriteFrame*)frame
 {
-    cocos2d::SpriteFrame *spriteFrame = [frame getImpl];
+    cocos2d::SpriteFrame *spriteFrame = (cocos2d::SpriteFrame *)[frame getImpl];
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
     sprite->setDisplayFrame(spriteFrame);
 }
@@ -444,7 +446,7 @@
 }
 -(BOOL) isFrameDisplayed:(CCSpriteFrame*)frame
 {
-    cocos2d::SpriteFrame *spriteFrame = [frame getImpl];
+    cocos2d::SpriteFrame *spriteFrame = (cocos2d::SpriteFrame *)[frame getImpl];
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
     return sprite->isFrameDisplayed(spriteFrame);
 }
@@ -455,7 +457,8 @@
 }
 -(void) updateBlendFunc
 {
-    ((cocos2d::Sprite*)impl_)->updateBlendFunc();
+    NSAssert(false, @"updateBlendFunc is protected");
+    //((cocos2d::Sprite*)impl_)->updateBlendFunc();
 }
 -(void) setTexture:(CCTexture2D*)texture
 {
