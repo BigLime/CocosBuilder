@@ -14,10 +14,13 @@
 #import <string>
 #import "2d/CCNode.h"
 #import "2d/CCSprite.h"
+#import "2d/CCAnimation.h"
+#import "2d/CCSpriteFrame.h"
 #import "base/CCVector.h"
 #import "base/CCMap.h"
-#import "platform/CCImage.h"
 #import "base/CCValue.h"
+#import "platform/CCImage.h"
+#import "support/CCArray.h"
 #import "ccTypes.h"
 
 @interface ccTypeConvert : NSObject
@@ -53,13 +56,15 @@
 +(CCArray*)VectorNodeToCCArray:(cocos2d::Vector<cocos2d::Node*>) vec;
 +(cocos2d::Vector<cocos2d::Node*>)CCArrayToVectorNode:(CCArray*) arr;
 
-// NSArray* <--> Vector
+// NSArray* <--> Vector NSArray是不可改变的
 // Sprite
-+(NSArray*)VectorSpriteToNSArray:(cocos2d::Vector<cocos2d::Sprite*>) vec;
 +(cocos2d::Vector<cocos2d::Sprite*>)NSArrayToVectorSprite:(NSArray*) arr;
 // Node
-+(NSArray*)VectorNodeToNSArray:(cocos2d::Vector<cocos2d::Node*>) vec;
 +(cocos2d::Vector<cocos2d::Node*>)NSArrayToVectorNode:(NSArray*) arr;
+// SpriteFrame
++(cocos2d::Vector<cocos2d::SpriteFrame*>)NSArrayToVectorSpriteFrame:(NSArray*) arr;
+// AnimationFrame
++(cocos2d::Vector<cocos2d::AnimationFrame*>)NSArrayToVectorAnimationFrame:(NSArray*) arr;
 
 // NSMutableArray* <—> Vector
 // Sprite
@@ -68,6 +73,9 @@
 // Node
 +(NSMutableArray*)VectorNodeToNSMutableArray:(cocos2d::Vector<cocos2d::Sprite*>) vec;
 +(cocos2d::Vector<cocos2d::Node*>)NSMutableArrayToVectorNode:(NSMutableArray*) arr;
+// AnimationFrame
++(NSMutableArray*)VectorAnimationFrameToNSMutableArray:(cocos2d::Vector<cocos2d::AnimationFrame*>) vec;
++(cocos2d::Vector<cocos2d::AnimationFrame*>)NSMutableArrayToVectorAnimationFrame:(NSMutableArray*) arr;
 
 // NSDictionary* <—> Map
 // Sprite

@@ -8,6 +8,10 @@
 
 #import "ccTypeConvert.h"
 
+#import "CCNode.h"
+#import "CCSprite.h"
+#import "CCAnimation.h"
+
 @implementation ccTypeConvert
 
 // CGPoint <--> Point
@@ -144,17 +148,6 @@
 
 // NSArray* <--> Vector
 // Sprite
-+(NSArray*)VectorSpriteToNSArray:(cocos2d::Vector<cocos2d::Sprite*>) vec
-{
-    NSArray* arr = [[[NSArray alloc] init] autorelease];
-    for(ssize_t i = 0; i < vec.size(); ++i)
-    {
-        CCSprite* sprite_i = [[[CCSprite alloc] initWithObject:vec.at(i)] autorelease];
-        [arr addObject:sprite_i];
-    }
-    return arr;
-}
-
 +(cocos2d::Vector<cocos2d::Sprite*>)NSArrayToVectorSprite:(NSArray*) arr
 {
     cocos2d::Vector<cocos2d::Sprite*> vec;
@@ -167,17 +160,6 @@
 }
 
 // Node
-+(NSArray*)VectorNodeToNSArray:(cocos2d::Vector<cocos2d::Node*>) vec
-{
-    NSArray* arr = [[[NSArray alloc] init] autorelease];
-    for(ssize_t i = 0; i < vec.size(); ++i)
-    {
-        CCNode* node_i = [[[CCNode alloc] initWithObject:vec.at(i)] autorelease];
-        [arr addObject:node_i];
-    }
-    return arr;
-}
-
 +(cocos2d::Vector<cocos2d::Node*>)NSArrayToVectorNode:(NSArray*) arr
 {
     cocos2d::Vector<cocos2d::Node*> vec;
@@ -185,6 +167,30 @@
     {
         cocos2d::Node* node_i = (cocos2d::Node*)[[arr objectAtIndex:i] getImpl];
         vec.pushBack(node_i);
+    }
+    return vec;
+}
+
+// SpriteFrame
++(cocos2d::Vector<cocos2d::SpriteFrame*>)NSArrayToVectorSpriteFrame:(NSArray*) arr
+{
+    cocos2d::Vector<cocos2d::SpriteFrame*> vec;
+    for(ssize_t i = 0; i < [arr count]; ++i)
+    {
+        cocos2d::SpriteFrame* frame_i = (cocos2d::SpriteFrame*)[[arr objectAtIndex:i] getImpl];
+        vec.pushBack(frame_i);
+    }
+    return vec;
+}
+
+// AnimationFrame
++(cocos2d::Vector<cocos2d::AnimationFrame*>)NSArrayToVectorAnimationFrame:(NSArray*) arr
+{
+    cocos2d::Vector<cocos2d::AnimationFrame*> vec;
+    for(ssize_t i = 0; i < [arr count]; ++i)
+    {
+        cocos2d::AnimationFrame* frame_i = (cocos2d::AnimationFrame*)[[arr objectAtIndex:i] getImpl];
+        vec.pushBack(frame_i);
     }
     return vec;
 }
@@ -232,6 +238,29 @@
     {
         cocos2d::Node* node_i = (cocos2d::Node*)[[arr objectAtIndex:i] getImpl];
         vec.pushBack(node_i);
+    }
+    return vec;
+}
+
+// AnimationFrame
++(NSMutableArray*)VectorAnimationFrameToNSMutableArray:(cocos2d::Vector<cocos2d::AnimationFrame*>) vec
+{
+    NSMutableArray* arr = [[[NSMutableArray alloc] initWithCapacity:vec.size()] autorelease];
+    for(ssize_t i = 0; i < vec.size(); ++i)
+    {
+        CCAnimationFrame* frame_i = [[[CCAnimationFrame alloc] initWithObject:vec.at(i)] autorelease];
+        [arr addObject:frame_i];
+    }
+    return arr;
+}
+
++(cocos2d::Vector<cocos2d::AnimationFrame*>)NSMutableArrayToVectorAnimationFrame:(NSMutableArray*) arr
+{
+    cocos2d::Vector<cocos2d::AnimationFrame*> vec;
+    for(ssize_t i = 0; i < [arr count]; ++i)
+    {
+        cocos2d::AnimationFrame* frame_i = (cocos2d::AnimationFrame*)[[arr objectAtIndex:i] getImpl];
+        vec.pushBack(frame_i);
     }
     return vec;
 }
@@ -298,7 +327,7 @@
     size_t width = CGImageGetWidth(cgimg);
     size_t height = CGImageGetHeight(cgimg);
     size_t bitsPerComponent = CGImageGetBitsPerComponent(cgimg);
-    size_t bytesPerRow = CGImageGetBytesPerRow(cdimg);
+    size_t bytesPerRow = CGImageGetBytesPerRow(cgimg);
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(cgimg);
     uint32_t bitmapInfo = CGImageGetBitmapInfo(cgimg);
     size_t lenth = width * height * 4;
@@ -315,10 +344,7 @@
 +(ccBlendFunc)BlendFuncToccBlendFunc:(cocos2d::BlendFunc)src
 {
     ccBlendFunc dst = {};
-    dst.src = src.src
-{
-    
-}
+    dst.src = src.src;
     dst.dst = src.dst;
     return dst;
 }
@@ -326,10 +352,7 @@
 +(cocos2d::BlendFunc)ccBlendFuncToBlendFunc:(ccBlendFunc)src
 {
     cocos2d::BlendFunc dst = {};
-    dst.src = src.src
-{
-    
-}
+    dst.src = src.src;
     dst.dst = src.dst;
     return dst;
 }
@@ -349,25 +372,25 @@
 // ccColor4B <--> cocos2d::Color4B
 +(ccColor4B) Color4BToccColor4B: (cocos2d::Color4B) src
 {
-    ccColor4B c = {src.r, src.g, src.b, src.o};
+    ccColor4B c = {src.r, src.g, src.b, src.a};
     return c;
 }
 
 +(cocos2d::Color4B) ccColor4BToColor4B: (ccColor4B) src
 {
-    return cocos2d::Color4B(src.r, src.g, src.b, src.o);
+    return cocos2d::Color4B(src.r, src.g, src.b, src.a);
 }
 
 // ccColor4F <--> cocos2d::Color4F
 +(ccColor4F) Color4FToccColor4F: (cocos2d::Color4F) src
 {
-    ccColor4F c = {src.r, src.g, src.b, src.o};
+    ccColor4F c = {src.r, src.g, src.b, src.a};
     return c;
 }
 
 +(cocos2d::Color4F) ccColor4FToColor4F: (ccColor4F) src
 {
-    return cocos2d::Color4F(src.r, src.g, src.b, src.o);
+    return cocos2d::Color4F(src.r, src.g, src.b, src.a);
 }
 
 // ccVertex2F <--> cocos2d::Vec2
@@ -498,7 +521,7 @@
 
 +(cocos2d::V2F_C4F_T2F) ccV2F_C4F_T2FToV2F_C4F_T2F: (ccV2F_C4F_T2F) src
 {
-    cocos2d::V2F_C4B_T2F c;
+    cocos2d::V2F_C4F_T2F c;
     c.vertices = [ccTypeConvert ccVertex2FToVec2:src.vertices];
     c.colors = [ccTypeConvert ccColor4FToColor4F:src.colors];
     c.texCoords = [ccTypeConvert ccTex2FToTex2F:src.texCoords];
