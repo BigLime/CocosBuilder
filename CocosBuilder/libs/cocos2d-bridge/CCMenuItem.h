@@ -253,6 +253,7 @@
  */
 @interface CCMenuItemSprite : CCMenuItem <CCRGBAProtocol>
 {
+    BOOL isNeedCCMenuItemSpriteDealloc_; 
 }
 
 // weak references

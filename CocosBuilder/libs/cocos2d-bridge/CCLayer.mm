@@ -8,6 +8,7 @@
 
 #import "CCLayer.h"
 #import "2d/CCLayer.h"
+#import "ccTypeConvert.h"
 
 @implementation CCLayer
 
@@ -20,13 +21,14 @@
     }
     else
     {
-        impl_ = cocos2d::CCLayer::create();
-        impl_->retain();
+        cocos2d::Layer* layer = cocos2d::Layer::create();
+        layer->retain();
         
         isNeedCCLayerDealloc_ = YES;
+        impl_ = layer;
     }
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -35,123 +37,145 @@
     impl_                 = object;
     isNeedCCLayerDealloc_ = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
 -(void) dealloc
 {
     if (isNeedCCLayerDealloc_)
-        impl_->release();
+    {
+        cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
+        layer->release();
+    }
     
     [super dealloc];
 }
 
 -(BOOL) isMouseEnabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
-    return layer->isMouseEnabled;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
+    (void)layer;
+    
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
+    return NO;
+    // return layer->isMouseEnabled();
 }
 
 -(void) setMouseEnabled:(BOOL)mouseEnabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
-    layer->setMouseEnabled(mouseEnabled);
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
+    (void)layer;
+    
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
+    // layer->setMouseEnabled(mouseEnabled);
 }
 
 -(NSInteger) mousePriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
     return 0;
 }
 
 -(void) setMousePriority:(NSInteger)mousePriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
 }
 
 -(BOOL) isKeyboardEnabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
-    return layer->isKeyboardEnabled;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
+    return layer->isKeyboardEnabled();
 }
 
 -(void) setKeyboardEnabled:(BOOL)keyboardEnabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
     layer->setKeyboardEnabled(keyboardEnabled);
 }
 
 -(NSInteger) keyboardPriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
     return 0;
 }
 
 -(void) setKeyboardPriority:(NSInteger)keyboardPriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
 }
 
 -(BOOL) isTouchEnabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
-    return layer->isTouchEnabled;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
+    return layer->isTouchEnabled();
 }
 
 -(void) setTouchEnabled:(BOOL)enabled
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
     layer->setTouchEnabled(enabled);
 }
 
 -(NSInteger) touchPriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
     return 0;
 }
 -(void) setTouchPriority:(NSInteger)touchPriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
 }
 
 -(BOOL) isGestureEnabled
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
     return NO;
 }
 
 -(void) setGestureEnabled:(BOOL)enabled
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
 }
 
 -(NSInteger) gesturePriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
     return 0;
 }
 
 -(void) setGesturePriority:(NSInteger)gesturePriority
 {
-    // no implement in cc2dx;
+    // TODO: no implemnt in cpp.
+    NSAssert(NO, @"no implemnt in cpp.");
 }
 
 -(void) onEnter
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
     layer->onEnter();
 }
 
 -(void) onEnterTransitionDidFinish
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
     layer->onEnterTransitionDidFinish();
 }
 
 -(void) onExit
 {
-    cocos2d::CCLayer* layer = (cocos2d::CCLayer*)impl_;
+    cocos2d::Layer* layer = static_cast<cocos2d::Layer*>(impl_);
     layer->onExit();
 }
 @end
@@ -171,13 +195,14 @@
     }
     else
     {
-        impl_ = cocos2d::__LayerRGBA::create();
-        impl_->retain();
+        cocos2d::__LayerRGBA* layer = cocos2d::__LayerRGBA::create();
+        layer->retain();
         
         isNeedCCLayerRGBADealloc_ = YES;
+        impl_ = layer;
     }
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -186,14 +211,17 @@
     impl_                     = object;
     isNeedCCLayerRGBADealloc_ = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
 -(void) dealloc
 {
     if (isNeedCCLayerRGBADealloc_)
-        impl_->release();
+    {
+        cocos2d::__LayerRGBA* layer = static_cast<cocos2d::__LayerRGBA*>(impl_);
+        layer->release();
+    }
     
     [super dealloc];
 }
@@ -246,19 +274,19 @@
 -(ccColor3B) color
 {
     cocos2d::__LayerRGBA* rgba = (cocos2d::__LayerRGBA*)impl_;
-    return rgba->getColor();
+    return [ccTypeConvert Color3BToccColor3B:rgba->getColor()];
 }
 
 -(ccColor3B) displayedColor
 {
     cocos2d::__LayerRGBA* rgba = (cocos2d::__LayerRGBA*)impl_;
-    return rgba->getDisplayedColor();
+    return [ccTypeConvert Color3BToccColor3B:rgba->getDisplayedColor()];
 }
 
 - (void) setColor:(ccColor3B)color
 {
     cocos2d::__LayerRGBA* rgba = (cocos2d::__LayerRGBA*)impl_;
-    return rgba->setColor(color);
+    rgba->setColor([ccTypeConvert ccColor3BToColor3B:color]);
 }
 
 - (void)updateDisplayedOpacity:(GLubyte)parentOpacity
@@ -270,7 +298,7 @@
 - (void)updateDisplayedColor:(ccColor3B)parentColor
 {
     cocos2d::__LayerRGBA* rgba = (cocos2d::__LayerRGBA*)impl_;
-    rgba->updateDisplayedColor(parentColor);
+    rgba->updateDisplayedColor([ccTypeConvert ccColor3BToColor3B:parentColor]);
 }
 @end
 
@@ -281,7 +309,7 @@
 
 // Opacity and RGB color protocol
 // @synthesize blendFunc = _blendFunc;
--(id) init: (void) pThis
+-(id) init: (void*) pThis
 {
     if (!!pThis)
     {
@@ -290,10 +318,11 @@
     }
     else
     {
-        impl_ = cocos2d::LayerColor::create();
-        impl_->retain();
+        cocos2d::LayerColor* layer = cocos2d::LayerColor::create();
+        layer->retain();
         
         isNeedCCLayerColorDealloc_ = YES;
+        impl_ = layer;
     }
     
     self = [super init:self];
@@ -312,22 +341,24 @@
 -(void) dealloc
 {
     if (isNeedCCLayerColorDealloc_)
-        impl_->release();
-    
+    {
+        cocos2d::LayerColor* layer = static_cast<cocos2d::LayerColor*>(impl_);
+        layer->release();
+    }
     [super dealloc];
 }
 
 // manually getter && setter
--(void) setBlendFunc: (int) blendFunc
+-(void) setBlendFunc: (ccBlendFunc) blendFunc
 {
     cocos2d::LayerColor* layerColor = (cocos2d::LayerColor*)impl_;
-    layerColor->setBlendFunc((cocos2d::BlendFunc)blendFunc);
+    layerColor->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:blendFunc]);
 }
 
--(int) blendFunc
+-(ccBlendFunc) blendFunc
 {
     cocos2d::LayerColor* layerColor = (cocos2d::LayerColor*)impl_;
-    return (int) layerColor->getBlendFunc();
+    return [ccTypeConvert BlendFuncToccBlendFunc: layerColor->getBlendFunc()];
 }
 
 + (id) layerWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat) h
@@ -343,23 +374,25 @@
 // Designated initializer
 - (id) initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat) h
 {
-    impl_ = cocos2d::LayerColor::create(color, w, h);
-    impl_->retain();
+    cocos2d::LayerColor* layer = cocos2d::LayerColor::create(cocos2d::Color4B(color.r, color.g, color.b, color.a), w, h);
+    layer->retain();
     
     isNeedCCLayerColorDealloc_ = YES;
+    impl_ = layer;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
 - (id) initWithColor:(ccColor4B)color
 {
-    impl_ = cocos2d::LayerColor::create(color);
-    impl_->retain();
+    cocos2d::LayerColor* layer = cocos2d::LayerColor::create(cocos2d::Color4B(color.r, color.g, color.b, color.a));
+    layer->retain();
     
     isNeedCCLayerColorDealloc_ = YES;
+    impl_ = layer;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -367,13 +400,13 @@
 -(void) setContentSize: (CGSize) size
 {
     cocos2d::LayerColor* layerColor = (cocos2d::LayerColor*)impl_;
-    layerColor->setContentSize(size);
+    layerColor->setContentSize([ccTypeConvert CGSizeToSize:size]);
 }
 
 - (void) changeWidth: (GLfloat) w height:(GLfloat) h
 {
     cocos2d::LayerColor* layerColor = (cocos2d::LayerColor*)impl_;
-    layerColor->changeWidth(w, h);
+    layerColor->changeWidthAndHeight(w, h);
 }
 
 -(void) changeWidth: (GLfloat) w
@@ -391,7 +424,7 @@
 -(void) setColor:(ccColor3B)color
 {
     cocos2d::LayerColor* layerColor = (cocos2d::LayerColor*)impl_;
-    layerColor->setColor(color);
+    layerColor->setColor([ccTypeConvert ccColor3BToColor3B:color]);
 }
 
 -(void) setOpacity: (GLubyte) opacity
@@ -414,50 +447,50 @@
 // manual setter & getter.
 -(GLubyte) startOpacity
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    return impl_->getStartOpacity();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    return gradient->getStartOpacity();
 }
 
 -(void) setStartOpacity:(GLubyte)startOpacity
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    impl_->setStartOpacity();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    gradient->setStartOpacity(startOpacity);
 }
 
--(void) setEndColor:(int)endColor
+-(void) setEndColor:(ccColor3B)endColor
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    impl_->setEndColor((cocos2d::Color3B*)endColor);
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    gradient->setEndColor([ccTypeConvert ccColor3BToColor3B:endColor]   );
 }
 
--(int) endColor
+-(ccColor3B) endColor
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    return impl_->getEndColor();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    return [ccTypeConvert Color3BToccColor3B: gradient->getEndColor()];
 }
 
 -(void) setEndOpacity: (GLubyte)endOpacity
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    impl_->setEndOpacity(endOpacity);
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    gradient->setEndOpacity(endOpacity);
 }
 
 -(GLubyte) endOpacity
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    return impl_->getEndOpacity();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    return gradient->getEndOpacity();
 }
 
 -(void) setVector:(CGPoint)vector
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    impl_->setVector(vector);
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    gradient->setVector([ccTypeConvert CGPointToPoint:vector]);
 }
 
 -(CGPoint) vector
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    return impl_->getVector();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    return [ccTypeConvert PointToCGPoint:gradient->getVector()];
 }
 
 + (id) layerWithColor: (ccColor4B) start fadingTo: (ccColor4B) end
@@ -477,21 +510,28 @@
 
 - (id) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end
 {
-    impl_ = cocos2d::CCLayerGradient::create(start, end);
-    impl_->retain();
+    cocos2d::LayerGradient* layer = cocos2d::LayerGradient::create(cocos2d::Color4B(start.r, start.g, start.b, start.a),
+                                                                   cocos2d::Color4B(end.r, end.g, end.b, end.a));
+    layer->retain();
     
     isNeedCCLayerGradientDealloc_ = YES;
+    impl_ = layer;
     
+    self = [super init:impl_];
     return self;
 }
 
 - (id) initWithColor: (ccColor4B) start fadingTo: (ccColor4B) end alongVector: (CGPoint) v
 {
-    impl_ = cocos2d::CCLayerGradient::create(start, end, v);
-    impl_->retain();
+    cocos2d::LayerGradient* layer = cocos2d::LayerGradient::create(cocos2d::Color4B(start.r, start.g, start.b, start.a),
+                                                                   cocos2d::Color4B(end.r, end.g, end.b, end.a),
+                                                                   [ccTypeConvert CGPointToPoint:v]);
+    layer->retain();
     
-    isNeedDealloc_ = true;
+    isNeedCCLayerGradientDealloc_ = YES;
+    impl_ = layer;
     
+    self = [super init:impl_];
     return self;
 }
 
@@ -500,7 +540,7 @@
     impl_                         = object;
     isNeedCCLayerGradientDealloc_ = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -508,7 +548,8 @@
 {
     if (isNeedCCLayerGradientDealloc_)
     {
-        impl_->release();
+        cocos2d::LayerGradient* layer = static_cast<cocos2d::LayerGradient*>(impl_);
+        layer->release();
     }
     
     [super dealloc];
@@ -516,14 +557,14 @@
 
 -(BOOL) compressedInterpolation
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    return impl_->isCompressedInterpolation();
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    return gradient->isCompressedInterpolation();
 }
 
 -(void) setCompressedInterpolation:(BOOL)compress
 {
-    (cocos2d::CCLayerGradient*) gradient = (cocos2d::CCLayerGradient*)impl_;
-    impl_->setCompressedInterpolation(compress);
+    cocos2d::LayerGradient* gradient = static_cast<cocos2d::LayerGradient*>(impl_);
+    gradient->setCompressedInterpolation(compress);
 }
 
 @end
