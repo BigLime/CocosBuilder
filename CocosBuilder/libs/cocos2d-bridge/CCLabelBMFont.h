@@ -7,7 +7,6 @@
 //
 
 #import "CCSpriteBatchNode.h"
-#import "Support/uthash.h"
 
 enum
 {
