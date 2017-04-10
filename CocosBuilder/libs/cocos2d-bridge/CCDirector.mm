@@ -8,8 +8,8 @@
 
 #import "CCDirector.h"
 #import "CCScene.h"
-//#import "CCScheduler.h"
-//#import "CCActionManager.h"
+#import "CCScheduler.h"
+#import "CCActionManager.h"
 #import "CCGLView.h"
 
 #import "ccTypeConvert.h"
@@ -138,16 +138,14 @@ extern NSString * cocos2dVersion(void);
 // getter setter
 -(void)setScheduler:(CCScheduler *)scheduler
 {
-    /*mark todo by lsr*/ // 待翻译
-//    cocos2d::Director* director = cocos2d::Director::getInstance();
-//    director->setScheduler((cocos2d::Scheduler*)[scheduler getImpl]);
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setScheduler((cocos2d::Scheduler*)[scheduler getImpl]);
 }
 
 -(CCScheduler *)scheduler
 {
-    /*mark todo by lsr*/ // 待翻译
-//    cocos2d::Director* director = cocos2d::Director::getInstance();
-//    return [[[CCScheduler alloc] initWithObject:director->getScheduler()] autorelease];
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [[[CCScheduler alloc] initWithObject:director->getScheduler()] autorelease];
 }
 
 // getter setter
@@ -164,16 +162,14 @@ extern NSString * cocos2dVersion(void);
 // getter setter
 -(void)setActionManager:(CCActionManager *)actionManager
 {
-    /*mark todo by lsr*/ // 待翻译
-//    cocos2d::Director* director = cocos2d::Director::getInstance();
-//    director->setActionManager((cocos2d::ActionManager*)[actionManager getImpl]);
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setActionManager((cocos2d::ActionManager*)[actionManager getImpl]);
 }
 
 -(CCActionManager *)actionManager
 {
-    /*mark todo by lsr*/ // 待翻译
-//    cocos2d::Director* director = cocos2d::Director::getInstance();
-//    return [[[CCActionManager alloc] initWithObject:director->getActionManager()] autorelease];
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [[[CCActionManager alloc] initWithObject:director->getActionManager()] autorelease];
 }
 
 
@@ -288,12 +284,14 @@ static CCDirector *_sharedDirector = nil;
 
 -(void) setView:(CCGLView*)view
 {
-    
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setOpenGLView((cocos2d::GLView*)[view getImpl]);
 }
 
 -(CCGLView*) view
 {
-    return  __view;
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    return [[[CCGLView alloc] initWithObject:director->getOpenGLView()] autorelease];
 }
 
 

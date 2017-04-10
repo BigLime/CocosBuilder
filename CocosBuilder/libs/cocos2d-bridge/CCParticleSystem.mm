@@ -9,6 +9,7 @@
 #import "CCParticleSystem.h"
 #import "2d/CCParticleSystem.h"
 #import "CCTexture2D.h"
+#import "CCParticleBatchNode.h"
 
 #include "ccTypeConvert.h"
 
@@ -614,14 +615,13 @@
 -(CCParticleBatchNode*) batchNode
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-//    return ps->getBatchNode(); /*mark todo by lsr*/ // 类型转换
+    return [[[CCParticleBatchNode alloc] initWithObject:ps->getBatchNode()] autorelease];
 }
 
 -(void) setBatchNode:(CCParticleBatchNode*) batchNode
 {
-    /*mark todo by lsr*/ // 类型转换
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-//    ps->setBatchNode(batchNode);
+    ps->setBatchNode((cocos2d::ParticleBatchNode*)[batchNode getImpl]);
 }
 
 //don't use a transform matrix, this is faster
@@ -647,6 +647,22 @@
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
     ps->setScaleY(newScaleY);
+}
+
+-(id)initWithObject: (void*)object
+{
+    impl_ = object;
+    ((cocos2d::ParticleSystem*)impl_)->retain();
+    isNeedParticleSystemDealloc_ = YES;
+    
+    self = [super init];
+    
+    return self;
+}
+
+-(void*) getImpl
+{
+    return impl_;
 }
 
 @end

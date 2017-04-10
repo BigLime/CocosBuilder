@@ -16,8 +16,8 @@
 @property (nonatomic, readwrite) NSRect frame;
 
 - (NSPoint)convertPoint:(NSPoint)point toView:(nullable NSView*)view;
-- (void)addTrackingArea:(NSTrackingArea*)trackingArea;
-- (void)removeTrackingArea:(NSTrackingArea*)trackingArea;
+- (void)addTrackingArea:(nullable NSTrackingArea*)trackingArea;
+- (void)removeTrackingArea:(nullable NSTrackingArea*)trackingArea;
 
 -(id)initWithFrame:(NSRect)frame;
 -(id)initWithObject: (void*)object;

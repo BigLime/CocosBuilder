@@ -8,6 +8,8 @@
 
 #import "CCParticleSystemQuad.h"
 #import "2d/CCParticleSystemQuad.h"
+#import "renderer/CCTexture2D.h"
+#import "ccTypeConvert.h"
 
 @implementation CCParticleSystemQuad
 
@@ -26,7 +28,7 @@
 -(void)dealloc
 {
     if (isNeedCCParticleSystemQuadDealloc_)
-        impl_->release();
+        ((cocos2d::ParticleSystemQuad*)impl_)->release();
     
     [super dealloc];
 }
@@ -36,39 +38,24 @@
     sys->setTotalParticles(totalParticles);
 }
 
--(void)initTexCoordsWithRect:(CGRect)rect
-{
-    // TODO: convert CGRect
-    cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
-    
-    // TODO: protected in cpp.
-    // sys->initTexCoordsWithRect(rect);
-}
-
 -(void)setTexture:(CCTexture2D *)texture withRect:(CGRect)rect
 {
     // TODO: convert CGRect CCTexture2D
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
-    sys->setTextureWithRect([texture getImpl], rect);
+    sys->setTextureWithRect((cocos2d::Texture2D*)[texture getImpl], [ccTypeConvert CGRectToRect:rect]);
 }
 
 -(void)setTexture:(CCTexture2D *)texture
 {
     // TODO: convert CGRect CCTexture2D
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
-    sys->setTexture([texture getImpl]);
+    sys->setTexture((cocos2d::Texture2D*)[texture getImpl]);
 }
 
 -(void)setDisplayFrame:(CCSpriteFrame *)spriteFrame
 {
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
-    sys->setDisplayFrame([spriteFrame getImpl]);
-}
-
-- (void)initIndices
-{
-    // TODO: protected in cpp
-    NSAssert(false, @"[- (void)initIndices]::protected in cpp");
+    sys->setDisplayFrame((cocos2d::SpriteFrame*)[spriteFrame getImpl]);
 }
 
 -(void)postStep
@@ -86,7 +73,7 @@
 -(void)setBatchNode:(CCParticleBatchNode *)batchNode
 {
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
-    sys->setBatchNode([batchNode getImpl]);
+    sys->setBatchNode((cocos2d::ParticleBatchNode*)[batchNode getImpl]);
 }
 @end
 

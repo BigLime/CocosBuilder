@@ -6,7 +6,7 @@
 #import "CCTexture2D.h"
 #import "renderer/CCTexture2D.h"
 #import "ccTypeConvert.h"
-
+#import "CCGLProgram.h"
 
 @implementation CCTexture2D
 
@@ -119,16 +119,14 @@
 
 - (CCGLProgram*)shaderProgram
 {
-    NSAssert(false, @"no shaderProgram ");
-    //cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
-    return NULL;//texture2D->getGLProgram();
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
+    return [[[CCGLProgram alloc] initWithObject:texture2D->getGLProgram()] autorelease];
 }
 
 -(void) setShaderProgram:(CCGLProgram*)_shaderProgram
 {
-    NSAssert(false, @"no setShaderProgra ");
-    //cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
-    //texture2D->setGLProgram(_shaderProgram);
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
+    texture2D->setGLProgram((cocos2d::GLProgram*)[_shaderProgram getImpl]);
 }
 
 
@@ -466,7 +464,7 @@
 }
 +(CCTexture2DPixelFormat) defaultAlphaPixelFormat
 {
-    return cocos2d::Texture2D::getDefaultAlphaPixelFormat();
+    return (CCTexture2DPixelFormat)cocos2d::Texture2D::getDefaultAlphaPixelFormat();
 }
 -(NSUInteger) bitsPerPixelForFormat
 {
