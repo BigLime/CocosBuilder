@@ -12,11 +12,12 @@
 #import "math/CCGeometry.h"
 #import "math/CCAffineTransform.h"
 #import <string>
-#import "2d/sprite-nodes/CCSprite.h"
-#import "2d/base-nodes/CCNode.h"
+#import "2d/CCNode.h"
+#import "2d/CCSprite.h"
 #import "base/CCVector.h"
 #import "base/CCMap.h"
 #import "platform/CCImage.h"
+#import "base/CCValue.h"
 
 @interface ccTypeConvert : NSObject
 {

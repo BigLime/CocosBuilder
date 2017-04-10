@@ -14,6 +14,7 @@
 #import "ccTypeConvert.h"
 
 #import "base/CCDirector.h"
+#import "2d/CCScene.h"
 
 // XXX it shoul be a Director ivar. Move it there once support for multiple directors is added
 NSUInteger	__ccNumberOfDraws = 0;
@@ -75,7 +76,7 @@ extern NSString * cocos2dVersion(void);
     director->setNextDeltaTimeZero(nextDeltaTimeZero);
 }
 
--(float)nextDeltaTimeZero
+-(BOOL)nextDeltaTimeZero
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
     return director->isNextDeltaTimeZero();
@@ -300,26 +301,27 @@ static CCDirector *_sharedDirector = nil;
 -(CGPoint)convertToGL:(CGPoint)uiPoint
 {
     std::string str = [ccTypeConvert NSStringTostring:@"CCDirector#convertToGL: OVERRIDE ME."];
-    CCLOG();
+    CCLOG("%s", str.c_str());
     return CGPointZero;
 }
 
 -(CGPoint)convertToUI:(CGPoint)glPoint
 {
-    CCLOG(@"CCDirector#convertToUI: OVERRIDE ME.");
+    std::string str = [ccTypeConvert NSStringTostring:@"CCDirector#convertToUI: OVERRIDE ME."];
+    CCLOG("%s", str.c_str());
     return CGPointZero;
 }
 
 -(CGSize)winSize
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    return director->getWinSize();
+    return [ccTypeConvert SizeToCGSize:director->getWinSize()];
 }
 
 -(CGSize)winSizeInPixels
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    return director->getWinSizeInPixels();
+    return [ccTypeConvert SizeToCGSize:director->getWinSizeInPixels()];
 }
 
 -(void) reshapeProjection:(CGSize)newWindowSize
@@ -332,21 +334,21 @@ static CCDirector *_sharedDirector = nil;
 - (void)runWithScene:(CCScene*) scene
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    Scene* cppscene = (Scene*)[scene getImpl];
+    cocos2d::Scene* cppscene = (cocos2d::Scene*)[scene getImpl];
     director->runWithScene(cppscene);
 }
 
 -(void) replaceScene: (CCScene*) scene
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    Scene* cppscene = (Scene*)[scene getImpl];
+    cocos2d::Scene* cppscene = (cocos2d::Scene*)[scene getImpl];
     director->replaceScene(cppscene);
 }
 
 - (void) pushScene: (CCScene*) scene
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    Scene* cppscene = (Scene*)[scene getImpl];
+    cocos2d::Scene* cppscene = (cocos2d::Scene*)[scene getImpl];
     director->pushScene(cppscene);
 }
 
@@ -374,12 +376,6 @@ static CCDirector *_sharedDirector = nil;
     director->end();
 }
 
--(void) setNextScene
-{
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    director->setNextScene();
-}
-
 -(void) pause
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
@@ -402,34 +398,6 @@ static CCDirector *_sharedDirector = nil;
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
     director->stopAnimation();
-}
-
-
-// display statistics
--(void) showStats
-{
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    director->showStats();
-}
-
--(void) calculateMPF
-{
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    director->calculateMPF();
-}
-
-#pragma mark Director - Helper
-
--(void)getFPSImageData:(unsigned char**)datapointer length:(NSUInteger*)len
-{
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    director->getFPSImageData(datapointer, len);
-}
-
--(void) createStatsLabel
-{
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    director->createStatsLabel();
 }
 
 @end

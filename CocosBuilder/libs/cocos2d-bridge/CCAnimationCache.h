@@ -21,7 +21,7 @@
 }
 
 /** Returns the shared instance of the Animation cache */
-+ (CCAnimationCache *) sharedAnimationCache
++ (CCAnimationCache *) sharedAnimationCache;
 
 /** Purges the cache. It releases all the CCAnimation objects and the shared instance.
  */

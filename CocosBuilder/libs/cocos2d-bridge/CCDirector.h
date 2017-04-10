@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CCProtocols.h"
+
 /** @typedef ccDirectorProjection
  Possible OpenGL projections used by director
  */
@@ -246,9 +248,6 @@ typedef enum {
 /** enables/disables OpenGL depth test */
 - (void) setDepthTest: (BOOL) on;
 
-// helper
-/** creates the Stats labels */
--(void) createStatsLabel;
 @end
 
 // optimization. Should only be used to read it. Never to write it.
