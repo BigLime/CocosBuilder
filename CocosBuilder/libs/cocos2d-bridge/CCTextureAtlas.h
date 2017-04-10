@@ -11,7 +11,9 @@
 	void* impl_;
 	BOOL isNeedTextureAtlasDealloc_;
 }
-
+- (id) init:(void*) pThis;
+- (id) initWithObject: (void*) object;
+- (void*) getImpl;
 /** quantity of quads that are going to be drawn */
 @property (nonatomic,readonly) NSUInteger totalQuads;
 /** quantity of quads that can be stored with the current texture atlas size */

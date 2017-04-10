@@ -15,7 +15,13 @@
 {
 	BOOL isNeedSpriteDealloc_;
 }
+-(id) init: (void*) pThis;
 
+-(id) initWithObject: (void*) object;
+
+-(void*) getImpl;
+
+-(void) dealloc;
 /** whether or not the Sprite needs to be updated in the Atlas */
 @property (nonatomic,readwrite) BOOL dirty;
 /** the quad (tex coords, vertex coords and color) information */

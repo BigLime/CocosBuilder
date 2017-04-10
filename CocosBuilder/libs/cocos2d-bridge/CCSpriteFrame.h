@@ -12,7 +12,9 @@
     void* impl_;
     BOOL isNeedSpriteFrameDealloc_;
 }
-
+- (id) init:(void*) pThis;
+- (id) initWithObject: (void*) object;
+- (void*) getImpl;
 /** rect of the frame in points. If it is updated, then rectInPixels will be updated too. */
 @property (nonatomic,readwrite) CGRect rect;
 
