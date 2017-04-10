@@ -7,6 +7,7 @@
 #import "CCSpriteFrame.h"
 
 @class CCSpriteFrame;
+@class CCTexture2D;
 
 @interface CCSpriteFrameCache : NSObject
 {

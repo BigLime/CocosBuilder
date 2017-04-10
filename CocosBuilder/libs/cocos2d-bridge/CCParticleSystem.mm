@@ -532,21 +532,6 @@
     return self;
 }
 
-
--(id) initWithDictionary:(NSDictionary *)dictionary
-{
-    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-//    ps->initWithDictionary(dictionary); /*mark todo by lsr*/ // 类型转换 dictionary
-    return self;
-}
-
--(id) initWithDictionary:(NSDictionary *)dictionary path:(NSString*)dirname
-{
-    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-//    ps->initWithDictionary(dictionary, dirname); /*mark todo by lsr*/ // 类型转换 dictionary NSString
-    return self;
-}
-
 -(id) initWithTotalParticles:(NSUInteger) numberOfParticles
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;

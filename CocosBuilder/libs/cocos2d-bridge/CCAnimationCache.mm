@@ -80,7 +80,6 @@ static CCAnimationCache *_sharedAnimationCache=nil;
     return [[[CCAnimation alloc] initWithObject:anim] autorelease];
 }
 
-/** Read an NSDictionary from a plist file and parse it automatically for animations */
 -(void)addAnimationsWithFile:(NSString *)plist
 {
     cocos2d::AnimationCache* cache = cocos2d::AnimationCache::getInstance();
