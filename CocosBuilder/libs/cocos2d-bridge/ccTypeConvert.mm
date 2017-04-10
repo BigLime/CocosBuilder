@@ -140,7 +140,7 @@
     for(ssize_t i = 0; i < [arr count]; ++i)
     {
         cocos2d::Sprite* sprite_i = (cocos2d::Sprite*)[[arr objectAtIndex:i] getImpl];
-        vec.push_Back(sprite_i);
+        vec.push_back(sprite_i);
     }
     return vec;
 }
