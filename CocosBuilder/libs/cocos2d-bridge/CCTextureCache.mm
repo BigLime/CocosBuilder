@@ -7,6 +7,9 @@
 //
 
 #import "CCTextureCache.h"
+#import "renderer/CCTextureCache.h"
+#import "base/CCDirector.h"
+#import "CCTexture2D.h"
 
 #include "ccTypeConvert.h"
 
@@ -77,16 +80,19 @@ static CCTextureCache *sharedTextureCache;
 
 -(void) addImageAsync: (NSString*)path target:(id)target selector:(SEL)selector
 {
-    cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
-    cache->addImageAsync(path);
-    /*mark todo by lsr*/ // 类型转换
+    __block id t = target;
+    [self addImageAsync:path withBlock:^(id sender){
+        [t performSelector:selector withObject:sender];
+    }];
 }
 
 -(void) addImageAsync:(NSString*)path withBlock:(void(^)(CCTexture2D *tex))block
 {
-//    cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
-//    cache->addImageAsync(path);
-    /*mark todo by lsr*/ // 接口不一致
+    cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
+    
+    cache->addImageAsync([ccTypeConvert NSStringTostring:path], [block, self](cocos2d::Ref*){
+        [block self];
+    });
 }
 
 -(CCTexture2D*) addImage: (NSString*) path
@@ -100,7 +106,8 @@ static CCTextureCache *sharedTextureCache;
 -(CCTexture2D*) addCGImage: (CGImageRef) imageref forKey: (NSString *)key
 {
     cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
-    cache->addImage([ccTypeConvert CGImageToImage:imageref], [ccTypeConvert NSStringTostring:key]);
+    cocos2d::Texture2D* texture = cache->addImage([ccTypeConvert CGImageToImage:imageref], [ccTypeConvert NSStringTostring:key]);
+    return [[[CCTexture2D alloc] initWithObject:texture] autorelease];
 }
 
 #pragma mark TextureCache - Remove

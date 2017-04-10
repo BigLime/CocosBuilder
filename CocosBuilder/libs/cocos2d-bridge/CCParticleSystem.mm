@@ -7,8 +7,12 @@
 //
 
 #import "CCParticleSystem.h"
+#import "2d/CCParticleSystem.h"
+#import "CCTexture2D.h"
 
 #include "ccTypeConvert.h"
+
+@implementation CCParticleSystem
 
 // getter setter
 -(BOOL)active
@@ -197,7 +201,7 @@
 -(void) setRadialAccelVar:(float)radialAccelVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setRadiaAccelVar(radialAccelVar);
+    ps->setRadialAccelVar(radialAccelVar);
 }
 
 -(float) radialAccelVar
@@ -210,7 +214,7 @@
 -(void) setStartRadius:(float)startRadius
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetStartRadius(startRadius);
+    ps->setStartRadius(startRadius);
 }
 
 -(float) startRadius
@@ -249,7 +253,7 @@
 -(void) setEndRadiusVar:(float)endRadiusVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetEndRadiusVar(endRadiusVar);
+    ps->setEndRadiusVar(endRadiusVar);
 }
 
 -(float) endRadiusVar
@@ -340,52 +344,52 @@
 -(void) setStartColor:(ccColor4F)startColor
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setStartColor(startColor);
+    ps->setStartColor([ccTypeConvert ccColor4FToColor4F:startColor]);
 }
 
 -(ccColor4F) startColor
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getStartColor();
+    return [ccTypeConvert Color4FToccColor4F:ps->getStartColor()];
 }
 
 // getter setter
 -(void) setStartColorVar:(ccColor4F)startColorVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setStartColorVar(startColorVar);
+    ps->setStartColorVar([ccTypeConvert ccColor4FToColor4F:startColorVar]);
 }
 
 -(ccColor4F) startColorVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getStartColorVar();
+    return [ccTypeConvert Color4FToccColor4F:ps->getStartColorVar()];
 }
 
 // getter setter
 -(void) setEndColor:(ccColor4F)endColor
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setEndColor(endColor);
+    ps->setEndColor([ccTypeConvert ccColor4FToColor4F:endColor]);
 }
 
 -(ccColor4F) endColor
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getEndColor(endColor);
+    return [ccTypeConvert Color4FToccColor4F:ps->getEndColor()];
 }
 
 // getter setter
 -(void) setEndColorVar:(ccColor4F)endColorVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetEndColorVar(endColorVar);
+    ps->setEndColorVar([ccTypeConvert ccColor4FToColor4F:endColorVar]);
 }
 
 -(ccColor4F) endColorVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getEndColorVar();
+    return [ccTypeConvert Color4FToccColor4F:ps->getEndColorVar()];
 }
 
 // getter setter
@@ -405,7 +409,7 @@
 -(void) setStartSpinVar:(float)startSpinVar
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetStartSpinVar(startSpinVar);
+    ps->setStartSpinVar(startSpinVar);
 }
 
 -(float) startSpinVar
@@ -483,13 +487,13 @@
 -(void) setBlendFunc:(ccBlendFunc)blendFunc
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setBlendFunc(blendFunc);
+    ps->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:blendFunc]);
 }
 
 -(ccBlendFunc) blendFunc
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getBlendFunc();
+    return [ccTypeConvert BlendFuncToccBlendFunc:ps->getBlendFunc()];
 }
 
 // getter setter
@@ -502,7 +506,7 @@
 -(BOOL) doesOpacityModifyRGB
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps-isOpacityModifyRGB();
+    return ps->isOpacityModifyRGB();
 }
 
 +(id) particleWithFile:(NSString*) plistFile
@@ -532,14 +536,14 @@
 -(id) initWithDictionary:(NSDictionary *)dictionary
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->initWithDictionary(dictionary); /*mark todo by lsr*/ // 类型转换 dictionary
+//    ps->initWithDictionary(dictionary); /*mark todo by lsr*/ // 类型转换 dictionary
     return self;
 }
 
 -(id) initWithDictionary:(NSDictionary *)dictionary path:(NSString*)dirname
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->initWithDictionary(dictionary, dirname); /*mark todo by lsr*/ // 类型转换 dictionary NSString
+//    ps->initWithDictionary(dictionary, dirname); /*mark todo by lsr*/ // 类型转换 dictionary NSString
     return self;
 }
 
@@ -625,14 +629,14 @@
 -(CCParticleBatchNode*) batchNode
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    return ps->getBatchNode(); /*mark todo by lsr*/ // 类型转换
+//    return ps->getBatchNode(); /*mark todo by lsr*/ // 类型转换
 }
 
 -(void) setBatchNode:(CCParticleBatchNode*) batchNode
 {
     /*mark todo by lsr*/ // 类型转换
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->setBatchNode(batchNode);
+//    ps->setBatchNode(batchNode);
 }
 
 //don't use a transform matrix, this is faster
@@ -645,7 +649,7 @@
 -(void) setRotation: (float)newRotation
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetRotation(newRotation);
+    ps->setRotation(newRotation);
 }
 
 -(void) setScaleX: (float)newScaleX
@@ -657,7 +661,7 @@
 -(void) setScaleY: (float)newScaleY
 {
     cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
-    ps->SetScaleY(newScaleY);
+    ps->setScaleY(newScaleY);
 }
 
 @end

@@ -11,6 +11,11 @@
 
 @implementation CCScene
 
+-(id) init
+{
+    return [self init:nil];
+}
+
 -(id) init: (void*) pThis
 {
     if (!!pThis)
@@ -26,7 +31,7 @@
         isNeedSceneDealloc_ = YES;
     }
     
-    self = [super init:self];
+    self = [super init];
     return self;
 }
 
