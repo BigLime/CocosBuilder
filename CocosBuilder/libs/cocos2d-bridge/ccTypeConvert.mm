@@ -311,29 +311,315 @@
     return img;
 }
 
-+(cocos2d::BlendFunc)ccBlendFuncToBlendFunc:(ccBlendFunc)src
-{
-    cocos2d::BlendFunc dst = {};
-    dst.src = src.src;
-    dst.dst = src.dst;
-    return dst;
-}
-
+// ccBlendFunc <--> cocos2d::BlendFunc
 +(ccBlendFunc)BlendFuncToccBlendFunc:(cocos2d::BlendFunc)src
 {
     ccBlendFunc dst = {};
-    dst.src = src.src;
+    dst.src = src.src
+{
+    
+}
     dst.dst = src.dst;
     return dst;
 }
 
-+(cocos2d::Color3B)ccColor3BToColor3B:(ccColor3B)src
++(cocos2d::BlendFunc)ccBlendFuncToBlendFunc:(ccBlendFunc)src
+{
+    cocos2d::BlendFunc dst = {};
+    dst.src = src.src
+{
+    
+}
+    dst.dst = src.dst;
+    return dst;
+}
+
+// ccColor3B <--> cocos2d::Color3B
++(ccColor3B) Color3BToccColor3B: (cocos2d::Color3B) src
+{
+    ccColor3B c = {src.r, src.g, src.b};
+    return c;
+}
+
++(cocos2d::Color3B) ccColor3BToColor3B: (ccColor3B) src
 {
     return cocos2d::Color3B(src.r, src.g, src.b);
 }
 
-+(ccColor3B) Color3BToccColor3B(cocos2d::Color3B)src
+// ccColor4B <--> cocos2d::Color4B
++(ccColor4B) Color4BToccColor4B: (cocos2d::Color4B) src
 {
-    ccColor3B dst = { src.r, src.g, src.b }; 
+    ccColor4B c = {src.r, src.g, src.b, src.o};
+    return c;
 }
+
++(cocos2d::Color4B) ccColor4BToColor4B: (ccColor4B) src
+{
+    return cocos2d::Color4B(src.r, src.g, src.b, src.o);
+}
+
+// ccColor4F <--> cocos2d::Color4F
++(ccColor4F) Color4FToccColor4F: (cocos2d::Color4F) src
+{
+    ccColor4F c = {src.r, src.g, src.b, src.o};
+    return c;
+}
+
++(cocos2d::Color4F) ccColor4FToColor4F: (ccColor4F) src
+{
+    return cocos2d::Color4F(src.r, src.g, src.b, src.o);
+}
+
+// ccVertex2F <--> cocos2d::Vec2
++(ccVertex2F) Vec2ToccVertex2F: (cocos2d::Vec2) src
+{
+    ccVertex2F c = {src.x, src.y};
+    return c;
+}
+
++(cocos2d::Vec2) ccVertex2FToVec2: (ccVertex2F) src
+{
+    return cocos2d::Vec2(src.x, src.y);
+}
+
+// ccVertex3F <--> cocos2d::Vec3
++(ccVertex3F) Vec3ToccVertex3F: (cocos2d::Vec3) src
+{
+    ccVertex3F c = {src.x, src.y, src.z};
+    return c;
+}
+
++(cocos2d::Vec3) ccVertex3FToVec3: (ccVertex3F) src
+{
+    return cocos2d::Vec3(src.x, src.y, src.z);
+}
+
+// ccTex2F <--> cocos2d::Tex2F
++(ccTex2F) Tex2FToccTex2F: (cocos2d::Tex2F) src
+{
+    ccTex2F c = {src.u, src.v};
+    return c;
+}
+
++(cocos2d::Tex2F) ccTex2FToTex2F: (ccTex2F) src
+{
+    return cocos2d::Tex2F(src.u, src.v);
+}
+
+// ccPointSprite <--> cocos2d::PointSprite
++(ccPointSprite) PointSpriteToccPointSprite: (cocos2d::PointSprite) src
+{
+    ccPointSprite c;
+    c.pos = [ccTypeConvert Vec2ToccVertex2F:src.pos];
+    c.color = [ccTypeConvert Color4BToccColor4B:src.color];
+    c.size = src.size;
+    return c;
+}
+
++(cocos2d::PointSprite) ccPointSpriteToPointSprite: (ccPointSprite) src
+{
+    cocos2d::PointSprite c;
+    c.pos = [ccTypeConvert ccVertex2FToVec2:src.pos];
+    c.color = [ccTypeConvert ccColor4BToColor4B:src.color];
+    c.size = src.size;
+    return c;
+}
+
+// ccQuad2 <--> cocos2d::Quad2
++(ccQuad2) Quad2ToccQuad2: (cocos2d::Quad2) src
+{
+    ccQuad2 c;
+    c.tl = [ccTypeConvert Vec2ToccVertex2F:src.tl];
+    c.tr = [ccTypeConvert Vec2ToccVertex2F:src.tr];
+    c.bl = [ccTypeConvert Vec2ToccVertex2F:src.bl];
+    c.br = [ccTypeConvert Vec2ToccVertex2F:src.br];
+    return c;
+}
+
++(cocos2d::Quad2) ccQuad2ToQuad2: (ccQuad2) src
+{
+    cocos2d::Quad2 c;
+    c.tl = [ccTypeConvert ccVertex2FToVec2:src.tl];
+    c.tr = [ccTypeConvert ccVertex2FToVec2:src.tr];
+    c.bl = [ccTypeConvert ccVertex2FToVec2:src.bl];
+    c.br = [ccTypeConvert ccVertex2FToVec2:src.br];
+    return c;
+}
+
+// ccQuad3 <--> cocos2d::Quad3
++(ccQuad3) Quad3ToccQuad3: (cocos2d::Quad3) src
+{
+    ccQuad3 c;
+    c.tl = [ccTypeConvert Vec3ToccVertex3F:src.tl];
+    c.tr = [ccTypeConvert Vec3ToccVertex3F:src.tr];
+    c.bl = [ccTypeConvert Vec3ToccVertex3F:src.bl];
+    c.br = [ccTypeConvert Vec3ToccVertex3F:src.br];
+    return c;
+}
+
++(cocos2d::Quad3) ccQuad3ToQuad3: (ccQuad3) src
+{
+    cocos2d::Quad3 c;
+    c.tl = [ccTypeConvert ccVertex3FToVec3:src.tl];
+    c.tr = [ccTypeConvert ccVertex3FToVec3:src.tr];
+    c.bl = [ccTypeConvert ccVertex3FToVec3:src.bl];
+    c.br = [ccTypeConvert ccVertex3FToVec3:src.br];
+    return c;
+}
+
+// ccV2F_C4B_T2F <--> cocos2d::V2F_C4B_T2F
++(ccV2F_C4B_T2F) V2F_C4B_T2FToccV2F_C4B_T2F: (cocos2d::V2F_C4B_T2F) src
+{
+    ccV2F_C4B_T2F c;
+    c.vertices = [ccTypeConvert Vec2ToccVertex2F:src.vertices];
+    c.colors = [ccTypeConvert Color4BToccColor4B:src.colors];
+    c.texCoords = [ccTypeConvert Tex2FToccTex2F:src.texCoords];
+    return c;
+}
+
++(cocos2d::V2F_C4B_T2F) ccV2F_C4B_T2FToV2F_C4B_T2F: (ccV2F_C4B_T2F) src
+{
+    cocos2d::V2F_C4B_T2F c;
+    c.vertices = [ccTypeConvert ccVertex2FToVec2:src.vertices];
+    c.colors = [ccTypeConvert ccColor4BToColor4B:src.colors];
+    c.texCoords = [ccTypeConvert ccTex2FToTex2F:src.texCoords];
+    return c;
+}
+
+// ccV2F_C4F_T2F <--> cocos2d::V2F_C4F_T2F
++(ccV2F_C4F_T2F) V2F_C4F_T2FToccV2F_C4F_T2F: (cocos2d::V2F_C4F_T2F) src
+{
+    ccV2F_C4F_T2F c;
+    c.vertices = [ccTypeConvert Vec2ToccVertex2F:src.vertices];
+    c.colors = [ccTypeConvert Color4FToccColor4F:src.colors];
+    c.texCoords = [ccTypeConvert Tex2FToccTex2F:src.texCoords];
+    return c;
+}
+
++(cocos2d::V2F_C4F_T2F) ccV2F_C4F_T2FToV2F_C4F_T2F: (ccV2F_C4F_T2F) src
+{
+    cocos2d::V2F_C4B_T2F c;
+    c.vertices = [ccTypeConvert ccVertex2FToVec2:src.vertices];
+    c.colors = [ccTypeConvert ccColor4FToColor4F:src.colors];
+    c.texCoords = [ccTypeConvert ccTex2FToTex2F:src.texCoords];
+    return c;
+}
+
+//// ccV3F_C4F_T2F <--> cocos2d::
+//+(ccV3F_C4F_T2F) ToccV3F_C4F_T2F: () src;
+//+() ccV3F_C4F_T2FTo: (ccV3F_C4F_T2F) src;
+//
+//// ccV3F_C4F_T2F_Quad <--> cocos2d::
+//+() To: () src;
+//+() To: () src;
+
+// ccV3F_C4B_T2F <--> cocos2d::V3F_C4B_T2F
++(ccV3F_C4B_T2F) V3F_C4B_T2FToccV3F_C4B_T2F: (cocos2d::V3F_C4B_T2F) src
+{
+    ccV3F_C4B_T2F c;
+    c.vertices = [ccTypeConvert Vec3ToccVertex3F:src.vertices];
+    c.colors = [ccTypeConvert Color4BToccColor4B:src.colors];
+    c.texCoords = [ccTypeConvert Tex2FToccTex2F:src.texCoords];
+    return c;
+}
+
++(cocos2d::V3F_C4B_T2F) ccV3F_C4B_T2FToV3F_C4B_T2F: (ccV3F_C4B_T2F) src
+{
+    cocos2d::V3F_C4B_T2F c;
+    c.vertices = [ccTypeConvert ccVertex3FToVec3:src.vertices];
+    c.colors = [ccTypeConvert ccColor4BToColor4B:src.colors];
+    c.texCoords = [ccTypeConvert ccTex2FToTex2F:src.texCoords];
+    return c;
+}
+
+// ccV2F_C4B_T2F_Triangle <--> cocos2d::V2F_C4B_T2F_Triangle
++(ccV2F_C4B_T2F_Triangle) V2F_C4B_T2F_TriangleToccV2F_C4B_T2F_Triangle: (cocos2d::V2F_C4B_T2F_Triangle) src
+{
+    ccV2F_C4B_T2F_Triangle c;
+    c.a = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.a];
+    c.b = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.b];
+    c.c = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.c];
+    return c;
+}
+
++(cocos2d::V2F_C4B_T2F_Triangle) ccV2F_C4B_T2F_TriangleToV2F_C4B_T2F_Triangle: (ccV2F_C4B_T2F_Triangle) src
+{
+    cocos2d::V2F_C4B_T2F_Triangle c;
+    c.a = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.a];
+    c.b = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.b];
+    c.c = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.c];
+    return c;
+}
+
+// ccV2F_C4B_T2F_Quad <--> cocos2d::V2F_C4B_T2F_Quad
++(ccV2F_C4B_T2F_Quad) V2F_C4B_T2F_QuadToccV2F_C4B_T2F_Quad: (cocos2d::V2F_C4B_T2F_Quad) src
+{
+    ccV2F_C4B_T2F_Quad c;
+    c.bl = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.bl];
+    c.br = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.br];
+    c.tl = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.tl];
+    c.tr = [ccTypeConvert V2F_C4B_T2FToccV2F_C4B_T2F:src.tr];
+    return c;
+}
+
++(cocos2d::V2F_C4B_T2F_Quad) ccV2F_C4B_T2F_QuadToV2F_C4B_T2F_Quad: (ccV2F_C4B_T2F_Quad) src
+{
+    cocos2d::V2F_C4B_T2F_Quad c;
+    c.bl = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.bl];
+    c.br = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.br];
+    c.tl = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.tl];
+    c.tr = [ccTypeConvert ccV2F_C4B_T2FToV2F_C4B_T2F:src.tr];
+    return c;
+}
+
+// ccV3F_C4B_T2F_Quad <--> cocos2d::V3F_C4B_T2F_Quad
++(ccV3F_C4B_T2F_Quad) V3F_C4B_T2F_QuadToccV3F_C4B_T2F_Quad: (cocos2d::V3F_C4B_T2F_Quad) src
+{
+    ccV3F_C4B_T2F_Quad c;
+    c.tl = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:src.tl];
+    c.bl = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:src.bl];
+    c.tr = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:src.tr];
+    c.br = [ccTypeConvert V3F_C4B_T2FToccV3F_C4B_T2F:src.br];
+    return c;
+}
+
++(cocos2d::V3F_C4B_T2F_Quad) ccV3F_C4B_T2F_QuadToV3F_C4B_T2F_Quad: (ccV3F_C4B_T2F_Quad) src
+{
+    cocos2d::V3F_C4B_T2F_Quad c;
+    c.tl = [ccTypeConvert ccV3F_C4B_T2FToV3F_C4B_T2F:src.tl];
+    c.bl = [ccTypeConvert ccV3F_C4B_T2FToV3F_C4B_T2F:src.bl];
+    c.tr = [ccTypeConvert ccV3F_C4B_T2FToV3F_C4B_T2F:src.tr];
+    c.br = [ccTypeConvert ccV3F_C4B_T2FToV3F_C4B_T2F:src.br];
+    return c;
+}
+
+// ccV2F_C4F_T2F_Quad <--> cocos2d::V2F_C4F_T2F_Quad
++(ccV2F_C4F_T2F_Quad) V2F_C4F_T2F_QuadToccV2F_C4F_T2F_Quad: (cocos2d::V2F_C4F_T2F_Quad) src
+{
+    ccV2F_C4F_T2F_Quad c;
+    c.bl = [ccTypeConvert V2F_C4F_T2FToccV2F_C4F_T2F:src.bl];
+    c.br = [ccTypeConvert V2F_C4F_T2FToccV2F_C4F_T2F:src.br];
+    c.tl = [ccTypeConvert V2F_C4F_T2FToccV2F_C4F_T2F:src.tl];
+    c.tr = [ccTypeConvert V2F_C4F_T2FToccV2F_C4F_T2F:src.tr];
+    return c;
+}
+
++(cocos2d::V2F_C4F_T2F_Quad) ccV2F_C4F_T2F_QuadToV2F_C4F_T2F_Quad: (ccV2F_C4F_T2F_Quad) src
+{
+    cocos2d::V2F_C4F_T2F_Quad c;
+    c.bl = [ccTypeConvert ccV2F_C4F_T2FToV2F_C4F_T2F:src.bl];
+    c.br = [ccTypeConvert ccV2F_C4F_T2FToV2F_C4F_T2F:src.br];
+    c.tl = [ccTypeConvert ccV2F_C4F_T2FToV2F_C4F_T2F:src.tl];
+    c.tr = [ccTypeConvert ccV2F_C4F_T2FToV2F_C4F_T2F:src.tr];
+    return c;
+}
+
+//// ccT2F_Quad <--> cocos2d::T2F_Quad
+//+(ccT2F_Quad) T2F_QuadToccT2F_Quad: (cocos2d::T2F_Quad) src;
+//+(cocos2d::T2F_Quad) ccT2F_QuadToT2F_Quad: (ccT2F_Quad) src;
+//
+//// ccAnimationFrameData <--> cocos2d::AnimationFrameData
+//+(ccAnimationFrameData) AnimationFrameDataToccAnimationFrameData: (cocos2d::AnimationFrameData) src;
+//+(cocos2d::AnimationFrameData) ccAnimationFrameDataToAnimationFrameData: (ccAnimationFrameData) src;
+
 @end
