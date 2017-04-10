@@ -265,54 +265,6 @@
     return vec;
 }
 
-// NSDictionary* <—> Map
-// Sprite
-+(NSDictionary*)MapSpriteToNSDictionary:(cocos2d::Map<std::string, cocos2d::Sprite*>) m
-{
-    NSDictionary* dic = [[[NSDictionary alloc] init] autorelease];
-    for(auto i : m)
-    {
-        CCSprite* sprite_i = [[[CCSprite alloc] initWithObject:i.second] autorelease];
-        NSString* key = [ccTypeConvert stringToNSString:i.first];
-        [dic setValue:sprite_i forKey:key];
-    }
-    return dic;
-}
-+(cocos2d::Map<std::string, cocos2d::Sprite*>)NSDictionaryToMapSprite:(NSDictionary*) dic
-{
-    cocos2d::Map<std::string, cocos2d::Sprite*> m;
-    NSArray* arr_key = [dic allKeys];
-    for(NSString *key in arr_key )
-    {
-        CCSprite* sprite_i = [dic objectForKey:key];
-        m.insert([ccTypeConvert NSStringTostring:key], (cocos2d::Sprite*)[sprite_i getImpl]);
-    }
-    return m;
-}
-
-// Node
-+(NSDictionary*)MapNodeToNSDictionary:(cocos2d::Map<std::string, cocos2d::Node*>) m
-{
-    NSDictionary* dic = [[[NSDictionary alloc] init] autorelease];
-    for(auto i : m)
-    {
-        CCNode* sprite_i = [[[CCNode alloc] initWithObject:i.second] autorelease];
-        NSString* key = [ccTypeConvert stringToNSString:i.first];
-        [dic setValue:sprite_i forKey:key];
-    }
-    return dic;
-}
-+(cocos2d::Map<std::string, cocos2d::Node*>)NSDictionaryToMapNode:(NSDictionary*) dic
-{
-    cocos2d::Map<std::string, cocos2d::Node*> m;
-    NSArray* arr_key = [dic allKeys];
-    for(NSString *key in arr_key )
-    {
-        CCNode* sprite_i = [dic objectForKey:key];
-        m.insert([ccTypeConvert NSStringTostring:key], (cocos2d::Node*)[sprite_i getImpl]);
-    }
-    return m;
-}
 
 // CGImage* <--> Image
 +(CGImageRef)ImageToCGImage:(cocos2d::Image*) img

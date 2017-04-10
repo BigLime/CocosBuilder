@@ -47,17 +47,16 @@
 -(void)setUserInfo:(NSDictionary*) userInfo
 {
     cocos2d::AnimationFrame* s = (cocos2d::AnimationFrame*)impl_;
-    /*mark todo by lsr*/
-//    ValueMap map;
-//    s->setUserInfo(map);
+    /*mark todo by lsr*/ // OC层无调用
+    CCAssert(true, "");
 }
 
 -(NSDictionary*)userInfo
 {
     cocos2d::AnimationFrame* s = (cocos2d::AnimationFrame*)impl_;
-    /*mark todo by lsr*/
-//    NSDictionary* dic = s->getUserInfo();
-//    return dic;
+    /*mark todo by lsr*/ // OC层无调用
+    CCAssert(true, "");
+    return nil;
 }
 
 -(id)initWithObject: (void*)object
@@ -81,15 +80,6 @@
 -(void*) getImpl
 {
     return impl_;
-} 
-
--(id) initWithSpriteFrame:(CCSpriteFrame *)spriteFrame delayUnits:(float)delayUnits userInfo:(NSDictionary *)userInfo
-{
-    self = [self init];
-    self.spriteFrame = spriteFrame;
-    self.delayUnits = delayUnits;
-    self.userInfo = userInfo;
-    return self;
 }
 
 -(id) copyWithZone:(NSZone *)zone

@@ -10,6 +10,7 @@
 #import "CCScene.h"
 //#import "CCScheduler.h"
 //#import "CCActionManager.h"
+#import "CCGLView.h"
 
 #import "ccTypeConvert.h"
 

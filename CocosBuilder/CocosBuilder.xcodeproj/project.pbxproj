@@ -127,6 +127,7 @@
 		835DB0CB17156421003A2F7B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835DB0CA17156421003A2F7B /* Security.framework */; };
 		9D5442D21E964D3F005AD3E4 /* CCAnimationCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */; };
 		9D5442D51E964D51005AD3E4 /* CCDirector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D41E964D51005AD3E4 /* CCDirector.mm */; };
+		9D5BED411E9B934C006EEC02 /* CCGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BED401E9B934C006EEC02 /* CCGLView.mm */; };
 		9D77FD7D1E97794D00E0C7B7 /* CCRenderTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD7C1E97794D00E0C7B7 /* CCRenderTexture.mm */; };
 		9D77FD801E97838B00E0C7B7 /* CCParticleSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD7F1E97838B00E0C7B7 /* CCParticleSystem.mm */; };
 		9D77FD831E97839B00E0C7B7 /* CCParticleSystemQuad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD821E97839B00E0C7B7 /* CCParticleSystemQuad.mm */; };
@@ -1043,6 +1044,8 @@
 		9D5442D11E964D3F005AD3E4 /* CCAnimationCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCAnimationCache.mm; path = "cocos2d-bridge/CCAnimationCache.mm"; sourceTree = "<group>"; };
 		9D5442D31E964D51005AD3E4 /* CCDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCDirector.h; path = "cocos2d-bridge/CCDirector.h"; sourceTree = "<group>"; };
 		9D5442D41E964D51005AD3E4 /* CCDirector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDirector.mm; path = "cocos2d-bridge/CCDirector.mm"; sourceTree = "<group>"; };
+		9D5BED3F1E9B934C006EEC02 /* CCGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCGLView.h; path = "cocos2d-bridge/CCGLView.h"; sourceTree = "<group>"; };
+		9D5BED401E9B934C006EEC02 /* CCGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCGLView.mm; path = "cocos2d-bridge/CCGLView.mm"; sourceTree = "<group>"; };
 		9D77FD691E9741E600E0C7B7 /* ccTypeConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypeConvert.h; path = "cocos2d-bridge/ccTypeConvert.h"; sourceTree = "<group>"; };
 		9D77FD6A1E9741E600E0C7B7 /* ccTypeConvert.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ccTypeConvert.mm; path = "cocos2d-bridge/ccTypeConvert.mm"; sourceTree = "<group>"; };
 		9D77FD771E97781800E0C7B7 /* CCScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScene.h; path = "cocos2d-bridge/CCScene.h"; sourceTree = "<group>"; };
@@ -2712,6 +2715,8 @@
 				D37183D31E9683AF00D533E3 /* CCLayer.mm */,
 				D37183D41E9683AF00D533E3 /* CCNode.h */,
 				D37183D51E9683AF00D533E3 /* CCNode.mm */,
+				9D5BED3F1E9B934C006EEC02 /* CCGLView.h */,
+				9D5BED401E9B934C006EEC02 /* CCGLView.mm */,
 				9D77FD841E979D9E00E0C7B7 /* CCTextureCache.h */,
 				9D77FD851E979D9E00E0C7B7 /* CCTextureCache.mm */,
 				9D77FD7E1E97838B00E0C7B7 /* CCParticleSystem.h */,
@@ -4911,6 +4916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47855F101E9B748F00A33EF2 /* CCConfiguration.mm in Sources */,
+				9D5BED411E9B934C006EEC02 /* CCGLView.mm in Sources */,
 				D32693281E9B56B8004ADEE3 /* CCArray.m in Sources */,
 				D32693291E9B56B8004ADEE3 /* ccCArray.m in Sources */,
 			);

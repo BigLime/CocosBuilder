@@ -41,12 +41,6 @@
  */
 -(CCAnimation*) animationByName:(NSString*)name;
 
-/** Adds an animation from an NSDictionary
- Make sure that the frames were previously loaded in the CCSpriteFrameCache.
- @since v1.1
- */
--(void)addAnimationsWithDictionary:(NSDictionary *)dictionary;
-
 /** Adds an animation from a plist file.
  Make sure that the frames were previously loaded in the CCSpriteFrameCache.
  @since v1.1

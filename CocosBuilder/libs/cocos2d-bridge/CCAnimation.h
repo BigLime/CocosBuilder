@@ -26,9 +26,6 @@
 /**  A CCAnimationFrameDisplayedNotification notification will be broadcasted when the frame is displayed with this dictionary as UserInfo. If UserInfo is nil, then no notification will be broadcasted. */
 @property (nonatomic, readwrite, retain) NSDictionary *userInfo;
 
-/** initializes the animation frame with a spriteframe, number of delay units and a notification user info */
--(id) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame delayUnits:(float)delayUnits userInfo:(NSDictionary*)userInfo;
-
 -(id)initWithObject: (void*)object;
 
 -(void*) getImpl;

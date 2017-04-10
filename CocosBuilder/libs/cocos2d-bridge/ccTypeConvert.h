@@ -77,14 +77,6 @@
 +(NSMutableArray*)VectorAnimationFrameToNSMutableArray:(cocos2d::Vector<cocos2d::AnimationFrame*>) vec;
 +(cocos2d::Vector<cocos2d::AnimationFrame*>)NSMutableArrayToVectorAnimationFrame:(NSMutableArray*) arr;
 
-// NSDictionary* <—> Map
-// Sprite
-+(NSDictionary*)MapSpriteToNSDictionary:(cocos2d::Map<std::string, cocos2d::Sprite*>) m;
-+(cocos2d::Map<std::string, cocos2d::Sprite*>)NSDictionaryToMapSprite:(NSDictionary*) dic;
-// Node
-+(NSDictionary*)MapNodeToNSDictionary:(cocos2d::Map<std::string, cocos2d::Node*>) m;
-+(cocos2d::Map<std::string, cocos2d::Node*>)NSDictionaryToMapNode:(NSDictionary*) dic;
-
 // CGImage* <--> Image
 +(CGImageRef)ImageToCGImage:(cocos2d::Image*) img;
 +(cocos2d::Image*)CGImageToImage:(CGImageRef) cgimg;

@@ -33,6 +33,7 @@ typedef enum {
 @class CCScene;
 @class CCScheduler;
 @class CCActionManager;
+@class CCGLView;
 
 /**Class that creates and handle the main Window and manages how
  and when to execute the Scenes.
