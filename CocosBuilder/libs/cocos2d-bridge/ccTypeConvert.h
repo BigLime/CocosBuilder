@@ -18,6 +18,7 @@
 #import "base/CCMap.h"
 #import "platform/CCImage.h"
 #import "base/CCValue.h"
+#import "ccTypes.h"
 
 @interface ccTypeConvert : NSObject
 {
@@ -79,5 +80,13 @@
 // CGImage* <--> Image
 +(CGImageRef)ImageToCGImage:(cocos2d::Image*) img;
 +(cocos2d::Image*)CGImageToImage:(CGImageRef) cgimg;
+
+// ccBlendFunc <--> cocos2d::BlendFunc
++(cocos2d::BlendFunc) ccBlendFuncToBlendFunc: (ccBlendFunc) src;
++(ccBlendFunc) BlendFuncToccBlendFunc: (cocos2d::BlendFunc) src;
+
+// ccColor3B <--> cocos2d::Color3B
++(cocos2d::Color3B) ccColor3BToColor3B: (ccColor3B) src;
++(ccColor3B) Color3BToccColor3B: (cocos2d::Color3B) src;
 
 @end
