@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "math/Vec2.h"
+#import "2d/CCNode.h"
+#import "2d/CCSprite.h"
+#import "platform/CCImage.h"
+
 @interface ccTypeConvert : NSObject
 {
     
