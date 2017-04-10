@@ -7,7 +7,7 @@
 //
 
 #import "ccTypeConvert.h"
-#import "cocos2d.h"
+#import "ccTypes.h"
 
 @implementation ccTypeConvert
 
@@ -312,4 +312,29 @@
     return img;
 }
 
++(cocos2d::BlendFunc)ccBlendFuncToBlendFunc:(ccBlendFunc)src
+{
+    cocos2d::BlendFunc dst = {};
+    dst.src = src.src;
+    dst.dst = src.dst;
+    return dst;
+}
+
++(ccBlendFunc)BlendFuncToccBlendFunc:(cocos2d::BlendFunc)src
+{
+    ccBlendFunc dst = {};
+    dst.src = src.src;
+    dst.dst = src.dst;
+    return dst;
+}
+
++(cocos2d::Color3B)ccColor3BToColor3B:(ccColor3B)src
+{
+    return cocos2d::Color3B(src.r, src.g, src.b);
+}
+
++(ccColor3B) Color3BToccColor3B(cocos2d::Color3B)src
+{
+    ccColor3B dst = { src.r, src.g, src.b }; 
+}
 @end
