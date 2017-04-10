@@ -186,6 +186,8 @@
 		D301EEA71E98AC6B0068C694 /* CCDirector.h in Sources */ = {isa = PBXBuildFile; fileRef = 9D5442D31E964D51005AD3E4 /* CCDirector.h */; };
 		D301EEA81E98AC6B0068C694 /* ccTypeConvert.h in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD691E9741E600E0C7B7 /* ccTypeConvert.h */; };
 		D301EEA91E98AC6B0068C694 /* ccTypeConvert.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D77FD6A1E9741E600E0C7B7 /* ccTypeConvert.mm */; };
+		D32693281E9B56B8004ADEE3 /* CCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D32693251E9B56B8004ADEE3 /* CCArray.m */; };
+		D32693291E9B56B8004ADEE3 /* ccCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D32693271E9B56B8004ADEE3 /* ccCArray.m */; };
 		E3127AA516C1D8E600D09AA4 /* CCBDirectoryComparer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */; };
 		E312972E16CC33B200A09155 /* SequencerPopoverBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */; };
 		E312973316CC377700A09155 /* SequencerPopoverBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E312973216CC377700A09155 /* SequencerPopoverBlock.m */; };
@@ -1082,6 +1084,10 @@
 		A77EF58F171FD30E00451DA4 /* cwebp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cwebp; sourceTree = "<group>"; };
 		D301EEAA1E98BBB00068C694 /* CCProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCProtocols.h; path = "cocos2d-bridge/CCProtocols.h"; sourceTree = "<group>"; };
 		D301EEAF1E98C5610068C694 /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypes.h; path = "cocos2d-bridge/ccTypes.h"; sourceTree = "<group>"; };
+		D32693241E9B56B8004ADEE3 /* CCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCArray.h; path = "cocos2d-bridge/support/CCArray.h"; sourceTree = "<group>"; };
+		D32693251E9B56B8004ADEE3 /* CCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCArray.m; path = "cocos2d-bridge/support/CCArray.m"; sourceTree = "<group>"; };
+		D32693261E9B56B8004ADEE3 /* ccCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccCArray.h; path = "cocos2d-bridge/support/ccCArray.h"; sourceTree = "<group>"; };
+		D32693271E9B56B8004ADEE3 /* ccCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ccCArray.m; path = "cocos2d-bridge/support/ccCArray.m"; sourceTree = "<group>"; };
 		D34B821F1E988ED10038E5FE /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "libs/cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
 		D37183D21E9683AF00D533E3 /* CCLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLayer.h; path = "cocos2d-bridge/CCLayer.h"; sourceTree = "<group>"; };
 		D37183D31E9683AF00D533E3 /* CCLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCLayer.mm; path = "cocos2d-bridge/CCLayer.mm"; sourceTree = "<group>"; };
@@ -2648,6 +2654,17 @@
 			name = WebP;
 			sourceTree = "<group>";
 		};
+		D32693231E9B56A6004ADEE3 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				D32693241E9B56B8004ADEE3 /* CCArray.h */,
+				D32693251E9B56B8004ADEE3 /* CCArray.m */,
+				D32693261E9B56B8004ADEE3 /* ccCArray.h */,
+				D32693271E9B56B8004ADEE3 /* ccCArray.m */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
 		D34B82201E988ED10038E5FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2662,6 +2679,7 @@
 			isa = PBXGroup;
 			children = (
 				D301EEAF1E98C5610068C694 /* ccTypes.h */,
+				D32693231E9B56A6004ADEE3 /* support */,
 				D301EEAA1E98BBB00068C694 /* CCProtocols.h */,
 				D37183F51E97BE4300D533E3 /* CCLabelAtlas.h */,
 				D37183F61E97BE4300D533E3 /* CCLabelAtlas.mm */,
@@ -4887,6 +4905,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32693281E9B56B8004ADEE3 /* CCArray.m in Sources */,
+				D32693291E9B56B8004ADEE3 /* ccCArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5223,6 +5243,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5231,8 +5253,8 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ccBuilder/CocosBuilder-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"CC_DIRECTOR_MAC_THREAD=2",
 					"COCOS2D_DEBUG=1",
@@ -5242,7 +5264,9 @@
 				HEADER_SEARCH_PATHS = (
 					libs/Fragaria,
 					"../Examples/CocosBuilderExample/libs/CCBReader/**",
-					"libs/cocos2d-x/cocos/**",
+					"libs/cocos2d-x/cocos",
+					"libs/cocos2d-x/external",
+					"libs/cocos2d-bridge/**",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -5252,6 +5276,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CocosBuilder;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5260,6 +5285,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5268,8 +5295,8 @@
 					"\"$(SRCROOT)/libs\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ccBuilder/CocosBuilder-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"CC_DIRECTOR_MAC_THREAD=2",
 					NDEBUG,
@@ -5279,7 +5306,9 @@
 				HEADER_SEARCH_PATHS = (
 					libs/Fragaria,
 					"../Examples/CocosBuilderExample/libs/CCBReader/**",
-					"libs/cocos2d-x/cocos/**",
+					"libs/cocos2d-x/cocos",
+					"libs/cocos2d-x/external",
+					"libs/cocos2d-bridge/**",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -5289,6 +5318,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CocosBuilder;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
