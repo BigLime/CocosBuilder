@@ -99,7 +99,7 @@
 // issue #994
 +(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format
 {
-    cocos2d::RenderTexture* rt = cocos2d::RenderTexture::create(w, h, (cocos2d::Texture2D::PixelFormat)format);
+    cocos2d::RenderTexture* rt = cocos2d::RenderTexture::create(w, h, [ccTypeConvert CCTexture2DPixelFormatToPixelFormat:format]);
     return [[[CCRenderTexture alloc] initWithObject:rt] autorelease];
 }
 
@@ -119,14 +119,14 @@
 - (id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->initWithWidthAndHeight(w, h, (cocos2d::Texture2D::PixelFormat)format);
+    rt->initWithWidthAndHeight(w, h, [ccTypeConvert CCTexture2DPixelFormatToPixelFormat:format]);
     return [self initWithObject:rt];
 }
 
 -(id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat
 {
     cocos2d::RenderTexture* rt = (cocos2d::RenderTexture*)impl_;
-    rt->initWithWidthAndHeight(w, h, (cocos2d::Texture2D::PixelFormat)format, depthStencilFormat);
+    rt->initWithWidthAndHeight(w, h, [ccTypeConvert CCTexture2DPixelFormatToPixelFormat:format], depthStencilFormat);
     return [self initWithObject:rt];
 }
 

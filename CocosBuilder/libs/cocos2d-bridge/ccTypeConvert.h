@@ -22,6 +22,9 @@
 #import "platform/CCImage.h"
 #import "support/CCArray.h"
 #import "ccTypes.h"
+#import "base/ccTypes.h"
+#import "CCTexture2D.h"
+#import "renderer/CCTexture2D.h"
 
 @interface ccTypeConvert : NSObject
 {
@@ -173,5 +176,17 @@
 //// ccAnimationFrameData <--> cocos2d::AnimationFrameData
 //+(ccAnimationFrameData) AnimationFrameDataToccAnimationFrameData: (cocos2d::AnimationFrameData) src;
 //+(cocos2d::AnimationFrameData) ccAnimationFrameDataToAnimationFrameData: (ccAnimationFrameData) src;
+
+// CCVerticalTextAlignment <--> cocos2d::TextVAlignment
++(CCVerticalTextAlignment) TextVAlignmentToCCVerticalTextAlignment:(cocos2d::TextVAlignment) src;
++(cocos2d::TextVAlignment) CCVerticalTextAlignmentToTextVAlignment:(CCVerticalTextAlignment) src;
+
+// CCTextAlignment <--> cocos2d::TextHAlignment
++(CCTextAlignment) TextHAlignmentToCCTextAlignment:(cocos2d::TextHAlignment) src;
++(cocos2d::TextHAlignment) CCTextAlignmentToTextHAlignment:(CCTextAlignment) src;
+
+// CCTexture2DPixelFormat <--> cocos2d::Texture2D::PixelFormat
++(CCTexture2DPixelFormat) PixelFormatToCCTexture2DPixelFormat:(cocos2d::Texture2D::PixelFormat) src;
++(cocos2d::Texture2D::PixelFormat) CCTexture2DPixelFormatToPixelFormat:(CCTexture2DPixelFormat) src;
 
 @end

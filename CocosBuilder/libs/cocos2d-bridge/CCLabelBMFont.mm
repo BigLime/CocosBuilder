@@ -16,9 +16,8 @@
 // @synthesize alignment = _alignment;
 -(void)setAlignment:(CCTextAlignment)alignment
 {
-    // TODO: convert CCTextAlignment to cocos2d::TextHAlignment.
     cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
-    label->setAlignment((cocos2d::TextHAlignment)alignment);
+    label->setAlignment([ccTypeConvert CCTextAlignmentToTextHAlignment:alignment]);
 }
 
 -(CCTextAlignment)alignment
@@ -97,7 +96,7 @@
 {
     // TODO: convert CCTextAlignment, convert CGPoint.
     cocos2d::Point cppOffset = [ccTypeConvert CGPointToPoint: offset];
-    cocos2d::TextHAlignment cppAlign = (cocos2d::TextHAlignment)alignment;
+    cocos2d::TextHAlignment cppAlign = [ccTypeConvert CCTextAlignmentToTextHAlignment:alignment];
     
     cocos2d::LabelBMFont* label = cocos2d::LabelBMFont::create([theString UTF8String], [fntFile UTF8String], width, cppAlign, cppOffset);
     label->retain();
