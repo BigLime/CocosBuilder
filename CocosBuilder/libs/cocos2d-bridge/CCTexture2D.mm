@@ -377,7 +377,7 @@
 }
 +(void) PVRImagesHavePremultipliedAlpha:(BOOL)haveAlphaPremultiplied
 {
-    cocos2d::Texture2D::PVRImagesHavePremultipliedAlpha(haveAlphaPremultiplied);
+    cocos2d::Image::setPVRImagesHavePremultipliedAlpha(haveAlphaPremultiplied);
 }
 @end
 
@@ -413,11 +413,11 @@
 -(void) setTexParameters:(ccTexParams*)texParams
 {
     cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
-    cocos2d::Texture2D::_TexParams* _texParams = new cocos2d::Texture2D::_TexParams;
-    _texParams->minFilter = texParams->minFilter;
-    _texParams->magFilter = texParams->magFilter;
-    _texParams->wrapS = texParams->wrapS;
-    _texParams->wrapT = texParams->wrapT;
+    cocos2d::Texture2D::TexParams _texParams;
+    _texParams.minFilter = texParams->minFilter;
+    _texParams.magFilter = texParams->magFilter;
+    _texParams.wrapS = texParams->wrapS;
+    _texParams.wrapT = texParams->wrapT;
     texture2D->setTexParameters(_texParams);
 }
 
