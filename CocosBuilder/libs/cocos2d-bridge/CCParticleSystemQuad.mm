@@ -40,14 +40,12 @@
 
 -(void)setTexture:(CCTexture2D *)texture withRect:(CGRect)rect
 {
-    // TODO: convert CGRect CCTexture2D
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
     sys->setTextureWithRect((cocos2d::Texture2D*)[texture getImpl], [ccTypeConvert CGRectToRect:rect]);
 }
 
 -(void)setTexture:(CCTexture2D *)texture
 {
-    // TODO: convert CGRect CCTexture2D
     cocos2d::ParticleSystemQuad* sys = (cocos2d::ParticleSystemQuad*)impl_;
     sys->setTexture((cocos2d::Texture2D*)[texture getImpl]);
 }
