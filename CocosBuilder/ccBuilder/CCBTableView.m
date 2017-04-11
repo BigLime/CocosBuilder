@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSGradient.h>
 #import "CCBTableView.h"
 
 

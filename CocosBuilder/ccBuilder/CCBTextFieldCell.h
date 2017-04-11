@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSTextFieldCell.h>
 
 @interface CCBTextFieldCell : NSTextFieldCell {    
 }

@@ -23,6 +23,8 @@
  * THE SOFTWARE.
  */
 
+#import "CGPointExtension.h"
+
 #import "CCBDocument.h"
 #import "ResolutionSetting.h"
 

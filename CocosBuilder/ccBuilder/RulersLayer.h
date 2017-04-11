@@ -21,8 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-#import "cocos2d.h"
+#import "CCLabelAtlas.h"
 #import "CCScale9Sprite.h"
 
 @interface RulersLayer : CCLayer

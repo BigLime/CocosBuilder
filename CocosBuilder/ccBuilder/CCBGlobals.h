@@ -24,7 +24,6 @@
  */
 
 #import <Foundation/Foundation.h>
-// #import "cocos2d.h"
 #import "CocosScene.h"
 
 @class CocosBuilderAppDelegate;

@@ -23,7 +23,6 @@
  */
 
 #import "CCBModalSheetController.h"
-#import "cocos2d.h"
 
 @class ProjectSettings;
 

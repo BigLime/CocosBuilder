@@ -23,7 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSMenuItem.h>
 #import "HTTPServer.h"
 
 #define kCCBDefaultPort 54321

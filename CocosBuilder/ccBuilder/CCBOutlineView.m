@@ -24,7 +24,7 @@
  */
 
 #import "CCBOutlineView.h"
-
+#import "AppKit/NSGradient.h"
 
 @implementation CCBOutlineView
 

@@ -23,12 +23,13 @@
  * THE SOFTWARE.
  */
 
+#import "CCArray.h"
+#import "CGPointExtension.h"
 #import "CocosBuilderAppDelegate.h"
 #import "CocosScene.h"
 #import "CCBGLView.h"
 #import "NSFlippedView.h"
 #import "CCBGlobals.h"
-#import "cocos2d.h"
 #import "CCBWriterInternal.h"
 #import "CCBReaderInternal.h"
 #import "CCBReaderInternalV1.h"

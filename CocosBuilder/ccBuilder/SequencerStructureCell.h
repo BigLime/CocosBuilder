@@ -23,7 +23,6 @@
  */
 
 #import "CCBTextFieldCell.h"
-#import "cocos2d.h"
 
 @interface SequencerStructureCell : CCBTextFieldCell
 {

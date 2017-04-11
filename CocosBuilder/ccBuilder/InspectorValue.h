@@ -23,8 +23,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+#import <AppKit/NSView.h>
+#import <AppKit/NSControl.h>
 
+@class CCNode;
 @class CocosBuilderAppDelegate;
 
 @interface InspectorValue : NSObject <NSControlTextEditingDelegate>

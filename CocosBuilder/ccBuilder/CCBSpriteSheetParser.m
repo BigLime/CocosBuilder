@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
+#import "CCSpriteFrameCache.h"
 #import "CCBSpriteSheetParser.h"
+
 
 static NSInteger strSort(id num1, id num2, void *context)
 {

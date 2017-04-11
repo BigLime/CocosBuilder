@@ -23,7 +23,6 @@
  */
 
 #import <AppKit/AppKit.h>
-#import "cocos2d.h"
 
 @class SequencerChannel;
 

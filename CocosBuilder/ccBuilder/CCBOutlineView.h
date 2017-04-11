@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSOutlineView.h>
 
 @interface CCBOutlineView : NSOutlineView {
 }

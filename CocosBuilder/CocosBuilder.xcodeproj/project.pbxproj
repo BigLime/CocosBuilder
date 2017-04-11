@@ -214,6 +214,7 @@
 		D3221D991E9C8EC70032ABB2 /* ccCArray.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221D931E9C8EA40032ABB2 /* ccCArray.h */; };
 		D3221D9A1E9C8EC70032ABB2 /* ccCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221D941E9C8EA40032ABB2 /* ccCArray.m */; };
 		D3221DAA1E9C90690032ABB2 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DA31E9C90420032ABB2 /* libcocos2d Mac.a */; };
+		D3221DAD1E9CB32B0032ABB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */; };
 		E3127AA516C1D8E600D09AA4 /* CCBDirectoryComparer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */; };
 		E312972E16CC33B200A09155 /* SequencerPopoverBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */; };
 		E312973316CC377700A09155 /* SequencerPopoverBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E312973216CC377700A09155 /* SequencerPopoverBlock.m */; };
@@ -1152,6 +1153,8 @@
 		D3221D931E9C8EA40032ABB2 /* ccCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccCArray.h; path = "cocos2d-bridge/support/ccCArray.h"; sourceTree = "<group>"; };
 		D3221D941E9C8EA40032ABB2 /* ccCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ccCArray.m; path = "cocos2d-bridge/support/ccCArray.m"; sourceTree = "<group>"; };
 		D3221D9C1E9C90410032ABB2 /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "libs/cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
+		D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPointExtension.h; path = "cocos2d-bridge/support/CGPointExtension.h"; sourceTree = "<group>"; };
+		D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPointExtension.m; path = "cocos2d-bridge/support/CGPointExtension.m"; sourceTree = "<group>"; };
 		E3127AA316C1D8E600D09AA4 /* CCBDirectoryComparer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBDirectoryComparer.h; sourceTree = "<group>"; };
 		E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBDirectoryComparer.m; sourceTree = "<group>"; };
 		E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequencerPopoverBlock.xib; sourceTree = "<group>"; };
@@ -2785,6 +2788,8 @@
 		D3221D901E9C8E980032ABB2 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */,
+				D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */,
 				D3221D911E9C8EA40032ABB2 /* CCArray.h */,
 				D3221D921E9C8EA40032ABB2 /* CCArray.m */,
 				D3221D931E9C8EA40032ABB2 /* ccCArray.h */,
@@ -5033,6 +5038,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3221DAD1E9CB32B0032ABB2 /* CGPointExtension.m in Sources */,
 				E398C03B14FB8F850078E771 /* CCBXCocos2diPhone.m in Sources */,
 				E3F2C21314FC157E007B660D /* CCBXCocos2diPhoneWriter.m in Sources */,
 			);

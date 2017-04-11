@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+#import "CGPointExtension.h"
+#import "ccTypes.h"
+
 #import "CCBWriterInternal.h"
 #import "CCBReaderInternalV1.h"
 #import "NodeInfo.h"

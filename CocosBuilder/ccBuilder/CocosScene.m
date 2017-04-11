@@ -23,6 +23,12 @@
  * THE SOFTWARE.
  */
 
+#import "CCSprite.h"
+#import "CCTextureCache.h"
+#import "CCRenderTexture.h"
+#import "CCDirector.h"
+#import "CGPointExtension.h"
+
 #import "CocosScene.h"
 #import "CCBGlobals.h"
 #import "CocosBuilderAppDelegate.h"
@@ -227,7 +233,7 @@ static CocosScene* sharedCocosScene;
             if (rotateDevice) borderDevice.rotation = 90;
             else borderDevice.rotation = 0;
             
-            borderDevice.texture = deviceTexture;
+            // borderDevice.texture = deviceTexture;
             borderDevice.textureRect = CGRectMake(0, 0, deviceTexture.contentSize.width, deviceTexture.contentSize.height);
             
             borderDevice.visible = YES;
@@ -435,7 +441,7 @@ static CocosScene* sharedCocosScene;
                 sel.anchorPoint = ccp(0,0);
                 sel.rotation = angle;
                 sel.position = pos;
-                sel.preferedSize = CGSizeMake(width + kCCBSelectionOutset * 2, height + kCCBSelectionOutset * 2);
+                sel.preferredSize = CGSizeMake(width + kCCBSelectionOutset * 2, height + kCCBSelectionOutset * 2);
                 [selectionLayer addChild:sel];
                 
                 /*

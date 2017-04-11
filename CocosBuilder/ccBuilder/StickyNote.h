@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-#import "cocos2d.h"
 
 #define kCCBNoteDefaultWidth 150
 #define kCCBNoteDefaultHeight 150

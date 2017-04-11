@@ -23,9 +23,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
 
 #define kCCBUseRegularFile @"Use regular file"
+
+typedef struct _ccColor3B ccColor3B;
+@class CCNode;
 
 @interface CCBWriterInternal : NSObject {
 @private

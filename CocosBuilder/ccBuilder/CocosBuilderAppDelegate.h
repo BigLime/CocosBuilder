@@ -24,7 +24,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-// #import "cocos2d.h"
 #import "PSMTabBarControl.h"
 
 #define kCCBNumCanvasDevices 12
@@ -73,6 +72,8 @@ enum {
     kCCBArrangeSendToBack,
 };
 
+
+@class CCNode;
 
 @class CCBDocument;
 @class ProjectSettings;

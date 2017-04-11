@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCNode.h"
 #import "PlugInManager.h"
 #import "PlugInExport.h"
 

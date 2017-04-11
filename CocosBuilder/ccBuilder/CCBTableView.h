@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSTableView.h>
 
 @interface CCBTableView : NSTableView {    
 }

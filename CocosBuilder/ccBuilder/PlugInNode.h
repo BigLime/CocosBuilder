@@ -23,8 +23,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
 
+@class CCNode;
 @interface PlugInNode : NSObject
 {
     NSBundle* bundle;

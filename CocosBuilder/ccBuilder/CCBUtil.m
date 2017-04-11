@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSMenu.h>
 #import "CCBUtil.h"
 
 

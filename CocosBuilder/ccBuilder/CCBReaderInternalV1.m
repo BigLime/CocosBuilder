@@ -22,6 +22,15 @@
  * THE SOFTWARE.
  */
 
+#import "CCSprite.h"
+#import "CCMenu.h"
+#import "CCMenuItem.h"
+#import "CCLabeTTF.h"
+#import "CCLabelBMFont.h"
+#import "CGPointExtension.h"
+#import "CCParticleSystem.h"
+#import "CCParticleSystemQuad.h"
+
 #import "CCBReaderInternalV1.h"
 #import "CCBReaderInternal.h"
 #import "CCBWriterInternal.h"

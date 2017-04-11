@@ -23,7 +23,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "cocos2d.h"
 
 @class SequencerKeyframe;
 

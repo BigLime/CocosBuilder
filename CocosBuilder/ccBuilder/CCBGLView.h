@@ -24,10 +24,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+#import <AppKit/NSView.h>
+
+#import "CCGLView.h"
+
 @class CocosBuilderAppDelegate;
 @class CocosScene;
-
 @interface CCBGLView : CCGLView {
     
     NSTrackingRectTag trackingTag;
