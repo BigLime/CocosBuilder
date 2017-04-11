@@ -24,6 +24,7 @@ const NSUInteger defaultCapacity = 29;
     else
     {
         cocos2d::SpriteBatchNode* bathNode = new cocos2d::SpriteBatchNode();
+        bathNode->retain();
         bathNode->autorelease();
         impl_ = bathNode;
         
