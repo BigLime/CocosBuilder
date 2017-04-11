@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSTextField.h>
 #import "InspectorValue.h"
 
 @interface InspectorCustom : InspectorValue<NSTextFieldDelegate>

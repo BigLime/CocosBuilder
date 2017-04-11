@@ -24,6 +24,7 @@
 
 #import "CCBModalSheetController.h"
 
+@class CCNode;
 @interface CustomPropSettingsWindow : CCBModalSheetController
 {
     NSMutableArray* settings;

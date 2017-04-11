@@ -23,7 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSToolbar.h>
 @interface MainToolbarDelegate : NSObject <NSToolbarDelegate>
 {
     NSDictionary* plugInSettings;

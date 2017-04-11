@@ -23,6 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSView.h>
 
 @class SequencerKeyframe;
 

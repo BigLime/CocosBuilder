@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCDirector.h"
 #import "PublishSettingsWindow.h"
 #import "ProjectSettings.h"
 #import "CCBHTTPServer.h"

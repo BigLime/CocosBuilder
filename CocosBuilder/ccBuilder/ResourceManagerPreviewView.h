@@ -23,6 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSSplitView.h>
 
 @class CCBImageView;
 @class CocosBuilderAppDelegate;
