@@ -346,7 +346,6 @@
             break;
         case kCCLineBreakModeCharacterWrap:
             isLineBreakMode = true;
-            break;
         default:
             isLineBreakMode = false;
             break;
