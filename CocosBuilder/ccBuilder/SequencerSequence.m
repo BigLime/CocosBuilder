@@ -33,7 +33,7 @@
 #import "SequencerSoundChannel.h"
 #import "SequencerNodeProperty.h"
 #import "SequencerKeyframe.h"
-#import "audio/ios/SimpleAudioEngine_objc.h"
+#import "SimpleAudioEngine.h"
 #import "ResourceManager.h"
 
 @implementation SequencerSequence
@@ -187,8 +187,10 @@
 - (float) positionToTime:(float)pos
 {
     float rawTime = ((pos-TIMELINE_PAD_PIXELS)/timelineScale)+timelineOffset;
-    float capped = max(roundf(rawTime * timelineResolution)/timelineResolution, 0);
-    return min(capped, timelineLength);
+    float round = roundf(rawTime * timelineResolution)/timelineResolution;
+    float capped = round > 0 ? round : 0;
+
+    return (capped < timelineLength)? capped : timelineLength;
 }
 
 - (NSString*) formatTime:(float)time

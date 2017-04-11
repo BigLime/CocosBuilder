@@ -103,7 +103,7 @@ BOOL ccArrayContainsObject(ccArray *arr, id object)
 /** Appends an object. Bahaviour undefined if array doesn't have enough capacity. */
 void ccArrayAppendObject(ccArray *arr, id object)
 {
-	arr->arr[arr->num] = CC_ARC_RETAIN(object);
+	arr->arr[arr->num] = [object retain];
 	arr->num++;
 }
 
@@ -142,7 +142,7 @@ void ccArrayInsertObjectAtIndex(ccArray *arr, id object, NSUInteger index)
 	if( remaining > 0)
 		memmove((void *)&arr->arr[index+1], (void *)&arr->arr[index], sizeof(id) * remaining );
 	
-	arr->arr[index] = CC_ARC_RETAIN(object);
+	arr->arr[index] = [object retain];
 	arr->num++;
 }
 
@@ -162,14 +162,14 @@ void ccArraySwapObjectsAtIndexes(ccArray *arr, NSUInteger index1, NSUInteger ind
 void ccArrayRemoveAllObjects(ccArray *arr)
 {
 	while( arr->num > 0 )
-		CC_ARC_RELEASE(arr->arr[--arr->num]);
+		[arr->arr[--arr->num] release];
 }
 
 /** Removes object at specified index and pushes back all subsequent objects.
  Behaviour undefined if index outside [0, num-1]. */
 void ccArrayRemoveObjectAtIndex(ccArray *arr, NSUInteger index)
 {
-	CC_ARC_RELEASE(arr->arr[index]);
+	[arr->arr[index] release];
 	arr->num--;
 	
 	NSUInteger remaining = arr->num - index;
@@ -182,7 +182,7 @@ void ccArrayRemoveObjectAtIndex(ccArray *arr, NSUInteger index)
  Behaviour undefined if index outside [0, num-1]. */
 void ccArrayFastRemoveObjectAtIndex(ccArray *arr, NSUInteger index)
 {
-	CC_ARC_RELEASE(arr->arr[index]);
+	[arr->arr[index] release];
 	NSUInteger last = --arr->num;
 	arr->arr[index] = arr->arr[last];
 }
@@ -222,7 +222,7 @@ void ccArrayFullRemoveArray(ccArray *arr, ccArray *minusArr)
 	
 	for( i = 0; i < arr->num; i++) {
 		if( ccArrayContainsObject(minusArr, arr->arr[i]) ) {
-			CC_ARC_RELEASE(arr->arr[i]);
+            [arr->arr[i] release];
 			back++;
 		} else
 			arr->arr[i - back] = arr->arr[i];

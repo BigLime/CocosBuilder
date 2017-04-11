@@ -199,9 +199,21 @@
 		D3221D991E9C8EC70032ABB2 /* ccCArray.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221D931E9C8EA40032ABB2 /* ccCArray.h */; };
 		D3221D9A1E9C8EC70032ABB2 /* ccCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221D941E9C8EA40032ABB2 /* ccCArray.m */; };
 		D3221DAA1E9C90690032ABB2 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DA31E9C90420032ABB2 /* libcocos2d Mac.a */; };
-		D3221DAD1E9CB32B0032ABB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */; };
 		D3221DB81E9CBF000032ABB2 /* CGPointExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */; };
 		D3221DB91E9CBF000032ABB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */; };
+		D3221DD01E9CE9A20032ABB2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DCF1E9CE9A20032ABB2 /* IOKit.framework */; };
+		D3221DD71E9CE9AF0032ABB2 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DD61E9CE9AF0032ABB2 /* libiconv.2.4.0.tbd */; };
+		D3221DEC1E9CEAEB0032ABB2 /* CCActionInterval.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DD81E9CEA700032ABB2 /* CCActionInterval.h */; };
+		D3221DED1E9CEAEB0032ABB2 /* CCActionInterval.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3221DD91E9CEA700032ABB2 /* CCActionInterval.mm */; };
+		D3221DEE1E9CEAEB0032ABB2 /* CCDirectorMac.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DDC1E9CEA700032ABB2 /* CCDirectorMac.h */; };
+		D3221DEF1E9CEAEB0032ABB2 /* CCDirectorMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3221DDD1E9CEA700032ABB2 /* CCDirectorMac.mm */; };
+		D3221DF01E9CEAEB0032ABB2 /* CCScale9Sprite.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DDE1E9CEA700032ABB2 /* CCScale9Sprite.h */; };
+		D3221DF11E9CEAEB0032ABB2 /* CCScale9Sprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3221DDF1E9CEA700032ABB2 /* CCScale9Sprite.mm */; };
+		D3221DF21E9CEAEB0032ABB2 /* CCScheduler.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DE01E9CEA700032ABB2 /* CCScheduler.h */; };
+		D3221DF31E9CEAEB0032ABB2 /* CCScheduler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3221DE11E9CEA700032ABB2 /* CCScheduler.mm */; };
+		D3221DF41E9CEAEB0032ABB2 /* SimpleAudioEngine.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DE21E9CEA700032ABB2 /* SimpleAudioEngine.h */; };
+		D3221DF51E9CEAEB0032ABB2 /* SimpleAudioEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3221DE31E9CEA700032ABB2 /* SimpleAudioEngine.mm */; };
+		D3221DF71E9CF3C20032ABB2 /* libmathCommon.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DF61E9CF3C20032ABB2 /* libmathCommon.A.tbd */; };
 		E3127AA516C1D8E600D09AA4 /* CCBDirectoryComparer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */; };
 		E312972E16CC33B200A09155 /* SequencerPopoverBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */; };
 		E312973316CC377700A09155 /* SequencerPopoverBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E312973216CC377700A09155 /* SequencerPopoverBlock.m */; };
@@ -1091,6 +1103,19 @@
 		D3221D9C1E9C90410032ABB2 /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "libs/cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
 		D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPointExtension.h; path = "cocos2d-bridge/support/CGPointExtension.h"; sourceTree = "<group>"; };
 		D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPointExtension.m; path = "cocos2d-bridge/support/CGPointExtension.m"; sourceTree = "<group>"; };
+		D3221DCF1E9CE9A20032ABB2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D3221DD61E9CE9AF0032ABB2 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		D3221DD81E9CEA700032ABB2 /* CCActionInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCActionInterval.h; path = "cocos2d-bridge/CCActionInterval.h"; sourceTree = "<group>"; };
+		D3221DD91E9CEA700032ABB2 /* CCActionInterval.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCActionInterval.mm; path = "cocos2d-bridge/CCActionInterval.mm"; sourceTree = "<group>"; };
+		D3221DDC1E9CEA700032ABB2 /* CCDirectorMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCDirectorMac.h; path = "cocos2d-bridge/CCDirectorMac.h"; sourceTree = "<group>"; };
+		D3221DDD1E9CEA700032ABB2 /* CCDirectorMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDirectorMac.mm; path = "cocos2d-bridge/CCDirectorMac.mm"; sourceTree = "<group>"; };
+		D3221DDE1E9CEA700032ABB2 /* CCScale9Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScale9Sprite.h; path = "cocos2d-bridge/CCScale9Sprite.h"; sourceTree = "<group>"; };
+		D3221DDF1E9CEA700032ABB2 /* CCScale9Sprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCScale9Sprite.mm; path = "cocos2d-bridge/CCScale9Sprite.mm"; sourceTree = "<group>"; };
+		D3221DE01E9CEA700032ABB2 /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScheduler.h; path = "cocos2d-bridge/CCScheduler.h"; sourceTree = "<group>"; };
+		D3221DE11E9CEA700032ABB2 /* CCScheduler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCScheduler.mm; path = "cocos2d-bridge/CCScheduler.mm"; sourceTree = "<group>"; };
+		D3221DE21E9CEA700032ABB2 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleAudioEngine.h; path = "cocos2d-bridge/SimpleAudioEngine.h"; sourceTree = "<group>"; };
+		D3221DE31E9CEA700032ABB2 /* SimpleAudioEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SimpleAudioEngine.mm; path = "cocos2d-bridge/SimpleAudioEngine.mm"; sourceTree = "<group>"; };
+		D3221DF61E9CF3C20032ABB2 /* libmathCommon.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libmathCommon.A.tbd; path = usr/lib/system/libmathCommon.A.tbd; sourceTree = SDKROOT; };
 		E3127AA316C1D8E600D09AA4 /* CCBDirectoryComparer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBDirectoryComparer.h; sourceTree = "<group>"; };
 		E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBDirectoryComparer.m; sourceTree = "<group>"; };
 		E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequencerPopoverBlock.xib; sourceTree = "<group>"; };
@@ -1685,6 +1710,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3221DF71E9CF3C20032ABB2 /* libmathCommon.A.tbd in Frameworks */,
+				D3221DD71E9CE9AF0032ABB2 /* libiconv.2.4.0.tbd in Frameworks */,
+				D3221DD01E9CE9A20032ABB2 /* IOKit.framework in Frameworks */,
 				D3221DAA1E9C90690032ABB2 /* libcocos2d Mac.a in Frameworks */,
 				835DB0CB17156421003A2F7B /* Security.framework in Frameworks */,
 				E3A4747C16D43BF300DB0D61 /* AVFoundation.framework in Frameworks */,
@@ -2222,6 +2250,9 @@
 		7789ABC1133AA82000CEFCC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3221DF61E9CF3C20032ABB2 /* libmathCommon.A.tbd */,
+				D3221DD61E9CE9AF0032ABB2 /* libiconv.2.4.0.tbd */,
+				D3221DCF1E9CE9A20032ABB2 /* IOKit.framework */,
 				835DB0CA17156421003A2F7B /* Security.framework */,
 				E3A4747B16D43BF300DB0D61 /* AVFoundation.framework */,
 				E3A4747916D43BEA00DB0D61 /* OpenAL.framework */,
@@ -2579,6 +2610,16 @@
 		D3221CF21E9C8DE20032ABB2 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				D3221DD81E9CEA700032ABB2 /* CCActionInterval.h */,
+				D3221DD91E9CEA700032ABB2 /* CCActionInterval.mm */,
+				D3221DDC1E9CEA700032ABB2 /* CCDirectorMac.h */,
+				D3221DDD1E9CEA700032ABB2 /* CCDirectorMac.mm */,
+				D3221DDE1E9CEA700032ABB2 /* CCScale9Sprite.h */,
+				D3221DDF1E9CEA700032ABB2 /* CCScale9Sprite.mm */,
+				D3221DE01E9CEA700032ABB2 /* CCScheduler.h */,
+				D3221DE11E9CEA700032ABB2 /* CCScheduler.mm */,
+				D3221DE21E9CEA700032ABB2 /* SimpleAudioEngine.h */,
+				D3221DE31E9CEA700032ABB2 /* SimpleAudioEngine.mm */,
 				D3221CF31E9C8DFF0032ABB2 /* CCAction.h */,
 				D3221CF41E9C8DFF0032ABB2 /* CCAction.mm */,
 				D3221CF51E9C8DFF0032ABB2 /* CCActionManager.h */,
@@ -4439,6 +4480,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3221DEC1E9CEAEB0032ABB2 /* CCActionInterval.h in Sources */,
+				D3221DED1E9CEAEB0032ABB2 /* CCActionInterval.mm in Sources */,
+				D3221DEE1E9CEAEB0032ABB2 /* CCDirectorMac.h in Sources */,
+				D3221DEF1E9CEAEB0032ABB2 /* CCDirectorMac.mm in Sources */,
+				D3221DF01E9CEAEB0032ABB2 /* CCScale9Sprite.h in Sources */,
+				D3221DF11E9CEAEB0032ABB2 /* CCScale9Sprite.mm in Sources */,
+				D3221DF21E9CEAEB0032ABB2 /* CCScheduler.h in Sources */,
+				D3221DF31E9CEAEB0032ABB2 /* CCScheduler.mm in Sources */,
+				D3221DF41E9CEAEB0032ABB2 /* SimpleAudioEngine.h in Sources */,
+				D3221DF51E9CEAEB0032ABB2 /* SimpleAudioEngine.mm in Sources */,
 				D3221DB81E9CBF000032ABB2 /* CGPointExtension.h in Sources */,
 				D3221DB91E9CBF000032ABB2 /* CGPointExtension.m in Sources */,
 				D3221D971E9C8EC70032ABB2 /* CCArray.h in Sources */,
@@ -4774,7 +4825,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3221DAD1E9CB32B0032ABB2 /* CGPointExtension.m in Sources */,
 				E398C03B14FB8F850078E771 /* CCBXCocos2diPhone.m in Sources */,
 				E3F2C21314FC157E007B660D /* CCBXCocos2diPhoneWriter.m in Sources */,
 			);
@@ -5148,11 +5198,13 @@
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/libs/MMMarkdown\"",
-					"\"$(SRCROOT)/libs/Tupac\"",
+					"$(SDKROOT)/usr/lib/system",
+					libs/MMMarkDown,
+					libs/Tupac,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CocosBuilder;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5189,11 +5241,13 @@
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/libs/MMMarkdown\"",
-					"\"$(SRCROOT)/libs/Tupac\"",
+					"$(SDKROOT)/usr/lib/system",
+					libs/MMMarkDown,
+					libs/Tupac,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CocosBuilder;
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

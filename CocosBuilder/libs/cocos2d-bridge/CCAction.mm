@@ -26,6 +26,8 @@
 
 
 #import "CCAction.h"
+#import "CCActionInterval.h"
+
 #import "CCNode.h"
 
 #import "2d/CCAction.h"
@@ -137,6 +139,9 @@
 -(void) hold
 {
     isNeedCCActionDealloc_ = YES;
+    
+    cocos2d::Action* action = static_cast<cocos2d::Action*>(impl_);
+    action->retain();
 }
 
 -(NSString*) description
@@ -297,8 +302,8 @@
 
 -(id) initWithObject: (void*) object
 {
-    impl_                   = object;
-    isNeedCCActionDealloc_  = NO;
+    impl_                          = object;
+    isNeedCCRepeatForeverDealloc_  = NO;
     
     self = [super init:impl_];
     return self;
@@ -311,7 +316,10 @@
 
 -(void) hold
 {
-    isNeedCCActionDealloc_  = YES;
+    cocos2d::RepeatForever* action = static_cast<cocos2d::RepeatForever*>(impl_);
+    action->retain();
+    
+    isNeedCCRepeatForeverDealloc_  = YES;
 }
 
 -(id) copyWithZone: (NSZone*) zone
@@ -430,6 +438,9 @@
 
 -(void) hold
 {
+    cocos2d::Speed* action = static_cast<cocos2d::Speed*>(impl_);
+    action->retain();
+    
     isNeedCCSpeedDealloc_  = YES;
 }
 
@@ -542,6 +553,9 @@
 
 -(void) hold
 {
+    cocos2d::Follow* action = static_cast<cocos2d::Follow*>(impl_);
+    action->retain();
+    
     isNeedCCFollowDealloc_  = YES;
 }
 
