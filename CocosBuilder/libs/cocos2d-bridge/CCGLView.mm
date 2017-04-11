@@ -9,7 +9,13 @@
 #import "CCGLView.h"
 
 #import "ccTypeConvert.h"
-#import "platform/desktop/CCGLViewImpl-desktop.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "platform/ios/CCGLViewImpl-ios.h"
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+#include "platform/desktop/CCGLViewImpl-desktop.h"
+#endif
 
 @implementation CCGLView
 
