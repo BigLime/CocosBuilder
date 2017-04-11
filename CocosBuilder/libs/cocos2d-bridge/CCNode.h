@@ -8,7 +8,7 @@
 
 // #import "ccGLStateCache.h"
 #import "CCProtocols.h"
-
+#import "CCGLProgram.h"
 enum
 {
     kCCNodeTagInvalid = -1,
