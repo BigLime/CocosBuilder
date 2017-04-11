@@ -10,6 +10,7 @@
 #import "CCSpriteFrame.h"
 #import "CCTexture2D.h"
 #import "CCSpriteFrameCache.h"
+#import "CCSpriteBatchNode.h"
 
 @implementation CCSprite
 
@@ -25,6 +26,7 @@
     {
         cocos2d::Sprite* sprite = cocos2d::Sprite::create();
         sprite->retain();
+        
         impl_ = sprite;
         
         isNeedSpriteDealloc_  = YES;
@@ -75,10 +77,10 @@
     return ((cocos2d::Sprite*)impl_)->getAtlasIndex();
 }
 
-- (void) setAlasIndex:(NSUInteger) _atlasIndex
+- (void) setAlasIndex:(NSUInteger) _aIndex
 {
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
-    sprite->setAtlasIndex((ssize_t)_atlasIndex);
+    sprite->setAtlasIndex((ssize_t)_aIndex);
 }
 
 - (CGRect) textureRect
@@ -92,23 +94,27 @@
 }
 - (BOOL) flipX
 {
-    return ((cocos2d::Sprite*)impl_)->isFlipX();
+    return ((cocos2d::Sprite*)impl_)->isFlippedX();
 }
 
-- (void) setFlipX:_flipX
+- (void) setFlipX:(BOOL)_flipX
 {
-    ((cocos2d::Sprite*)impl_)->setFlipX(_flipX);
+    ((cocos2d::Sprite*)impl_)->setFlippedX(_flipX);
 }
 - (BOOL) flipY
 {
-    return ((cocos2d::Sprite*)impl_)->isFlipY();
+    return ((cocos2d::Sprite*)impl_)->isFlippedY();
 }
 
-- (void) setFlipY:_flipY
+- (void) setFlipY:(BOOL)_flipY
 {
-    ((cocos2d::Sprite*)impl_)->setFlipY(_flipY);
+    ((cocos2d::Sprite*)impl_)->setFlippedY(_flipY);
 }
 
+- (void) setVertexRect:(CGRect)rect
+{
+    ((cocos2d::Sprite*)impl_)->setVertexRect([ccTypeConvert CGRectToRect:rect]);
+}
 - (CCTextureAtlas*)textureAtlas
 {
     return [[[CCTextureAtlas alloc]initWithObject:((cocos2d::Sprite*)impl_)->getTextureAtlas()] autorelease];
@@ -126,7 +132,7 @@
 
 - (void)setBatchNode:_batchNode
 {
-    cocos2d::SpriteBatchNode* batchNode = ((cocos2d::SpriteBatchNode*)[batchNode getImpl]);
+    cocos2d::SpriteBatchNode* batchNode = ((cocos2d::SpriteBatchNode*)[_batchNode getImpl]);
     ((cocos2d::Sprite*)impl_)->setBatchNode(batchNode);
 }
 - (CGPoint)offsetPosition
@@ -437,7 +443,7 @@
 {
     cocos2d::SpriteFrame *spriteFrame = (cocos2d::SpriteFrame *)[frame getImpl];
     cocos2d::Sprite* sprite = ((cocos2d::Sprite*)impl_);
-    sprite->setDisplayFrame(spriteFrame);
+    sprite->setSpriteFrame(spriteFrame);
 }
 -(void) setDisplayFrameWithAnimationName: (NSString*) animationName index:(int) frameIndex
 {
@@ -452,7 +458,7 @@
 }
 -(CCSpriteFrame*) displayFrame
 {
-    cocos2d::SpriteFrame *spriteFrame = ((cocos2d::Sprite*)impl_)->displayFrame();
+    cocos2d::SpriteFrame *spriteFrame = ((cocos2d::Sprite*)impl_)->getSpriteFrame();
     return [[[CCSpriteFrame alloc]initWithObject: spriteFrame] autorelease];
 }
 -(void) updateBlendFunc

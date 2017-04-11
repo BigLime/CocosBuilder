@@ -23,11 +23,10 @@
     }
     else
     {
-        cocos2d::Texture2D* texture2D = new cocos2d::Texture2D;
-        
+        cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
+        texture2D->retain();
+        texture2D->autorelease();
         impl_ = texture2D;
-        ((cocos2d::Texture2D*)impl_)->autorelease();
-        
         isNeedSTextureDealloc_  = YES;
     }
     return self;
@@ -140,7 +139,7 @@
         NSLog(@" cocos2d::Texture2D initWithData");
         texture2D->initWithData(data,dataLen,cocos2d::Texture2D::PixelFormat(pixelFormat),width,height,[ccTypeConvert CGSizeToSize:size]);
         impl_ = texture2D;
-        
+        texture2D->retain();
         texture2D->autorelease();
         
         isNeedSTextureDealloc_ = YES;
@@ -175,7 +174,7 @@
 - (id) initWithCGImage:(CGImageRef)cgImage resolutionType:(ccResolutionType)resolution
 {
     CCLOG("cocos2d: CCTexture2D. initWithCGImage begin.");
-    
+ /*
     CCTexture2DPixelFormat	pixelFormat;
     BOOL					hasAlpha;
     CGImageAlphaInfo		info;
@@ -221,9 +220,10 @@
     
     cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
     texture2D->initWithImage([ccTypeConvert CGImageToImage:cgImage],cocos2d::Texture2D::PixelFormat(pixelFormat));
+    texture2D->retain();
     texture2D->autorelease();
     impl_ = texture2D;
-    
+   */
     return self;
 }
 
@@ -240,6 +240,7 @@
 
 - (id) initWithString:(NSString*)string dimensions:(CGSize)dimensions hAlignment:(CCTextAlignment)hAlignment vAlignment:(CCVerticalTextAlignment)vAlignment attributedString:(NSAttributedString*)stringWithAttributes
 {
+    /*
     //TODO no initWithString by hk
     NSAssert(stringWithAttributes, @"Invalid stringWithAttributes");
     
@@ -303,7 +304,7 @@
     
     self = [self initWithData:data pixelFormat:LABEL_PIXEL_FORMAT pixelsWide:POTSize.width pixelsHigh:POTSize.height contentSize:dimensions];
     [bitmap release];
-    [image release];
+    [image release];*/
     
     return self;
     
@@ -317,6 +318,7 @@
     fintDef._fontSize = size;
     cocos2d::Texture2D* texture2D = new cocos2d::Texture2D();
     texture2D->initWithString(std::string([string UTF8String]).c_str(), fintDef);
+    texture2D->retain();
     texture2D->autorelease();
     impl_ = texture2D;
     isNeedSTextureDealloc_ = YES;
@@ -444,57 +446,18 @@
 {
     cocos2d::Texture2D::setDefaultAlphaPixelFormat(cocos2d::Texture2D::PixelFormat(format));
 }
-+(NSUInteger) bitsPerPixelForFormat:(CCTexture2DPixelFormat)format
-{
-    NSUInteger ret=0;
-    
-    switch (format) {
-        case kCCTexture2DPixelFormat_RGBA8888:
-            ret = 32;
-            break;
-        case kCCTexture2DPixelFormat_RGB888:
-            // It is 32 and not 24, since its internal representation uses 32 bits.
-            ret = 32;
-            break;
-        case kCCTexture2DPixelFormat_RGB565:
-            ret = 16;
-            break;
-        case kCCTexture2DPixelFormat_RGBA4444:
-            ret = 16;
-            break;
-        case kCCTexture2DPixelFormat_RGB5A1:
-            ret = 16;
-            break;
-        case kCCTexture2DPixelFormat_AI88:
-            ret = 16;
-            break;
-        case kCCTexture2DPixelFormat_A8:
-            ret = 8;
-            break;
-        case kCCTexture2DPixelFormat_I8:
-            ret = 8;
-            break;
-        case kCCTexture2DPixelFormat_PVRTC4:
-            ret = 4;
-            break;
-        case kCCTexture2DPixelFormat_PVRTC2:
-            ret = 2;
-            break;
-        default:
-            ret = -1;
-            NSAssert1(NO , @"bitsPerPixelForFormat: %ld, unrecognised pixel format", (long)format);
-            CCLOG("bitsPerPixelForFormat: %ld, cannot give useful result", (long)format);
-            break;
-    }
-    return ret;
-}
 +(CCTexture2DPixelFormat) defaultAlphaPixelFormat
 {
     return CCTexture2DPixelFormat(cocos2d::Texture2D::getDefaultAlphaPixelFormat());
 }
 -(NSUInteger) bitsPerPixelForFormat
 {
-    return [[self class] bitsPerPixelForFormat:[self pixelFormat]];
+    cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
+    return texture2D->getBitsPerPixelForFormat();
+}
++(NSUInteger) bitsPerPixelForFormat:(CCTexture2DPixelFormat)format
+{
+    return 0;//no use
 }
 -(NSString*) stringForFormat
 {

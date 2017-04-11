@@ -21,6 +21,7 @@
     else
     {
         cocos2d::SpriteFrame* spriteFrame = new cocos2d::SpriteFrame();
+        spriteFrame->retain();
         spriteFrame->autorelease();
         impl_ = spriteFrame;
         

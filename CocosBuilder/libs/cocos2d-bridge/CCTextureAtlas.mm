@@ -21,6 +21,7 @@
     {
         cocos2d::TextureAtlas* bathNode = new cocos2d::TextureAtlas();
         impl_ = bathNode;
+        bathNode->retain();
         bathNode->autorelease();
         
         isNeedTextureAtlasDealloc_  = YES;
