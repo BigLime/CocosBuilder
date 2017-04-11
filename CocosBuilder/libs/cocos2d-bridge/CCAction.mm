@@ -304,6 +304,11 @@
     return self;
 }
 
+-(void*) getImpl
+{
+    return impl_;
+}
+
 -(void) hold
 {
     isNeedCCActionDealloc_  = YES;

@@ -68,6 +68,12 @@ enum
 /** Initializes the action */
 -(id) init;
 
+-(id) initWithObject: (void*) object;
+
+-(void*) getImpl;
+
+-(void) hold;
+
 -(id) copyWithZone: (NSZone* ) zone;
 
 //! return YES if the action has finished

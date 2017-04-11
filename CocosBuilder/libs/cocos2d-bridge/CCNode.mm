@@ -9,6 +9,7 @@
 #import "CCNode.h"
 #import "CCGrid.h"
 #import "CCAction.h"
+#import "CCScheduler.h"
 #import "CCActionManager.h"
 
 #import "2d/CCNode.h"
@@ -496,6 +497,12 @@
     node->removeFromParent();
 }
 
+-(void)removeFromParentAndCleanup:(BOOL)cleanup
+{
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->removeFromParentAndCleanup(cleanup);
+}
+
 -(void)removeChild:(CCNode *)child
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
@@ -686,30 +693,66 @@
 
 -(void)schedule:(SEL) selector
 {
-    // TODO: no selector support.
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->schedule(nil);
+    __block id t = self;
+    [self scheduleWithBlock:^(float inParam)
+    {
+        [t performSelector:selector withObject:self afterDelay:inParam];
+    }];
 }
 
--(void)schedule:(SEL)s interval:(ccTime)interval
+-(void)scheduleWithBlock: (void (^)(float)) block
 {
-    // TODO: no selector support.
+    NSString* key = (NSString *)self;
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->schedule(nil, interval);
+    node->schedule([block](float inParam) { block(inParam); }, [key UTF8String]);
+}
+
+-(void)schedule:(SEL)selector interval:(ccTime)interval
+{
+    __block id t = self;
+    [self scheduleWithBlock:^(float inParam)
+     {
+         [t performSelector:selector withObject:self afterDelay:inParam];
+     } interval:interval];
+}
+
+-(void)scheduleWithBlock:(void (^)(float)) block interval:(ccTime)seconds
+{
+    NSString* key = (NSString *)self;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->schedule([block](float inParam) { block(inParam); }, seconds, [key UTF8String]);
 }
 
 -(void)schedule:(SEL)selector interval:(ccTime)interval repeat:(uint)repeat delay:(ccTime)delay
 {
-    // TODO: no selector support.
+    __block id t = self;
+    [self scheduleWithBlock:^(float inParam)
+     {
+         [t performSelector:selector withObject:self afterDelay:inParam];
+     } interval:interval repeat:repeat delay:delay];
+}
+
+-(void)scheduleWithBlock:(void (^)(float)) block interval:(ccTime)interval repeat:(uint)repeat delay:(ccTime)delay
+{
+    NSString* key = (NSString *)self;
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->schedule(nil, interval, repeat, delay);
+    node->schedule([block](float inParam) { block(inParam); }, interval, repeat, delay, [key UTF8String]);
 }
 
 -(void)scheduleOnce:(SEL)selector delay:(ccTime)delay
 {
-    // TODO: no selector support.
+    __block id t = self;
+    [self scheduleOnceWithBlock:^(float inParam)
+     {
+         [t performSelector:selector withObject:self afterDelay:inParam];
+     } delay:delay];
+}
+
+-(void)scheduleOnceWithBlock: (void (^)(float)) block delay:(ccTime)delay
+{
+    NSString* key = (NSString *)self;
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->scheduleOnce(nil, delay);
+    node->scheduleOnce([block](float inParam) { block(inParam); }, delay, [key UTF8String]);
 }
 
 -(void)unschedule:(SEL)selector
