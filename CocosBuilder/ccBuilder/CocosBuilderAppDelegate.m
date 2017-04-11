@@ -26,6 +26,7 @@
 #import "CCArray.h"
 #import "CGPointExtension.h"
 #import "CCDirector.h"
+#import "CCDirectorMac.h"
 #import "CCTextureCache.h"
 #import "CCSpriteFrameCache.h"
 
@@ -155,12 +156,11 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 - (void) setupCocos2d
 {
     // Insert code here to initialize your application
-    //CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
-    CCDirector* director = nil;
+    CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
     
 	[director setDisplayStats:NO];
 	[director setProjection:kCCDirectorProjection2D];
-    //[cocosView openGLContext];
+    [cocosView openGLContext];
     
 	[director setView:cocosView];
     

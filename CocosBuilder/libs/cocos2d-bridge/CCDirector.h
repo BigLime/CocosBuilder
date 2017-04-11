@@ -223,13 +223,13 @@ typedef enum {
 
 
 // XXX: Hack. Should be placed on CCDirectorMac.h. Refactoring needed
-#if defined(__CC_PLATFORM_MAC)
+
 /** sets the openGL view */
 -(void) setView:(CCGLView*)view;
 
 /** returns the OpenGL view */
 -(CCGLView*) view;
-#endif
+
 
 #pragma mark Director - Memory Helper
 

@@ -22,6 +22,11 @@
 
 -(NSRect)frame
 {
+    if (!impl_)
+    {
+        return [super frame];
+    }
+    
     cocos2d::GLViewImpl* gl = (cocos2d::GLViewImpl*)impl_;
     NSRect r;
     r.origin = NSZeroPoint;
