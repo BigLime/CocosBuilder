@@ -16,7 +16,6 @@
 
 - (id) init:(void*) pThis
 {
-    self = [super init];
     if(!!pThis)
     {
         impl_               = pThis;
@@ -31,6 +30,7 @@
         
         isNeedSpriteDealloc_  = YES;
     }
+    self = [super init:impl_];
     return self;
 }
 
@@ -39,7 +39,7 @@
     impl_               = object;
     isNeedSpriteDealloc_  = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 

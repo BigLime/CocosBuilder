@@ -15,7 +15,6 @@
 const NSUInteger defaultCapacity = 29;
 - (id) init:(void*) pThis
 {
-    self = [super init];
     if(!!pThis)
     {
         impl_               = pThis;
@@ -30,6 +29,7 @@ const NSUInteger defaultCapacity = 29;
         
         isNeedBatchNodeDealloc_  = YES;
     }
+    self = [super init:impl_];
     return self;
 }
 
@@ -38,7 +38,7 @@ const NSUInteger defaultCapacity = 29;
     impl_               = object;
     isNeedBatchNodeDealloc_  = NO;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
