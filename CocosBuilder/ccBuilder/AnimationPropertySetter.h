@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class CCNode; 
 @interface AnimationPropertySetter : NSObject
 
 + (void) setAnimationForNode:(CCNode *)node andProperty:(NSString *)prop withName:(NSString *)animation andFile:(NSString *)animationFile;

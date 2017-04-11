@@ -24,6 +24,7 @@
 
 #import <AppKit/AppKit.h>
 
+@class CCNode;
 @class SequencerChannel;
 
 @interface SequencerCell : NSCell

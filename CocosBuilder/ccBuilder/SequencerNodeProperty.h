@@ -22,7 +22,9 @@
  * THE SOFTWARE.
  */
 
+#import <Foundation/Foundation.h>
 
+@class CCNode;
 @class SequencerKeyframe;
 @class SequencerChannel;
 

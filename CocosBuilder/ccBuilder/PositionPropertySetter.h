@@ -50,6 +50,7 @@ enum
     kCCBScaleTypeMultiplyResolution
 };
 
+@class CCNode;
 @interface PositionPropertySetter : NSObject
 
 + (CGSize) getParentSize:(CCNode*) node;

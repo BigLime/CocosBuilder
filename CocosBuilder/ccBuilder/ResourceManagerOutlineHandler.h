@@ -23,6 +23,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSOutlineView.h>
+#import <Appkit/NSTextField.h>
 
 @class ResourceManager;
 @class ResourceManagerPreviewView;

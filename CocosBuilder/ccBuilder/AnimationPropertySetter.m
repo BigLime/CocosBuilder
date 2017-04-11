@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+#import "CCAnimation.h"
+#import "CCAnimationCache.h"
+
 #import "AnimationPropertySetter.h"
 #import "CocosBuilderAppDelegate.h"
 #import "CCBGlobals.h"

@@ -25,6 +25,10 @@
 
 #import "CCArray.h"
 #import "CGPointExtension.h"
+#import "CCDirector.h"
+#import "CCTextureCache.h"
+#import "CCSpriteFrameCache.h"
+
 #import "CocosBuilderAppDelegate.h"
 #import "CocosScene.h"
 #import "CCBGLView.h"
@@ -151,8 +155,9 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 - (void) setupCocos2d
 {
     // Insert code here to initialize your application
-    CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
-	
+    //CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
+    CCDirector* director = nil;
+    
 	[director setDisplayStats:NO];
 	[director setProjection:kCCDirectorProjection2D];
     //[cocosView openGLContext];
@@ -162,7 +167,8 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 	// EXPERIMENTAL stuff.
 	// 'Effects' don't work correctly when autoscale is turned on.
 	// Use kCCDirectorResize_NoScale if you don't want auto-scaling.
-	[director setResizeMode:kCCDirectorResize_NoScale];
+	
+    // [director setResizeMode:kCCDirectorResize_NoScale];
 	
 	// Enable "moving" mouse event. Default no.
 	//[window setAcceptsMouseMovedEvents:YES];

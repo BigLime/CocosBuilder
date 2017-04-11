@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSButton.h>
 #import "InspectorValue.h"
 
 @interface InspectorSeparator : InspectorValue {

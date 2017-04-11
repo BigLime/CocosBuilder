@@ -26,6 +26,7 @@
 
 #define kCCBFileFormatVersion 4
 
+@class CCNode;
 @interface CCBReaderInternal : NSObject
 
 + (ccColor3B) deserializeColor3:(id) val;

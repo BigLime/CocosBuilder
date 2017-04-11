@@ -23,6 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSSavePanel.h>
 
 @class ResourceManager;
 

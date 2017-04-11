@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+#import "CCDirector.h"
+
 #import "ProjectSettingsWindow.h"
 #import "ProjectSettings.h"
 #import "NSString+RelativePath.h"

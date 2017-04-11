@@ -1,7 +1,7 @@
 /*
- * CocosBuilder: http://www.cocosbuilder.com
+ * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
- * Copyright (c) 2012 Zynga Inc.
+ * Copyright 2009 lhunath (Maarten Billemont)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,53 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
  */
 
-#import <Foundation/Foundation.h>
-#import <AppKit/NSPopUpButton.h>
+#import "CCActionTween.h"
 
-@interface ResourceManagerUtil : NSObject
 
-+ (void) populateResourcePopup:(NSPopUpButton*)popup resType:(int)resType allowSpriteFrames:(BOOL)allowSpriteFrames selectedFile:(NSString*)file selectedSheet:(NSString*) sheetFile target:(id)target;
+@implementation CCActionTween
 
-+ (void) populateFontTTFPopup:(NSPopUpButton*)popup selectedFont:(NSString*)file target:(id)target;
++ (id)actionWithDuration:(ccTime)aDuration key:(NSString *)aKey from:(float)aFrom to:(float)aTo {
 
-+ (NSString*) relativePathFromAbsolutePath: (NSString*) path;
+	return [[[[self class] alloc] initWithDuration:aDuration key:aKey from:aFrom to:aTo] autorelease];
+}
 
-+ (void) setTitle:(NSString*)str forPopup:(NSPopUpButton*)popup;
+- (id)initWithDuration:(ccTime)aDuration key:(NSString *)key from:(float)from to:(float)to {
 
-+ (void) setTitle:(NSString*)str forPopup:(NSPopUpButton*)popup forceMarker:(BOOL) forceMarker;
+	if ((self = [super initWithDuration:aDuration])) {
+
+		_key	= [key copy];
+		_to		= to;
+		_from	= from;
+
+	}
+
+	return self;
+}
+
+- (void) dealloc
+{
+	[_key release];
+	[super dealloc];
+}
+
+- (void)startWithTarget:aTarget
+{
+	[super startWithTarget:aTarget];
+	_delta = _to - _from;
+}
+
+- (void) update:(ccTime) dt
+{
+	[_target setValue:[NSNumber numberWithFloat:_to  - _delta * (1 - dt)] forKey:_key];
+}
+
+- (CCActionInterval *) reverse
+{
+	return [[self class] actionWithDuration:_duration key:_key from:_to to:_from];
+}
+
 
 @end

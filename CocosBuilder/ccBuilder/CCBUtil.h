@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AppKit/NSView.h>
 
 @interface CCBUtil : NSObject
 + (void) setSelectedSubmenuItemForMenu:(NSMenu*)menu tag:(int)tag;

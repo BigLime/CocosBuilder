@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CGPointExtension.h"
 #import "SequencerNodeProperty.h"
 #import "SequencerSequence.h"
 #import "SequencerKeyframe.h"

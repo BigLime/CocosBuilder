@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+#import "CCArray.h"
+#import "CGPointExtension.h"
 #import "SequencerHandler.h"
 #import "CocosBuilderAppDelegate.h"
 #import "CCBGlobals.h"
@@ -666,7 +668,7 @@ static SequencerHandler* sharedSequencerHandler;
     // Also deselect keyframes of children
     CCArray* children = [node children];
     CCNode* child = NULL;
-    CCARRAY_FOREACH(children, child)
+    CCARRAY_FOREACH(children, child);
     {
         [self deselectKeyframesForNode:child];
     }

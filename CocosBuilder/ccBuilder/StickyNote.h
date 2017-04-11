@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCNode.h"
 
 #define kCCBNoteDefaultWidth 150
 #define kCCBNoteDefaultHeight 150
@@ -29,6 +30,7 @@
 #define kCCBNoteLblInsetTop 10
 #define kCCBNoteLblInsetBot 20
 
+@class CCLabelTTF;
 @class CCScale9Sprite;
 
 enum

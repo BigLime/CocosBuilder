@@ -24,6 +24,7 @@
 
 #import <AppKit/AppKit.h>
 
+@class CCNode; 
 @interface SequencerExpandBtnCell : NSCell
 
 {
