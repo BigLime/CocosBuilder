@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <AppKit/NSView.h>
+
 @interface CCGLView : NSObject {
     void* impl_;
     BOOL isNeedGLViewDealloc_;
@@ -15,9 +17,9 @@
 
 @property (nonatomic, readwrite) NSRect frame;
 
-- (NSPoint)convertPoint:(NSPoint)point toView:(nullable NSView*)view;
-- (void)addTrackingArea:(nullable NSTrackingArea*)trackingArea;
-- (void)removeTrackingArea:(nullable NSTrackingArea*)trackingArea;
+- (NSPoint)convertPoint:(NSPoint)point toView:(NSView*)view;
+- (void)addTrackingArea:(NSTrackingArea*)trackingArea;
+- (void)removeTrackingArea:(NSTrackingArea*)trackingArea;
 
 -(id)initWithFrame:(NSRect)frame;
 -(id)initWithObject: (void*)object;
