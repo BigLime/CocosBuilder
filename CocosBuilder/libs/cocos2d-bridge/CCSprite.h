@@ -58,7 +58,8 @@
 @property (nonatomic,readonly) CGPoint	offsetPosition;
 /** conforms to CCTextureProtocol protocol */
 @property (nonatomic,readwrite) ccBlendFunc blendFunc;
-
+/** texture of the frame */
+@property (nonatomic, retain, readwrite) CCTexture2D *texture;
 #pragma mark CCSprite - Initializers
 
 /** Creates an sprite with a texture.

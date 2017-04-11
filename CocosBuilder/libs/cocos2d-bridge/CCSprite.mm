@@ -120,7 +120,7 @@
     return [[[CCTextureAtlas alloc]initWithObject:((cocos2d::Sprite*)impl_)->getTextureAtlas()] autorelease];
 }
 
-- (void)setTextureAtlas:_textureAtlas
+- (void)setTextureAtlas:(CCTextureAtlas*)_textureAtlas
 {
     ((cocos2d::Sprite*)impl_)->setTextureAtlas(((cocos2d::TextureAtlas*)[_textureAtlas getImpl]));
 }
@@ -130,7 +130,7 @@
     return [[[CCSpriteBatchNode alloc]initWithObject:((cocos2d::Sprite*)impl_)->getBatchNode()] autorelease];
 }
 
-- (void)setBatchNode:_batchNode
+- (void)setBatchNode:(CCSpriteBatchNode *)_batchNode
 {
     cocos2d::SpriteBatchNode* batchNode = ((cocos2d::SpriteBatchNode*)[_batchNode getImpl]);
     ((cocos2d::Sprite*)impl_)->setBatchNode(batchNode);
