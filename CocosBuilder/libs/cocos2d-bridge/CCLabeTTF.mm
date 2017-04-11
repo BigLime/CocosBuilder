@@ -84,8 +84,8 @@
     
     cocos2d::Size cppDim = [ccTypeConvert CGSizeToSize: dimensions];
     
-    cocos2d::TextHAlignment hAlign = (cocos2d::TextHAlignment)alignment;
-    cocos2d::TextVAlignment vAlign = (cocos2d::TextVAlignment)vertAlignment;
+    cocos2d::TextHAlignment hAlign = [ccTypeConvert CCTextAlignmentToTextHAlignment:alignment];
+    cocos2d::TextVAlignment vAlign = [ccTypeConvert CCVerticalTextAlignmentToTextVAlignment:vertAlignment];
     
     
     cocos2d::LabelTTF* label = cocos2d::LabelTTF::create([str UTF8String], [name UTF8String], size, cppDim, hAlign, vAlign);
@@ -131,44 +131,38 @@
 
 -(void)setDimensions:(CGSize)dim
 {
-    //TODO: convert CGSzie to cocos2d::size.
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
     label->setDimensions([ccTypeConvert CGSizeToSize: dim]);
 }
 
 -(CGSize)dimensions
 {
-    //TODO: convert CGSzie to cocos2d::size.
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
     return [ccTypeConvert SizeToCGSize: label->getDimensions()];
 }
 
 -(void) setHorizontalAlignment:(CCTextAlignment)alignment
 {
-    //TODO: convert CCTextAlignment to cocos2d::TextHAlignment
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
-    label->setHorizontalAlignment((cocos2d::TextHAlignment)alignment);
+    label->setHorizontalAlignment([ccTypeConvert CCTextAlignmentToTextHAlignment:alignment]);
 }
 
 - (CCTextAlignment) horizontalAlignment
 {
-    //TODO: convert CCTextAlignment to cocos2d::TextHAlignment
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
-    return (CCTextAlignment)label->getHorizontalAlignment();
+    return [ccTypeConvert TextHAlignmentToCCTextAlignment:label->getHorizontalAlignment()];
 }
 
 -(void) setVerticalAlignment:(CCVerticalTextAlignment)verticalAlignment
 {
-    //TODO: convert CCTextAlignment to cocos2d::TextHAlignment
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
-    label->setVerticalAlignment((cocos2d::TextVAlignment)verticalAlignment);
+    label->setVerticalAlignment([ccTypeConvert CCVerticalTextAlignmentToTextVAlignment:verticalAlignment]);
 }
 
 - (CCVerticalTextAlignment) verticalAlignment
 {
-    //TODO: convert CCTextAlignment to cocos2d::TextHAlignment
     cocos2d::LabelTTF* label = (cocos2d::LabelTTF*)impl_;
-    return (CCVerticalTextAlignment)label->getVerticalAlignment();
+    return [ccTypeConvert TextVAlignmentToCCVerticalTextAlignment:label->getVerticalAlignment()];
 }
 
 - (void) dealloc

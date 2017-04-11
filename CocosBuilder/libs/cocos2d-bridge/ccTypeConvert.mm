@@ -638,4 +638,37 @@
 //+(ccAnimationFrameData) AnimationFrameDataToccAnimationFrameData: (cocos2d::AnimationFrameData) src;
 //+(cocos2d::AnimationFrameData) ccAnimationFrameDataToAnimationFrameData: (ccAnimationFrameData) src;
 
+// CCVerticalTextAlignment <--> cocos2d::TextVAlignment
++(CCVerticalTextAlignment) TextVAlignmentToCCVerticalTextAlignment:(cocos2d::TextVAlignment) src
+{
+    return CCVerticalTextAlignment(src);
+}
+
++(cocos2d::TextVAlignment) CCVerticalTextAlignmentToTextVAlignment:(CCVerticalTextAlignment) src
+{
+    return cocos2d::TextVAlignment(src);
+}
+
+// CCTextAlignment <--> cocos2d::TextHAlignment
++(CCTextAlignment) TextHAlignmentToCCTextAlignment:(cocos2d::TextHAlignment) src
+{
+    return CCTextAlignment(src);
+}
+
++(cocos2d::TextHAlignment) CCTextAlignmentToTextHAlignment:(CCTextAlignment) src
+{
+    return cocos2d::TextHAlignment(src);
+}
+
+// CCTexture2DPixelFormat <--> cocos2d::Texture2D::PixelFormat
++(CCTexture2DPixelFormat) PixelFormatToCCTexture2DPixelFormat:(cocos2d::Texture2D::PixelFormat) src
+{
+    return CCTexture2DPixelFormat(src);
+}
+
++(cocos2d::Texture2D::PixelFormat) CCTexture2DPixelFormatToPixelFormat:(CCTexture2DPixelFormat) src
+{
+    return cocos2d::Texture2D::PixelFormat(src);
+}
+
 @end

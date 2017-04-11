@@ -335,8 +335,8 @@
     const std::string fontName = std::string([name UTF8String]);
     float fontSize = size;
     const cocos2d::Size _dimensions = [ccTypeConvert CGSizeToSize:dimensions];
-    cocos2d::TextHAlignment texHA = cocos2d::TextHAlignment(hAlignment);
-    cocos2d::TextVAlignment texVA = cocos2d::TextVAlignment(vAlignment);
+    cocos2d::TextHAlignment texHA = [ccTypeConvert CCTextAlignmentToTextHAlignment:hAlignment];
+    cocos2d::TextVAlignment texVA = [ccTypeConvert CCVerticalTextAlignmentToTextVAlignment:vAlignment];
     bool isLineBreakMode = false;
     switch (lineBreakMode) {
         case kCCLineBreakModeWordWrap:

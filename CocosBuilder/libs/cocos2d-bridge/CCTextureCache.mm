@@ -13,9 +13,9 @@
 
 #include "ccTypeConvert.h"
 
-#ifdef __CC_PLATFORM_MAC
-#import "Platforms/Mac/CCDirectorMac.h"
-#endif
+//#ifdef __CC_PLATFORM_MAC
+//#import "Platforms/Mac/CCDirectorMac.h"
+//#endif
 
 // needed for CCCallFuncO in Mac-display_link version
 //#import "CCActionManager.h"
