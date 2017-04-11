@@ -202,6 +202,8 @@
 		D3221DAD1E9CB32B0032ABB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */; };
 		D3221DB81E9CBF000032ABB2 /* CGPointExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */; };
 		D3221DB91E9CBF000032ABB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */; };
+		D3221DC41E9CCF9A0032ABB2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DC31E9CCF9A0032ABB2 /* IOKit.framework */; };
+		D3221DC61E9CCFAD0032ABB2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3221DC51E9CCFAD0032ABB2 /* libiconv.tbd */; };
 		E3127AA516C1D8E600D09AA4 /* CCBDirectoryComparer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */; };
 		E312972E16CC33B200A09155 /* SequencerPopoverBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */; };
 		E312973316CC377700A09155 /* SequencerPopoverBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E312973216CC377700A09155 /* SequencerPopoverBlock.m */; };
@@ -1091,6 +1093,8 @@
 		D3221D9C1E9C90410032ABB2 /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "libs/cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
 		D3221DAB1E9CB32B0032ABB2 /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPointExtension.h; path = "cocos2d-bridge/support/CGPointExtension.h"; sourceTree = "<group>"; };
 		D3221DAC1E9CB32B0032ABB2 /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPointExtension.m; path = "cocos2d-bridge/support/CGPointExtension.m"; sourceTree = "<group>"; };
+		D3221DC31E9CCF9A0032ABB2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D3221DC51E9CCFAD0032ABB2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		E3127AA316C1D8E600D09AA4 /* CCBDirectoryComparer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBDirectoryComparer.h; sourceTree = "<group>"; };
 		E3127AA416C1D8E600D09AA4 /* CCBDirectoryComparer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBDirectoryComparer.m; sourceTree = "<group>"; };
 		E312972D16CC33B200A09155 /* SequencerPopoverBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequencerPopoverBlock.xib; sourceTree = "<group>"; };
@@ -1685,6 +1689,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3221DC61E9CCFAD0032ABB2 /* libiconv.tbd in Frameworks */,
+				D3221DC41E9CCF9A0032ABB2 /* IOKit.framework in Frameworks */,
 				D3221DAA1E9C90690032ABB2 /* libcocos2d Mac.a in Frameworks */,
 				835DB0CB17156421003A2F7B /* Security.framework in Frameworks */,
 				E3A4747C16D43BF300DB0D61 /* AVFoundation.framework in Frameworks */,
@@ -2222,6 +2228,8 @@
 		7789ABC1133AA82000CEFCC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3221DC51E9CCFAD0032ABB2 /* libiconv.tbd */,
+				D3221DC31E9CCF9A0032ABB2 /* IOKit.framework */,
 				835DB0CA17156421003A2F7B /* Security.framework */,
 				E3A4747B16D43BF300DB0D61 /* AVFoundation.framework */,
 				E3A4747916D43BEA00DB0D61 /* OpenAL.framework */,

@@ -125,7 +125,7 @@
 - (id) randomObject
 {
 	if(data->num==0) return nil;
-	return data->arr[(int)(data->num*CCRANDOM_0_1())];
+	return data->arr[(int)(data->num*(((random() / (float)0x7fffffff ))))];
 }
 
 - (NSArray*) getNSArray
@@ -408,7 +408,7 @@ static inline NSInteger selectorCompare(id object1,id object2,void *userData){
 
 - (void) dealloc
 {
-	CCLOGINFO(@"cocos2d: deallocing %@", self);
+	// CCLOGINFO(@"cocos2d: deallocing %@", self);
 
 	ccArrayFree(data);
 	[super dealloc];

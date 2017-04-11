@@ -211,7 +211,7 @@ static CCDirector *_sharedDirector = nil;
 
 - (void) dealloc
 {
-    CCLOGINFO(@"cocos2d: deallocing %@", self);
+    // CCLOGINFO(@"cocos2d: deallocing %@", self);
     
     [super dealloc];
 }

@@ -68,8 +68,11 @@ CGPoint ccpLerp(CGPoint a, CGPoint b, float alpha)
 
 float clampf(float value, float min_inclusive, float max_inclusive)
 {
-	if (min_inclusive > max_inclusive) {
-		CC_SWAP(min_inclusive,max_inclusive);
+	if (min_inclusive > max_inclusive)
+    {
+        float temp = min_inclusive;
+        min_inclusive = max_inclusive;
+        max_inclusive = temp;
 	}
 	return value < min_inclusive ? min_inclusive : value < max_inclusive? value : max_inclusive;
 }

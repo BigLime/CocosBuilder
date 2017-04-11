@@ -2960,7 +2960,6 @@ static BOOL hideAllToNextSeparator;
     
     [[CCTextureCache sharedTextureCache] removeAllTextures];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
-    FNTConfigRemoveCache();  
   
     [self switchToDocument:currentDocument forceReload:YES];
     [sequenceHandler updatePropertiesToTimelinePosition];
