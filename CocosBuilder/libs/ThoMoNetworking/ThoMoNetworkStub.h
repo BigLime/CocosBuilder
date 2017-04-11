@@ -28,6 +28,7 @@
  *
  */
 
+#import <Foundation/Foundation.h>
 #import "ThoMoTCPConnectionDelegateProtocol.h"
 
 

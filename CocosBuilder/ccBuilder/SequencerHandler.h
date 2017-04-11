@@ -24,10 +24,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import <AppKit/NSSlider.h>
+#import <AppKit/NSScroller.h>
+#import <AppKit/NSTextField.h>
+#import <AppKit/NSOutlineView.h>
+
 #define kCCBSeqDefaultRowHeight 16
 #define kCCBDefaultTimelineScale 128
 #define kCCBTimelineScaleLowBound 64
 
+@class CCNode; 
 @class CocosBuilderAppDelegate;
 @class SequencerSequence;
 @class SequencerScrubberSelectionView;

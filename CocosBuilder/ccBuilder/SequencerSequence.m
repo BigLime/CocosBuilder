@@ -33,7 +33,7 @@
 #import "SequencerSoundChannel.h"
 #import "SequencerNodeProperty.h"
 #import "SequencerKeyframe.h"
-#import "SimpleAudioEngine.h"
+#import "audio/ios/SimpleAudioEngine_objc.h"
 #import "ResourceManager.h"
 
 @implementation SequencerSequence

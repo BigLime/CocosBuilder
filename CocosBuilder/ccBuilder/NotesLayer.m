@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CGPointExtension.h"
 #import "NotesLayer.h"
 #import "StickyNote.h"
 #import "CCBGlobals.h"

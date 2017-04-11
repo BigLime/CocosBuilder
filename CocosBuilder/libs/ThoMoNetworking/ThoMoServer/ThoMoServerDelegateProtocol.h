@@ -28,12 +28,11 @@
  *
  */
 
+#import <Foundation/Foundation.h>
+
 @class ThoMoServerStub;
 
-
-
 @protocol ThoMoServerDelegateProtocol <NSObject>
-
 @optional
 
 /// Connection notification (optional)

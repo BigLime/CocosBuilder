@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCArray.h"
 #import "CCNode+NodeInfo.h"
 #import "NodeInfo.h"
 #import "PlugInNode.h"
@@ -222,7 +223,7 @@
     
     // Also do for children
     CCNode* child = NULL;
-    CCARRAY_FOREACH([self children], child)
+    CCARRAY_FOREACH([self children], child);
     {
         [child duplicateKeyframesFromSequenceId:fromSeqId toSequenceId:toSeqId];
     }

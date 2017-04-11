@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSColorSpace.h>
+#import "ccTypes.h"
 #import "InspectorColor4FVar.h"
 
 @implementation InspectorColor4FVar

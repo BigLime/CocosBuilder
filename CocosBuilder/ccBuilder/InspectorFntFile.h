@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import <AppKit/NSPopUpButton.h>
 #import "InspectorValue.h"
 
 @interface InspectorFntFile : InspectorValue

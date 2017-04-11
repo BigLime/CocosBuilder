@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCLayer.h"
 
 enum
 {

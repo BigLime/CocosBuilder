@@ -28,9 +28,9 @@
  *
  */
 
+#import <Foundation/Foundation.h>
+
 @class ThoMoClientStub;
-
-
 
 @protocol ThoMoClientDelegateProtocol <NSObject>
 

@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "CCNode.h"
 #import "SequencerPopoverHandler.h"
 #import "InspectorValue.h"
 #import "PlugInNode.h"

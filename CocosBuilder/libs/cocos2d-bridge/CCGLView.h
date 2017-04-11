@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <AppKit/NSView.h>
+#import <AppKit/NSOpenGLView.h>
 
-@interface CCGLView : NSObject {
+@interface CCGLView : NSOpenGLView {
     void* impl_;
     BOOL isNeedGLViewDealloc_;
 }

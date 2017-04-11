@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#import "ccTypes.h"
 #import "CCBReaderInternal.h"
 #import "CCBReaderInternalV1.h"
 #import "PlugInManager.h"

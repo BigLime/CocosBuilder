@@ -53,4 +53,4 @@ static SimpleAudioEngine *sharedEngine = nil;
     return instance->playEffect([ccTypeConvert NSStringTostring:filePath].c_str(), loop, pitch, pan, gain);
 }
 
-@end 
+@end

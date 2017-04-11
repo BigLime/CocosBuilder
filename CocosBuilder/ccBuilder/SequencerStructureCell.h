@@ -24,6 +24,7 @@
 
 #import "CCBTextFieldCell.h"
 
+@class CCNode;
 @interface SequencerStructureCell : CCBTextFieldCell
 {
     CCNode* node;

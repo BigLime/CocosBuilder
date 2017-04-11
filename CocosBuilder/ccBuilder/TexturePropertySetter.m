@@ -22,6 +22,11 @@
  * THE SOFTWARE.
  */
 
+#import "CCSpriteFrame.h"
+#import "CCSpriteFrameCache.h"
+#import "CCTexture2D.h"
+#import "CCTextureCache.h"
+
 #import "TexturePropertySetter.h"
 #import "CocosBuilderAppDelegate.h"
 #import "CCBGlobals.h"

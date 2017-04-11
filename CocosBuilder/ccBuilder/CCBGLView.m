@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 
+#import "CGPointExtension.h"
 #import "CCBGLView.h"
 #import "CocosBuilderAppDelegate.h"
 #import "CCBGlobals.h"

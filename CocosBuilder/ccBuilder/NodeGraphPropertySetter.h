@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class CCNode; 
 @interface NodeGraphPropertySetter : NSObject
 
 //+ (void) setNodeGraphForNode:(CCNode*)node andProperty:(NSString*) prop withFile:(NSString*) ccbFileName;

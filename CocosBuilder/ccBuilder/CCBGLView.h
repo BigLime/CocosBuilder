@@ -30,7 +30,8 @@
 
 @class CocosBuilderAppDelegate;
 @class CocosScene;
-@interface CCBGLView : CCGLView {
+@interface CCBGLView : CCGLView
+{
     
     NSTrackingRectTag trackingTag;
     
