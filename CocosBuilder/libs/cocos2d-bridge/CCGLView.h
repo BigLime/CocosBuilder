@@ -23,6 +23,7 @@
 
 -(id)initWithFrame:(NSRect)frame;
 -(id)initWithObject: (void*)object;
+-(void)newCppGLView;
 
 -(void*) getImpl;
 

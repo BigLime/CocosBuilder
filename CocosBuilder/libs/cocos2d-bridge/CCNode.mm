@@ -693,11 +693,11 @@
 
 -(void)schedule:(SEL) selector
 {
-    __block id t = self;
-    [self scheduleWithBlock:^(float inParam)
-    {
-        [t performSelector:selector withObject:self afterDelay:inParam];
-    }];
+//    __block id t = self;
+//    [self scheduleWithBlock:^(float inParam)
+//    {
+//        [t performSelector:selector withObject:self afterDelay:inParam];
+//    }];
 }
 
 -(void)scheduleWithBlock: (void (^)(float)) block

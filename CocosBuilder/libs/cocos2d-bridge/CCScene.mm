@@ -11,6 +11,11 @@
 
 @implementation CCScene
 
++(id) node
+{
+    return [[[self alloc] init] autorelease];
+}
+
 -(id) init
 {
     return [self init:nil];

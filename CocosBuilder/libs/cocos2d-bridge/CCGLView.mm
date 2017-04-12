@@ -70,6 +70,13 @@
     return self;
 }
 
+-(void)newCppGLView
+{
+    impl_ = cocos2d::GLViewImpl::createWithRect("", [ccTypeConvert CGRectToRect:self.frame]);
+    ((cocos2d::GLViewImpl*)impl_)->retain();
+    isNeedGLViewDealloc_ = YES;
+}
+
 -(void) dealloc
 {
     if(isNeedGLViewDealloc_)

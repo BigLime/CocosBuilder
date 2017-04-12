@@ -13,6 +13,7 @@
     BOOL isNeedSceneDealloc_;
 }
 
++(id) node;
 -(id) init;
 -(id) initWithObject:(void *)object;
 @end

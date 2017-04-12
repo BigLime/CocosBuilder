@@ -160,6 +160,7 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     
 	[director setDisplayStats:NO];
 	[director setProjection:kCCDirectorProjection2D];
+    [cocosView newCppGLView];
     [cocosView openGLContext];
     
 	[director setView:cocosView];
@@ -175,7 +176,7 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 	
 	[director runWithScene:[CocosScene sceneWithAppDelegate:self]];
 	
-	NSAssert( [NSThread currentThread] == [[CCDirector sharedDirector] runningThread], @"cocos2d shall run on the Main Thread. Compile CocosBuilder with CC_DIRECTOR_MAC_THREAD=2");
+//	NSAssert( [NSThread currentThread] == [[CCDirector sharedDirector] runningThread], @"cocos2d shall run on the Main Thread. Compile CocosBuilder with CC_DIRECTOR_MAC_THREAD=2");
 }
 
 - (void) setupSequenceHandler

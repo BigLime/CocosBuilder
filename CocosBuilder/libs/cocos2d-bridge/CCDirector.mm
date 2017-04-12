@@ -16,6 +16,7 @@
 
 #import "base/CCDirector.h"
 #import "2d/CCScene.h"
+#import "CCAppDelegate.h"
 
 // XXX it shoul be a Director ivar. Move it there once support for multiple directors is added
 NSUInteger	__ccNumberOfDraws = 0;
@@ -181,7 +182,8 @@ static CCDirector *_sharedDirector = nil;
 + (CCDirector *)sharedDirector
 {
     if (!_sharedDirector) {
-        
+        AppDelegate* app = new AppDelegate();
+        /*mark todo by lsr*/ // 暂时没delete
         _sharedDirector = [[self alloc] init];
     }
     

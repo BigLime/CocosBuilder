@@ -69,7 +69,7 @@
     (void)layer;
     
     // TODO: no implemnt in cpp.
-    NSAssert(NO, @"no implemnt in cpp.");
+//    NSAssert(NO, @"no implemnt in cpp.");
     // layer->setMouseEnabled(mouseEnabled);
 }
 

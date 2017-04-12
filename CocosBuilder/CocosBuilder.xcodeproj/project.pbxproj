@@ -129,6 +129,7 @@
 		835DB0C6171563A8003A2F7B /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = 835DB0C3171563A8003A2F7B /* About.txt */; };
 		835DB0C9171563E1003A2F7B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DB0C5171563A8003A2F7B /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		835DB0CB17156421003A2F7B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835DB0CA17156421003A2F7B /* Security.framework */; };
+		9D61DB741E9D0F1A007041E7 /* CCAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D61DB731E9D0F1A007041E7 /* CCAppDelegate.mm */; };
 		A09AB6F714E993AA009C8B91 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = A09AB6F614E993AA009C8B91 /* fps_images.png */; };
 		A77EF590171FD30E00451DA4 /* cwebp in Resources */ = {isa = PBXBuildFile; fileRef = A77EF58F171FD30E00451DA4 /* cwebp */; };
 		A77EF594171FD3B200451DA4 /* cwebp in Resources */ = {isa = PBXBuildFile; fileRef = A77EF58F171FD30E00451DA4 /* cwebp */; };
@@ -1032,6 +1033,8 @@
 		835DB0C4171563A8003A2F7B /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		835DB0C5171563A8003A2F7B /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		835DB0CA17156421003A2F7B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9D61DB721E9D0F1A007041E7 /* CCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAppDelegate.h; path = "cocos2d-bridge/CCAppDelegate.h"; sourceTree = "<group>"; };
+		9D61DB731E9D0F1A007041E7 /* CCAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCAppDelegate.mm; path = "cocos2d-bridge/CCAppDelegate.mm"; sourceTree = "<group>"; };
 		A09AB6F614E993AA009C8B91 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = "libs/cocos2d-iphone/Resources/Fonts/fps_images.png"; sourceTree = SOURCE_ROOT; };
 		A77EF58F171FD30E00451DA4 /* cwebp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cwebp; sourceTree = "<group>"; };
 		D3221CF31E9C8DFF0032ABB2 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAction.h; path = "cocos2d-bridge/CCAction.h"; sourceTree = "<group>"; };
@@ -2682,6 +2685,8 @@
 				D3221D2E1E9C8DFF0032ABB2 /* ccTypeConvert.h */,
 				D3221D2F1E9C8DFF0032ABB2 /* ccTypeConvert.mm */,
 				D3221D301E9C8DFF0032ABB2 /* ccTypes.h */,
+				9D61DB721E9D0F1A007041E7 /* CCAppDelegate.h */,
+				9D61DB731E9D0F1A007041E7 /* CCAppDelegate.mm */,
 				D3221D901E9C8E980032ABB2 /* support */,
 			);
 			name = "cocos2d-bridge";
@@ -4746,6 +4751,7 @@
 				E334A4E4170CFDE3001604F7 /* CCBTextField.m in Sources */,
 				E398541A170D2409000F4465 /* DebuggerTextField.m in Sources */,
 				E3D839E31713A75B004F6127 /* JavaScriptSyntaxChecker.m in Sources */,
+				9D61DB741E9D0F1A007041E7 /* CCAppDelegate.mm in Sources */,
 				E38654B0171771DA00A345B9 /* JavaScriptVariableExtractor.m in Sources */,
 				E373BF0D17188FC000D71602 /* JavaScriptAutoCompleteHandler.m in Sources */,
 				E3C12B1B171DD386001EEDDB /* NSWindow+CCBAccessoryView.m in Sources */,

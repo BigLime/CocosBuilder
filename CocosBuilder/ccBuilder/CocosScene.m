@@ -76,6 +76,7 @@ static CocosScene* sharedCocosScene;
 	// 'layer' is an autorelease object.
 	CocosScene *layer = [[[CocosScene alloc] initWithAppDelegate:app] autorelease];
     sharedCocosScene = layer;
+    [sharedCocosScene retain];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
