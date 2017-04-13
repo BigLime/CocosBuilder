@@ -151,6 +151,10 @@
 // handle move event.
 -(void) onMove
 {
+    if (!impl_) return;
+    
+    [self.openGLContext update];
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onMove();
 }
@@ -158,6 +162,8 @@
 // handle focus event.
 -(void) onFocus: (BOOL) isFocus
 {
+    if (!impl_) return;
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onFocus(isFocus); 
 }
@@ -165,6 +171,8 @@
 // handle window move event.
 -(void) onSize: (NSRect) contentRect fbRect: (NSRect) fbRect
 {
+    if (!impl_) return;
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onSize([ccTypeConvert CGRectToRect: contentRect], [ccTypeConvert CGRectToRect: fbRect]);
 }
@@ -172,6 +180,8 @@
 // handle window minimum event.
 -(void) onMinSize
 {
+    if (!impl_) return;
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onMinSize();
 }
@@ -179,6 +189,8 @@
 // handle window maximum event.
 -(void) onMaxSize
 {
+    if (!impl_) return;
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onMaxSize();
 }
@@ -186,6 +198,8 @@
 // handle window close event, termate cpp engine.
 -(void) onTerminate
 {
+    if (!impl_) return;
+    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onTerminate();
 }
