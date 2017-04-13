@@ -26,7 +26,7 @@
 #pragma mark - Node
 
 @implementation CCNode
-
+@synthesize children = _children;
 // @synthesize zOrder = _zOrder;
 -(void)setZOrder:(NSInteger)zOrder
 {
@@ -46,7 +46,7 @@
     // read noly
     NSAssert(NO, @"READ ONLY");
 }
-
+/*
 -(CCArray *)children
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
@@ -59,7 +59,7 @@
     }
     
     return result;
-}
+}*/
 
 // @synthesize visible = _visible;
 -(void)setVisible:(BOOL)visible
@@ -74,21 +74,23 @@
     return node->isVisible();
 }
 
-// @synthesize parent = _parent;
--(void)setParent:(CCNode *)parent
+ @synthesize parent = _parent;
+/*-(void)setParent:(CCNode *)parent
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    cocos2d::Node* cppparent = static_cast<cocos2d::Node*>([parent getImpl]);
+    _parent = parent;
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //cocos2d::Node* cppparent = static_cast<cocos2d::Node*>([parent getImpl]);
     
-    return node->setParent(cppparent);
+    //return node->setParent(cppparent);
 }
 
 -(CCNode *)parent
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return [[[CCNode alloc] initWithObject: node->getParent()] autorelease];
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //return [[[CCNode alloc] initWithObject: node->getParent()] autorelease];
+    return _parent;
 }
-
+*/
 // @synthesize grid = _grid;
 -(void)setGrid:(CCGridBase *)grid
 {
@@ -356,6 +358,8 @@
 
 -(id) init
 {
+    _children = nil;
+    _parent = nil;
     return [self init: nil];
 }
 
@@ -399,8 +403,8 @@
         cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
         node->release();
     }
-    //id useroj = [self userObject];
-    //[useroj release];
+    // children
+    [_children release];
     [super dealloc];
 }
 
@@ -413,6 +417,7 @@
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->cleanup();
+    [_children makeObjectsPerformSelector:@selector(cleanup)];
 }
 
 -(NSString *)description
@@ -470,12 +475,28 @@
 
 -(CCNode *)getChildByTag:(NSInteger)tag
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return [[[CCNode alloc] initWithObject: node->getChildByTag(tag)] autorelease];
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //return [[[CCNode alloc] initWithObject: node->getChildByTag(tag)] autorelease];
+    CCNode *node;
+    CCARRAY_FOREACH(_children, node){
+        if( node.tag == tag )
+            return node;
+    }
+}
+
+-(void) insertChild:(CCNode*)child
+{
+    if( ! _children )
+    {
+        _children = [[CCArray alloc] initWithCapacity:4];
+    }
+    [child setParent: self];
+    ccArrayAppendObjectWithResize(_children->data, child);
 }
 
 -(void)addChild:(CCNode *)inp z:(NSInteger)z tag:(NSInteger)tag
 {
+    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP, z, tag);
@@ -483,6 +504,7 @@
 
 -(void)addChild:(CCNode *)inp z:(NSInteger)z
 {
+    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP, z);
@@ -490,6 +512,7 @@
 
 -(void)addChild:(CCNode *)inp
 {
+    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP);
@@ -497,25 +520,30 @@
 
 -(void)removeFromParent
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->removeFromParent();
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //node->removeFromParent();
+    [self removeFromParentAndCleanup:YES];
 }
 
 -(void)removeFromParentAndCleanup:(BOOL)cleanup
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeFromParentAndCleanup(cleanup);
+    [_parent removeChild:self cleanup:cleanup];
 }
 
 -(void)removeChild:(CCNode *)child
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
-    node->removeChild(inP);
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
+    //node->removeChild(inP);
+    [self removeChild:child cleanup:YES];
 }
 
 -(void)removeChild:(CCNode *)child cleanup:(BOOL)cleanup
 {
+    if ( [_children containsObject:child] )
+        [_children removeObject:child];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
     node->removeChild(inP, cleanup);
@@ -523,24 +551,32 @@
 
 -(void)removeChildByTag:(NSInteger)tag
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->removeChildByTag(tag);
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //node->removeChildByTag(tag);
+    [self removeChildByTag:tag cleanup:YES];
 }
 
 -(void)removeChildByTag:(NSInteger)tag cleanup:(BOOL)cleanup
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->removeChildByTag(tag);
+    CCNode *child = [self getChildByTag:tag];
+    if (child == nil)
+        CCLOG("cocos2d: removeChildByTag: child not found!");
+    else
+        [self removeChild:child cleanup:cleanup];
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //node->removeChildByTag(tag);
 }
 
 -(void)removeAllChildren
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->removeAllChildren();
+    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    //node->removeAllChildren();
+    [self removeAllChildrenWithCleanup:YES];
 }
 
 -(void)removeAllChildrenWithCleanup:(BOOL)cleanup
 {
+    [_children removeAllObjects];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeAllChildrenWithCleanup(cleanup);
 }
