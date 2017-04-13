@@ -95,6 +95,23 @@
     return impl_;
 }
 
+-(void) lockOpenGLContext
+{
+    NSOpenGLContext *glContext = [self openGLContext];
+    NSAssert( glContext, @"FATAL: could not get openGL context");
+    
+    [glContext makeCurrentContext];
+    CGLLockContext([glContext CGLContextObj]);
+}
+
+-(void) unlockOpenGLContext
+{
+    NSOpenGLContext *glContext = [self openGLContext];
+    NSAssert( glContext, @"FATAL: could not get openGL context");
+    
+    CGLUnlockContext([glContext CGLContextObj]);
+}
+
 -(id) create:(id)nsWindow delegate:(id)nsDelegate
 {
     // TODO: update opengl pixelFormat attrib.

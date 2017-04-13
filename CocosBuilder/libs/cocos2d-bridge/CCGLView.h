@@ -27,6 +27,13 @@
 
 -(void*) getImpl;
 
+/** uses and locks the OpenGL context */
+-(void) lockOpenGLContext;
+
+/** unlocks the openGL context */
+-(void) unlockOpenGLContext;
+
+
 // extension for cpp engine.
 
 // create cpp glview and push glcontext into 2d-x.

@@ -167,10 +167,11 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 - (void) drawScene
 {
     // 在该方法中执行C++引擎的mainLoop
-//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     cocos2d::Director* director = cocos2d::Director::getInstance();
     director->mainLoop();
-//    [pool release];
+    // [pool release];
 }
 
 // set the event dispatcher
