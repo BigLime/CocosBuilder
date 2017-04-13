@@ -21,10 +21,30 @@
 - (void)addTrackingArea:(NSTrackingArea*)trackingArea;
 - (void)removeTrackingArea:(NSTrackingArea*)trackingArea;
 
--(id)initWithFrame:(NSRect)frame;
--(id)initWithObject: (void*)object;
--(void)newCppGLView;
+-(id) initWithObject: (void*)object;
 
 -(void*) getImpl;
 
+// extension for cpp engine.
+
+// create cpp glview and push glcontext into 2d-x.
+-(void) create:(id)nsWindow delegate:(id)nsDelegate;
+
+// handle move event.
+-(void) onMove;
+
+// handle focus event.
+-(void) onFocus: (BOOL) isFocus;
+
+// handle window move event.
+-(void) onSize: (NSRect) contentRect fbRect: (NSRect) fbRect; 
+
+// handle window minimum event.
+-(void) onMinSize;
+
+// handle window maximum event.
+-(void) onMaxSize;
+
+// handle window close event, termate cpp engine.
+-(void) onTerminate;
 @end

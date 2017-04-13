@@ -160,10 +160,10 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     
 	[director setDisplayStats:NO];
 	[director setProjection:kCCDirectorProjection2D];
-    [cocosView newCppGLView];
-    [cocosView openGLContext];
     
-	[director setView:cocosView];
+    // Create OpenGL View For Editor And Attach To cocos2d-x.
+    [cocosView create: self, self.window];
+    
     
 	// EXPERIMENTAL stuff.
 	// 'Effects' don't work correctly when autoscale is turned on.
@@ -563,15 +563,46 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
         [guiView setSubviews:[NSArray array]];
         [[CocosScene cocosScene].notesLayer showAllNotesLabels];
     }
+    
+    // impl in glfw's delegate, for onFocus.
+    [cocosView onFocus:NO];
 }
 
 - (void) windowDidResize:(NSNotification *)notification
 {
     [sequenceHandler updateScroller];
+    
+    // impl in glfw's delegate, for resize Renderer.
+    const NSRect contentRect = [cocosView frame];
+    const NSRect fbRect = [cocosView convertRectToBacking:contentRect];
+    
+    [cocosView onSize:contentRect fbRect:fbRect];
 }
 
+- (void)windowDidMove:(NSNotification *)notification
+{
+    // impl in glfw's delegate, for move Renderer.
+    [cocosView.openGLContext update];
+    [cocosView onMove];
+}
 
+- (void)windowDidMiniaturize:(NSNotification *)notification
+{
+    // impl in glfw's delegate, for MinSize Renderer.
+    [cocosView onMinSize];
+}
 
+- (void)windowDidDeminiaturize:(NSNotification *)notification
+{
+    // impl in glfw's delegate, for MaxSize Renderer.
+    [cocosView onMaxSize];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+    // impl in glfw's delegate, for onFocus.
+    [cocosView onFocus:YES];
+}
 
 #pragma mark Populate Inspector
 
@@ -3722,6 +3753,9 @@ static BOOL hideAllToNextSeparator;
         NSInteger result = [alert runModal];
         if (result == NSAlertDefaultReturn) return NO;
     }
+    
+    // impl glfwDelegate's Logic, close engine.
+    [cocosView onTerminate];
     return YES;
 }
 
