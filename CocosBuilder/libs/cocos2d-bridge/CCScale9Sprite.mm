@@ -289,7 +289,7 @@
     ((cocos2d::ui::Scale9Sprite*)impl_)->retain();
     isNeedScale9SpriteDealloc_ = YES;
     
-    self = [super init];
+    self = [super init: object];
     
     return self;
 }

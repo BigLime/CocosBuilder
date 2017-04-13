@@ -43,7 +43,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                           = object;
-    isNeedCCActionIntervalDealloc_  = NO;
+    static_cast<cocos2d::ActionInterval*>(impl_)->retain();
+    isNeedCCActionIntervalDealloc_  = YES;
     
     self = [super init:impl_];
     return self;

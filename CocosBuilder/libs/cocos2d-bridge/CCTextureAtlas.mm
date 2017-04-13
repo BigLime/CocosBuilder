@@ -32,7 +32,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedTextureAtlasDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedTextureAtlasDealloc_  = YES;
     
     self = [super init];
     return self;

@@ -156,14 +156,15 @@
 
 -(void)setUserObject:(id)userObject
 {
+    [userObject retain];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->setUserObject((cocos2d::Ref*)userObject);
+    node->setUserData((void*)userObject);
 }
 
 -(id)userObject
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return (id)(node->getUserObject());
+    return (id)(node->getUserData());
 }
 
 // @synthesize	shaderProgram = _shaderProgram;
@@ -382,10 +383,12 @@
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedNodeDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedNodeDealloc_  = YES;
     
     // no super class.
     // self = [super init:impl_];
+    self = [super init];
     return self;
 }
 
@@ -396,7 +399,8 @@
         cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
         node->release();
     }
-    
+    //id useroj = [self userObject];
+    //[useroj release];
     [super dealloc];
 }
 
@@ -897,7 +901,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                     = object;
-    isNeedCCNodeRGBADealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCNodeRGBADealloc_  = YES;
     
     self = [super init:impl_];
     return self;

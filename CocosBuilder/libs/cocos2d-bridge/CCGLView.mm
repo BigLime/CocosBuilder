@@ -50,6 +50,16 @@
     /*mark todo by lsr*/
 }
 
+//-(id)initWithFrame:(NSRect)frame
+//{
+//    impl_ = cocos2d::GLViewImpl::createWithRect("", [ccTypeConvert CGRectToRect:frame]);
+//    ((cocos2d::GLViewImpl*)impl_)->retain();
+//    isNeedGLViewDealloc_ = YES;
+//    
+//    self = [super init];
+//    return self;
+//}
+
 -(id)initWithObject: (void*)object
 {
     impl_ = object;

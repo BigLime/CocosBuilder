@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47855FA41E9F4AFA00A33EF2 /* CCControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA11E9F4AFA00A33EF2 /* CCControl.mm */; };
+		47855FA51E9F4AFA00A33EF2 /* CCControlButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */; };
 		581130601639C52500A86D70 /* seq-startmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 5811305F1639C52000A86D70 /* seq-startmarker.png */; };
 		581BCFE8162DADE7007DE600 /* CCBSplitHorizontalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581BCFE7162DADE7007DE600 /* CCBSplitHorizontalView.m */; };
 		58FA2034162D73F3006B8856 /* TB_bottomPanel.png in Resources */ = {isa = PBXBuildFile; fileRef = 58FA2031162D73F3006B8856 /* TB_bottomPanel.png */; };
@@ -844,6 +846,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		47855FA01E9F4AFA00A33EF2 /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControl.h; path = "cocos2d-bridge/CCControl.h"; sourceTree = "<group>"; };
+		47855FA11E9F4AFA00A33EF2 /* CCControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCControl.mm; path = "cocos2d-bridge/CCControl.mm"; sourceTree = "<group>"; };
+		47855FA21E9F4AFA00A33EF2 /* CCControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControlButton.h; path = "cocos2d-bridge/CCControlButton.h"; sourceTree = "<group>"; };
+		47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCControlButton.mm; path = "cocos2d-bridge/CCControlButton.mm"; sourceTree = "<group>"; };
 		5811305E1639BF1200A86D70 /* SequencerTimelineDrawDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequencerTimelineDrawDelegate.h; sourceTree = "<group>"; };
 		5811305F1639C52000A86D70 /* seq-startmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seq-startmarker.png"; sourceTree = "<group>"; };
 		581BCFE6162DADE7007DE600 /* CCBSplitHorizontalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSplitHorizontalView.h; sourceTree = "<group>"; };
@@ -2633,6 +2639,10 @@
 				D3221CFA1E9C8DFF0032ABB2 /* CCAnimationCache.mm */,
 				D3221CFB1E9C8DFF0032ABB2 /* CCAtlasNode.h */,
 				D3221CFC1E9C8DFF0032ABB2 /* CCAtlasNode.mm */,
+				47855FA01E9F4AFA00A33EF2 /* CCControl.h */,
+				47855FA11E9F4AFA00A33EF2 /* CCControl.mm */,
+				47855FA21E9F4AFA00A33EF2 /* CCControlButton.h */,
+				47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */,
 				D3221CFD1E9C8DFF0032ABB2 /* CCConfiguration.h */,
 				D3221CFE1E9C8DFF0032ABB2 /* CCConfiguration.mm */,
 				D3221CFF1E9C8DFF0032ABB2 /* CCDirector.h */,
@@ -4527,6 +4537,7 @@
 				D3221D681E9C8E260032ABB2 /* CCLabelBMFont.mm in Sources */,
 				D3221D691E9C8E260032ABB2 /* CCLabeTTF.h in Sources */,
 				D3221D6A1E9C8E260032ABB2 /* CCLabeTTF.mm in Sources */,
+				47855FA41E9F4AFA00A33EF2 /* CCControl.mm in Sources */,
 				D3221D6B1E9C8E260032ABB2 /* CCLayer.h in Sources */,
 				D3221D6C1E9C8E260032ABB2 /* CCLayer.mm in Sources */,
 				D3221D6D1E9C8E260032ABB2 /* CCMenu.h in Sources */,
@@ -4543,6 +4554,7 @@
 				D3221D781E9C8E260032ABB2 /* CCParticleSystemQuad.mm in Sources */,
 				D3221D791E9C8E260032ABB2 /* CCProtocols.h in Sources */,
 				D3221D7A1E9C8E260032ABB2 /* CCRenderTexture.h in Sources */,
+				47855FA51E9F4AFA00A33EF2 /* CCControlButton.mm in Sources */,
 				D3221D7B1E9C8E260032ABB2 /* CCRenderTexture.mm in Sources */,
 				D3221D7C1E9C8E260032ABB2 /* CCScene.h in Sources */,
 				D3221D7D1E9C8E260032ABB2 /* CCScene.mm in Sources */,
@@ -5200,6 +5212,7 @@
 					"libs/cocos2d-bridge",
 					"libs/cocos2d-x/cocos",
 					"libs/cocos2d-x/external",
+					"libs/cocos2d-x",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -5243,6 +5256,7 @@
 					"libs/cocos2d-bridge",
 					"libs/cocos2d-x/cocos",
 					"libs/cocos2d-x/external",
+					"libs/cocos2d-x",
 				);
 				INFOPLIST_FILE = "ccBuilder/CocosBuilder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

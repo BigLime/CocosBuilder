@@ -32,6 +32,6 @@
  */
 @interface CCDirectorDisplayLink : CCDirectorMac
 {
-    
+    CVDisplayLinkRef displayLink;
 }
 @end

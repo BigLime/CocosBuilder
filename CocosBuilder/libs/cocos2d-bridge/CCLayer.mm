@@ -35,7 +35,8 @@
 -(id) initWithObject:(void *)object
 {
     impl_                 = object;
-    isNeedCCLayerDealloc_ = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCLayerDealloc_ = YES;
     
     self = [super init:impl_];
     return self;
@@ -209,7 +210,8 @@
 -(id) initWithObject:(void *)object
 {
     impl_                     = object;
-    isNeedCCLayerRGBADealloc_ = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCLayerRGBADealloc_ = YES;
     
     self = [super init:impl_];
     return self;
@@ -332,7 +334,8 @@
 -(id) initWithObject:(void *)object
 {
     impl_                      = object;
-    isNeedCCLayerColorDealloc_ = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCLayerColorDealloc_ = YES;
     
     self = [super init:self];
     return self;
@@ -538,7 +541,8 @@
 -(id) initWithObject:(void *)object
 {
     impl_                         = object;
-    isNeedCCLayerGradientDealloc_ = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCLayerGradientDealloc_ = YES;
     
     self = [super init:impl_];
     return self;

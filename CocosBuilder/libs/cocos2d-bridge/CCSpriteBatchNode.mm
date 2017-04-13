@@ -36,7 +36,8 @@ const NSUInteger defaultCapacity = 29;
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedBatchNodeDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedBatchNodeDealloc_  = YES;
     
     self = [super init:impl_];
     return self;
