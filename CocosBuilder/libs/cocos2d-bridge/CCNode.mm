@@ -156,14 +156,15 @@
 
 -(void)setUserObject:(id)userObject
 {
+    [userObject retain];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->setUserObject((cocos2d::Ref*)userObject);
+    node->setUserData((void*)userObject);
 }
 
 -(id)userObject
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return (id)(node->getUserObject());
+    return (id)(node->getUserData());
 }
 
 // @synthesize	shaderProgram = _shaderProgram;
@@ -398,7 +399,8 @@
         cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
         node->release();
     }
-    
+    //id useroj = [self userObject];
+    //[useroj release];
     [super dealloc];
 }
 

@@ -95,22 +95,27 @@ static CocosScene* sharedCocosScene;
     // Rulers
     rulerLayer = [RulersLayer node];
     [self addChild:rulerLayer z:6];
+    [rulerLayer retain];//retain OCObject
     
     // Guides
     guideLayer = [GuidesLayer node];
     [self addChild:guideLayer z:3];
+    [guideLayer retain];//retain OCObject
     
     // Sticky notes
     notesLayer = [NotesLayer node];
     [self addChild:notesLayer z:5];
+    [notesLayer retain];//retain OCObject
     
     // Selection layer
     selectionLayer = [CCLayer node];
     [self addChild:selectionLayer z:4];
+    [selectionLayer retain];//retain OCObject
     
     // Border layer
     borderLayer = [CCLayer node];
     [self addChild:borderLayer z:1];
+    [borderLayer retain];//retain OCObject
     
     ccColor4B borderColor = ccc4(128, 128, 128, 180);
     
@@ -124,8 +129,14 @@ static CocosScene* sharedCocosScene;
     [borderLayer addChild:borderLeft];
     [borderLayer addChild:borderRight];
     
+    [borderBottom retain];//retain OCObject
+    [borderTop retain];//retain OCObject
+    [borderLeft retain];//retain OCObject
+    [borderRight retain];//retain OCObject
+    
     borderDevice = [CCSprite node];
     [borderLayer addChild:borderDevice z:1];
+    [borderDevice retain];//retain OCObject
     
     // Gray background
     bgLayer = [CCLayerColor layerWithColor:ccc4(128, 128, 128, 255) width:4096 height:4096];
@@ -138,9 +149,11 @@ static CocosScene* sharedCocosScene;
     stageBgLayer.anchorPoint = ccp(0.5,0.5);
     stageBgLayer.ignoreAnchorPointForPosition = NO;
     [self addChild:stageBgLayer z:0];
+    [stageBgLayer retain];//retain OCObject
     
     contentLayer = [CCLayer node];
     [stageBgLayer addChild:contentLayer];
+    [contentLayer retain];//retain OCObject
 }
 
 - (void) setStageBorder:(int)type
@@ -292,6 +305,7 @@ static CocosScene* sharedCocosScene;
     if (renderedScene)
     {
         [self removeChild:renderedScene cleanup:YES];
+        [renderedScene release];
         renderedScene = NULL;
     }
     
@@ -304,7 +318,7 @@ static CocosScene* sharedCocosScene;
         renderedScene = [CCRenderTexture renderTextureWithWidth:size.width height:size.height];
         renderedScene.anchorPoint = ccp(0.5f,0.5f);
         [self addChild:renderedScene];
-
+        [renderedScene retain];//retain OCObject
         [pool drain];
     }
     
@@ -359,13 +373,14 @@ static CocosScene* sharedCocosScene;
     CCBGlobals* g = [CCBGlobals globals];
     
     [contentLayer removeChild:rootNode cleanup:YES];
-    
+    [rootNode release];
     self.rootNode = node;
     g.rootNode = node;
     
     if (!node) return;
     
     [contentLayer addChild:node];
+    [node retain];
 }
 
 #pragma mark Handle selections
