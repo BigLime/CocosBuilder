@@ -104,7 +104,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedSTimerDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedSTimerDealloc_  = YES;
     
     self = [super init];
     return self;

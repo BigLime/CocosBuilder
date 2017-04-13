@@ -57,6 +57,10 @@ typedef enum {
 {
     void* impl_;
     BOOL isNeedDirectorDealloc_;
+    
+    BOOL _isAnimating;
+    NSThread* _runningThread;
+    CCGLView* _view;
 }
 
 /** returns the cocos2d thread.

@@ -33,7 +33,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_               = object;
-    isNeedSpriteFrameDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedSpriteFrameDealloc_  = YES;
     
     self = [super init];
     return self;

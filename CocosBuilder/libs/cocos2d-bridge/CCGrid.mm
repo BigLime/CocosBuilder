@@ -150,16 +150,17 @@
         impl_ = grid;
     }
     
-    self = [super init:impl_];
+    self = [super init];
     return self;
 }
 
 -(id)initWithObject:(void *)object
 {
     impl_                    = object;
-    isNeedCCGridBaseDealloc_ = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCGridBaseDealloc_ = YES;
     
-    self = [super init:impl_];
+    self = [super init];
     return self;
 }
 

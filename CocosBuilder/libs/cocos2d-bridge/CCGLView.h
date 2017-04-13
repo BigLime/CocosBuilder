@@ -21,7 +21,7 @@
 - (void)addTrackingArea:(NSTrackingArea*)trackingArea;
 - (void)removeTrackingArea:(NSTrackingArea*)trackingArea;
 
--(id)initWithFrame:(NSRect)frame;
+//-(id)initWithFrame:(NSRect)frame;
 -(id)initWithObject: (void*)object;
 -(void)newCppGLView;
 

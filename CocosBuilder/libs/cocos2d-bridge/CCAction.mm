@@ -114,7 +114,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                   = object;
-    isNeedCCActionDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCActionDealloc_  = YES;
     
     // self = [super init:impl_];
     return self;
@@ -239,7 +240,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                   = object;
-    isNeedCCActionDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCActionDealloc_  = YES;
     
     self = [super init:impl_];
     return self;
@@ -303,7 +305,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                          = object;
-    isNeedCCRepeatForeverDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCRepeatForeverDealloc_  = YES;
     
     self = [super init:impl_];
     return self;
@@ -430,7 +433,8 @@
 -(id) initWithObject: (void*) object
 {
     impl_                   = object;
-    isNeedCCSpeedDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCSpeedDealloc_  = YES;
     
     self = [super init:impl_];
     return self;

@@ -7,6 +7,7 @@
 //
 
 #import "CCDirector.h"
+#import "CCDirectorMac.h"
 #import "CCScene.h"
 #import "CCScheduler.h"
 #import "CCActionManager.h"
@@ -94,12 +95,14 @@ extern NSString * cocos2dVersion(void);
 // getter setter
 -(void)setIsAnimating:(BOOL)isAnimating
 {
-    /*mark todo by lsr*/ // 接口不存在
+    /*mark todo by lsr*/ // 接口自实现
+    _isAnimating = isAnimating;
 }
 
 -(BOOL)isAnimating
 {
-    /*mark todo by lsr*/ // 接口不存在
+    /*mark todo by lsr*/ // 接口自实现
+    return _isAnimating;
 }
 
 // getter setter
@@ -184,7 +187,8 @@ static CCDirector *_sharedDirector = nil;
     if (!_sharedDirector) {
         AppDelegate* app = new AppDelegate();
         /*mark todo by lsr*/ // 暂时没delete
-        _sharedDirector = [[self alloc] init];
+//        _sharedDirector = [[self alloc] init];
+        _sharedDirector = [[CCDirectorDisplayLink alloc] init];
     }
     
     return _sharedDirector;
@@ -286,14 +290,16 @@ static CCDirector *_sharedDirector = nil;
 
 -(void) setView:(CCGLView*)view
 {
+    _view = view;
     cocos2d::Director* director = cocos2d::Director::getInstance();
     director->setOpenGLView((cocos2d::GLView*)[view getImpl]);
 }
 
 -(CCGLView*) view
 {
-    cocos2d::Director* director = cocos2d::Director::getInstance();
-    return [[[CCGLView alloc] initWithObject:director->getOpenGLView()] autorelease];
+    return _view;
+//    cocos2d::Director* director = cocos2d::Director::getInstance();
+//    return [[[CCGLView alloc] initWithObject:director->getOpenGLView()] autorelease];
 }
 
 
@@ -337,6 +343,7 @@ static CCDirector *_sharedDirector = nil;
     cocos2d::Director* director = cocos2d::Director::getInstance();
     cocos2d::Scene* cppscene = (cocos2d::Scene*)[scene getImpl];
     director->runWithScene(cppscene);
+    [self startAnimation];
 }
 
 -(void) replaceScene: (CCScene*) scene

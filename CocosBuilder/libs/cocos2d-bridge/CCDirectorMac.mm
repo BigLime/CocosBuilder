@@ -7,6 +7,7 @@
 #import "CCDirector.h"
 #import "ccTypeConvert.h"
 #import "base/CCDirector.h"
+#import "CCGLView.h"
 
 #pragma mark -
 #pragma mark Director Mac
@@ -83,6 +84,7 @@
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
+    [self performSelector:@selector(drawScene) onThread:_runningThread withObject:nil waitUntilDone:YES];
     return kCVReturnSuccess;
 }
 
@@ -95,15 +97,58 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 
 - (void) startAnimation
 {
+    [super startAnimation];
+    
+    if(self.isAnimating)
+        return;
+    
+    _runningThread = [NSThread mainThread];
+    
+    struct timeval _lastUpdate;
+    gettimeofday(&_lastUpdate, NULL);
+    
+    // Create a display link capable of being used with all active displays
+    CVDisplayLinkCreateWithActiveCGDisplays(&displayLink);
+    
+    // Set the renderer output callback function
+    CVDisplayLinkSetOutputCallback(displayLink, &MyDisplayLinkCallback, self);
+    
+    // Set the display link for the current renderer
+//    CCGLView *openGLview = (CCGLView*) self.view;
+    CCGLView *openGLview = self.view;
+    CGLContextObj cglContext = [[openGLview openGLContext] CGLContextObj];
+    CGLPixelFormatObj cglPixelFormat = [[openGLview pixelFormat] CGLPixelFormatObj];
+    CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat);
+    
+    // Activate the display link
+    CVDisplayLinkStart(displayLink);
+    
+    _isAnimating = YES;
 }
 
 - (void) stopAnimation
 {
+    if(!_isAnimating)
+        return;
     
+    if( displayLink ) {
+        CVDisplayLinkStop(displayLink);
+        CVDisplayLinkRelease(displayLink);
+        displayLink = NULL;
+        
+        _runningThread = nil;
+    }
+    
+    _isAnimating = NO;
 }
 
 -(void) dealloc
 {
+    if( displayLink ) {
+        CVDisplayLinkStop(displayLink);
+        CVDisplayLinkRelease(displayLink);
+    }
+    
     [super dealloc];
 }
 
@@ -120,7 +165,11 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 //
 - (void) drawScene
 {
-    
+    // 在该方法中执行C++引擎的mainLoop
+//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->mainLoop();
+//    [pool release];
 }
 
 // set the event dispatcher

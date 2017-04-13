@@ -112,7 +112,8 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 -(id) initWithObject: (void*) object
 {
     impl_                     = object;
-    isNeedCCMenuItemDealloc_  = NO;
+    static_cast<cocos2d::Ref*>(impl_)->retain();
+    isNeedCCMenuItemDealloc_  = YES;
     
     self = [super init:impl_];
     return self;
