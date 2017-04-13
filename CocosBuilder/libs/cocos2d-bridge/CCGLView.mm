@@ -137,7 +137,8 @@
     self = [super initWithFrame:frameRect pixelFormat:[pixelFormat autorelease]];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(nsWindow, nsDelegate, self, self.openGLContext);
+    BOOL isForEditor = YES;
+    cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(isForEditor, nsWindow, nsDelegate, self, self.openGLContext);
     cppView->retain();
     
     isNeedGLViewDealloc_ = YES;
