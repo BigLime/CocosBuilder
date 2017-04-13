@@ -13,6 +13,22 @@
 
 @implementation CCLabelBMFont
 
+- (CCTextureAtlas*) textureAtlas
+{
+    return [[[CCTextureAtlas alloc ]initWithObject: ((cocos2d::TextureAtlas*)impl_)->getTexture()] autorelease];
+}
+
+- (ccBlendFunc) blendFunc
+{
+    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    return [ccTypeConvert BlendFuncToccBlendFunc:label->getBlendFunc()];
+}
+- (void) setBlendFunc:(ccBlendFunc)_blendFunc
+{
+    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    label->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:_blendFunc]);
+}
+
 // @synthesize alignment = _alignment;
 -(void)setAlignment:(CCTextAlignment)alignment
 {
@@ -78,7 +94,14 @@
 
 -(id) init
 {
-    return [self initWithString:nil fntFile:nil width:kCCLabelAutomaticWidth alignment:kCCTextAlignmentLeft imageOffset:CGPointZero];
+    cocos2d::LabelBMFont* label = cocos2d::LabelBMFont::create();
+    label->retain();
+    
+    isNeedCCLabelBMFontDealloc = YES;
+    impl_ = label;
+    
+    self = [super init:impl_];
+    return self;
 }
 
 -(id) initWithString:(NSString*)theString fntFile:(NSString*)fntFile
