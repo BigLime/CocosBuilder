@@ -29,6 +29,7 @@
 
 -(void) setView:(CCGLView *)view
 {
+    [super setView:view];
 }
 
 -(int) resizeMode
@@ -47,7 +48,7 @@
 
 -(void) setProjection:(ccDirectorProjection)projection
 {
-
+    [super setProjection:projection]; 
 }
 
 

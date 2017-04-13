@@ -108,11 +108,15 @@
     
     NSRect frameRect = self.frame;
     self = [super initWithFrame:frameRect pixelFormat:[pixelFormat autorelease]];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(nsWindow, nsDelegate, self, self.openGLContext);
     cppView->retain();
     
     isNeedGLViewDealloc_ = YES;
+    impl_ = cppView;
+    
+    // self = [super init:impl_];
     return self;
 }
 

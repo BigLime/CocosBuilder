@@ -28,7 +28,7 @@
 // extension for cpp engine.
 
 // create cpp glview and push glcontext into 2d-x.
--(void) create:(id)nsWindow delegate:(id)nsDelegate;
+-(id) create:(id)nsWindow delegate:(id)nsDelegate;
 
 // handle move event.
 -(void) onMove;

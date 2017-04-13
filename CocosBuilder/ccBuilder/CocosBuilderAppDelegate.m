@@ -158,11 +158,14 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     // Insert code here to initialize your application
     CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
     
-	[director setDisplayStats:NO];
+    // Create OpenGL View For Editor And Attach To cocos2d-x.
+    [cocosView create:self.window delegate:self];
+    
+	[director setDisplayStats:YES];
+    [director setView:cocosView];
 	[director setProjection:kCCDirectorProjection2D];
     
-    // Create OpenGL View For Editor And Attach To cocos2d-x.
-    [cocosView create: self, self.window];
+
     
     
 	// EXPERIMENTAL stuff.
