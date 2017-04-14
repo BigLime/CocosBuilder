@@ -381,6 +381,7 @@
     
     // no super class.
     // self = [super init:impl_];
+    self = [super init];
     return self;
 }
 

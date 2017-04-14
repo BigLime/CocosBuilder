@@ -176,8 +176,9 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 	
 	// Enable "moving" mouse event. Default no.
 	//[window setAcceptsMouseMovedEvents:YES];
-	
-	[director runWithScene:[CocosScene sceneWithAppDelegate:self]];
+    CCScene* ccScene = [CocosScene sceneWithAppDelegate:self];
+	[director runWithScene:ccScene];
+    [ccScene retain];//retain cocosScene by honk
 	
 //	NSAssert( [NSThread currentThread] == [[CCDirector sharedDirector] runningThread], @"cocos2d shall run on the Main Thread. Compile CocosBuilder with CC_DIRECTOR_MAC_THREAD=2");
 }

@@ -144,7 +144,11 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 -(id)initWithBlock:(void (^)(id))block
 {
-    cocos2d::MenuItem* menuItem = cocos2d::MenuItem::create([block, self](cocos2d::Ref*) { [block self]; });
+    cocos2d::MenuItem* menuItem ;
+    if(block)
+        menuItem = cocos2d::MenuItem::create([block, self](cocos2d::Ref*) { [block self]; });
+    else
+        menuItem = cocos2d::MenuItem::create();
     menuItem->retain();
     
     isNeedCCMenuItemDealloc_ = YES;
@@ -490,6 +494,31 @@ const NSInteger	kCCZoomActionTag    = 0xc0c05002;
 
 #pragma mark - CCMenuItemSprite
 @implementation CCMenuItemSprite
+
+-(id) init
+{
+    return [self init:nil];
+}
+
+-(id) init: (void*) pThis
+{
+    if (!!pThis)
+    {
+        impl_                       = pThis;
+        isNeedCCMenuItemSpriteDealloc_    = NO;
+    }
+    else
+    {
+        cocos2d::MenuItemSprite* _menuItemSprite = cocos2d::MenuItemSprite::create(nil,nil,nil);
+        _menuItemSprite->retain();
+        
+        isNeedCCMenuItemSpriteDealloc_    = YES;
+        impl_ = _menuItemSprite;
+    }
+    
+    self = [super init:impl_];
+    return self;
+}
 
 // @synthesize normalImage=_normalImage, selectedImage=_selectedImage, disabledImage=_disabledImage;
 -(void)setNormalImage:(CCNode<CCRGBAProtocol> *)normalImage
