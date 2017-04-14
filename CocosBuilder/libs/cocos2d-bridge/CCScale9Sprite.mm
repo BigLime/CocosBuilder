@@ -20,13 +20,13 @@
 }
 
 // setter getter
--(void)setPreferredSize:(CGSize)preferredSize
+-(void)setPreferedSize:(CGSize)preferedSize
 {
     cocos2d::ui::Scale9Sprite* sprite = (cocos2d::ui::Scale9Sprite*)impl_;
-    sprite->setPreferredSize([ccTypeConvert CGSizeToSize:preferredSize]);
+    sprite->setPreferredSize([ccTypeConvert CGSizeToSize:preferedSize]);
 }
 
--(CGSize)preferredSize
+-(CGSize)preferedSize
 {
     cocos2d::ui::Scale9Sprite* sprite = (cocos2d::ui::Scale9Sprite*)impl_;
     return [ccTypeConvert SizeToCGSize:sprite->getPreferredSize()];
@@ -281,6 +281,27 @@
 {
     cocos2d::ui::Scale9Sprite* sprite = (cocos2d::ui::Scale9Sprite*)impl_;
     sprite->visit();
+}
+
+
+-(id) init: (void*) pThis
+{
+    if (!!pThis)
+    {
+        impl_               = pThis;
+        isNeedScale9SpriteDealloc_  = NO;
+    }
+    else
+    {
+        cocos2d::ui::Scale9Sprite* node = cocos2d::ui::Scale9Sprite::create();
+        node->retain();
+        
+        isNeedScale9SpriteDealloc_ = YES;
+        impl_ = node;
+    }
+    
+    self = [super init:impl_];
+    return self;
 }
 
 -(id)initWithObject: (void*)object

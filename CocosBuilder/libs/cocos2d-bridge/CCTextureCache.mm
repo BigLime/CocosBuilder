@@ -97,6 +97,7 @@ static CCTextureCache *sharedTextureCache;
 
 -(CCTexture2D*) addImage: (NSString*) path
 {
+    NSAssert(path != nil, @"TextureCache: fileimage MUST not be nil");
     cocos2d::TextureCache* cache = cocos2d::Director::getInstance()->getTextureCache();
     cocos2d::Texture2D* texture = cache->addImage([ccTypeConvert NSStringTostring:path]);
     return [[[CCTexture2D alloc] initWithObject:texture] autorelease];

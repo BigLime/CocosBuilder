@@ -327,7 +327,7 @@
         impl_ = layer;
     }
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
@@ -337,7 +337,7 @@
     static_cast<cocos2d::Ref*>(impl_)->retain();
     isNeedCCLayerColorDealloc_ = YES;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 

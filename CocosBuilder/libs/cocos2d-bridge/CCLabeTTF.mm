@@ -18,6 +18,29 @@
 
 @implementation CCLabelTTF
 
+- (ccBlendFunc) blendFunc
+{
+    cocos2d::LabelTTF* label = static_cast<cocos2d::LabelTTF*>(impl_);
+    return [ccTypeConvert BlendFuncToccBlendFunc:label->getBlendFunc()];
+}
+- (void) setBlendFunc:(ccBlendFunc)_blendFunc
+{
+    cocos2d::LabelTTF* label = static_cast<cocos2d::LabelTTF*>(impl_);
+    label->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:_blendFunc]);
+}
+
+-(void) setString:(NSString*)str
+{
+    cocos2d::LabelTTF* label = static_cast<cocos2d::LabelTTF*>(impl_);
+    label->setString([ccTypeConvert NSStringTostring:str]);
+}
+
+-(NSString*) string
+{
+    cocos2d::LabelTTF* label = static_cast<cocos2d::LabelTTF*>(impl_);
+    return [ccTypeConvert stringToNSString:label->getString()];
+}
+
 // -
 + (id) labelWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size
 {
@@ -97,12 +120,6 @@
     
     self = [super init: impl_];
     return self;
-}
-
--(void)setString:(NSString *)str
-{
-    cocos2d::LabelTTF* label = static_cast<cocos2d::LabelTTF*>(impl_);
-    label->setString([str UTF8String]);
 }
 
 -(void)setFontName:(NSString *)fontName
