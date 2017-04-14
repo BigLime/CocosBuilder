@@ -35,6 +35,16 @@
 */
 }
 
+-(void) reshape
+{
+    if (!impl_) return;
+    
+    NSRect rect = [self bounds];
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->setWindowed(rect.size.width, rect.size.height);
+    
+}
+
 -(NSPoint)convertPoint:(NSPoint)point toView:(nullable NSView*)view
 {
     return NSZeroPoint;
@@ -172,6 +182,8 @@
 -(void) onSize: (NSRect) contentRect fbRect: (NSRect) fbRect
 {
     if (!impl_) return;
+    
+    [self setFrameSize:NSMakeSize(contentRect.size.width, contentRect.size.height)];
     
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onSize([ccTypeConvert CGRectToRect: contentRect], [ccTypeConvert CGRectToRect: fbRect]);
