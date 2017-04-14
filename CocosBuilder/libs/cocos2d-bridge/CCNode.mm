@@ -543,11 +543,11 @@
 
 -(void)removeChild:(CCNode *)child cleanup:(BOOL)cleanup
 {
-    if ( [_children containsObject:child] )
-        [_children removeObject:child];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
     node->removeChild(inP, cleanup);
+    if ( [_children containsObject:child] )
+        [_children removeObject:child];
 }
 
 -(void)removeChildByTag:(NSInteger)tag
