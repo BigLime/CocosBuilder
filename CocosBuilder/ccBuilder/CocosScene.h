@@ -152,6 +152,9 @@ enum {
 - (void)mouseMoved:(NSEvent *)event;
 - (void)mouseEntered:(NSEvent *)event;
 - (void)mouseExited:(NSEvent *)event;
+- (BOOL)ccMouseDown:(NSEvent *)event;
+- (BOOL)ccMouseUp:(NSEvent *)event;
+- (BOOL)ccMouseDragged:(NSEvent *)event;
 - (void)cursorUpdate:(NSEvent *)event;
 
 // Converts to document coordinates from view coordinates

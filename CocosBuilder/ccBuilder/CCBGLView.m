@@ -123,4 +123,21 @@
     [[CocosScene cocosScene] cursorUpdate:event];
 }
 
+- (void)mouseDown:(NSEvent *)event
+{
+    [super mouseDown:event];
+    [[CocosScene cocosScene] ccMouseDown:event]; 
+}
+
+- (void)mouseUp:(NSEvent *)event
+{
+    [super mouseUp:event];
+    [[CocosScene cocosScene] ccMouseUp:event];
+}
+
+-(void)mouseDragged:(NSEvent *)event
+{
+    [super mouseDragged:event];
+    [[CocosScene cocosScene] ccMouseDragged:event];
+}
 @end
