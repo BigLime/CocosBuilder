@@ -169,7 +169,7 @@
     cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(isForEditor, nsWindow, nsDelegate, self, self.openGLContext);
     cppView->retain();
     
-    cppView->setDesignResolutionSize(contentRect.size.width, contentRect.size.height, ResolutionPolicy::FIXED_HEIGHT);
+    cppView->setDesignResolutionSize(contentRect.size.width, contentRect.size.height, ResolutionPolicy::FIXED_SCALE);
     isNeedGLViewDealloc_ = YES;
     impl_ = cppView;
     
