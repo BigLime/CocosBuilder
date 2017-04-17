@@ -32,7 +32,7 @@
 /** Original sprite's size. */
 @property (nonatomic, readonly) CGSize originalSize;
 /** Preferred sprite's size. By default the preferred size is the original size. */
-@property (nonatomic, assign) CGSize preferredSize;
+@property (nonatomic, assign) CGSize preferedSize;
 
 /** @name 3x3 Grid Attributes */
 /** 

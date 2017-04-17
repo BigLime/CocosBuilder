@@ -139,7 +139,7 @@
     cocos2d::ui::Scale9Sprite* sprite = static_cast<cocos2d::ui::Scale9Sprite*>([backgroundsprite getImpl]);
     cocos2d::extension::ControlButton* controlButton = cocos2d::extension::ControlButton::create(node,sprite);
     controlButton->retain();
-    impl_ = sprite;
+    impl_ = controlButton;
     
     isNeedControButtonlDealloc_ = YES;
     
@@ -270,9 +270,42 @@
 }
 - (id)valueForUndefinedKey:(NSString *)key
 {
-    //TODO no this method
-    NSAssert(false, @"no this method valueForUndefinedKey");
-    return self;
+    NSArray* chunks = [key componentsSeparatedByString:@"|"];
+    if ([chunks count] == 2)
+    {
+        NSString* keyChunk = [chunks objectAtIndex:0];
+        int state = [[chunks objectAtIndex:1] intValue];
+        
+        if ([keyChunk isEqualToString:@"title"])
+        {
+            return [self titleForState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleColor"])
+        {
+            ccColor3B c = [self titleColorForState:state];
+            return [NSValue value:&c withObjCType:@encode(ccColor3B)];
+        }
+        else if ([keyChunk isEqualToString:@"titleBMFont"])
+        {
+            return [self titleBMFontForState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleTTF"])
+        {
+            return [self titleTTFForState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleTTFSize"])
+        {
+            return [NSNumber numberWithFloat:[self titleTTFSizeForState:state]];
+        }
+        else
+        {
+            return [super valueForUndefinedKey:key];
+        }
+    }
+    else
+    {
+        return [super valueForUndefinedKey:key];
+    }
 }
 
 @end

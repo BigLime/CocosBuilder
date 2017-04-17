@@ -136,7 +136,7 @@
     ((cocos2d::RenderTexture*)impl_)->retain();
     isNeedRenderTextureDealloc_   = YES;
     
-    self = [super init:self];
+    self = [super init:impl_];
     return self;
 }
 
