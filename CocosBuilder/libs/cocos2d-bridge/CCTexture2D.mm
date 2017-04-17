@@ -47,7 +47,6 @@
     if (isNeedSTextureDealloc_)
     {
         cocos2d::Texture2D* texture2D = (cocos2d::Texture2D*)impl_;
-        texture2D->releaseGLTexture();
         texture2D->release();
     }
     [super dealloc];
