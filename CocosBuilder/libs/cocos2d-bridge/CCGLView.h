@@ -27,6 +27,9 @@
 
 -(void*) getImpl;
 
+- (void)update;		// moved or resized
+- (void)reshape;	// scrolled, moved or resized
+
 /** uses and locks the OpenGL context */
 -(void) lockOpenGLContext;
 

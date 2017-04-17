@@ -234,6 +234,8 @@ typedef enum {
 /** returns the OpenGL view */
 -(CCGLView*) view;
 
+//
+-(void) setContentScaleFactor:(float) factor;
 
 #pragma mark Director - Memory Helper
 

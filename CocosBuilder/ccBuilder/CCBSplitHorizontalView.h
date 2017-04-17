@@ -28,8 +28,10 @@
 {
     IBOutlet NSView* topView;
     IBOutlet NSView* bottomView;
+    
+    NSView* cocosView;
 }
 
 -(void) toggleBottomView:(BOOL)show;
-
+-(void) setCocosView:(NSView*)view;
 @end

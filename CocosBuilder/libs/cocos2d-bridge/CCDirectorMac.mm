@@ -171,6 +171,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
     // NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     cocos2d::Director* director = cocos2d::Director::getInstance();
     director->mainLoop();
+    
     // [pool release];
 }
 
