@@ -671,7 +671,11 @@ static SequencerHandler* sharedSequencerHandler;
     CCNode* child = NULL;
     CCARRAY_FOREACH(children, child);
     {
-        [self deselectKeyframesForNode:child];
+        if (!children || children->data->num <= 0)
+        {
+            return;
+        }
+       [self deselectKeyframesForNode:child];
     }
 }
 
