@@ -95,27 +95,22 @@ static CocosScene* sharedCocosScene;
     // Rulers
     rulerLayer = [RulersLayer node];
     [self addChild:rulerLayer z:6];
-    [rulerLayer retain];
     
     // Guides
     guideLayer = [GuidesLayer node];
     [self addChild:guideLayer z:3];
-    [guideLayer retain];
     
     // Sticky notes
     notesLayer = [NotesLayer node];
     [self addChild:notesLayer z:5];
-    [notesLayer retain];
     
     // Selection layer
     selectionLayer = [CCLayer node];
     [self addChild:selectionLayer z:4];
-    [selectionLayer retain];
     
     // Border layer
     borderLayer = [CCLayer node];
     [self addChild:borderLayer z:1];
-    [borderLayer retain];
     
     ccColor4B borderColor = ccc4(128, 128, 128, 180);
     
@@ -123,10 +118,6 @@ static CocosScene* sharedCocosScene;
     borderTop = [CCLayerColor layerWithColor:borderColor];
     borderLeft = [CCLayerColor layerWithColor:borderColor];
     borderRight = [CCLayerColor layerWithColor:borderColor];
-    [borderBottom retain];
-    [borderTop retain];
-    [borderLeft retain];
-    [borderRight retain];
     
     [borderLayer addChild:borderBottom];
     [borderLayer addChild:borderTop];
@@ -135,25 +126,21 @@ static CocosScene* sharedCocosScene;
     
     borderDevice = [CCSprite node];
     [borderLayer addChild:borderDevice z:1];
-    [borderDevice retain];
     
     // Gray background
     bgLayer = [CCLayerColor layerWithColor:ccc4(128, 128, 128, 255) width:4096 height:4096];
     bgLayer.position = ccp(0,0);
     bgLayer.anchorPoint = ccp(0,0);
     [self addChild:bgLayer z:-1];
-    [bgLayer retain];
     
     // Black content layer
     stageBgLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255) width:0 height:0];
     stageBgLayer.anchorPoint = ccp(0.5,0.5);
     stageBgLayer.ignoreAnchorPointForPosition = NO;
     [self addChild:stageBgLayer z:0];
-    [stageBgLayer retain];
     
     contentLayer = [CCLayer node];
     [stageBgLayer addChild:contentLayer];
-    [contentLayer retain];
 }
 
 - (void) setStageBorder:(int)type
