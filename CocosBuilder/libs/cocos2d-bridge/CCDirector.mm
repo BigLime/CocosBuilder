@@ -408,5 +408,10 @@ static CCDirector *_sharedDirector = nil;
     director->stopAnimation();
 }
 
+- (void)setContentScaleFactor:(float)factor
+{
+    cocos2d::Director* director = cocos2d::Director::getInstance();
+    director->setContentScaleFactor(factor);
+}
 @end
 

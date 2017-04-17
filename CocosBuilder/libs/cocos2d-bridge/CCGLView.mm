@@ -25,24 +25,33 @@
 -(NSRect)frame
 {
     return [super frame];
-
-/*
+    
+    /*
+    if (!impl_);
+     
     cocos2d::GLViewImpl* gl = (cocos2d::GLViewImpl*)impl_;
     NSRect r;
     r.origin = NSZeroPoint;
     r.size = [ccTypeConvert SizeToCGSize:gl->getFrameSize()];
+    
+    self.frame = r;
     return r;
-*/
+     */
 }
 
 -(void) reshape
 {
+    [super reshape];
+    
     if (!impl_) return;
     
-    NSRect rect = [self bounds];
-    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
-    cppView->setWindowed(rect.size.width, rect.size.height);
+    NSRect contentRect = self.frame;
+    NSRect fbRect = [self convertRectToBacking:contentRect];
     
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->setFrameSize(fbRect.size.width, fbRect.size.height);
+
+    NSLog(@"Frame Size == [%.1f, %.1f]", fbRect.size.width, fbRect.size.height);
 }
 
 -(NSPoint)convertPoint:(NSPoint)point toView:(nullable NSView*)view
@@ -122,22 +131,27 @@
     CGLUnlockContext([glContext CGLContextObj]);
 }
 
+- (void) update
+{
+    // XXX: Should I do something here ?
+    [super update];
+}
+
 -(id) create:(id)nsWindow delegate:(id)nsDelegate
 {
     // TODO: update opengl pixelFormat attrib.
     NSOpenGLPixelFormatAttribute attribs[] =
     {
-        //		NSOpenGLPFAAccelerated,
-        //		NSOpenGLPFANoRecovery,
-        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFAAccelerated,
+        NSOpenGLPFAClosestPolicy,
+        NSOpenGLPFAAuxBuffers, 0,
+        NSOpenGLPFAAccumSize, 0,
+        NSOpenGLPFAColorSize, 24,
+        NSOpenGLPFAAlphaSize, 8,
         NSOpenGLPFADepthSize, 24,
-        
-#if 0
-        // Must specify the 3.2 Core Profile to use OpenGL 3.2
-        NSOpenGLPFAOpenGLProfile,
-        NSOpenGLProfileVersion3_2Core,
-#endif
-        
+        NSOpenGLPFAStencilSize, 8,
+        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFASampleBuffers, 0,
         0
     };
     
@@ -145,12 +159,13 @@
     
     NSRect frameRect = self.frame;
     self = [super initWithFrame:frameRect pixelFormat:[pixelFormat autorelease]];
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
+    // [self setTranslatesAutoresizingMaskIntoConstraints:YES];
+    // [self setAutoresizingMask:NSViewNotSizable];
     BOOL isForEditor = YES;
     cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(isForEditor, nsWindow, nsDelegate, self, self.openGLContext);
     cppView->retain();
     
+    cppView->setDesignResolutionSize(frameRect.size.width, frameRect.size.height, ResolutionPolicy::NO_BORDER);
     isNeedGLViewDealloc_ = YES;
     impl_ = cppView;
     
@@ -162,8 +177,6 @@
 -(void) onMove
 {
     if (!impl_) return;
-    
-    [self.openGLContext update];
     
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onMove();
@@ -183,8 +196,8 @@
 {
     if (!impl_) return;
     
-    [self setFrameSize:NSMakeSize(contentRect.size.width, contentRect.size.height)];
-    
+    NSLog(@"GLView Size == [%.3f, %.3f] [%.3f, %.3f]", contentRect.size.width, contentRect.size.height, fbRect.size.width, fbRect.size.height); 
+   
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->onSize([ccTypeConvert CGRectToRect: contentRect], [ccTypeConvert CGRectToRect: fbRect]);
 }

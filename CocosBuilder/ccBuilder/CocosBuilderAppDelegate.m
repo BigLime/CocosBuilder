@@ -162,10 +162,10 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     [cocosView create:self.window delegate:self];
     
 	[director setDisplayStats:YES];
+    [director setAnimationInterval:1 / 60.f];
     [director setView:cocosView];
 	[director setProjection:kCCDirectorProjection2D];
-    
-
+    [director setContentScaleFactor:1.f];
     
     
 	// EXPERIMENTAL stuff.
@@ -575,6 +575,7 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 - (void) windowDidResize:(NSNotification *)notification
 {
     [sequenceHandler updateScroller];
+    [cocosView.openGLContext update];
     
     // impl in glfw's delegate, for resize Renderer.
     const NSRect contentRect = [cocosView frame];
