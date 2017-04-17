@@ -64,12 +64,12 @@
 
 -(void)addTrackingArea:(NSTrackingArea*)trackingArea
 {
-    /*mark todo by lsr*/
+    [super addTrackingArea:trackingArea];
 }
 
 -(void)removeTrackingArea:(NSTrackingArea*)trackingArea
 {
-    /*mark todo by lsr*/
+    [super removeTrackingArea:trackingArea];
 }
 
 //-(id)initWithFrame:(NSRect)frame
