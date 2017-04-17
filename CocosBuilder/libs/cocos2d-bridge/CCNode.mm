@@ -739,6 +739,10 @@
 //    {
 //        [t performSelector:selector withObject:self afterDelay:inParam];
 //    }];
+    const auto callBack = [=](float inParam) { [self performSelector:selector withObject:self afterDelay:inParam]; };
+    NSString* key = @"selector";
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->schedule(callBack, [key UTF8String]);
 }
 
 -(void)scheduleWithBlock: (void (^)(float)) block
