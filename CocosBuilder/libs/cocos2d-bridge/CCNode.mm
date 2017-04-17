@@ -74,23 +74,23 @@
     return node->isVisible();
 }
 
- @synthesize parent = _parent;
-/*-(void)setParent:(CCNode *)parent
+// @synthesize parent = _parent;
+-(void)setParent:(CCNode *)parent
 {
-    _parent = parent;
-    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    //cocos2d::Node* cppparent = static_cast<cocos2d::Node*>([parent getImpl]);
+//    _parent = parent;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    cocos2d::Node* cppparent = static_cast<cocos2d::Node*>([parent getImpl]);
     
-    //return node->setParent(cppparent);
+    return node->setParent(cppparent);
 }
 
 -(CCNode *)parent
 {
-    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    //return [[[CCNode alloc] initWithObject: node->getParent()] autorelease];
-    return _parent;
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return [[[CCNode alloc] initWithObject: node->getParent()] autorelease];
+//    return _parent;
 }
-*/
+
 // @synthesize grid = _grid;
 -(void)setGrid:(CCGridBase *)grid
 {
@@ -359,7 +359,6 @@
 -(id) init
 {
     _children = nil;
-    _parent = nil;
     return [self init: nil];
 }
 
@@ -485,19 +484,8 @@
     }
 }
 
--(void) insertChild:(CCNode*)child
-{
-    if( ! _children )
-    {
-        _children = [[CCArray alloc] initWithCapacity:4];
-    }
-    [child setParent: self];
-    ccArrayAppendObjectWithResize(_children->data, child);
-}
-
 -(void)addChild:(CCNode *)inp z:(NSInteger)z tag:(NSInteger)tag
 {
-    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP, z, tag);
@@ -505,7 +493,6 @@
 
 -(void)addChild:(CCNode *)inp z:(NSInteger)z
 {
-    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP, z);
@@ -513,7 +500,6 @@
 
 -(void)addChild:(CCNode *)inp
 {
-    [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP);
@@ -530,7 +516,6 @@
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->removeFromParentAndCleanup(cleanup);
-    [_parent removeChild:self cleanup:cleanup];
 }
 
 -(void)removeChild:(CCNode *)child

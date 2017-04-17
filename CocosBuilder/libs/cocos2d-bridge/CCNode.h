@@ -26,10 +26,6 @@ enum
 {
     void*           impl_;
     BOOL            isNeedNodeDealloc_;
-    // array of children
-    CCArray *_children;
-    // weak ref to parent
-    CCNode *_parent;
 }
 
 /** The z order of the node relative to its "siblings": children of the same parent */
