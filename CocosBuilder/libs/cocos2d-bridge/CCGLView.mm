@@ -18,6 +18,24 @@
 #import "platform/CCGLView.h"
 //#endif
 
+// Translates OS X key modifiers into GLFW ones
+//
+static int translateFlags(NSUInteger flags)
+{
+    int mods = 0;
+    
+    if (flags & NSShiftKeyMask)
+        mods |= GLFW_MOD_SHIFT;
+    if (flags & NSControlKeyMask)
+        mods |= GLFW_MOD_CONTROL;
+    if (flags & NSAlternateKeyMask)
+        mods |= GLFW_MOD_ALT;
+    if (flags & NSCommandKeyMask)
+        mods |= GLFW_MOD_SUPER;
+    
+    return mods;
+}
+
 @implementation CCGLView
 
 @synthesize frame;
@@ -242,4 +260,99 @@
     cppView->onTerminate();
 }
 
+//
+// for mouse && keyboard event.
+//
+
+-(void)mouseDown:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onLeftMouseDown(translateFlags([event modifierFlags]));
+}
+
+-(void)mouseDragged:(NSEvent *)event
+{
+    [self mouseMoved:event];
+}
+
+- (void)mouseUp:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onLeftMouseUp(translateFlags([event modifierFlags]));
+}
+
+- (void)mouseMoved:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    const NSPoint pos = [event locationInWindow];
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onMouseMove(pos.x, self.frame.size.height - pos.y);
+}
+
+- (void)rightMouseDown:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onRightMouseDown(translateFlags([event modifierFlags]));
+}
+
+- (void)rightMouseDragged:(NSEvent *)event
+{
+    [self mouseMoved:event];
+}
+
+- (void)rightMouseUp:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onRightMouseUp(translateFlags([event modifierFlags]));
+}
+
+- (void)otherMouseDown:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onOtherMouseDown((int) [event buttonNumber], translateFlags([event modifierFlags]));
+}
+
+- (void)otherMouseDragged:(NSEvent *)event
+{
+    [self mouseMoved:event];
+}
+
+- (void)otherMouseUp:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onOtherMouseUp((int) [event buttonNumber], translateFlags([event modifierFlags]));
+}
+
+- (void)mouseExited:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onMouseExit();
+}
+
+- (void)mouseEntered:(NSEvent *)event
+{
+    if (!impl_) return;
+    
+    cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    cppView->onMouseEnter();
+}
+
 @end
+
+

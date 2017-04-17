@@ -102,16 +102,19 @@
 
 - (void)mouseMoved:(NSEvent *)event
 {
+    [super mouseMoved:event];
     [[CocosScene cocosScene] mouseMoved:event];
 }
 
 - (void)mouseEntered:(NSEvent *)event
 {
+    [super mouseEntered:event];
     [[CocosScene cocosScene] mouseEntered:event];
 }
 
 - (void)mouseExited:(NSEvent *)event
 {
+    [super mouseExited:event];
     [[CocosScene cocosScene] mouseExited:event];
 }
 
