@@ -160,6 +160,7 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     
     // Create OpenGL View For Editor And Attach To cocos2d-x.
     [cocosView create:self.window delegate:self];
+    [splitHorizontalView setCocosView:cocosView];
     
 	[director setDisplayStats:YES];
     [director setAnimationInterval:1 / 60.f];

@@ -41,6 +41,8 @@
     if (self) {
         self.delegate = self;
     }
+    
+    cocosView = nil;
     return self;
 }
 
@@ -127,6 +129,11 @@
     }
 }
 
+-(void)setCocosView:(NSView *)view
+{
+    cocosView = view;
+}
+
 - (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
 {
     
@@ -151,6 +158,12 @@
     [bottomView setFrameOrigin:NSMakePoint(bottomView.frame.origin.x, newSize.height-timeLineHeight)];
     [bottomView setFrameSize:NSMakeSize(newSize.width, timeLineHeight)];
     [topView setFrameSize:NSMakeSize(newSize.width, cocosViewHeight)];
+    
+    if (cocosView)
+    {
+        cocosView.bounds = topView.bounds;
+        [cocosView setFrameSize: [topView frame].size];
+    }
     
     [bottomView setNeedsDisplay:YES];
     [topView setNeedsDisplay:YES];

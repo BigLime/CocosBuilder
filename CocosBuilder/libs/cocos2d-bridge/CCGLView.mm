@@ -42,16 +42,19 @@
 -(void) reshape
 {
     [super reshape];
+}
+
+-(void)setFrameSize:(NSSize)newSize
+{
+    [super setFrameSize:newSize];
     
     if (!impl_) return;
     
-    NSRect contentRect = self.frame;
+    NSRect contentRect = self.bounds;
     NSRect fbRect = [self convertRectToBacking:contentRect];
     
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
     cppView->setFrameSize(fbRect.size.width, fbRect.size.height);
-
-    NSLog(@"Frame Size == [%.1f, %.1f]", fbRect.size.width, fbRect.size.height);
 }
 
 -(NSPoint)convertPoint:(NSPoint)point toView:(nullable NSView*)view
@@ -157,15 +160,16 @@
     
     NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attribs];
     
-    NSRect frameRect = self.frame;
-    self = [super initWithFrame:frameRect pixelFormat:[pixelFormat autorelease]];
+    NSRect contentRect = self.bounds;
+
+    self = [super initWithFrame:self.frame pixelFormat:[pixelFormat autorelease]];
     // [self setTranslatesAutoresizingMaskIntoConstraints:YES];
     // [self setAutoresizingMask:NSViewNotSizable];
     BOOL isForEditor = YES;
     cocos2d::GLViewImpl* cppView = cocos2d::GLViewImpl::createAndAttachNSGL(isForEditor, nsWindow, nsDelegate, self, self.openGLContext);
     cppView->retain();
     
-    cppView->setDesignResolutionSize(frameRect.size.width, frameRect.size.height, ResolutionPolicy::NO_BORDER);
+    cppView->setDesignResolutionSize(contentRect.size.width, contentRect.size.height, ResolutionPolicy::FIXED_HEIGHT);
     isNeedGLViewDealloc_ = YES;
     impl_ = cppView;
     
@@ -196,9 +200,18 @@
 {
     if (!impl_) return;
     
-    NSLog(@"GLView Size == [%.3f, %.3f] [%.3f, %.3f]", contentRect.size.width, contentRect.size.height, fbRect.size.width, fbRect.size.height); 
+    // NSLog(@"GLView Size == [%.3f, %.3f] [%.3f, %.3f]", contentRect.size.width, contentRect.size.height, fbRect.size.width, fbRect.size.height);
    
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
+    
+    cocos2d::Rect contentRect1 = cocos2d::Rect();
+    contentRect1.size.width = 1600;
+    contentRect1.size.height = 900;
+    
+    cocos2d::Rect fbRect1 = cocos2d::Rect();
+    fbRect1.size.width = 3200;
+    fbRect1.size.height = 1800;
+    
     cppView->onSize([ccTypeConvert CGRectToRect: contentRect], [ccTypeConvert CGRectToRect: fbRect]);
 }
 
