@@ -42,6 +42,13 @@
     return self;
 }
 
+-(void) dealloc
+{
+    if(modifiedNote != NULL)
+        [modifiedNote release];
+    [super dealloc];
+}
+
 - (void) addNote
 {
     [[CocosBuilderAppDelegate appDelegate] saveUndoStateWillChangeProperty:@"*notes"];
@@ -89,6 +96,8 @@
     CocosBuilderAppDelegate* ad = [CocosBuilderAppDelegate appDelegate];
     [ad.window makeKeyWindow];
     
+    if(modifiedNote != NULL)
+        [modifiedNote release];
     modifiedNote = NULL;
 }
 
@@ -101,6 +110,8 @@
 
 - (BOOL) mouseDown:(CGPoint)pt event:(NSEvent*)event
 {
+    if(modifiedNote != NULL)
+        [modifiedNote release];
     modifiedNote = NULL;
     
     if (!self.visible) return NO;
@@ -125,6 +136,7 @@
         mouseDownPos = pt;
         operation = kCCBNoteOperationDragging;
         modifiedNote = note;
+        [modifiedNote retain];
         
         // Reorder the child to the top
         [note retain];
@@ -140,6 +152,7 @@
         mouseDownPos = pt;
         operation = kCCBNoteOperationResizing;
         modifiedNote = note;
+        [modifiedNote retain];
         return YES;
     }
     return NO;
@@ -230,6 +243,8 @@
 
 - (void) showAllNotesLabels
 {
+    if(modifiedNote != NULL)
+        [modifiedNote release];
     modifiedNote = NULL;
     
     CCArray* notes = [self children];

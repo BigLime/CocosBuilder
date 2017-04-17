@@ -44,6 +44,7 @@
     bg.anchorPoint = ccp(0,0);
     bg.position = ccp(0,0);
     [self addChild:bg z:0];
+    [bg retain];
     
     lbl = [CCLabelTTF labelWithString:@"Double click to edit" fontName:@"MarkerFelt-Thin" fontSize:14];
     lbl.anchorPoint = ccp(0,0);
@@ -51,12 +52,21 @@
     lbl.verticalAlignment = kCCVerticalTextAlignmentTop;
     lbl.horizontalAlignment = kCCTextAlignmentLeft;
     lbl.color = ccc3(67, 49, 33);
+    [lbl retain];
     
     [self addChild:lbl z:1];
     
     [self setContentSize:CGSizeMake(kCCBNoteDefaultWidth, kCCBNoteDefaultHeight)];
     
     return self;
+}
+
+-(void) dealloc
+{
+    [bg release];
+    [lbl release];
+    [noteText release];
+    [super dealloc];
 }
 
 - (void) setContentSize:(CGSize)contentSize
@@ -117,12 +127,6 @@
 - (BOOL) labelVisible
 {
     return lbl.visible;
-}
-
-- (void) dealloc
-{
-    [noteText release];
-    [super dealloc];
 }
 
 @end

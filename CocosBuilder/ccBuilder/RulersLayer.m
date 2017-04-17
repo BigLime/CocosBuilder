@@ -38,9 +38,11 @@
     
     bgVertical = [CCScale9Sprite spriteWithFile:@"ruler-bg-vertical.png"];
     bgVertical.anchorPoint = ccp(0,0);
+    [bgVertical retain];
     
     bgHorizontal = [CCScale9Sprite spriteWithFile:@"ruler-bg-horizontal.png"];
     bgHorizontal.anchorPoint = ccp(0,0);
+    [bgHorizontal retain];
     
     [self addChild:bgVertical];
     [self addChild:bgHorizontal z:2];
@@ -49,17 +51,21 @@
     marksHorizontal = [CCNode node];
     [self addChild:marksVertical z:1];
     [self addChild:marksHorizontal z:3];
+    [marksVertical retain];
+    [marksHorizontal retain];
     
     mouseMarkVertical = [CCSprite spriteWithFile:@"ruler-guide.png"];
     mouseMarkVertical.anchorPoint = ccp(0, 0.5f);
     mouseMarkVertical.visible = NO;
     [self addChild:mouseMarkVertical z:4];
+    [mouseMarkVertical retain];
     
     mouseMarkHorizontal = [CCSprite spriteWithFile:@"ruler-guide.png"];
     mouseMarkHorizontal.rotation = -90;
     mouseMarkHorizontal.anchorPoint = ccp(0, 0.5f);
     mouseMarkHorizontal.visible = NO;
     [self addChild:mouseMarkHorizontal z:4];
+    [mouseMarkHorizontal retain];
     
     CCSprite* xyBg = [CCSprite spriteWithFile:@"ruler-xy.png"];
     [self addChild:xyBg z:5];
@@ -71,15 +77,30 @@
     lblX.position = ccp(47,3);
     lblX.visible = NO;
     [self addChild:lblX z:6];
+    [lblX retain];
     
     lblY = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ruler-numbers.png" itemWidth:6 itemHeight:8 startCharMap:'-'];
     lblY.anchorPoint = ccp(1,0);
     lblY.position = ccp(97,3);
     lblY.visible = NO;
     [self addChild:lblY z:6];
+    [lblY retain];
     //lblY = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ruler-numbers.png" itemWidth:6 itemHeight:8 startCharMap:'0'];
     
     return self;
+}
+
+-(void) dealloc
+{
+    [bgHorizontal release];
+    [bgVertical release];
+    [marksVertical release];
+    [marksHorizontal release];
+    [mouseMarkHorizontal release];
+    [mouseMarkVertical release];
+    [lblX release];
+    [lblY release];
+    [super dealloc];
 }
 
 - (void) updateWithSize:(CGSize)ws stageOrigin:(CGPoint)so zoom:(float)zm
