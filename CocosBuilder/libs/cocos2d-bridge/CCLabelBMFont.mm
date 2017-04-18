@@ -7,7 +7,7 @@
 //
 
 #import "CCLabelBMFont.h"
-#import "2d/CCLabelBMFont.h"
+#import "2d/CCLabel.h"
 
 #import "ccTypeConvert.h"
 
@@ -20,19 +20,19 @@
 
 - (ccBlendFunc) blendFunc
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return [ccTypeConvert BlendFuncToccBlendFunc:label->getBlendFunc()];
 }
 - (void) setBlendFunc:(ccBlendFunc)_blendFunc
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setBlendFunc([ccTypeConvert ccBlendFuncToBlendFunc:_blendFunc]);
 }
 
 // @synthesize alignment = _alignment;
 -(void)setAlignment:(CCTextAlignment)alignment
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setAlignment([ccTypeConvert CCTextAlignmentToTextHAlignment:alignment]);
 }
 
@@ -47,35 +47,35 @@
 
 -(void)setCascadeColorEnabled:(BOOL)cascadeColorEnabled
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setCascadeColorEnabled(cascadeColorEnabled);
 }
 
 -(BOOL)isCascadeColorEnabled
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return label->isCascadeColorEnabled();
 }
 
 -(void)setCascadeOpacityEnabled:(BOOL)cascadeOpacityEnabled
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setCascadeOpacityEnabled(cascadeOpacityEnabled);
 }
 
 -(BOOL)isCascadeOpacityEnabled
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return label->isCascadeOpacityEnabled();
 }
 
-#pragma mark LabelBMFont - Purge Cache
+#pragma mark Label - Purge Cache
 +(void) purgeCachedData
 {
     // TODO: NO implement in cocos2d-x 3.14.
 }
 
-#pragma mark LabelBMFont - Creation & Init
+#pragma mark Label - Creation & Init
 
 +(id) labelWithString:(NSString *)string fntFile:(NSString *)fntFile
 {
@@ -94,10 +94,10 @@
 
 -(id) init
 {
-    cocos2d::LabelBMFont* label = cocos2d::LabelBMFont::create();
+    cocos2d::Label* label = cocos2d::Label::create();
     label->retain();
     
-    isNeedCCLabelBMFontDealloc = YES;
+    isNeedCCLabelDealloc = YES;
     impl_ = label;
     
     self = [super init:impl_];
@@ -121,10 +121,10 @@
     cocos2d::Point cppOffset = [ccTypeConvert CGPointToPoint: offset];
     cocos2d::TextHAlignment cppAlign = [ccTypeConvert CCTextAlignmentToTextHAlignment:alignment];
     
-    cocos2d::LabelBMFont* label = cocos2d::LabelBMFont::create([theString UTF8String], [fntFile UTF8String], width, cppAlign, cppOffset);
+    cocos2d::Label* label = cocos2d::Label::createWithBMFont([fntFile UTF8String], [theString UTF8String], cppAlign, width, cppOffset);
     label->retain();
     
-    isNeedCCLabelBMFontDealloc = YES;
+    isNeedCCLabelDealloc = YES;
     impl_ = label;
     
     self = [super init:impl_];
@@ -133,9 +133,9 @@
 
 -(void) dealloc
 {
-    if (isNeedCCLabelBMFontDealloc)
+    if (isNeedCCLabelDealloc)
     {
-        cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+        cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
         label->release();
     }
     
@@ -148,127 +148,127 @@
     NSAssert(NO, @"no implement in cocos2d-x cpp side.");
 }
 
-#pragma mark LabelBMFont - CCLabelProtocol protocol
+#pragma mark Label - CCLabelProtocol protocol
 -(NSString*) string
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return [NSString stringWithCString: label->getString().c_str() encoding:NSUTF8StringEncoding];
 }
 
 -(void) setCString:(char*)lb
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setString(lb);
 }
 
 - (void) setString:(NSString*)newString
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setString([newString UTF8String]);
 }
 
-#pragma mark LabelBMFont - CCRGBAProtocol protocol
+#pragma mark Label - CCRGBAProtocol protocol
 
 -(ccColor3B) color
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return [ccTypeConvert Color3BToccColor3B: label->getColor()];
 }
 
 -(ccColor3B) displayedColor
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return [ccTypeConvert Color3BToccColor3B: label->getDisplayedColor()];
 }
 
 -(void) setColor:(ccColor3B)color
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setColor([ccTypeConvert ccColor3BToColor3B: color]);
 }
 
 -(GLubyte) opacity
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return label->getOpacity();
 }
 
 -(GLubyte) displayedOpacity
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return label->getDisplayedOpacity();
 }
 
 /** Override synthesized setOpacity to recurse items */
 - (void) setOpacity:(GLubyte)opacity
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setOpacity(opacity);
 }
 
 -(void) setOpacityModifyRGB:(BOOL)modify
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setOpacityModifyRGB(modify);
 }
 
 -(BOOL) doesOpacityModifyRGB
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     return label->isOpacityModifyRGB();
 }
 
 - (void)updateDisplayedOpacity:(GLubyte)parentOpacity
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->updateDisplayedOpacity(parentOpacity);
 }
 
 - (void)updateDisplayedColor:(ccColor3B)parentColor
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->updateDisplayedColor([ccTypeConvert ccColor3BToColor3B: parentColor]);
 }
 
-#pragma mark LabelBMFont - AnchorPoint
+#pragma mark Label - AnchorPoint
 -(void) setAnchorPoint:(CGPoint)point
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setAnchorPoint([ccTypeConvert CGPointToPoint: point]);
 }
 
-#pragma mark LabelBMFont - Alignment
+#pragma mark Label - Alignment
 - (void)setWidth:(float)width
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     label->setWidth(width);
 }
 
-#pragma mark LabelBMFont - FntFile
+#pragma mark Label - FntFile
 - (void) setFntFile:(NSString*) fntFile
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
-    label->setFntFile([fntFile UTF8String]);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
+    label->setBMFontFilePath([fntFile UTF8String]);
 }
 
 - (NSString*) fntFile
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
-    return [NSString stringWithCString: label->getFntFile().c_str() encoding:NSUTF8StringEncoding];
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
+    return [NSString stringWithCString: label->getBMFontFilePath().c_str() encoding:NSUTF8StringEncoding];
 }
 
-#pragma mark LabelBMFont - Debug draw
-#if CC_LABELBMFONT_DEBUG_DRAW
+#pragma mark Label - Debug draw
+#if CC_Label_DEBUG_DRAW
 -(void) draw
 {
-    cocos2d::LabelBMFont* label = static_cast<cocos2d::LabelBMFont*>(impl_);
+    cocos2d::Label* label = static_cast<cocos2d::Label*>(impl_);
     
     // TODO: different param for debug draw.
-    NSAssert(NO, @"[cocos2d::LabelBMFont]::different param for debug draw.");
+    NSAssert(NO, @"[cocos2d::Label]::different param for debug draw.");
     
     // atlas->draw(renderer, transform, flags);
 }
-#endif // CC_LABELBMFONT_DEBUG_DRAW
+#endif // CC_Label_DEBUG_DRAW
 @end
 
 

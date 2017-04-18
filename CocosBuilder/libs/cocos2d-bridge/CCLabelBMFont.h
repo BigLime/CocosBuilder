@@ -46,7 +46,7 @@ enum
 
 @interface CCLabelBMFont : CCSpriteBatchNode <CCLabelProtocol, CCRGBAProtocol>
 {
-    BOOL isNeedCCLabelBMFontDealloc;
+    BOOL isNeedCCLabelDealloc;
 }
 
 /** Purges the cached data.
