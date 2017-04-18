@@ -3,7 +3,7 @@
 	url = https://github.com/vlidholt/ssziparchive
 [submodule "CocosBuilder/libs/Fragaria"]
 	path = CocosBuilder/libs/Fragaria
-	url = https://github.com/vlidholt/Fragaria.git
+	url = git@biglime.github.com:BigLime/Fragaria.git
 [submodule "Examples/CocosBuilderExample/libs/CCBReader"]
 	path = Examples/CocosBuilderExample/libs/CCBReader
 	url = https://github.com/wangxiaobo-zenjoy/CCBReader.git
