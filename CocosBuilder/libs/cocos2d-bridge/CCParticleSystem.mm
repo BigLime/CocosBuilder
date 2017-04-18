@@ -610,6 +610,54 @@
     return ps->isBlendAdditive();
 }
 
+-(void) setPositionType:(tCCPositionType)positionType
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    ps->setPositionType((cocos2d::ParticleSystem::PositionType)positionType);
+}
+
+-(tCCPositionType)positionType
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    return tCCPositionType(ps->getPositionType());
+}
+
+-(void) setAutoRemoveOnFinish:(BOOL)autoRemoveOnFinish
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    ps->setAutoRemoveOnFinish(autoRemoveOnFinish);
+}
+
+-(BOOL)autoRemoveOnFinish
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    return ps->isAutoRemoveOnFinish();
+}
+
+-(void) setEmitterMode:(NSInteger)emitterMode
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    ps->setEmitterMode((cocos2d::ParticleSystem::Mode)emitterMode);
+}
+
+-(NSInteger)emitterMode
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    return (NSInteger)ps->getEmitterMode();
+}
+
+-(void) setAtlasIndex:(NSUInteger)atlasIndex
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    ps->setAtlasIndex(atlasIndex);
+}
+
+-(NSUInteger)atlasIndex
+{
+    cocos2d::ParticleSystem* ps = (cocos2d::ParticleSystem*)impl_;
+    return ps->getAtlasIndex();
+}
+
 #pragma mark ParticleSystem - methods for batchNode rendering
 
 -(CCParticleBatchNode*) batchNode
