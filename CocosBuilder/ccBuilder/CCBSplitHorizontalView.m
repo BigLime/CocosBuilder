@@ -159,12 +159,6 @@
     [bottomView setFrameSize:NSMakeSize(newSize.width, timeLineHeight)];
     [topView setFrameSize:NSMakeSize(newSize.width, cocosViewHeight)];
     
-    if (cocosView)
-    {
-        cocosView.bounds = topView.bounds;
-        [cocosView setFrameSize: [topView frame].size];
-    }
-    
     [bottomView setNeedsDisplay:YES];
     [topView setNeedsDisplay:YES];
     

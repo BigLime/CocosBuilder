@@ -25,23 +25,12 @@
 -(NSRect)frame
 {
     return [super frame];
-    
-    /*
-    if (!impl_);
-     
-    cocos2d::GLViewImpl* gl = (cocos2d::GLViewImpl*)impl_;
-    NSRect r;
-    r.origin = NSZeroPoint;
-    r.size = [ccTypeConvert SizeToCGSize:gl->getFrameSize()];
-    
-    self.frame = r;
-    return r;
-     */
 }
 
 -(void) reshape
 {
     [super reshape];
+    [self setFrameSize:[[self superview] frame].size];
 }
 
 -(void)setFrameSize:(NSSize)newSize
@@ -71,16 +60,6 @@
 {
     [super removeTrackingArea:trackingArea];
 }
-
-//-(id)initWithFrame:(NSRect)frame
-//{
-//    impl_ = cocos2d::GLViewImpl::createWithRect("", [ccTypeConvert CGRectToRect:frame]);
-//    ((cocos2d::GLViewImpl*)impl_)->retain();
-//    isNeedGLViewDealloc_ = YES;
-//    
-//    self = [super init];
-//    return self;
-//}
 
 -(id)initWithObject: (void*)object
 {
@@ -199,19 +178,8 @@
 -(void) onSize: (NSRect) contentRect fbRect: (NSRect) fbRect
 {
     if (!impl_) return;
-    
-    // NSLog(@"GLView Size == [%.3f, %.3f] [%.3f, %.3f]", contentRect.size.width, contentRect.size.height, fbRect.size.width, fbRect.size.height);
-   
+ 
     cocos2d::GLViewImpl* cppView = static_cast<cocos2d::GLViewImpl*>(impl_);
-    
-    cocos2d::Rect contentRect1 = cocos2d::Rect();
-    contentRect1.size.width = 1600;
-    contentRect1.size.height = 900;
-    
-    cocos2d::Rect fbRect1 = cocos2d::Rect();
-    fbRect1.size.width = 3200;
-    fbRect1.size.height = 1800;
-    
     cppView->onSize([ccTypeConvert CGRectToRect: contentRect], [ccTypeConvert CGRectToRect: fbRect]);
 }
 
