@@ -113,7 +113,7 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
     cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string nameStr = [name UTF8String];
     cocos2d::SpriteFrame* spriteFrame = spriteFrameCache->getSpriteFrameByName(nameStr);
-    return [[[CCSpriteFrame alloc ]initWithObject: spriteFrame] autorelease];
+    return spriteFrame != nil ?  [[[CCSpriteFrame alloc ]initWithObject: spriteFrame] autorelease] : nil;
 }
 
 @end
