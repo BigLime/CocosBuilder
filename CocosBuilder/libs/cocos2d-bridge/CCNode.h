@@ -30,6 +30,8 @@ enum
     CCArray *_children;
     // weak ref to parent
     CCNode *_parent;
+    
+    id              _userObject;
 }
 
 /** The z order of the node relative to its "siblings": children of the same parent */

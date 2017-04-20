@@ -7,8 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47052E941EA88D4500C6DE29 /* CCBPProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47052E901EA88D4500C6DE29 /* CCBPProperties.plist */; };
+		47052E961EA88D4500C6DE29 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 47052E931EA88D4500C6DE29 /* Icon.png */; };
+		47052E991EA88D5100C6DE29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47052E971EA88D5100C6DE29 /* InfoPlist.strings */; };
+		47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		47131B301EA76BFE00E4168A /* CCBClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 478560031EA71BC300A33EF2 /* CCBClippingNode.m */; };
+		47131B321EA76BFE00E4168A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7789ABC2133AA82000CEFCC7 /* Cocoa.framework */; };
+		47131B4C1EA8603B00E4168A /* CCScrollView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47131B491EA8603B00E4168A /* CCScrollView.mm */; };
+		47131B4D1EA8603B00E4168A /* CCTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47131B4B1EA8603B00E4168A /* CCTableView.mm */; };
 		47855FA41E9F4AFA00A33EF2 /* CCControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA11E9F4AFA00A33EF2 /* CCControl.mm */; };
 		47855FA51E9F4AFA00A33EF2 /* CCControlButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */; };
+		47855FF21EA71AE000A33EF2 /* CCClippingNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FEB1EA71ADA00A33EF2 /* CCClippingNode.mm */; };
+		47855FF81EA71B3100A33EF2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7789ABC2133AA82000CEFCC7 /* Cocoa.framework */; };
+		478560041EA71BC300A33EF2 /* CCBClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 478560031EA71BC300A33EF2 /* CCBClippingNode.m */; };
+		478560091EA71BCD00A33EF2 /* CCBPProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 478560051EA71BCD00A33EF2 /* CCBPProperties.plist */; };
+		4785600B1EA71BCD00A33EF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 478560081EA71BCD00A33EF2 /* Icon.png */; };
+		4785600E1EA71BD300A33EF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4785600C1EA71BD300A33EF2 /* InfoPlist.strings */; };
+		478560111EA71EA100A33EF2 /* CCClippingNode.ccbPlugNode in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 478560001EA71B3100A33EF2 /* CCClippingNode.ccbPlugNode */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		581130601639C52500A86D70 /* seq-startmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 5811305F1639C52000A86D70 /* seq-startmarker.png */; };
 		581BCFE8162DADE7007DE600 /* CCBSplitHorizontalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581BCFE7162DADE7007DE600 /* CCBSplitHorizontalView.m */; };
 		58FA2034162D73F3006B8856 /* TB_bottomPanel.png in Resources */ = {isa = PBXBuildFile; fileRef = 58FA2031162D73F3006B8856 /* TB_bottomPanel.png */; };
@@ -631,6 +646,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		47052E9B1EA88E3A00C6DE29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47131B2E1EA76BFE00E4168A;
+			remoteInfo = CCTableView;
+		};
+		4785600F1EA71E8B00A33EF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47855FF51EA71B3100A33EF2;
+			remoteInfo = CCClippingNode;
+		};
 		D3221DA21E9C90420032ABB2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D3221D9C1E9C90410032ABB2 /* cocos2d_libs.xcodeproj */;
@@ -813,6 +842,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */,
+				478560111EA71EA100A33EF2 /* CCClippingNode.ccbPlugNode in Copy PlugIns */,
 				E3FCE874152485A20028E8E7 /* CCScrollView.ccbPlugNode in Copy PlugIns */,
 				E3C65124151BB8DF00D639C0 /* CCControl.ccbPlugNode in Copy PlugIns */,
 				E3B84C48151A2C93004B743C /* CCControlButton.ccbPlugNode in Copy PlugIns */,
@@ -846,10 +877,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		47052E901EA88D4500C6DE29 /* CCBPProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CCBPProperties.plist; path = CCTableView/CCBPProperties.plist; sourceTree = "<group>"; };
+		47052E911EA88D4500C6DE29 /* CCTableView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CCTableView-Info.plist"; path = "CCTableView/CCTableView-Info.plist"; sourceTree = "<group>"; };
+		47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTableView-Prefix.pch"; path = "CCTableView/CCTableView-Prefix.pch"; sourceTree = "<group>"; };
+		47052E931EA88D4500C6DE29 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = CCTableView/Icon.png; sourceTree = "<group>"; };
+		47052E981EA88D5100C6DE29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CCTableView/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTableView.ccbPlugNode; sourceTree = BUILT_PRODUCTS_DIR; };
+		47131B481EA8603B00E4168A /* CCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScrollView.h; path = "cocos2d-bridge/CCScrollView.h"; sourceTree = "<group>"; };
+		47131B491EA8603B00E4168A /* CCScrollView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCScrollView.mm; path = "cocos2d-bridge/CCScrollView.mm"; sourceTree = "<group>"; };
+		47131B4A1EA8603B00E4168A /* CCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTableView.h; path = "cocos2d-bridge/CCTableView.h"; sourceTree = "<group>"; };
+		47131B4B1EA8603B00E4168A /* CCTableView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCTableView.mm; path = "cocos2d-bridge/CCTableView.mm"; sourceTree = "<group>"; };
 		47855FA01E9F4AFA00A33EF2 /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControl.h; path = "cocos2d-bridge/CCControl.h"; sourceTree = "<group>"; };
 		47855FA11E9F4AFA00A33EF2 /* CCControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCControl.mm; path = "cocos2d-bridge/CCControl.mm"; sourceTree = "<group>"; };
 		47855FA21E9F4AFA00A33EF2 /* CCControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControlButton.h; path = "cocos2d-bridge/CCControlButton.h"; sourceTree = "<group>"; };
 		47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCControlButton.mm; path = "cocos2d-bridge/CCControlButton.mm"; sourceTree = "<group>"; };
+		47855FEA1EA71ADA00A33EF2 /* CCClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCClippingNode.h; path = "cocos2d-bridge/CCClippingNode.h"; sourceTree = "<group>"; };
+		47855FEB1EA71ADA00A33EF2 /* CCClippingNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCClippingNode.mm; path = "cocos2d-bridge/CCClippingNode.mm"; sourceTree = "<group>"; };
+		478560001EA71B3100A33EF2 /* CCClippingNode.ccbPlugNode */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCClippingNode.ccbPlugNode; sourceTree = BUILT_PRODUCTS_DIR; };
+		478560021EA71BC300A33EF2 /* CCBClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBClippingNode.h; path = CCClippingNode/CCBClippingNode.h; sourceTree = "<group>"; };
+		478560031EA71BC300A33EF2 /* CCBClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCBClippingNode.m; path = CCClippingNode/CCBClippingNode.m; sourceTree = "<group>"; };
+		478560051EA71BCD00A33EF2 /* CCBPProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CCBPProperties.plist; path = CCClippingNode/CCBPProperties.plist; sourceTree = "<group>"; };
+		478560061EA71BCD00A33EF2 /* CCClippingNode-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CCClippingNode-Info.plist"; path = "CCClippingNode/CCClippingNode-Info.plist"; sourceTree = "<group>"; };
+		478560071EA71BCD00A33EF2 /* CCClippingNode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCClippingNode-Prefix.pch"; path = "CCClippingNode/CCClippingNode-Prefix.pch"; sourceTree = "<group>"; };
+		478560081EA71BCD00A33EF2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = CCClippingNode/Icon.png; sourceTree = "<group>"; };
+		4785600D1EA71BD300A33EF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CCClippingNode/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5811305E1639BF1200A86D70 /* SequencerTimelineDrawDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequencerTimelineDrawDelegate.h; sourceTree = "<group>"; };
 		5811305F1639C52000A86D70 /* seq-startmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seq-startmarker.png"; sourceTree = "<group>"; };
 		581BCFE6162DADE7007DE600 /* CCBSplitHorizontalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSplitHorizontalView.h; sourceTree = "<group>"; };
@@ -1715,6 +1766,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		47131B311EA76BFE00E4168A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47131B321EA76BFE00E4168A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47855FF71EA71B3100A33EF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47855FF81EA71B3100A33EF2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7789ABBB133AA82000CEFCC7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1884,6 +1951,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47052E891EA88D0500C6DE29 /* CCTableView */ = {
+			isa = PBXGroup;
+			children = (
+				47052E8F1EA88D1100C6DE29 /* Supporting Files */,
+			);
+			name = CCTableView;
+			sourceTree = "<group>";
+		};
+		47052E8F1EA88D1100C6DE29 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47052E901EA88D4500C6DE29 /* CCBPProperties.plist */,
+				47052E911EA88D4500C6DE29 /* CCTableView-Info.plist */,
+				47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */,
+				47052E931EA88D4500C6DE29 /* Icon.png */,
+				47052E971EA88D5100C6DE29 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		47855FF31EA71B0900A33EF2 /* CCClippingNode */ = {
+			isa = PBXGroup;
+			children = (
+				478560021EA71BC300A33EF2 /* CCBClippingNode.h */,
+				478560031EA71BC300A33EF2 /* CCBClippingNode.m */,
+				47855FF41EA71B1300A33EF2 /* Supporting Files */,
+			);
+			name = CCClippingNode;
+			sourceTree = "<group>";
+		};
+		47855FF41EA71B1300A33EF2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4785600C1EA71BD300A33EF2 /* InfoPlist.strings */,
+				478560051EA71BCD00A33EF2 /* CCBPProperties.plist */,
+				478560061EA71BCD00A33EF2 /* CCClippingNode-Info.plist */,
+				478560071EA71BCD00A33EF2 /* CCClippingNode-Prefix.pch */,
+				478560081EA71BCD00A33EF2 /* Icon.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		776041E01498F4A00078095D /* Document Readers & Writers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2252,6 +2361,8 @@
 				E3C65116151BB89500D639C0 /* CCControl.ccbPlugNode */,
 				E3FCE8661524856D0028E8E7 /* CCScrollView.ccbPlugNode */,
 				FA98CFC1154E7D1C006E58C5 /* ccbpublish */,
+				478560001EA71B3100A33EF2 /* CCClippingNode.ccbPlugNode */,
+				47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2619,6 +2730,8 @@
 		D3221CF21E9C8DE20032ABB2 /* cocos2d-bridge */ = {
 			isa = PBXGroup;
 			children = (
+				47855FEA1EA71ADA00A33EF2 /* CCClippingNode.h */,
+				47855FEB1EA71ADA00A33EF2 /* CCClippingNode.mm */,
 				D3221DD81E9CEA700032ABB2 /* CCActionInterval.h */,
 				D3221DD91E9CEA700032ABB2 /* CCActionInterval.mm */,
 				D3221DDC1E9CEA700032ABB2 /* CCDirectorMac.h */,
@@ -2686,6 +2799,10 @@
 				D3221D251E9C8DFF0032ABB2 /* CCSpriteFrame.mm */,
 				D3221D261E9C8DFF0032ABB2 /* CCSpriteFrameCache.h */,
 				D3221D271E9C8DFF0032ABB2 /* CCSpriteFrameCache.mm */,
+				47131B481EA8603B00E4168A /* CCScrollView.h */,
+				47131B491EA8603B00E4168A /* CCScrollView.mm */,
+				47131B4A1EA8603B00E4168A /* CCTableView.h */,
+				47131B4B1EA8603B00E4168A /* CCTableView.mm */,
 				D3221D281E9C8DFF0032ABB2 /* CCTexture2D.h */,
 				D3221D291E9C8DFF0032ABB2 /* CCTexture2D.mm */,
 				D3221D2A1E9C8DFF0032ABB2 /* CCTextureAtlas.h */,
@@ -2872,6 +2989,7 @@
 		E35392461518AD0A00471721 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				47855FF31EA71B0900A33EF2 /* CCClippingNode */,
 				E3D59123150F5367004180CA /* CCBFile */,
 				E3B7AEC714E3193500DFD402 /* CCNode */,
 				E3C365ED14E9E4D1007CD5FF /* CCSprite */,
@@ -2890,6 +3008,7 @@
 		E35392481518AD4100471721 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				47052E891EA88D0500C6DE29 /* CCTableView */,
 				E3FCE8681524856D0028E8E7 /* CCScrollView */,
 				E35392791518D78D00471721 /* CCScale9Sprite */,
 				E3C65118151BB89500D639C0 /* CCControl */,
@@ -3649,6 +3768,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		47131B2E1EA76BFE00E4168A /* CCTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47131B371EA76BFE00E4168A /* Build configuration list for PBXNativeTarget "CCTableView" */;
+			buildPhases = (
+				47131B2F1EA76BFE00E4168A /* Sources */,
+				47131B311EA76BFE00E4168A /* Frameworks */,
+				47131B331EA76BFE00E4168A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCTableView;
+			productName = CCScrollView;
+			productReference = 47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */;
+			productType = "com.apple.product-type.bundle";
+		};
+		47855FF51EA71B3100A33EF2 /* CCClippingNode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47855FFD1EA71B3100A33EF2 /* Build configuration list for PBXNativeTarget "CCClippingNode" */;
+			buildPhases = (
+				47855FF61EA71B3100A33EF2 /* Sources */,
+				47855FF71EA71B3100A33EF2 /* Frameworks */,
+				47855FF91EA71B3100A33EF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCClippingNode;
+			productName = CCScrollView;
+			productReference = 478560001EA71B3100A33EF2 /* CCClippingNode.ccbPlugNode */;
+			productType = "com.apple.product-type.bundle";
+		};
 		7789ABBD133AA82000CEFCC7 /* CocosBuilder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7789ABDC133AA82000CEFCC7 /* Build configuration list for PBXNativeTarget "CocosBuilder" */;
@@ -3664,6 +3817,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				47052E9C1EA88E3A00C6DE29 /* PBXTargetDependency */,
+				478560101EA71E8B00A33EF2 /* PBXTargetDependency */,
 				E3F541CE15AED85800EAAFBD /* PBXTargetDependency */,
 				E398C02F14FB82090078E771 /* PBXTargetDependency */,
 				E3B7AED314E31AEF00DFD402 /* PBXTargetDependency */,
@@ -4022,6 +4177,8 @@
 				E3C65115151BB89500D639C0 /* CCControl */,
 				E3B84C38151A2C02004B743C /* CCControlButton */,
 				E3FCE8651524856D0028E8E7 /* CCScrollView */,
+				47855FF51EA71B3100A33EF2 /* CCClippingNode */,
+				47131B2E1EA76BFE00E4168A /* CCTableView */,
 				7789ABBD133AA82000CEFCC7 /* CocosBuilder */,
 				FA98CFC0154E7D1C006E58C5 /* ccbpublish */,
 			);
@@ -4074,6 +4231,26 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		47131B331EA76BFE00E4168A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47052E961EA88D4500C6DE29 /* Icon.png in Resources */,
+				47052E991EA88D5100C6DE29 /* InfoPlist.strings in Resources */,
+				47052E941EA88D4500C6DE29 /* CCBPProperties.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47855FF91EA71B3100A33EF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4785600B1EA71BCD00A33EF2 /* Icon.png in Resources */,
+				4785600E1EA71BD300A33EF2 /* InfoPlist.strings in Resources */,
+				478560091EA71BCD00A33EF2 /* CCBPProperties.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7789ABBC133AA82000CEFCC7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4491,6 +4668,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		47131B2F1EA76BFE00E4168A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47131B301EA76BFE00E4168A /* CCBClippingNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47855FF61EA71B3100A33EF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478560041EA71BC300A33EF2 /* CCBClippingNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7789ABBA133AA82000CEFCC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4670,6 +4863,7 @@
 				E3C5C1AC1504D30C000CF6F3 /* SCEvent.m in Sources */,
 				E3C5C1AD1504D30C000CF6F3 /* SCEvents.m in Sources */,
 				E3C5C1B215061883000CF6F3 /* ResourceManagerPanel.m in Sources */,
+				47131B4C1EA8603B00E4168A /* CCScrollView.mm in Sources */,
 				E3C5C1B515075CDD000CF6F3 /* ResourceManagerUtil.m in Sources */,
 				E3C5C1C91508F35E000CF6F3 /* CCBAnimationParser.m in Sources */,
 				E3C5C1CE150902B3000CF6F3 /* InspectorAnimation.m in Sources */,
@@ -4720,6 +4914,7 @@
 				E3FD4DD315A0A2C10032C2DD /* SequencerKeyframeEasingWindow.m in Sources */,
 				E3FD4DDF15A455B90032C2DD /* SequencerSequenceArrayController.m in Sources */,
 				E3F541D415AF04E600EAAFBD /* JavaScriptDocument.m in Sources */,
+				47855FF21EA71AE000A33EF2 /* CCClippingNode.mm in Sources */,
 				E35A135F15B038D700C9AA15 /* ThoMoClientStub.m in Sources */,
 				E35A136015B038D700C9AA15 /* ThoMoNetworkStub.m in Sources */,
 				E35A136115B038D700C9AA15 /* ThoMoServerStub.m in Sources */,
@@ -4731,6 +4926,7 @@
 				E33C2AAF15C9A0D40043EF9B /* SequencerUtil.m in Sources */,
 				E33C2AB815CAE3980043EF9B /* SequencerStretchWindow.m in Sources */,
 				E3214C4415D3C29D002413A7 /* CustomPropSettingsWindow.m in Sources */,
+				47131B4D1EA8603B00E4168A /* CCTableView.mm in Sources */,
 				E3214C4715D3C3AF002413A7 /* CustomPropSetting.m in Sources */,
 				E3214C4B15D40F01002413A7 /* InspectorCustom.m in Sources */,
 				E3214C5D15D54356002413A7 /* InspectorCustomEdit.m in Sources */,
@@ -4905,6 +5101,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		47052E9C1EA88E3A00C6DE29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47131B2E1EA76BFE00E4168A /* CCTableView */;
+			targetProxy = 47052E9B1EA88E3A00C6DE29 /* PBXContainerItemProxy */;
+		};
+		478560101EA71E8B00A33EF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47855FF51EA71B3100A33EF2 /* CCClippingNode */;
+			targetProxy = 4785600F1EA71E8B00A33EF2 /* PBXContainerItemProxy */;
+		};
 		E325F66914F6611300D29BCF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E325F65914F65C8E00D29BCF /* CCMenuItemImage */;
@@ -4993,6 +5199,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		47052E971EA88D5100C6DE29 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47052E981EA88D5100C6DE29 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4785600C1EA71BD300A33EF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4785600D1EA71BD300A33EF2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		7789ABCB133AA82000CEFCC7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5148,6 +5370,106 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		47131B381EA76BFE00E4168A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCTableView/CCTableView-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCTableView/CCTableView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Debug;
+		};
+		47131B391EA76BFE00E4168A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCTableView/CCTableView-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCTableView/CCTableView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Release;
+		};
+		47855FFE1EA71B3100A33EF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCClippingNode/CCClippingNode-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCClippingNode/CCClippingNode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Debug;
+		};
+		47855FFF1EA71B3100A33EF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCClippingNode/CCClippingNode-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCClippingNode/CCClippingNode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Release;
+		};
 		7789ABDA133AA82000CEFCC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6131,6 +6453,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		47131B371EA76BFE00E4168A /* Build configuration list for PBXNativeTarget "CCTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47131B381EA76BFE00E4168A /* Debug */,
+				47131B391EA76BFE00E4168A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47855FFD1EA71B3100A33EF2 /* Build configuration list for PBXNativeTarget "CCClippingNode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47855FFE1EA71B3100A33EF2 /* Debug */,
+				47855FFF1EA71B3100A33EF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7789ABB8133AA82000CEFCC7 /* Build configuration list for PBXProject "CocosBuilder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

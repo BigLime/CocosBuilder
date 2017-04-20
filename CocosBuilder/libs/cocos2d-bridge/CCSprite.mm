@@ -319,8 +319,7 @@
 }
 -(void) addChild:(CCSprite*)child z:(NSInteger)z tag:(NSInteger) aTag
 {
-    cocos2d::Node* node = (cocos2d::Node*)[child getImpl];
-    ((cocos2d::Sprite*)impl_)->addChild(node,z,aTag);
+    [super addChild:child z:z tag:aTag];
 }
 -(void) reorderChild:(CCSprite*)child z:(NSInteger)z
 {
@@ -329,9 +328,9 @@
 }
 -(void)removeChild: (CCSprite *)sprite cleanup:(BOOL)doCleanup
 {
-    cocos2d::Node* node = (cocos2d::Node*)[sprite getImpl];
-    ((cocos2d::Sprite*)impl_)->removeChild(node,doCleanup);
+    [super removeChild:sprite cleanup:doCleanup];
 }
+
 -(void)removeAllChildrenWithCleanup:(BOOL)doCleanup
 {
     ((cocos2d::Sprite*)impl_)->removeAllChildrenWithCleanup(doCleanup);

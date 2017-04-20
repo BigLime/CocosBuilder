@@ -101,9 +101,12 @@ enum
 
 -(void)addChild:(CCNode *)node z:(NSInteger)z tag:(NSInteger)tag
 {
-    cocos2d::Node* cppNode = static_cast<cocos2d::Node*>([node getImpl]);
-    cocos2d::Menu* menu = static_cast<cocos2d::Menu*>(impl_);
-    menu->addChild(cppNode, z, tag);
+   [super addChild:node z:z tag:tag];
+}
+
+-(void)removeChild:(CCNode *)child
+{
+   [super removeChild:child];
 }
 
 -(void)onExit

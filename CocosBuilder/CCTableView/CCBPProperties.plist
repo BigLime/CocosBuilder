@@ -7,9 +7,9 @@
 	<key>canHaveChildren</key>
 	<false/>
 	<key>className</key>
-	<string>CCScrollView</string>
+	<string>CCTableView</string>
 	<key>editorClassName</key>
-	<string>CCScrollView</string>
+	<string>CCTableView</string>
 	<key>propertiesOverridden</key>
 	<array>
 		<dict>
@@ -30,25 +30,13 @@
 	<array>
 		<dict>
 			<key>displayName</key>
-			<string>CCScrollView</string>
+			<string>CCTableView</string>
 			<key>name</key>
-			<string>CCScrollView</string>
+			<string>CCTableView</string>
 			<key>type</key>
 			<string>Separator</string>
 			<key>dontSetInEditor</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>affectsProperties</key>
-			<array>
-				<string>contentSize</string>
-			</array>
-			<key>displayName</key>
-			<string>Container</string>
-			<key>type</key>
-			<string>CCBFile</string>
-			<key>name</key>
-			<string>container</string>
 		</dict>
 		<dict>
 			<key>displayName</key>
@@ -62,19 +50,13 @@
 		</dict>
 		<dict>
 			<key>displayName</key>
-			<string>Clips to bounds</string>
+			<string>Vertical</string>
 			<key>type</key>
-			<string>Check</string>
+			<string>IntegerLabeled</string>
 			<key>name</key>
-			<string>clipsToBounds</string>
-		</dict>
-		<dict>
-			<key>displayName</key>
-			<string>Bounces</string>
-			<key>type</key>
-			<string>Check</string>
-			<key>name</key>
-			<string>bounces</string>
+			<string>verticalDirection</string>
+			<key>extra</key>
+			<string>TOP_DOWN|0|BOTTOM_UP|1</string>
 		</dict>
 	</array>
 </dict>

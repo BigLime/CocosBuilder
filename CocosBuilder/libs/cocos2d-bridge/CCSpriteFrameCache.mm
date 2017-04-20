@@ -56,6 +56,8 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
 -(void) addSpriteFramesWithFile:(NSString*)plist
 {
     NSAssert(plist, @"plist filename should not be nil");
+    if (!plist) return; 
+    
     cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     spriteFrameCache->addSpriteFramesWithFile([ccTypeConvert NSStringTostring:plist]);
 }
@@ -113,7 +115,7 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
     cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     std::string nameStr = [name UTF8String];
     cocos2d::SpriteFrame* spriteFrame = spriteFrameCache->getSpriteFrameByName(nameStr);
-    return [[[CCSpriteFrame alloc ]initWithObject: spriteFrame] autorelease];
+    return spriteFrame != nil ?  [[[CCSpriteFrame alloc ]initWithObject: spriteFrame] autorelease] : nil;
 }
 
 @end

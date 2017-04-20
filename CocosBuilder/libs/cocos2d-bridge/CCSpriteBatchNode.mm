@@ -140,20 +140,18 @@ const NSUInteger defaultCapacity = 29;
     //((cocos2d::SpriteBatchNode*)impl_)->visit();
 }
 
--(void) addChild:(CCSprite*)child z:(NSInteger)z tag:(NSInteger) aTag
+-(void) addChild:(CCNode*)child z:(NSInteger)z tag:(NSInteger) aTag
 {
-    cocos2d::Node* _sprite = (cocos2d::Node*)[child getImpl];
-    ((cocos2d::SpriteBatchNode*)impl_)->addChild(_sprite,z,aTag);
+    [super addChild:child z:z tag:aTag];
 }
 -(void) reorderChild:(CCSprite*)child z:(NSInteger)z
 {
     cocos2d::Node* _sprite = (cocos2d::Node*)[child getImpl];
     ((cocos2d::SpriteBatchNode*)impl_)->reorderChild(_sprite,z);
 }
--(void)removeChild: (CCSprite *)sprite cleanup:(BOOL)doCleanup
+-(void)removeChild: (CCNode *)sprite cleanup:(BOOL)doCleanup
 {
-    cocos2d::Node* _sprite = (cocos2d::Node*)[sprite getImpl];
-    ((cocos2d::SpriteBatchNode*)impl_)->removeChild(_sprite,doCleanup);
+    [super removeChild:sprite cleanup:doCleanup];
 }
 -(void)removeChildAtIndex:(NSUInteger)index cleanup:(BOOL)doCleanup
 {
