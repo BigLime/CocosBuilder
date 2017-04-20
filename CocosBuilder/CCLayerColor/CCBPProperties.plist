@@ -37,18 +37,6 @@
 			<string>color</string>
 		</dict>
 		<dict>
-			<key>animatable</key>
-			<true/>
-			<key>default</key>
-			<integer>255</integer>
-			<key>displayName</key>
-			<string>Opacity</string>
-			<key>type</key>
-			<string>Byte</string>
-			<key>name</key>
-			<string>opacity</string>
-		</dict>
-		<dict>
 			<key>defaultSerialization</key>
 			<array>
 				<integer>1</integer>

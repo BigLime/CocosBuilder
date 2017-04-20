@@ -877,6 +877,25 @@
     return [ccTypeConvert PointToCGPoint: node->convertToWorldSpaceAR([ccTypeConvert CGPointToPoint: nodePoint])];
 }
 
+-(GLubyte) opacity
+{
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    return node->getOpacity();
+}
+
+- (void) setOpacity:(GLubyte)opacity
+{
+    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
+    node->setOpacity(opacity);
+    
+    CCArray* arr = [self children];
+    for(int i = 0; i < [arr count]; ++i)
+    {
+        CCNode* node_i = [arr objectAtIndex:i];
+        [node_i setOpacity:opacity];
+    }
+}
+
 @end
 
 #pragma mark - NodeRGBA

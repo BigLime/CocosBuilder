@@ -448,6 +448,8 @@ enum
  @since v0.7.1
  */
 - (CGPoint)convertToWorldSpaceAR:(CGPoint)nodePoint;
+
+-(GLubyte) opacity;
 @end
 
 #pragma mark - CCNodeRGBA
