@@ -56,6 +56,8 @@ static CCSpriteFrameCache *_sharedSpriteFrameCache=nil;
 -(void) addSpriteFramesWithFile:(NSString*)plist
 {
     NSAssert(plist, @"plist filename should not be nil");
+    if (!plist) return; 
+    
     cocos2d::SpriteFrameCache* spriteFrameCache = cocos2d::SpriteFrameCache::getInstance();
     spriteFrameCache->addSpriteFramesWithFile([ccTypeConvert NSStringTostring:plist]);
 }

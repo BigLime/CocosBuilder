@@ -159,14 +159,13 @@
 -(void)setUserObject:(id)userObject
 {
     [userObject retain];
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    node->setUserData((void*)userObject);
+    [_userObject release];
+    _userObject = userObject;
 }
 
 -(id)userObject
 {
-    cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    return (id)(node->getUserData());
+    return _userObject;
 }
 
 // @synthesize	shaderProgram = _shaderProgram;
@@ -406,6 +405,8 @@
     }
     // children
     [_children release];
+    [_userObject release];
+    
     [super dealloc];
 }
 
@@ -483,6 +484,8 @@
         if( node.tag == tag )
             return node;
     }
+    
+    return nil;
 }
 
 -(void) insertChild:(CCNode*)child
@@ -513,7 +516,7 @@
 
 -(void)addChild:(CCNode *)inp
 {
-    [self insertChild:inp];
+   [self insertChild:inp];
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     cocos2d::Node* inP = static_cast<cocos2d::Node*>([inp getImpl]);
     node->addChild(inP);
@@ -521,8 +524,6 @@
 
 -(void)removeFromParent
 {
-    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    //node->removeFromParent();
     [self removeFromParentAndCleanup:YES];
 }
 
@@ -535,9 +536,6 @@
 
 -(void)removeChild:(CCNode *)child
 {
-    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    //cocos2d::Node* inP = static_cast<cocos2d::Node*>([child getImpl]);
-    //node->removeChild(inP);
     [self removeChild:child cleanup:YES];
 }
 
@@ -570,8 +568,6 @@
 
 -(void)removeAllChildren
 {
-    //cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
-    //node->removeAllChildren();
     [self removeAllChildrenWithCleanup:YES];
 }
 

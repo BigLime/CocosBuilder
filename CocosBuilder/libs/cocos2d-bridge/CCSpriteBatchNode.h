@@ -64,7 +64,8 @@
 /** removes a child given a reference. It will also cleanup the running actions depending on the cleanup parameter.
  @warning Removing a child from a CCSpriteBatchNode is very slow
  */
--(void)removeChild: (CCSprite *)sprite cleanup:(BOOL)doCleanup;
+-(void) removeChild: (CCNode *)sprite cleanup:(BOOL)doCleanup;
+-(void) addChild: (CCNode*) child z:(NSInteger)z tag:(NSInteger)aTag;
 
 -(void) insertChild:(CCSprite*)child inAtlasAtIndex:(NSUInteger)index;
 -(void) appendChild:(CCSprite*)sprite;
