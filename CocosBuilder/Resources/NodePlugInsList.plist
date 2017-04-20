@@ -10,6 +10,7 @@
 			<key>plugIns</key>
 			<array>
 				<string>CCNode</string>
+				<string>CCBClippingNode</string>
 			</array>
 		</dict>
 		<dict>
