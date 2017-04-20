@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-#import "CCArray.h"
+#import "support/CCArray.h"
 #import "CGPointExtension.h"
 #import "CCDirector.h"
 #import "CCDirectorMac.h"
