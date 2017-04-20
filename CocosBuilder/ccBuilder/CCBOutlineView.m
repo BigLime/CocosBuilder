@@ -25,6 +25,7 @@
 
 #import "CCBOutlineView.h"
 #import "AppKit/NSGradient.h"
+#import "AppKit/NSColor.h"
 
 @implementation CCBOutlineView
 
