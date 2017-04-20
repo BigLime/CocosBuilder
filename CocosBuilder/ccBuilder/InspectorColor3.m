@@ -34,7 +34,7 @@
 {
     CGFloat r, g, b, a;
     
-    color = [color colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
+//    color = [color colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]]; // by lsr 解决取色偏差问题
     
     [color getRed:&r green:&g blue:&b alpha:&a];
     
