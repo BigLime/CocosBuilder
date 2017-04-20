@@ -669,13 +669,10 @@ static SequencerHandler* sharedSequencerHandler;
     // Also deselect keyframes of children
     CCArray* children = [node children];
     CCNode* child = NULL;
-    CCARRAY_FOREACH(children, child);
+    for(int i = 0; i < [children count]; ++i)
     {
-        if (!children || children->data->num <= 0)
-        {
-            return;
-        }
-       [self deselectKeyframesForNode:child];
+        child = [children objectAtIndex:i];
+        [self deselectKeyframesForNode:child];
     }
 }
 
