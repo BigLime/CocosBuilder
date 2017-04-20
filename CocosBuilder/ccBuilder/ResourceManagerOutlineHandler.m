@@ -365,7 +365,7 @@
     
 #warning Hackish solution to make multiple selections look good
     NSLog(@"needsDisplay!");
-    [resourceList setNeedsDisplay];
+    [resourceList setNeedsDisplay:YES];
 }
 
 - (void) doubleClicked:(id)sender
