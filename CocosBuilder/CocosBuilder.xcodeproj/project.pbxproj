@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47052E941EA88D4500C6DE29 /* CCBPProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47052E901EA88D4500C6DE29 /* CCBPProperties.plist */; };
+		47052E961EA88D4500C6DE29 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 47052E931EA88D4500C6DE29 /* Icon.png */; };
+		47052E991EA88D5100C6DE29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47052E971EA88D5100C6DE29 /* InfoPlist.strings */; };
+		47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47131B301EA76BFE00E4168A /* CCBClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 478560031EA71BC300A33EF2 /* CCBClippingNode.m */; };
 		47131B321EA76BFE00E4168A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7789ABC2133AA82000CEFCC7 /* Cocoa.framework */; };
-		47131B341EA76BFE00E4168A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 478560081EA71BCD00A33EF2 /* Icon.png */; };
-		47131B351EA76BFE00E4168A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4785600C1EA71BD300A33EF2 /* InfoPlist.strings */; };
-		47131B361EA76BFE00E4168A /* CCBPProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 478560051EA71BCD00A33EF2 /* CCBPProperties.plist */; };
+		47131B4C1EA8603B00E4168A /* CCScrollView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47131B491EA8603B00E4168A /* CCScrollView.mm */; };
+		47131B4D1EA8603B00E4168A /* CCTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47131B4B1EA8603B00E4168A /* CCTableView.mm */; };
 		47855FA41E9F4AFA00A33EF2 /* CCControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA11E9F4AFA00A33EF2 /* CCControl.mm */; };
 		47855FA51E9F4AFA00A33EF2 /* CCControlButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FA31E9F4AFA00A33EF2 /* CCControlButton.mm */; };
 		47855FF21EA71AE000A33EF2 /* CCClippingNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47855FEB1EA71ADA00A33EF2 /* CCClippingNode.mm */; };
@@ -643,6 +646,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		47052E9B1EA88E3A00C6DE29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47131B2E1EA76BFE00E4168A;
+			remoteInfo = CCTableView;
+		};
 		4785600F1EA71E8B00A33EF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
@@ -832,6 +842,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */,
 				478560111EA71EA100A33EF2 /* CCClippingNode.ccbPlugNode in Copy PlugIns */,
 				E3FCE874152485A20028E8E7 /* CCScrollView.ccbPlugNode in Copy PlugIns */,
 				E3C65124151BB8DF00D639C0 /* CCControl.ccbPlugNode in Copy PlugIns */,
@@ -866,7 +877,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		47052E901EA88D4500C6DE29 /* CCBPProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CCBPProperties.plist; path = CCTableView/CCBPProperties.plist; sourceTree = "<group>"; };
+		47052E911EA88D4500C6DE29 /* CCTableView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CCTableView-Info.plist"; path = "CCTableView/CCTableView-Info.plist"; sourceTree = "<group>"; };
+		47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTableView-Prefix.pch"; path = "CCTableView/CCTableView-Prefix.pch"; sourceTree = "<group>"; };
+		47052E931EA88D4500C6DE29 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = CCTableView/Icon.png; sourceTree = "<group>"; };
+		47052E981EA88D5100C6DE29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CCTableView/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTableView.ccbPlugNode; sourceTree = BUILT_PRODUCTS_DIR; };
+		47131B481EA8603B00E4168A /* CCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScrollView.h; path = "cocos2d-bridge/CCScrollView.h"; sourceTree = "<group>"; };
+		47131B491EA8603B00E4168A /* CCScrollView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCScrollView.mm; path = "cocos2d-bridge/CCScrollView.mm"; sourceTree = "<group>"; };
+		47131B4A1EA8603B00E4168A /* CCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTableView.h; path = "cocos2d-bridge/CCTableView.h"; sourceTree = "<group>"; };
+		47131B4B1EA8603B00E4168A /* CCTableView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCTableView.mm; path = "cocos2d-bridge/CCTableView.mm"; sourceTree = "<group>"; };
 		47855FA01E9F4AFA00A33EF2 /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControl.h; path = "cocos2d-bridge/CCControl.h"; sourceTree = "<group>"; };
 		47855FA11E9F4AFA00A33EF2 /* CCControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCControl.mm; path = "cocos2d-bridge/CCControl.mm"; sourceTree = "<group>"; };
 		47855FA21E9F4AFA00A33EF2 /* CCControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControlButton.h; path = "cocos2d-bridge/CCControlButton.h"; sourceTree = "<group>"; };
@@ -1931,6 +1951,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47052E891EA88D0500C6DE29 /* CCTableView */ = {
+			isa = PBXGroup;
+			children = (
+				47052E8F1EA88D1100C6DE29 /* Supporting Files */,
+			);
+			name = CCTableView;
+			sourceTree = "<group>";
+		};
+		47052E8F1EA88D1100C6DE29 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47052E901EA88D4500C6DE29 /* CCBPProperties.plist */,
+				47052E911EA88D4500C6DE29 /* CCTableView-Info.plist */,
+				47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */,
+				47052E931EA88D4500C6DE29 /* Icon.png */,
+				47052E971EA88D5100C6DE29 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		47855FF31EA71B0900A33EF2 /* CCClippingNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -2759,6 +2799,10 @@
 				D3221D251E9C8DFF0032ABB2 /* CCSpriteFrame.mm */,
 				D3221D261E9C8DFF0032ABB2 /* CCSpriteFrameCache.h */,
 				D3221D271E9C8DFF0032ABB2 /* CCSpriteFrameCache.mm */,
+				47131B481EA8603B00E4168A /* CCScrollView.h */,
+				47131B491EA8603B00E4168A /* CCScrollView.mm */,
+				47131B4A1EA8603B00E4168A /* CCTableView.h */,
+				47131B4B1EA8603B00E4168A /* CCTableView.mm */,
 				D3221D281E9C8DFF0032ABB2 /* CCTexture2D.h */,
 				D3221D291E9C8DFF0032ABB2 /* CCTexture2D.mm */,
 				D3221D2A1E9C8DFF0032ABB2 /* CCTextureAtlas.h */,
@@ -2964,6 +3008,7 @@
 		E35392481518AD4100471721 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				47052E891EA88D0500C6DE29 /* CCTableView */,
 				E3FCE8681524856D0028E8E7 /* CCScrollView */,
 				E35392791518D78D00471721 /* CCScale9Sprite */,
 				E3C65118151BB89500D639C0 /* CCControl */,
@@ -3772,6 +3817,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				47052E9C1EA88E3A00C6DE29 /* PBXTargetDependency */,
 				478560101EA71E8B00A33EF2 /* PBXTargetDependency */,
 				E3F541CE15AED85800EAAFBD /* PBXTargetDependency */,
 				E398C02F14FB82090078E771 /* PBXTargetDependency */,
@@ -4189,9 +4235,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47131B341EA76BFE00E4168A /* Icon.png in Resources */,
-				47131B351EA76BFE00E4168A /* InfoPlist.strings in Resources */,
-				47131B361EA76BFE00E4168A /* CCBPProperties.plist in Resources */,
+				47052E961EA88D4500C6DE29 /* Icon.png in Resources */,
+				47052E991EA88D5100C6DE29 /* InfoPlist.strings in Resources */,
+				47052E941EA88D4500C6DE29 /* CCBPProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4817,6 +4863,7 @@
 				E3C5C1AC1504D30C000CF6F3 /* SCEvent.m in Sources */,
 				E3C5C1AD1504D30C000CF6F3 /* SCEvents.m in Sources */,
 				E3C5C1B215061883000CF6F3 /* ResourceManagerPanel.m in Sources */,
+				47131B4C1EA8603B00E4168A /* CCScrollView.mm in Sources */,
 				E3C5C1B515075CDD000CF6F3 /* ResourceManagerUtil.m in Sources */,
 				E3C5C1C91508F35E000CF6F3 /* CCBAnimationParser.m in Sources */,
 				E3C5C1CE150902B3000CF6F3 /* InspectorAnimation.m in Sources */,
@@ -4879,6 +4926,7 @@
 				E33C2AAF15C9A0D40043EF9B /* SequencerUtil.m in Sources */,
 				E33C2AB815CAE3980043EF9B /* SequencerStretchWindow.m in Sources */,
 				E3214C4415D3C29D002413A7 /* CustomPropSettingsWindow.m in Sources */,
+				47131B4D1EA8603B00E4168A /* CCTableView.mm in Sources */,
 				E3214C4715D3C3AF002413A7 /* CustomPropSetting.m in Sources */,
 				E3214C4B15D40F01002413A7 /* InspectorCustom.m in Sources */,
 				E3214C5D15D54356002413A7 /* InspectorCustomEdit.m in Sources */,
@@ -5053,6 +5101,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		47052E9C1EA88E3A00C6DE29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47131B2E1EA76BFE00E4168A /* CCTableView */;
+			targetProxy = 47052E9B1EA88E3A00C6DE29 /* PBXContainerItemProxy */;
+		};
 		478560101EA71E8B00A33EF2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 47855FF51EA71B3100A33EF2 /* CCClippingNode */;
@@ -5146,6 +5199,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		47052E971EA88D5100C6DE29 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47052E981EA88D5100C6DE29 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		4785600C1EA71BD300A33EF2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
