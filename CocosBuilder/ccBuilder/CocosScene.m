@@ -578,7 +578,7 @@ static NSString* PropertyKeyWithFormat(NSString* raw)
     if (node.contentSize.width == 0 || node.contentSize.height == 0)
     {
         CGPoint worldPos = [node.parent convertToWorldSpace:node.position];
-        if (ccpDistance(worldPos, pt) < kCCBSinglePointSelectionRadius)
+        if (ccpDistance(worldPos, pt) < kCCBSinglePointSelectionRadius && node.visible)
         {
             [nodes addObject:node];
         }
@@ -590,7 +590,7 @@ static NSString* PropertyKeyWithFormat(NSString* raw)
         CCNode* parent = node.parent;
         CGPoint ptLocal = [parent convertToNodeSpace:pt];
         
-        if (CGRectContainsPoint(hitRect, ptLocal))
+        if (CGRectContainsPoint(hitRect, ptLocal) && node.visible)
         {
             [nodes addObject:node];
         }

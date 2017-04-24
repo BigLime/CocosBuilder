@@ -2062,6 +2062,13 @@ static BOOL hideAllToNextSeparator;
                 {
                     [seq.soundChannel.seqNodeProp setKeyframe:keyframe];
                 }
+                else
+                {
+                    keyframe.name = [SequencerKeyframe propertyTypeFromKeyframeType:keyframe.type];
+                    [self.selectedNode addKeyframe:keyframe forProperty:keyframe.name atTime:keyframe.time sequenceId:seq.sequenceId];
+                    keyframe.name = nil;
+                }
+                
                 [keyframe.parent deleteKeyframesAfterTime:seq.timelineLength];
                 [[SequencerHandler sharedHandler] redrawTimeline];
             }

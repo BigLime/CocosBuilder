@@ -74,6 +74,7 @@ enum
 - (id) serialization;
 
 + (int) keyframeTypeFromPropertyType:(NSString*)type;
++ (NSString*) propertyTypeFromKeyframeType:(int)type;
 
 - (BOOL) valueIsEqualTo:(SequencerKeyframe*)keyframe;
 - (BOOL) supportsFiniteTimeInterpolations;

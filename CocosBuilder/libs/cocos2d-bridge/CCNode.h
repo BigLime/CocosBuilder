@@ -191,6 +191,8 @@ enum
  */
 -(void) onExitTransitionDidStart;
 
+-(void) sortOCChildren;
+
 // composition: ADD
 
 /** Adds a child to the container with z-order as 0.

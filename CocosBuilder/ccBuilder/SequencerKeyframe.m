@@ -120,6 +120,54 @@
     }
 }
 
++ (NSString*) propertyTypeFromKeyframeType:(int)type
+{
+    if (type == kCCBKeyframeTypeDegrees)
+    {
+//        return @"Degrees";
+        return @"rotation";
+    }
+    else if (type == kCCBKeyframeTypePosition)
+    {
+//        return @"Position";
+        return @"position";
+    }
+    else if (type == kCCBKeyframeTypeScaleLock)
+    {
+//        return @"ScaleLock";
+        return @"scale";
+    }
+    else if (type == kCCBKeyframeTypeToggle)
+    {
+//        return @"Check";
+        return @"visible";
+    }
+    else if (type == kCCBKeyframeTypeByte)
+    {
+//        return @"Byte";
+        return @"opacity";
+    }
+    else if (type == kCCBKeyframeTypeColor3)
+    {
+//        return @"Color3";
+        return @"color";
+    }
+    else if (type == kCCBKeyframeTypeSpriteFrame)
+    {
+//        return @"SpriteFrame";
+        return @"displayFrame";
+    }
+    else if (type == kCCBKeyframeTypeFloatXY)
+    {
+//        return @"FloatXY";
+        return @"skew";
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (NSComparisonResult) compareTime:(id)cmp
 {
     SequencerKeyframe* keyframe = cmp;

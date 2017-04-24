@@ -498,6 +498,28 @@
     ccArrayAppendObjectWithResize(_children->data, child);
 }
 
+-(void) sortOCChildren
+{
+    NSInteger i,j,length = _children->data->num;
+    CCNode ** x = _children->data->arr;
+    CCNode *tempItem;
+    
+    // insertion sort
+    for(i=1; i<length; i++)
+    {
+        tempItem = x[i];
+        j = i-1;
+        
+        //continue moving element downwards while zOrder is smaller or when zOrder is the same but mutatedIndex is smaller
+        while(j>=0 && ( tempItem.zOrder < x[j].zOrder || ( tempItem.zOrder== x[j].zOrder && tempItem.orderOfArrival < x[j].orderOfArrival ) ) )
+        {
+            x[j+1] = x[j];
+            j = j-1;
+        }
+        x[j+1] = tempItem;
+    }
+}
+
 -(void)addChild:(CCNode *)inp z:(NSInteger)z tag:(NSInteger)tag
 {
     [self insertChild:inp];
@@ -589,6 +611,7 @@
 {
     cocos2d::Node* node = static_cast<cocos2d::Node*>(impl_);
     node->sortAllChildren();
+    [self sortOCChildren];
 }
 
 #pragma mark CCNode Draw
