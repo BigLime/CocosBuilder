@@ -519,6 +519,11 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     if (currentDocument) currentDocument.lastEditedProperty = NULL;
 }
 
+-(NSArray *)selectedNodes
+{
+    return selectedNodes; 
+}
+
 - (CCNode*) selectedNode
 {
     if (selectedNodes.count == 1)

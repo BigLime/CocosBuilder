@@ -82,6 +82,7 @@ static SequencerHandler* sharedSequencerHandler;
     
     [[[outlineHierarchy outlineTableColumn] dataCell] setEditable:YES];
     
+    autoExpand = YES;
     return self;
 }
 
@@ -347,6 +348,8 @@ static SequencerHandler* sharedSequencerHandler;
     appDelegate.selectedNodes = selectedNodes;
     
     [appDelegate updateInspectorFromSelection];
+    
+    autoExpand = YES;
 }
 
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification
@@ -583,6 +586,23 @@ static SequencerHandler* sharedSequencerHandler;
         SequencerCell* seqCell = cell;
         seqCell.node = node;
     }
+}
+
+- (void) expandAllSelectedNodes
+{
+    NSArray* selectedNodes = appDelegate.selectedNodes;
+    for (CCNode* node in selectedNodes)
+    {
+        if (![self outlineView:outlineHierarchy isItemExpandable:node])
+            continue;
+        
+        if (autoExpand)
+            [outlineHierarchy expandItem:node];
+        else
+            [outlineHierarchy collapseItem:node];
+    }
+    
+    autoExpand = !autoExpand;
 }
 
 - (void) updateExpandedForNode:(CCNode*)node
