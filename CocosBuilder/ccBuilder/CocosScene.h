@@ -112,6 +112,12 @@ enum {
     float stageZoom;
     
     int currentTool;
+    
+    //Property Handler.
+    BOOL isNeedSavePos;
+    BOOL isNeedSaveScale;
+    BOOL isNeedSaveRotation;
+    BOOL isNeedSaveAnchorPoint;
 }
 
 @property (nonatomic,assign) CCNode* rootNode;

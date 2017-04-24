@@ -1701,6 +1701,7 @@ static BOOL hideAllToNextSeparator;
         return;
     }
     
+    NSLog(@"[saveUndoStateWillChangeProperty]::%@", prop); 
     NSMutableDictionary* doc = [self docDataFromCurrentNodeGraph];
     
     [currentDocument.undoManager registerUndoWithTarget:self selector:@selector(revertToState:) object:doc];

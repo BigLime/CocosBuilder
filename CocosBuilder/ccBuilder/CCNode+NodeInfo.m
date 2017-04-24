@@ -125,6 +125,7 @@
 
 - (void) addKeyframe:(SequencerKeyframe*)keyframe forProperty:(NSString*)name atTime:(float)time sequenceId:(int)seqId
 {
+    static int keyFrameIdx = 0;
     // Check so we are not adding a keyframe out of bounds
     NSArray* seqs = [CocosBuilderAppDelegate appDelegate].currentDocument.sequences;
     SequencerSequence* seq = NULL;
@@ -138,8 +139,11 @@
     }
     if (time > seq.timelineLength) return;
     
+    // make unique propKey for undo.
+    NSString* addKeyFrameFormat = [NSString stringWithFormat:@"*addkeyframe%d", keyFrameIdx++];
+    
     // Save undo state
-    [[CocosBuilderAppDelegate appDelegate] saveUndoStateWillChangeProperty:@"*addkeyframe"];
+    [[CocosBuilderAppDelegate appDelegate] saveUndoStateWillChangeProperty:addKeyFrameFormat];
     
     // Make sure timeline is enabled for this property
     [self enableSequenceNodeProperty:name sequenceId:seqId];

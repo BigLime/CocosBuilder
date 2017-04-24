@@ -68,6 +68,12 @@ static CocosScene* sharedCocosScene;
 @synthesize rulerLayer;
 @synthesize notesLayer;
 
+static NSString* PropertyKeyWithFormat(NSString* raw)
+{
+    static int propertyKeyIdx = 0;
+    return [NSString stringWithFormat:@"%@%d", raw, propertyKeyIdx++];
+}
+
 +(id) sceneWithAppDelegate:(CocosBuilderAppDelegate*)app
 {
 	// 'scene' is an autorelease object.
@@ -850,7 +856,12 @@ static CocosScene* sharedCocosScene;
         
             CGPoint newLocalPos = [selectedNode.parent convertToNodeSpace:newPos];
             
-            [appDelegate saveUndoStateWillChangeProperty:@"position"];
+            // handle batch undo.
+            if (!self->isNeedSavePos)
+            {
+                self->isNeedSavePos = YES;
+                [appDelegate saveUndoStateWillChangeProperty:PropertyKeyWithFormat(@"position")];
+            }
             
             [PositionPropertySetter setPosition:NSPointFromCGPoint(newLocalPos) forNode:selectedNode prop:@"position"];
         }
@@ -896,9 +907,14 @@ static CocosScene* sharedCocosScene;
             }
         }
         
-        // Set new scale
-        [appDelegate saveUndoStateWillChangeProperty:@"scale"];
+        // handle batch undo.
+        if (!self->isNeedSaveScale)
+        {
+            self->isNeedSaveScale = YES;
+            [appDelegate saveUndoStateWillChangeProperty:PropertyKeyWithFormat(@"scale")];
+        }
         
+        // Set new scale
         int type = [PositionPropertySetter scaledFloatTypeForNode:transformScalingNode prop:@"scale"];
         [PositionPropertySetter setScaledX:xScaleNew Y:yScaleNew type:type forNode:transformScalingNode prop:@"scale"];
         
@@ -936,7 +952,13 @@ static CocosScene* sharedCocosScene;
             newRotation = roundf(newRotation/factor)*factor;
         }
         
-        [appDelegate saveUndoStateWillChangeProperty:@"rotation"];
+        // handle batch undo.
+        if (!self->isNeedSaveRotation)
+        {
+            self->isNeedSaveRotation = YES;
+            [appDelegate saveUndoStateWillChangeProperty:PropertyKeyWithFormat(@"rotation")];
+        }
+
         transformScalingNode.rotation = newRotation;
         [appDelegate refreshProperty:@"rotation"];
     }
@@ -948,7 +970,13 @@ static CocosScene* sharedCocosScene;
         CGPoint deltaLocal = ccpSub(localPos, localDownPos);
         CGPoint deltaAnchorPoint = ccp(deltaLocal.x / transformScalingNode.contentSize.width, deltaLocal.y / transformScalingNode.contentSize.height);
         
-        [appDelegate saveUndoStateWillChangeProperty:@"anchorPoint"];
+        // handle batch undo.
+        if (!self->isNeedSaveAnchorPoint)
+        {
+            self->isNeedSaveAnchorPoint = YES;
+            [appDelegate saveUndoStateWillChangeProperty:PropertyKeyWithFormat(@"anchorPoint")];
+        }
+
         transformScalingNode.anchorPoint = ccpAdd(transformScalingNode.transformStartPosition, deltaAnchorPoint);
         [appDelegate refreshProperty:@"anchorPoint"];
     }
@@ -1004,6 +1032,11 @@ static CocosScene* sharedCocosScene;
 - (BOOL) ccMouseUp:(NSEvent *)event
 {
     if (!appDelegate.hasOpenedDocument) return YES;
+    
+    if (self->isNeedSavePos) self->isNeedSavePos = NO;
+    if (self->isNeedSaveScale) self->isNeedSaveScale = NO;
+    if (self->isNeedSaveRotation) self->isNeedSaveRotation = NO;
+    if (self->isNeedSaveAnchorPoint) self->isNeedSaveAnchorPoint = NO;
     
     CCNode* selectedNode = appDelegate.selectedNode;
     
