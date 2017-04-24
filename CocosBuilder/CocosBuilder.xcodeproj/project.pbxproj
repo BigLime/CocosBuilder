@@ -11,6 +11,12 @@
 		47052E961EA88D4500C6DE29 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 47052E931EA88D4500C6DE29 /* Icon.png */; };
 		47052E991EA88D5100C6DE29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47052E971EA88D5100C6DE29 /* InfoPlist.strings */; };
 		47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		47052EAB1EADC90E00C6DE29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7789ABC2133AA82000CEFCC7 /* Cocoa.framework */; };
+		47052EC01EADCA3400C6DE29 /* CCBPProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47052EBC1EADCA3400C6DE29 /* CCBPProperties.plist */; };
+		47052EC21EADCA3400C6DE29 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 47052EBF1EADCA3400C6DE29 /* Icon.png */; };
+		47052EC51EADCA3D00C6DE29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47052EC31EADCA3D00C6DE29 /* InfoPlist.strings */; };
+		47052EC91EADCBED00C6DE29 /* CCMenuItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 47052EC81EADCBED00C6DE29 /* CCMenuItemAction.m */; };
+		47052ECA1EADCD3100C6DE29 /* CCMenuItemAction.ccbPlugNode in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = 47052EB31EADC90E00C6DE29 /* CCMenuItemAction.ccbPlugNode */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47131B301EA76BFE00E4168A /* CCBClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 478560031EA71BC300A33EF2 /* CCBClippingNode.m */; };
 		47131B321EA76BFE00E4168A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7789ABC2133AA82000CEFCC7 /* Cocoa.framework */; };
 		47131B4C1EA8603B00E4168A /* CCScrollView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 47131B491EA8603B00E4168A /* CCScrollView.mm */; };
@@ -653,6 +659,13 @@
 			remoteGlobalIDString = 47131B2E1EA76BFE00E4168A;
 			remoteInfo = CCTableView;
 		};
+		47052ECB1EADCD3E00C6DE29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47052EA81EADC90E00C6DE29;
+			remoteInfo = CCMenuItemAction;
+		};
 		4785600F1EA71E8B00A33EF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7789ABB5133AA82000CEFCC7 /* Project object */;
@@ -842,6 +855,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				47052ECA1EADCD3100C6DE29 /* CCMenuItemAction.ccbPlugNode in Copy PlugIns */,
 				47052E9A1EA88E3000C6DE29 /* CCTableView.ccbPlugNode in Copy PlugIns */,
 				478560111EA71EA100A33EF2 /* CCClippingNode.ccbPlugNode in Copy PlugIns */,
 				E3FCE874152485A20028E8E7 /* CCScrollView.ccbPlugNode in Copy PlugIns */,
@@ -882,6 +896,14 @@
 		47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTableView-Prefix.pch"; path = "CCTableView/CCTableView-Prefix.pch"; sourceTree = "<group>"; };
 		47052E931EA88D4500C6DE29 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = CCTableView/Icon.png; sourceTree = "<group>"; };
 		47052E981EA88D5100C6DE29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CCTableView/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47052EB31EADC90E00C6DE29 /* CCMenuItemAction.ccbPlugNode */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCMenuItemAction.ccbPlugNode; sourceTree = BUILT_PRODUCTS_DIR; };
+		47052EBC1EADCA3400C6DE29 /* CCBPProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CCBPProperties.plist; path = CCMenuItemAction/CCBPProperties.plist; sourceTree = "<group>"; };
+		47052EBE1EADCA3400C6DE29 /* CCMenuItemAction-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCMenuItemAction-Prefix.pch"; path = "CCMenuItemAction/CCMenuItemAction-Prefix.pch"; sourceTree = "<group>"; };
+		47052EBF1EADCA3400C6DE29 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = CCMenuItemAction/Icon.png; sourceTree = "<group>"; };
+		47052EC41EADCA3D00C6DE29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CCMenuItemAction/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47052EC71EADCBED00C6DE29 /* CCMenuItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMenuItemAction.h; path = CCMenuItemAction/CCMenuItemAction.h; sourceTree = "<group>"; };
+		47052EC81EADCBED00C6DE29 /* CCMenuItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMenuItemAction.m; path = CCMenuItemAction/CCMenuItemAction.m; sourceTree = "<group>"; };
+		47052EF61EADDF7C00C6DE29 /* CCMenuItemAction-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CCMenuItemAction-Info.plist"; path = "CCMenuItemAction/CCMenuItemAction-Info.plist"; sourceTree = "<group>"; };
 		47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTableView.ccbPlugNode; sourceTree = BUILT_PRODUCTS_DIR; };
 		47131B481EA8603B00E4168A /* CCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScrollView.h; path = "cocos2d-bridge/CCScrollView.h"; sourceTree = "<group>"; };
 		47131B491EA8603B00E4168A /* CCScrollView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCScrollView.mm; path = "cocos2d-bridge/CCScrollView.mm"; sourceTree = "<group>"; };
@@ -1766,6 +1788,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		47052EAA1EADC90E00C6DE29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47052EAB1EADC90E00C6DE29 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47131B311EA76BFE00E4168A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1967,6 +1997,28 @@
 				47052E921EA88D4500C6DE29 /* CCTableView-Prefix.pch */,
 				47052E931EA88D4500C6DE29 /* Icon.png */,
 				47052E971EA88D5100C6DE29 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		47052EBA1EADC9D400C6DE29 /* CCMenuItemAction */ = {
+			isa = PBXGroup;
+			children = (
+				47052EC71EADCBED00C6DE29 /* CCMenuItemAction.h */,
+				47052EC81EADCBED00C6DE29 /* CCMenuItemAction.m */,
+				47052EBB1EADC9E300C6DE29 /* Supporting Files */,
+			);
+			name = CCMenuItemAction;
+			sourceTree = "<group>";
+		};
+		47052EBB1EADC9E300C6DE29 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47052EBC1EADCA3400C6DE29 /* CCBPProperties.plist */,
+				47052EF61EADDF7C00C6DE29 /* CCMenuItemAction-Info.plist */,
+				47052EBE1EADCA3400C6DE29 /* CCMenuItemAction-Prefix.pch */,
+				47052EBF1EADCA3400C6DE29 /* Icon.png */,
+				47052EC31EADCA3D00C6DE29 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2363,6 +2415,7 @@
 				FA98CFC1154E7D1C006E58C5 /* ccbpublish */,
 				478560001EA71B3100A33EF2 /* CCClippingNode.ccbPlugNode */,
 				47131B3A1EA76BFE00E4168A /* CCTableView.ccbPlugNode */,
+				47052EB31EADC90E00C6DE29 /* CCMenuItemAction.ccbPlugNode */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2989,6 +3042,7 @@
 		E35392461518AD0A00471721 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				47052EBA1EADC9D400C6DE29 /* CCMenuItemAction */,
 				47855FF31EA71B0900A33EF2 /* CCClippingNode */,
 				E3D59123150F5367004180CA /* CCBFile */,
 				E3B7AEC714E3193500DFD402 /* CCNode */,
@@ -3768,6 +3822,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		47052EA81EADC90E00C6DE29 /* CCMenuItemAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47052EB01EADC90E00C6DE29 /* Build configuration list for PBXNativeTarget "CCMenuItemAction" */;
+			buildPhases = (
+				47052EA91EADC90E00C6DE29 /* Sources */,
+				47052EAA1EADC90E00C6DE29 /* Frameworks */,
+				47052EAC1EADC90E00C6DE29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCMenuItemAction;
+			productName = CCScrollView;
+			productReference = 47052EB31EADC90E00C6DE29 /* CCMenuItemAction.ccbPlugNode */;
+			productType = "com.apple.product-type.bundle";
+		};
 		47131B2E1EA76BFE00E4168A /* CCTableView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47131B371EA76BFE00E4168A /* Build configuration list for PBXNativeTarget "CCTableView" */;
@@ -3817,6 +3888,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				47052ECC1EADCD3E00C6DE29 /* PBXTargetDependency */,
 				47052E9C1EA88E3A00C6DE29 /* PBXTargetDependency */,
 				478560101EA71E8B00A33EF2 /* PBXTargetDependency */,
 				E3F541CE15AED85800EAAFBD /* PBXTargetDependency */,
@@ -4179,6 +4251,7 @@
 				E3FCE8651524856D0028E8E7 /* CCScrollView */,
 				47855FF51EA71B3100A33EF2 /* CCClippingNode */,
 				47131B2E1EA76BFE00E4168A /* CCTableView */,
+				47052EA81EADC90E00C6DE29 /* CCMenuItemAction */,
 				7789ABBD133AA82000CEFCC7 /* CocosBuilder */,
 				FA98CFC0154E7D1C006E58C5 /* ccbpublish */,
 			);
@@ -4231,6 +4304,16 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		47052EAC1EADC90E00C6DE29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47052EC21EADCA3400C6DE29 /* Icon.png in Resources */,
+				47052EC51EADCA3D00C6DE29 /* InfoPlist.strings in Resources */,
+				47052EC01EADCA3400C6DE29 /* CCBPProperties.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47131B331EA76BFE00E4168A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4668,6 +4751,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		47052EA91EADC90E00C6DE29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47052EC91EADCBED00C6DE29 /* CCMenuItemAction.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47131B2F1EA76BFE00E4168A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5106,6 +5197,11 @@
 			target = 47131B2E1EA76BFE00E4168A /* CCTableView */;
 			targetProxy = 47052E9B1EA88E3A00C6DE29 /* PBXContainerItemProxy */;
 		};
+		47052ECC1EADCD3E00C6DE29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47052EA81EADC90E00C6DE29 /* CCMenuItemAction */;
+			targetProxy = 47052ECB1EADCD3E00C6DE29 /* PBXContainerItemProxy */;
+		};
 		478560101EA71E8B00A33EF2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 47855FF51EA71B3100A33EF2 /* CCClippingNode */;
@@ -5203,6 +5299,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				47052E981EA88D5100C6DE29 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		47052EC31EADCA3D00C6DE29 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47052EC41EADCA3D00C6DE29 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -5370,6 +5474,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		47052EB11EADC90E00C6DE29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCMenuItemAction/CCMenuItemAction-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCMenuItemAction/CCMenuItemAction-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Debug;
+		};
+		47052EB21EADC90E00C6DE29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CCMenuItemAction/CCMenuItemAction-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "CCMenuItemAction/CCMenuItemAction-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = ccbPlugNode;
+			};
+			name = Release;
+		};
 		47131B381EA76BFE00E4168A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6453,6 +6607,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		47052EB01EADC90E00C6DE29 /* Build configuration list for PBXNativeTarget "CCMenuItemAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47052EB11EADC90E00C6DE29 /* Debug */,
+				47052EB21EADC90E00C6DE29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		47131B371EA76BFE00E4168A /* Build configuration list for PBXNativeTarget "CCTableView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -13,6 +13,7 @@
 	<key>requireChildClass</key>
 	<array>
 		<string>CCMenuItemImage</string>
+		<string>CCMenuItemAction</string>
 	</array>
 	<key>properties</key>
 	<array/>
