@@ -338,6 +338,7 @@
 - (void) sortAllChildren
 {
     ((cocos2d::Sprite*)impl_)->sortAllChildren();
+    [self sortOCChildren];
 }
 -(void) setReorderChildDirtyRecursively
 {
