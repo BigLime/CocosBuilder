@@ -1030,14 +1030,14 @@ static BOOL hideAllToNextSeparator;
 {
     if (prev == nil) return;
     
-    bool expanded = [[prev extraPropForKey:@"isExpanded"] boolValue];
-    [next setExtraProp:[NSNumber numberWithBool:expanded] forKey:@"isExpanded"];
-
     CCArray* prevChilds = [prev children];
     CCArray* nextChilds = [next children];
     
-    NSAssert( [prevChilds count] == [nextChilds count], @"prevRoot structure must same as nextRoot");
-    
+    if ([prevChilds count] != [nextChilds count]) return;
+
+    bool expanded = [[prev extraPropForKey:@"isExpanded"] boolValue];
+    [next setExtraProp:[NSNumber numberWithBool:expanded] forKey:@"isExpanded"];
+
     for (int i = 0; i < [prevChilds count]; i++)
     {
         CCNode* prevChild = [prevChilds objectAtIndex:i];
