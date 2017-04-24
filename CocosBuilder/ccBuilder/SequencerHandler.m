@@ -590,8 +590,18 @@ static SequencerHandler* sharedSequencerHandler;
     if ([self outlineView:outlineHierarchy isItemExpandable:node])
     {
         bool expanded = [[node extraPropForKey:@"isExpanded"] boolValue];
-        if (expanded) [outlineHierarchy expandItem:node];
-        else [outlineHierarchy collapseItem:node];
+        if (expanded)
+        {
+            NSLog(@"[Expand]:: %@", node);
+            [outlineHierarchy expandItem:node];
+        }
+
+        else
+        {
+            NSLog(@"[Collapse]:: %@", node);
+            [outlineHierarchy collapseItem:node];
+        }
+
         
         CCArray* childs = [node children];
         for (int i = 0; i < [childs count]; i++)

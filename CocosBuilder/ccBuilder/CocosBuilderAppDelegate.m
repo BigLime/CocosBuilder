@@ -1026,6 +1026,27 @@ static BOOL hideAllToNextSeparator;
     currentDocument.stageScrollOffset = [cs scrollOffset];
 }
 
+- (void) saveTimeLineOutLineViewExpandState: (CCNode*) prev newRoot:(CCNode*) next
+{
+    if (prev == nil) return;
+    
+    CCArray* prevChilds = [prev children];
+    CCArray* nextChilds = [next children];
+    
+    if ([prevChilds count] != [nextChilds count]) return;
+
+    bool expanded = [[prev extraPropForKey:@"isExpanded"] boolValue];
+    [next setExtraProp:[NSNumber numberWithBool:expanded] forKey:@"isExpanded"];
+
+    for (int i = 0; i < [prevChilds count]; i++)
+    {
+        CCNode* prevChild = [prevChilds objectAtIndex:i];
+        CCNode* nextChild = [nextChilds objectAtIndex:i];
+        
+        [self saveTimeLineOutLineViewExpandState:prevChild newRoot:nextChild];
+    }
+}
+
 - (void) replaceDocumentData:(NSMutableDictionary*)doc
 {
     CCBGlobals* g = [CCBGlobals globals];
@@ -1128,6 +1149,10 @@ static BOOL hideAllToNextSeparator;
     
     // Replace open document
     self.selectedNodes = NULL;
+    
+    CCNode* prevRoot = [CocosScene cocosScene].rootNode;
+    [self saveTimeLineOutLineViewExpandState:prevRoot newRoot:loadedRoot];
+    
     [[CocosScene cocosScene] replaceRootNodeWith:loadedRoot];
     [outlineHierarchy reloadData];
     [sequenceHandler updateOutlineViewSelection];
@@ -1676,6 +1701,7 @@ static BOOL hideAllToNextSeparator;
         return;
     }
     
+    NSLog(@"[saveUndoStateWillChangeProperty]::%@", prop); 
     NSMutableDictionary* doc = [self docDataFromCurrentNodeGraph];
     
     [currentDocument.undoManager registerUndoWithTarget:self selector:@selector(revertToState:) object:doc];
