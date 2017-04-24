@@ -2118,6 +2118,11 @@ static BOOL hideAllToNextSeparator;
     }
 }
 
+- (IBAction) ok:(id) sender
+{
+    [sequenceHandler expandAllSelectedNodes]; 
+}
+
 - (IBAction) cut:(id) sender
 {
     CCBGlobals* g = [CCBGlobals globals];
