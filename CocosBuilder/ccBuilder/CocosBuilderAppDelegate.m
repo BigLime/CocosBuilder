@@ -1026,6 +1026,27 @@ static BOOL hideAllToNextSeparator;
     currentDocument.stageScrollOffset = [cs scrollOffset];
 }
 
+- (void) saveTimeLineOutLineViewExpandState: (CCNode*) prev newRoot:(CCNode*) next
+{
+    if (prev == nil) return;
+    
+    bool expanded = [[prev extraPropForKey:@"isExpanded"] boolValue];
+    [next setExtraProp:[NSNumber numberWithBool:expanded] forKey:@"isExpanded"];
+
+    CCArray* prevChilds = [prev children];
+    CCArray* nextChilds = [next children];
+    
+    NSAssert( [prevChilds count] == [nextChilds count], @"prevRoot structure must same as nextRoot");
+    
+    for (int i = 0; i < [prevChilds count]; i++)
+    {
+        CCNode* prevChild = [prevChilds objectAtIndex:i];
+        CCNode* nextChild = [nextChilds objectAtIndex:i];
+        
+        [self saveTimeLineOutLineViewExpandState:prevChild newRoot:nextChild];
+    }
+}
+
 - (void) replaceDocumentData:(NSMutableDictionary*)doc
 {
     CCBGlobals* g = [CCBGlobals globals];
@@ -1128,6 +1149,10 @@ static BOOL hideAllToNextSeparator;
     
     // Replace open document
     self.selectedNodes = NULL;
+    
+    CCNode* prevRoot = [CocosScene cocosScene].rootNode;
+    [self saveTimeLineOutLineViewExpandState:prevRoot newRoot:loadedRoot];
+    
     [[CocosScene cocosScene] replaceRootNodeWith:loadedRoot];
     [outlineHierarchy reloadData];
     [sequenceHandler updateOutlineViewSelection];
