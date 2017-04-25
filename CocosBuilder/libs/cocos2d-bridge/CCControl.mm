@@ -54,15 +54,11 @@
 
 -(GLubyte)opacity
 {
-    //cocos2d::extension::Control* control = static_cast<cocos2d::extension::Control*>(impl_);
-    //no this method in c++
-    unsigned char c;
-    return c;
-    
+    return ((cocos2d::extension::Control*)impl_)->getOpacity();
 }
 -(void)setOpacity:(GLubyte)opacity
 {
-    //no this method in c++
+    ((cocos2d::extension::Control*)impl_)->setOpacity(opacity);
 }
 -(ccColor3B)displayedColor
 {
@@ -115,20 +111,19 @@
 }
 -(ccColor3B)color
 {
-    ccColor3B r;
-    return r;
+    return [ccTypeConvert Color3BToccColor3B:((cocos2d::extension::Control*)impl_)->getColor()];
 }
--(void)setColor:(ccColor3B)opacity
+-(void)setColor:(ccColor3B)color
 {
-    //no this method in c++
+    ((cocos2d::extension::Control*)impl_)->setColor([ccTypeConvert ccColor3BToColor3B:color]);
 }
 -(BOOL)doesOpacityModifyRGB
 {
-    return NO;
+    return ((cocos2d::extension::Control*)impl_)->isOpacityModifyRGB();
 }
 -(void) setOpacityModifyRGB:(BOOL)boolean;
 {
-    
+    ((cocos2d::extension::Control*)impl_)->setOpacityModifyRGB(boolean);
 }
 -(void)defaultTouchPriority:(NSInteger)dt
 {
