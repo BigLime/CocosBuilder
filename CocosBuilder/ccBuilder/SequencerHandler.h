@@ -55,6 +55,7 @@
     NSScrollView* scrollView;
     
     SequencerKeyframe* contextKeyframe;
+    BOOL autoExpand;
 }
 
 @property (nonatomic,assign) BOOL dragAndDropEnabled;
@@ -104,4 +105,5 @@
 
 - (void) menuAddKeyframeNamed:(NSString*)keyframeName;
 - (BOOL) canInsertKeyframeNamed:(NSString*)prop;
+- (void) expandAllSelectedNodes;
 @end

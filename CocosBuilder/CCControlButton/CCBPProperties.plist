@@ -5,7 +5,7 @@
 	<key>inheritsFrom</key>
 	<string>CCControl</string>
 	<key>canHaveChildren</key>
-	<false/>
+	<true/>
 	<key>className</key>
 	<string>CCControlButton</string>
 	<key>editorClassName</key>
