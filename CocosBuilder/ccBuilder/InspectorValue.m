@@ -123,7 +123,15 @@
 
 - (id) propertyForSelection
 {
-    NodeInfo* nodeInfo = selection.userObject;
+    if (selection == nil && selections == nil)
+    {
+        NSAssert(false, @"selection init error.");
+        return nil;
+    }
+    
+    CCNode* sel = selection ? selection : [selections objectAtIndex:0];
+    
+    NodeInfo* nodeInfo = sel.userObject;
     PlugInNode* plugIn = nodeInfo.plugIn;
     if ([plugIn dontSetInEditorProperty:propertyName] ||
         [[selection extraPropForKey:@"customClass"] isEqualTo:propertyName])
@@ -132,21 +140,29 @@
     }
     else
     {
-        return [selection valueForKey:propertyName];
+        return [sel valueForKey:propertyName];
     }
     
 }
 
 - (void) updateAnimateablePropertyValue:(id)value
 {
-    NodeInfo* nodeInfo = selection.userObject;
+    if (selection == nil && selections == nil)
+    {
+        NSAssert(false, @"selection init error.");
+        return;
+    }
+    
+    CCNode* sel = selection ? selection : [selections objectAtIndex:0];
+    
+    NodeInfo* nodeInfo = sel.userObject;
     PlugInNode* plugIn = nodeInfo.plugIn;
     
-    if ([plugIn isAnimatableProperty:propertyName node:selection])
+    if ([plugIn isAnimatableProperty:propertyName node:sel])
     {
         SequencerSequence* seq = [SequencerHandler sharedHandler].currentSequence;
         int seqId = seq.sequenceId;
-        SequencerNodeProperty* seqNodeProp = [selection sequenceNodeProperty:propertyName sequenceId:seqId];
+        SequencerNodeProperty* seqNodeProp = [sel sequenceNodeProperty:propertyName sequenceId:seqId];
         
         if (seqNodeProp)
         {
