@@ -31,6 +31,7 @@
 
 @interface InspectorValue : NSObject <NSControlTextEditingDelegate>
 {
+    NSArray* selections;
     CCNode* selection;
     NSString* propertyName;
     NSString* displayName;
@@ -59,8 +60,10 @@
 @property (nonatomic,retain) NSString* textFieldOriginalValue;
 
 + (id) inspectorOfType:(NSString*) t withSelection:(CCNode*)s andPropertyName:(NSString*)pn andDisplayName:(NSString*) dn andExtra:(NSString*)e;
++ (id) inspectorOfTypeWithMultipleSelection:(NSString *)t withSelection:(NSArray *)selections andPropertyName:(NSString *)pn andDisplayName:(NSString *)dn andExtra:(NSString *)e;
 
 - (id) initWithSelection:(CCNode*)s andPropertyName:(NSString*)pn andDisplayName:(NSString*) dn andExtra:(NSString*)e;
+- (id) initWithSelections:(NSArray*)selections andPropertyName:(NSString*)pn andDisplayName:(NSString*) dn andExtra:(NSString*)e;
 
 - (void) refresh;
 

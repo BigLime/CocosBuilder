@@ -45,6 +45,13 @@
 @synthesize inPopoverWindow;
 @synthesize textFieldOriginalValue;
 
++ (id) inspectorOfTypeWithMultipleSelection:(NSString *)t withSelection:(NSArray *)selections andPropertyName:(NSString *)pn andDisplayName:(NSString *)dn andExtra:(NSString *)e
+{
+    NSString* inspectorClassName = [NSString stringWithFormat:@"Inspector%@",t];
+    
+    return [[[NSClassFromString(inspectorClassName) alloc] initWithSelections:selections andPropertyName:pn andDisplayName:dn andExtra:e] autorelease];
+}
+
 + (id) inspectorOfType:(NSString*) t withSelection:(CCNode*)s andPropertyName:(NSString*)pn andDisplayName:(NSString*) dn andExtra:(NSString*)e
 {
     NSString* inspectorClassName = [NSString stringWithFormat:@"Inspector%@",t];
@@ -64,6 +71,23 @@
     
     resourceManager = [CocosBuilderAppDelegate appDelegate];
     
+    selections = nil;
+    return self;
+}
+
+- (id) initWithSelections:(NSArray*)s andPropertyName:(NSString*)pn andDisplayName:(NSString*) dn andExtra:(NSString*)e;
+{
+    self = [super init];
+    if (!self) return NULL;
+    
+    propertyName = [pn retain];
+    displayName = [dn retain];
+    selections = [s retain];
+    extra = [e retain];
+    
+    resourceManager = [CocosBuilderAppDelegate appDelegate];
+    
+    selection = nil;
     return self;
 }
 
@@ -145,16 +169,43 @@
 {
     [[CocosBuilderAppDelegate appDelegate] saveUndoStateWillChangeProperty:propertyName];
     
-    NodeInfo* nodeInfo = selection.userObject;
-    PlugInNode* plugIn = nodeInfo.plugIn;
-    if ([plugIn dontSetInEditorProperty:propertyName] || [[selection extraPropForKey:@"customClass"] isEqualTo:propertyName])
+    if (selection != nil)
     {
-        // Set the property in the extra props dict
-        [nodeInfo.extraProps setObject:value forKey:propertyName];
+        NodeInfo* nodeInfo = selection.userObject;
+        PlugInNode* plugIn = nodeInfo.plugIn;
+        if ([plugIn dontSetInEditorProperty:propertyName] || [[selection extraPropForKey:@"customClass"] isEqualTo:propertyName])
+        {
+            // Set the property in the extra props dict
+            [nodeInfo.extraProps setObject:value forKey:propertyName];
+        }
+        else
+        {
+            [selection setValue:value forKey:propertyName];
+        }
     }
+    
+    else if (selections != nil)
+    {
+        for (CCNode* item in selections)
+        {
+            NodeInfo* nodeInfo = item.userObject;
+            PlugInNode* plugIn = nodeInfo.plugIn;
+            if ([plugIn dontSetInEditorProperty:propertyName] || [[item extraPropForKey:@"customClass"] isEqualTo:propertyName])
+            {
+                // Set the property in the extra props dict
+                [nodeInfo.extraProps setObject:value forKey:propertyName];
+            }
+            else
+            {
+                [item setValue:value forKey:propertyName];
+            }
+        }
+    }
+    
     else
     {
-        [selection setValue:value forKey:propertyName];
+        NSAssert(false, @"both selection node and selection nodes array nil");
+        return;
     }
     
     // Handle animatable properties
@@ -209,6 +260,7 @@
     self.affectsProperties = NULL;
     self.textFieldOriginalValue = NULL;
     [selection release];
+    [selections release];
     [propertyName release];
     [displayName release];
     [inspectorValueBelow release];

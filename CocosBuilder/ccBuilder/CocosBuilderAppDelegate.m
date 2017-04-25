@@ -632,6 +632,63 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
 static InspectorValue* lastInspectorValue;
 static BOOL hideAllToNextSeparator;
 
+- (int) addInspectorPropertyOfTypeWithMultipleNode:(NSString*)type name:(NSString*)prop displayName:(NSString*)displayName extra:(NSString*)e readOnly:(BOOL)readOnly affectsProps:(NSArray*)affectsProps atOffset:(int)offset
+{
+    NSString* inspectorNibName = [NSString stringWithFormat:@"Inspector%@",type];
+    
+    // Create inspector
+    InspectorValue* inspectorValue = [InspectorValue inspectorOfTypeWithMultipleSelection:type withSelection:self.selectedNodes andPropertyName:prop andDisplayName:displayName andExtra:e];
+    lastInspectorValue.inspectorValueBelow = inspectorValue;
+    lastInspectorValue = inspectorValue;
+    inspectorValue.readOnly = readOnly;
+    inspectorValue.rootNode = (self.selectedNode == [CocosScene cocosScene].rootNode);
+    
+    // Save a reference in case it needs to be updated
+    if (prop)
+    {
+        [currentInspectorValues setObject:inspectorValue forKey:prop];
+    }
+    
+    if (affectsProps)
+    {
+        inspectorValue.affectsProperties = affectsProps;
+    }
+    
+    // Load it's associated view
+    [NSBundle loadNibNamed:inspectorNibName owner:inspectorValue];
+    NSView* view = inspectorValue.view;
+    
+    [inspectorValue willBeAdded];
+    
+    //if its a separator, check to see if it isExpanded, if not set all of the next non-separator InspectorValues to hidden and don't touch the offset
+    if ([inspectorValue isKindOfClass:[InspectorSeparator class]]) {
+        InspectorSeparator* inspectorSeparator = (InspectorSeparator*)inspectorValue;
+        hideAllToNextSeparator = NO;
+        if (!inspectorSeparator.isExpanded) {
+            hideAllToNextSeparator = YES;
+        }
+        NSRect frame = [view frame];
+        [view setFrame:NSMakeRect(0, offset, frame.size.width, frame.size.height)];
+        offset += frame.size.height;
+    }
+    else {
+        if (hideAllToNextSeparator) {
+            [view setHidden:YES];
+        }
+        else {
+            NSRect frame = [view frame];
+            [view setFrame:NSMakeRect(0, offset, frame.size.width, frame.size.height)];
+            offset += frame.size.height;
+        }
+    }
+    
+    // Add view to inspector and place it at the bottom
+    [inspectorDocumentView addSubview:view];
+    [view setAutoresizingMask:NSViewWidthSizable];
+    
+    return offset;
+}
+
 - (int) addInspectorPropertyOfType:(NSString*)type name:(NSString*)prop displayName:(NSString*)displayName extra:(NSString*)e readOnly:(BOOL)readOnly affectsProps:(NSArray*)affectsProps atOffset:(int)offset
 {
     NSString* inspectorNibName = [NSString stringWithFormat:@"Inspector%@",type];
@@ -733,89 +790,181 @@ static BOOL hideAllToNextSeparator;
     int paneOffset = 0;
     
     // Add show panes according to selections
-    if (!self.selectedNode) return;
+    if (self.selectedNodes.count == 0) return;
     
-    NodeInfo* info = self.selectedNode.userObject;
-    PlugInNode* plugIn = info.plugIn;
-    
-    BOOL isCCBSubFile = [plugIn.nodeClassName isEqualToString:@"CCBFile"];
-    
-    // Always add the code connections pane
-    if (jsControlled)
+    if (self.selectedNodes.count == 1)
     {
-        paneOffset = [self addInspectorPropertyOfType:@"CodeConnectionsJS" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile affectsProps:NULL atOffset:paneOffset];
-    }
-    else
-    {
-        paneOffset = [self addInspectorPropertyOfType:@"CodeConnections" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile affectsProps:NULL atOffset:paneOffset];
-    }
-    
-    // Add panes for each property
-    
-    if (plugIn)
-    {
-        NSArray* propInfos = plugIn.nodeProperties;
-        for (int i = 0; i < [propInfos count]; i++)
+        // select one node, old logic, self.selectedNode must not null
+        NSAssert(self.selectedNode != nil, @"select one node, old logic, self.selectedNode must not null");
+        
+        NodeInfo* info = self.selectedNode.userObject;
+        PlugInNode* plugIn = info.plugIn;
+        
+        BOOL isCCBSubFile = [plugIn.nodeClassName isEqualToString:@"CCBFile"];
+        
+        // Always add the code connections pane
+        if (jsControlled)
         {
-            NSDictionary* propInfo = [propInfos objectAtIndex:i];
-            NSString* type = [propInfo objectForKey:@"type"];
-            NSString* name = [propInfo objectForKey:@"name"];
-            NSString* displayName = [propInfo objectForKey:@"displayName"];
-            BOOL readOnly = [[propInfo objectForKey:@"readOnly"] boolValue];
-            NSArray* affectsProps = [propInfo objectForKey:@"affectsProperties"];
-            NSString* extra = [propInfo objectForKey:@"extra"];
-            BOOL animated = [[propInfo objectForKey:@"animatable"] boolValue];
-            if ([name isEqualToString:@"visible"]) animated = YES;
-            if ([self.selectedNode shouldDisableProperty:name]) readOnly = YES;
-            
-            // Handle Flash skews
-            BOOL usesFlashSkew = [self.selectedNode usesFlashSkew];
-            if (usesFlashSkew && [name isEqualToString:@"rotation"]) continue;
-            if (!usesFlashSkew && [name isEqualToString:@"rotationX"]) continue;
-            if (!usesFlashSkew && [name isEqualToString:@"rotationY"]) continue;
-            
-            // TODO: Handle read only for animated properties
-            if ([self isDisabledProperty:name animatable:animated])
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnectionsJS" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile affectsProps:NULL atOffset:paneOffset];
+        }
+        else
+        {
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnections" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile affectsProps:NULL atOffset:paneOffset];
+        }
+        
+        // Add panes for each property
+        
+        if (plugIn)
+        {
+            NSArray* propInfos = plugIn.nodeProperties;
+            for (int i = 0; i < [propInfos count]; i++)
             {
-                readOnly = YES;
+                NSDictionary* propInfo = [propInfos objectAtIndex:i];
+                NSString* type = [propInfo objectForKey:@"type"];
+                NSString* name = [propInfo objectForKey:@"name"];
+                NSString* displayName = [propInfo objectForKey:@"displayName"];
+                BOOL readOnly = [[propInfo objectForKey:@"readOnly"] boolValue];
+                NSArray* affectsProps = [propInfo objectForKey:@"affectsProperties"];
+                NSString* extra = [propInfo objectForKey:@"extra"];
+                BOOL animated = [[propInfo objectForKey:@"animatable"] boolValue];
+                if ([name isEqualToString:@"visible"]) animated = YES;
+                if ([self.selectedNode shouldDisableProperty:name]) readOnly = YES;
+                
+                // Handle Flash skews
+                BOOL usesFlashSkew = [self.selectedNode usesFlashSkew];
+                if (usesFlashSkew && [name isEqualToString:@"rotation"]) continue;
+                if (!usesFlashSkew && [name isEqualToString:@"rotationX"]) continue;
+                if (!usesFlashSkew && [name isEqualToString:@"rotationY"]) continue;
+                
+                // TODO: Handle read only for animated properties
+                if ([self isDisabledProperty:name animatable:animated])
+                {
+                    readOnly = YES;
+                }
+                
+                //For the separators; should make this a part of the definition
+                if (name == NULL) {
+                    name = displayName;
+                }
+                
+                paneOffset = [self addInspectorPropertyOfType:type name:name displayName:displayName extra:extra readOnly:readOnly affectsProps:affectsProps atOffset:paneOffset];
             }
-            
-            //For the separators; should make this a part of the definition
-            if (name == NULL) {
-                name = displayName;
-            }
-            
-            paneOffset = [self addInspectorPropertyOfType:type name:name displayName:displayName extra:extra readOnly:readOnly affectsProps:affectsProps atOffset:paneOffset];
         }
+        else
+        {
+            NSLog(@"WARNING info:%@ plugIn:%@ selectedNode: %@", info, plugIn, self.selectedNode);
+        }
+        
+        // Custom properties
+        NSString* customClass = [self.selectedNode extraPropForKey:@"customClass"];
+        NSArray* customProps = self.selectedNode.customProperties;
+        if (customClass && ![customClass isEqualToString:@""])
+        {
+            if ([customProps count] || !isCCBSubFile)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"Separator" name:[self.selectedNode extraPropForKey:@"customClass"] displayName:[self.selectedNode extraPropForKey:@"customClass"] extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+            }
+            
+            for (CustomPropSetting* setting in customProps)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"Custom" name:setting.name displayName:setting.name extra:NULL readOnly:NO affectsProps:NULL atOffset:paneOffset];
+            }
+            
+            if (!isCCBSubFile)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"CustomEdit" name:NULL displayName:@"" extra:NULL readOnly:NO affectsProps:NULL atOffset:paneOffset];
+            }
+        }
+        
+        hideAllToNextSeparator = NO;
     }
     else
     {
-        NSLog(@"WARNING info:%@ plugIn:%@ selectedNode: %@", info, plugIn, self.selectedNode);
-    }
-    
-    // Custom properties
-    NSString* customClass = [self.selectedNode extraPropForKey:@"customClass"];
-    NSArray* customProps = self.selectedNode.customProperties;
-    if (customClass && ![customClass isEqualToString:@""])
-    {
-        if ([customProps count] || !isCCBSubFile)
+        // multiple nodes, display baseNodes properties, only tag can be edited.
+        
+        CCNode* baseNode = [self.selectedNodes objectAtIndex:0];
+        
+        NodeInfo* info = baseNode.userObject;
+        PlugInNode* plugIn = info.plugIn;
+        
+        BOOL isCCBSubFile = [plugIn.nodeClassName isEqualToString:@"CCBFile"];
+        
+        // Always add the code connections pane
+        if (jsControlled)
         {
-            paneOffset = [self addInspectorPropertyOfType:@"Separator" name:[self.selectedNode extraPropForKey:@"customClass"] displayName:[self.selectedNode extraPropForKey:@"customClass"] extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnectionsJS" name:@"customClass" displayName:@"" extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+        }
+        else
+        {
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnections" name:@"customClass" displayName:@"" extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
         }
         
-        for (CustomPropSetting* setting in customProps)
+        // Add panes for each property
+        
+        if (plugIn)
         {
-            paneOffset = [self addInspectorPropertyOfType:@"Custom" name:setting.name displayName:setting.name extra:NULL readOnly:NO affectsProps:NULL atOffset:paneOffset];
+            NSArray* propInfos = plugIn.nodeProperties;
+            for (int i = 0; i < [propInfos count]; i++)
+            {
+                NSDictionary* propInfo = [propInfos objectAtIndex:i];
+                NSString* type = [propInfo objectForKey:@"type"];
+                NSString* name = [propInfo objectForKey:@"name"];
+                NSString* displayName = [propInfo objectForKey:@"displayName"];
+                BOOL readOnly = [name isEqualToString:@"tag"] ? [[propInfo objectForKey:@"readOnly"] boolValue] : YES;
+                NSArray* affectsProps = [propInfo objectForKey:@"affectsProperties"];
+                NSString* extra = [propInfo objectForKey:@"extra"];
+                BOOL animated = [[propInfo objectForKey:@"animatable"] boolValue];
+                if ([name isEqualToString:@"visible"]) animated = YES;
+                if ([baseNode shouldDisableProperty:name]) readOnly = YES;
+                
+                // Handle Flash skews
+                BOOL usesFlashSkew = [self.selectedNode usesFlashSkew];
+                if (usesFlashSkew && [name isEqualToString:@"rotation"]) continue;
+                if (!usesFlashSkew && [name isEqualToString:@"rotationX"]) continue;
+                if (!usesFlashSkew && [name isEqualToString:@"rotationY"]) continue;
+                
+                // TODO: Handle read only for animated properties
+                if ([self isDisabledProperty:name animatable:animated])
+                {
+                    readOnly = YES;
+                }
+                
+                //For the separators; should make this a part of the definition
+                if (name == NULL) {
+                    name = displayName;
+                }
+                
+                paneOffset = [self addInspectorPropertyOfTypeWithMultipleNode:type name:name displayName:displayName extra:extra readOnly:readOnly affectsProps:affectsProps atOffset:paneOffset];
+            }
+        }
+        else
+        {
+            NSLog(@"WARNING info:%@ plugIn:%@ selectedNode: %@", info, plugIn, self.selectedNode);
         }
         
-        if (!isCCBSubFile)
+        // Custom properties
+        NSString* customClass = [self.selectedNode extraPropForKey:@"customClass"];
+        NSArray* customProps = self.selectedNode.customProperties;
+        if (customClass && ![customClass isEqualToString:@""])
         {
-            paneOffset = [self addInspectorPropertyOfType:@"CustomEdit" name:NULL displayName:@"" extra:NULL readOnly:NO affectsProps:NULL atOffset:paneOffset];
+            if ([customProps count] || !isCCBSubFile)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"Separator" name:[self.selectedNode extraPropForKey:@"customClass"] displayName:[self.selectedNode extraPropForKey:@"customClass"] extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+            }
+            
+            for (CustomPropSetting* setting in customProps)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"Custom" name:setting.name displayName:setting.name extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+            }
+            
+            if (!isCCBSubFile)
+            {
+                paneOffset = [self addInspectorPropertyOfType:@"CustomEdit" name:NULL displayName:@"" extra:NULL readOnly:YES affectsProps:NULL atOffset:paneOffset];
+            }
         }
+        
+        hideAllToNextSeparator = NO;
     }
-    
-    hideAllToNextSeparator = NO;
-    
     /*
     // Custom properties from sub ccb
     if (isCCBSubFile)
