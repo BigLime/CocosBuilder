@@ -411,10 +411,19 @@ static SequencerHandler* sharedSequencerHandler;
     CCNode* draggedNode = item;
     if (draggedNode == g.rootNode) return NO;
     
-    NSMutableDictionary* clipDict = [CCBWriterInternal dictionaryFromCCObject:draggedNode];
+    // update by lsr for support mult selected
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithCapacity:[items count] + 1];
+    [dic setObject:[NSNumber numberWithInteger:[items count]] forKey:@"node_count"];
+    for(int i = 0; i < [items count]; ++i)
+    {
+        CCNode* node = [items objectAtIndex:i];
+        NSMutableDictionary* clipDict = [CCBWriterInternal dictionaryFromCCObject:node];
+        [clipDict setObject:[NSNumber numberWithLongLong:(long long)node] forKey:@"srcNode"];
+        NSString* str_key = [NSString stringWithFormat:@"node_%d", i];
+        [dic setObject:clipDict forKey:str_key];
+    }
     
-    [clipDict setObject:[NSNumber numberWithLongLong:(long long)draggedNode] forKey:@"srcNode"];
-    NSData* clipData = [NSKeyedArchiver archivedDataWithRootObject:clipDict];
+    NSData* clipData = [NSKeyedArchiver archivedDataWithRootObject:dic];
     
     [pboard setData:clipData forType:@"com.cocosbuilder.node"];
     
@@ -450,6 +459,17 @@ static SequencerHandler* sharedSequencerHandler;
     return NSDragOperationGeneric;
 }
 
+- (void)putChildren:(CCNode*)node ToArray:(NSMutableArray*)arr
+{
+    [arr addObject:node];
+    CCArray* ccarr = node.children;
+    for(int i = 0; i < [ccarr count]; ++i)
+    {
+        CCNode* node_i = [ccarr objectAtIndex:i];
+        [self putChildren:node_i ToArray:arr];
+    }
+}
+
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id < NSDraggingInfo >)info item:(id)item childIndex:(NSInteger)index
 {
     NSPasteboard* pb = [info draggingPasteboard];
@@ -457,16 +477,51 @@ static SequencerHandler* sharedSequencerHandler;
     NSData* clipData = [pb dataForType:@"com.cocosbuilder.node"];
     if (clipData)
     {
-        NSMutableDictionary* clipDict = [NSKeyedUnarchiver unarchiveObjectWithData:clipData];
+        NSMutableDictionary* dic = [NSKeyedUnarchiver unarchiveObjectWithData:clipData];
+        NSNumber* number = [dic objectForKey:@"node_count"];
+        int count = [number integerValue];
+        NSMutableArray* arr_node = [NSMutableArray arrayWithCapacity:count];
+        NSMutableArray* arr_remove = [NSMutableArray arrayWithCapacity:count];
         
-        CCNode* clipNode= [CCBReaderInternal nodeGraphFromDictionary:clipDict parentSize:CGSizeZero];
-        if (![appDelegate addCCObject:clipNode toParent:item atIndex:index]) return NO;
+        // update by lsr for support mult selected
+        // check node
+        NSMutableArray* arr_check = [NSMutableArray array];
+        for(int i = 0; i < count; ++i)
+        {
+            NSString* str_key = [NSString stringWithFormat:@"node_%d", i];
+            NSMutableDictionary* clipDict = [dic objectForKey:str_key];
+            CCNode* draggedNode = (CCNode*)[[clipDict objectForKey:@"srcNode"] longLongValue];
+            
+            [self putChildren:draggedNode ToArray:arr_check];
+        }
+        // do check
+        for(int i = 0; i < [arr_check count]; ++i)
+        {
+            CCNode* node_i = [arr_check objectAtIndex:i];
+            if(node_i == item)
+                return NO;
+        }
         
-        // Remove old node
-        CCNode* draggedNode = (CCNode*)[[clipDict objectForKey:@"srcNode"] longLongValue];
-        [appDelegate deleteNode:draggedNode];
+        for(int i = 0; i < count; ++i)
+        {
+            NSString* str_key = [NSString stringWithFormat:@"node_%d", i];
+            NSMutableDictionary* clipDict = [dic objectForKey:str_key];
+            CCNode* clipNode= [CCBReaderInternal nodeGraphFromDictionary:clipDict parentSize:CGSizeZero];
+            int index_i = index == - 1 ? index : index + i;
+            if (![appDelegate addCCObject:clipNode toParent:item atIndex:index_i]) return NO;
+            
+            CCNode* draggedNode = (CCNode*)[[clipDict objectForKey:@"srcNode"] longLongValue];
+            [arr_remove addObject:draggedNode];
+            [arr_node addObject:clipNode];
+        }
         
-        [appDelegate setSelectedNodes:[NSArray arrayWithObject: clipNode]];
+        for(int i = count - 1; i >= 0; --i)
+        {
+            CCNode* draggedNode = [arr_remove objectAtIndex:i];
+            [appDelegate deleteNode:draggedNode];
+        }
+        
+        [appDelegate setSelectedNodes:arr_node];
         
         [PositionPropertySetter refreshAllPositions];
         
