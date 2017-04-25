@@ -1954,7 +1954,7 @@ static BOOL hideAllToNextSeparator;
         parent = self.selectedNode;
         if (!parent) self.selectedNodes = [NSArray arrayWithObject: g.rootNode];
     }
-    
+
     BOOL success = [self addCCObject:obj toParent:parent];
     
     if (!success && !asChild)
@@ -1966,11 +1966,43 @@ static BOOL hideAllToNextSeparator;
     return success;
 }
 
-- (void) addPlugInNodeNamed:(NSString*)name asChild:(BOOL) asChild
+- (BOOL) addCCObjectAtNext:(CCNode *)obj
+{
+    CCBGlobals* g = [CCBGlobals globals];
+    
+    CCNode* parent;
+    int selectedNodeZorder = -1;
+    if (!self.selectedNode || self.selectedNode == g.rootNode)
+    {
+        parent = g.rootNode;
+    }
+    else
+    {
+        parent = self.selectedNode.parent;
+        selectedNodeZorder = self.selectedNode.zOrder;
+    }
+    
+    BOOL success = [self addCCObject:obj toParent:parent atIndex:selectedNodeZorder+1];
+    if (!success) {
+        return [self addCCObject:obj asChild:YES];
+    }
+    
+    return success;
+}
+
+- (void) addPlugInNodeNamed:(NSString*)name asChild:(BOOL) asChild atNext:(BOOL) atNext
 {
     self.errorDescription = NULL;
     CCNode* node = [plugInManager createDefaultNodeOfType:name];
-    BOOL success = [self addCCObject:node asChild:asChild];
+    BOOL success = NO;
+    if(atNext)
+    {
+        success = [self addCCObjectAtNext:node];
+    }
+    else
+    {
+        success = [self addCCObject:node asChild:asChild];
+    }
     
     if (!success && self.errorDescription)
     {

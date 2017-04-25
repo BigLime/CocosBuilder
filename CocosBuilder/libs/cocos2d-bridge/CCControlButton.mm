@@ -266,7 +266,49 @@
 }
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    //TODO no this method
+    NSArray* chunks = [key componentsSeparatedByString:@"|"];
+    if ([chunks count] == 2)
+    {
+        NSString* keyChunk = [chunks objectAtIndex:0];
+        int state = [[chunks objectAtIndex:1] intValue];
+        
+        if ([keyChunk isEqualToString:@"title"])
+        {
+            [self setTitle:value forState:state];
+        }
+        else if ([keyChunk isEqualToString:@"backgroundSpriteFrame"])
+        {
+            [self setBackgroundSpriteFrame:value forState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleColor"])
+        {
+            ccColor3B c;
+            [value getValue:&c];
+            [self setTitleColor:c forState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleBMFont"])
+        {
+            [self setTitleBMFont:value forState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleTTF"])
+        {
+            NSLog(@"setTitleTTF: %@ forState:%d", value, state);
+            
+            [self setTitleTTF:value forState:state];
+        }
+        else if ([keyChunk isEqualToString:@"titleTTFSize"])
+        {
+            [self setTitleTTFSize:[value floatValue] forState:state];
+        }
+        else
+        {
+            [super setValue:value forUndefinedKey:key];
+        }
+    }
+    else
+    {
+        [super setValue:value forUndefinedKey:key];
+    }
 }
 - (id)valueForUndefinedKey:(NSString *)key
 {
