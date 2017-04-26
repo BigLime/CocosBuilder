@@ -162,7 +162,7 @@ static CocosBuilderAppDelegate* sharedAppDelegate;
     [cocosView create:self.window delegate:self];
     [splitHorizontalView setCocosView:cocosView];
     
-	[director setDisplayStats:YES];
+	[director setDisplayStats:NO];
     [director setAnimationInterval:1 / 60.f];
     [director setView:cocosView];
 	[director setProjection:kCCDirectorProjection2D];
@@ -1508,7 +1508,7 @@ static BOOL hideAllToNextSeparator;
     
     [[JavaScriptAutoCompleteHandler sharedAutoCompleteHandler] removeLocalFiles];
     
-    [window setTitle:@"CocosBuilder"];
+    [window setTitle:@"CocosBuilderX"];
 
     // Stop local web server
     [[CCBHTTPServer sharedHTTPServer] stop];
@@ -1557,7 +1557,7 @@ static BOOL hideAllToNextSeparator;
     }
     
     // Update the title of the main window
-    [window setTitle:[NSString stringWithFormat:@"CocosBuilder - %@", [fileName lastPathComponent]]];
+    [window setTitle:[NSString stringWithFormat:@"CocosBuilderX - %@", [fileName lastPathComponent]]];
 
     // Start local web server
     NSString* docRoot = [projectSettings.publishDirectoryHTML5 absolutePathFromBaseDirPath:[projectSettings.projectPath stringByDeletingLastPathComponent]];

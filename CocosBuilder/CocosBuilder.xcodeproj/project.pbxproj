@@ -5698,7 +5698,8 @@
 					libs/Tupac,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = CocosBuilder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocosbuilder.CocosBuilder;
+				PRODUCT_NAME = CocosBuilderX;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5742,7 +5743,8 @@
 					libs/Tupac,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = CocosBuilder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocosbuilder.CocosBuilder;
+				PRODUCT_NAME = CocosBuilderX;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
