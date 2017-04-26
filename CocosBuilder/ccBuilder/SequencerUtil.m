@@ -149,6 +149,10 @@
         // Add the keyframe
         [selectedNode addKeyframe:kf forProperty:@"displayFrame" atTime:currentTime sequenceId:seq.sequenceId];
         
+        // setExtraProp to fixed misstexture bug by lsr
+        [selectedNode setExtraProp:spriteFile forKey:@"displayFrame"];
+        [selectedNode setExtraProp:spriteSheetFile forKey:@"displayFrameSheet"];
+        
         // Step one keyframe ahead
         currentTime = [seq alignTimeToResolution: currentTime + 1/seq.timelineResolution];
     }
