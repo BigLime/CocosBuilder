@@ -179,10 +179,18 @@
 {
     int selectedSegment = [[sender cell] selectedSegment];
     NSString* objType = [[sender cell] toolTipForSegment:selectedSegment];
-    BOOL asChild = ((GetCurrentKeyModifiers() & shiftKey) != 0);
-    BOOL atNext = ((GetCurrentKeyModifiers() & optionKey) != 0);
     
-    [[CocosBuilderAppDelegate appDelegate] addPlugInNodeNamed:objType asChild:asChild atNext:atNext];
+    if([objType isEqualToString:@"CCFindUnusedFont"])
+    {
+        [[CocosBuilderAppDelegate appDelegate] findUnusedFont];
+    }
+    else
+    {
+        BOOL asChild = ((GetCurrentKeyModifiers() & shiftKey) != 0);
+        BOOL atNext = ((GetCurrentKeyModifiers() & optionKey) != 0);
+        
+        [[CocosBuilderAppDelegate appDelegate] addPlugInNodeNamed:objType asChild:asChild atNext:atNext];
+    }
 }
 
 - (void) selectedItem:(id) sender

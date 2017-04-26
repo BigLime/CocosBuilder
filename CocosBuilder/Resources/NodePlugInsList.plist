@@ -6,6 +6,14 @@
 	<array>
 		<dict>
 			<key>groupName</key>
+			<string>ScriptTools</string>
+			<key>plugIns</key>
+			<array>
+				<string>CCFindUnusedFont</string>
+			</array>
+		</dict>
+		<dict>
+			<key>groupName</key>
 			<string>Node</string>
 			<key>plugIns</key>
 			<array>

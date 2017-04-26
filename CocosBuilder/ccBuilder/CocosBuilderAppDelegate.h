@@ -314,6 +314,7 @@ enum {
 - (BOOL) addCCObject:(CCNode*)obj asChild:(BOOL)asChild;
 - (BOOL) addCCObjectAtNext:(CCNode *)obj;
 - (void) addPlugInNodeNamed:(NSString*)name asChild:(BOOL) asChild atNext:(BOOL) atNext;
+- (void) findUnusedFont;
 - (void) deleteNode:(CCNode*)node;
 - (IBAction) pasteAsChild:(id)sender;
 - (IBAction) menuQuit:(id)sender;

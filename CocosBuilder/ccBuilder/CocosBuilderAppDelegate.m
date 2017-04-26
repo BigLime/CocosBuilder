@@ -101,6 +101,7 @@
 #import "JavaScriptAutoCompleteHandler.h"
 #import "CCBFileUtil.h"
 #import "ResourceManagerPreviewView.h"
+#import "ccCppUtil.h"
 
 #import <ExceptionHandling/NSExceptionHandler.h>
 
@@ -2009,6 +2010,13 @@ static BOOL hideAllToNextSeparator;
     {
         [self modalDialogTitle:@"Failed to Add Object" message:self.errorDescription];
     }
+}
+
+- (void) findUnusedFont
+{
+    NSString* str_path = [ccCppUtil NSStringSubString:self.projectSettings.projectPath byLastStr:@"/"];
+    NSString* str_files = [ccCppUtil findUnusedFont:str_path];
+    [self modalDialogTitle:@"Unused Font File List : " message:str_files];
 }
 
 - (void) dropAddSpriteNamed:(NSString*)spriteFile inSpriteSheet:(NSString*)spriteSheetFile at:(CGPoint)pt parent:(CCNode*)parent
