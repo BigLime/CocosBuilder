@@ -41,7 +41,7 @@ static inline CGPoint ccp( CGFloat x, CGFloat y )
     self = [super init];
     if (!self) return NULL;
     
-    self.positionType = kCCPositionTypeGrouped;
+    self.positionType = kCCPositionTypeFree;
     
     return self;
 }
