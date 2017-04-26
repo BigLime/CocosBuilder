@@ -101,15 +101,4 @@
     [super dealloc];
 }
 
--(void)keyDown:(NSEvent *)event
-{
-    int keyCode = [event keyCode];
-    if (keyCode == 0x24 || keyCode == 0x4C)
-    {
-        // press enter.
-        SequencerHandler* sh = (SequencerHandler*) [self dataSource];
-        [sh expandAllSelectedNodes];
-    }
-}
-
 @end
