@@ -52,6 +52,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="value" keyPath="memberVarAssignmentName" id="296"/>
                         <binding destination="-2" name="editable" keyPath="readOnly" id="0rX-ka-fEM">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -62,7 +63,6 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="value" keyPath="memberVarAssignmentName" id="296"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="302">
@@ -74,12 +74,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="readOnly" id="EkB-uJ-l8Z">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="rootNode" previousBinding="EkB-uJ-l8Z" id="Ous-8x-BRa"/>
+                        <binding destination="-2" name="enabled" keyPath="rootNode" id="gtk-kE-1kl"/>
                         <binding destination="-2" name="value" keyPath="jsController" id="307"/>
                     </connections>
                 </textField>
