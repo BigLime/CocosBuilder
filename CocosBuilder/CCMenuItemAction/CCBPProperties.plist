@@ -25,20 +25,20 @@
 			<true/>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>Check</string>
-			<key>name</key>
-			<string>isEnabled</string>
-			<key>displayName</key>
-			<string>enable</string>
-		</dict>
-		<dict>
 			<key>displayName</key>
 			<string>function</string>
 			<key>type</key>
 			<string>Block</string>
 			<key>name</key>
 			<string>block</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>Check</string>
+			<key>name</key>
+			<string>isEnabled</string>
+			<key>displayName</key>
+			<string>Is Enabled</string>
 		</dict>
 		<dict>
 			<key>displayName</key>

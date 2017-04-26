@@ -22,6 +22,7 @@
 				<string>CCLayerColor</string>
 				<string>CCLayerGradient</string>
 				<string>CCScrollView</string>
+				<string>CCTableView</string>
 			</array>
 		</dict>
 		<dict>
@@ -49,6 +50,7 @@
 			<array>
 				<string>CCMenu</string>
 				<string>CCMenuItemImage</string>
+				<string>CCMenuItemAction</string>
 			</array>
 		</dict>
 		<dict>
