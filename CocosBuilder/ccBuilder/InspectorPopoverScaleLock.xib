@@ -12,7 +12,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
             <rect key="frame" x="0.0" y="0.0" width="202" height="36"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -45,18 +45,19 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="readOnly" id="nI8-3y-9Fq">
+                        <binding destination="-2" name="enabled" keyPath="readOnly" previousBinding="nI8-3y-9Fq" id="IEq-vJ-hM0">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="enabled" keyPath="readOnly" previousBinding="nI8-3y-9Fq" id="IEq-vJ-hM0">
+                        <binding destination="-2" name="editable" keyPath="readOnly" id="nI8-3y-9Fq">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                         <binding destination="-2" name="value" keyPath="scaleX" id="32"/>
                         <outlet property="delegate" destination="-2" id="54"/>
+                        <outlet property="nextKeyView" destination="10" id="Kra-6g-3Md"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="10">
@@ -69,12 +70,12 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="readOnly" id="HHm-ts-mTn">
+                        <binding destination="-2" name="enabled" keyPath="readOnly" previousBinding="HHm-ts-mTn" id="AmM-3S-yul">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="enabled" keyPath="readOnly" previousBinding="HHm-ts-mTn" id="AmM-3S-yul">
+                        <binding destination="-2" name="editable" keyPath="readOnly" id="HHm-ts-mTn">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -91,12 +92,12 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="value" keyPath="locked" id="45"/>
                         <binding destination="-2" name="enabled" keyPath="readOnly" id="40">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="value" keyPath="locked" id="45"/>
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" id="46">

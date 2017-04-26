@@ -12,7 +12,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
             <rect key="frame" x="0.0" y="0.0" width="233" height="33"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -39,12 +39,13 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="value" keyPath="f" id="30"/>
                         <binding destination="-2" name="editable" keyPath="readOnly" id="UDn-5f-SFc">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="value" keyPath="f" id="30"/>
+                        <outlet property="nextKeyView" destination="10" id="EVf-1b-69V"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="10">
@@ -57,12 +58,12 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="value" keyPath="fVar" id="31"/>
                         <binding destination="-2" name="editable" keyPath="readOnly" id="ry6-0X-PfR">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="value" keyPath="fVar" id="31"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="28">
