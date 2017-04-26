@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -15,10 +16,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="CocosBuilder" id="56">
-                    <menu key="submenu" title="CocosBuilder" systemMenu="apple" id="57">
+                <menuItem title="CocosBuilderX" id="56">
+                    <menu key="submenu" title="CocosBuilderX" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About CocosBuilder" id="58">
+                            <menuItem title="About CocosBuilderX" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="menuAbout:" target="494" id="1840"/>
@@ -43,7 +44,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide CocosBuilder" keyEquivalent="h" id="134">
+                            <menuItem title="Hide CocosBuilderX" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -1075,7 +1076,7 @@ Aw
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="491">
                         <items>
-                            <menuItem title="CocosBuilder User Guide" keyEquivalent="?" id="492">
+                            <menuItem title="CocosBuilderX User Guide" keyEquivalent="?" id="492">
                                 <connections>
                                     <action selector="showHelp:" target="494" id="1806"/>
                                 </connections>
@@ -1104,7 +1105,7 @@ Aw
                 </menuItem>
             </items>
         </menu>
-        <window title="CocosBuilder" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" customClass="MainWindow">
+        <window title="CocosBuilderX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" customClass="MainWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="255" y="184" width="1150" height="700"/>
@@ -1123,7 +1124,7 @@ Aw
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="axesIndependently" image="header-bg" id="1497"/>
                             </imageView>
-                            <textField verticalHuggingPriority="750" id="1495">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="1495">
                                 <rect key="frame" x="3" y="664" width="250" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Project" id="1496">
@@ -1268,7 +1269,7 @@ Aw
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="axesIndependently" image="seq-ctrl-bg" id="1534"/>
                                     </imageView>
-                                    <textField verticalHuggingPriority="750" id="1237">
+                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="1237">
                                         <rect key="frame" x="5" y="83" width="220" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Structure" id="1238">
@@ -1277,7 +1278,7 @@ Aw
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" id="1666">
+                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="1666">
                                         <rect key="frame" x="15" y="1" width="210" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="No chained timeline" id="1667">
@@ -1309,7 +1310,7 @@ Aw
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" title="OtherViews" id="1575">
                                                 <items>
-                                                    <menuItem isSeparatorItem="YES" id="1e0-h5-0SJ"/>
+                                                    <menuItem isSeparatorItem="YES" hidden="YES" id="1e0-h5-0SJ"/>
                                                     <menuItem title="Timelines" id="1580">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <menu key="submenu" title="Timelines" id="1581">
@@ -1482,7 +1483,7 @@ Aw
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" image="seq-timedisplay-bg" id="1556"/>
                                     </imageView>
-                                    <textField verticalHuggingPriority="750" id="1557">
+                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="1557">
                                         <rect key="frame" x="507" y="106" width="90" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="00:00:00" id="1558">
