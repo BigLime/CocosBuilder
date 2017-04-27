@@ -240,7 +240,7 @@ static NSString* PropertyKeyWithFormat(NSString* raw)
             if (rotateDevice) borderDevice.rotation = 90;
             else borderDevice.rotation = 0;
             
-            // borderDevice.texture = deviceTexture;
+            borderDevice.texture = deviceTexture;
             borderDevice.textureRect = CGRectMake(0, 0, deviceTexture.contentSize.width, deviceTexture.contentSize.height);
             
             borderDevice.visible = YES;
