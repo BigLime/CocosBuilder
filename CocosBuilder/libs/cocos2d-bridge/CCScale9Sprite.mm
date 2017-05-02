@@ -295,6 +295,7 @@
     {
         cocos2d::ui::Scale9Sprite* node = cocos2d::ui::Scale9Sprite::create();
         node->retain();
+        node->setAnchorPoint(cocos2d::Vec2(0, 0));
         
         isNeedScale9SpriteDealloc_ = YES;
         impl_ = node;
