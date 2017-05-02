@@ -4,6 +4,9 @@
 // author ke.huang
 #import "CCClippingNode.h"
 #import "2d/CCClippingNode.h"
+#import "2d/CCLayer.h"
+#import "2d/CCDrawNode.h"
+#import "ccTypeConvert.h"
 
 @implementation CCClippingNode
 
@@ -54,7 +57,10 @@
 -(CCNode*)stencil
 {
     cocos2d::ClippingNode* node = static_cast<cocos2d::ClippingNode*>(impl_);
-    return [[[CCNode alloc]initWithObject:node->getStencil()] autorelease];
+    if(node->getStencil())
+        return [[[CCNode alloc]initWithObject:node->getStencil()] autorelease];
+    else
+        return nil;
 }
 
 -(void)setStencil:(CCNode *)stencil
@@ -115,4 +121,5 @@
     self = [super init:impl_];
     return self;
 }
+
 @end

@@ -24,21 +24,47 @@
 
 #import "CCBClippingNode.h"
 #import "CCSprite.h"
+#import "CCLayer.h"
 
 @implementation CCBClippingNode
 @synthesize mask;
-
+@synthesize size;
 - (id) init
 {
     self = [super init];
     if (!self) return NULL;
-    
+    [self setSize:CGPointMake(100, 100)];
     return self;
 }
 - (void) setMask:(CCSpriteFrame *)mk
 {
     mask = mk;
-    CCSprite* sprite = [CCSprite spriteWithSpriteFrame:mk];
-    [self setStencil:sprite];
+    if(mk)
+    {
+        CCSprite* sprite = [CCSprite spriteWithSpriteFrame:mk];
+        [sprite setAnchorPoint:CGPointZero];
+        [self setStencil:sprite];
+        
+        [self setContentSize:[sprite contentSize]];
+        [self setSize:CGPointZero];
+    }
+}
+
+-(void)setSize:(CGPoint)sizeXY
+{
+    size = sizeXY;
+    if(sizeXY.x != 0 || sizeXY.y != 0)
+    {
+        CCLayerColor* layer = [[CCLayerColor alloc] init];
+        CGSize newSize;
+        newSize.width = sizeXY.x;
+        newSize.height = sizeXY.y;
+        [layer setContentSize:newSize];
+        [layer setPosition: CGPointZero];
+        [layer setAnchorPoint:CGPointZero];
+        [self setStencil:layer];
+        [self setContentSize:newSize];
+        [self setMask:nil];
+    }
 }
 @end

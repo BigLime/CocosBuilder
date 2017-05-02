@@ -31,5 +31,6 @@
 }
 
 @property (nonatomic,assign) CCSpriteFrame* mask;
+@property (nonatomic,assign) CGPoint size;
 
 @end

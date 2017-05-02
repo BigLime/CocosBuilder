@@ -22,6 +22,16 @@
 			<key>name</key>
 			<string>selected</string>
 		</dict>
+		<dict>
+			<key>readOnly</key>
+			<true/>
+			<key>displayName</key>
+			<string>Content Size</string>
+			<key>name</key>
+			<string>contentSize</string>
+			<key>type</key>
+			<string>Size</string>
+		</dict>
 	</array>
 	<key>properties</key>
 	<array>
@@ -36,6 +46,10 @@
 			<true/>
 		</dict>
 		<dict>
+			<key>affectsProperties</key>
+			<array>
+				<string>contentSize</string>
+			</array>
 			<key>default</key>
 			<array>
 				<string></string>
@@ -65,6 +79,19 @@
 			<string>inverted</string>
 			<key>displayName</key>
 			<string>inverted</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>Point</string>
+			<key>name</key>
+			<string>size</string>
+			<key>displayName</key>
+			<string>Size</string>
+			<key>affectsProperties</key>
+			<array>
+				<string>contentSize</string>
+				<string>mask</string>
+			</array>
 		</dict>
 	</array>
 </dict>

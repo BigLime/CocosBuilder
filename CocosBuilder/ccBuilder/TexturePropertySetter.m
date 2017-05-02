@@ -82,8 +82,8 @@
             spriteFrame = NULL;
         }
     }
-    
-    if (!spriteFrame)
+    //add mask by ke.huang 2017/5/2 if this plugin node is CCBClipping,it's spriteFrame can be null
+    if (!spriteFrame && ![prop isEqualToString:@"mask"])
     {
         // Texture is missing
         CCTexture2D* texture = [[CCTextureCache sharedTextureCache] addImage:@"missing-texture.png"];
