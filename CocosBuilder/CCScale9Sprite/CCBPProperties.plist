@@ -88,6 +88,18 @@
 			<key>animatable</key>
 			<true/>
 			<key>default</key>
+            <integer>255</integer>
+            <key>displayName</key>
+            <string>Opacity</string>
+            <key>type</key>
+            <string>Byte</string>
+            <key>name</key>
+            <string>opacity</string>
+        </dict>
+        <dict>
+            <key>animatable</key>
+            <true/>
+            <key>default</key>
 			<array>
 				<integer>255</integer>
 				<integer>255</integer>
