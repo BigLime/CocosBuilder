@@ -807,11 +807,11 @@ static BOOL hideAllToNextSeparator;
         // Always add the code connections pane
         if (jsControlled)
         {
-            paneOffset = [self addInspectorPropertyOfType:@"CodeConnectionsJS" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile || isRootNode affectsProps:NULL atOffset:paneOffset];
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnectionsJS" name:@"customClass" displayName:@"" extra:NULL readOnly:isRootNode affectsProps:NULL atOffset:paneOffset];
         }
         else
         {
-            paneOffset = [self addInspectorPropertyOfType:@"CodeConnections" name:@"customClass" displayName:@"" extra:NULL readOnly:isCCBSubFile || isRootNode affectsProps:NULL atOffset:paneOffset];
+            paneOffset = [self addInspectorPropertyOfType:@"CodeConnections" name:@"customClass" displayName:@"" extra:NULL readOnly:isRootNode  affectsProps:NULL atOffset:paneOffset];
         }
         
         // Add panes for each property
